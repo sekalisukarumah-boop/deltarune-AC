@@ -7,7 +7,13 @@ function pacify_wave:init()
     self.loop_timer = nil 
 end
 
+function pacify_wave:onArenaEnter()
+    super.onArenaEnter(self)
+    Game.battle.arena:setFire(true, false)
+end
+
 function pacify_wave:onStart()
+    Game.battle.arena:setFire(true, true)
     local ralsei = self:getAttackers()[1]
     self.loop_timer = self.timer:everyInstant(1.5, function()
         if ralsei then
