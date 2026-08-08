@@ -64,9 +64,16 @@ function ralsei_forced:onHurt(damage, battler)
     end)   
 end 
 
+function ralsei_forced:onAdd(parent)
+    self:setSprite("battle/defend_7")
+    super.onAdd(self, parent)
+end 
+
 function ralsei_forced:startSequence()
-    Game.battle:setState("CUTSCENE")
     Game.battle:startCutscene(function(cutscene)
+        Game.battle.battle_ui:clearEncounterText()
+        Game.battle.seen_encounter_text = false
+        Game.battle.current_selecting = 0  
         local ralsei = Game.battle:getEnemyBattler("ralsei_forced")
         ralsei.sprite.frozen = true 
         ralsei.sprite.freeze_progress = 0 

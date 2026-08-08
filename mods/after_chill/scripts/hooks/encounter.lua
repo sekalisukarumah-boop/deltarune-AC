@@ -12,10 +12,14 @@ function Encounter:onStateChange(old, new, reason)
     Game.battle.music:seek(mus)
     self.music = "snowstorm_g"
     end 
+    if self.background then 
     self.bg = SnowflakeBG()
     Game.battle:addChild(self.bg)
+    end 
     elseif new == "TRANSITIONOUT" then 
+    if self.background then 
     self.bg:remove()
+    end 
     end 
     super.onStateChange(self, old, new, reason)
 end 

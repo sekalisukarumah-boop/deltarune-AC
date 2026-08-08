@@ -1,4 +1,4 @@
-local arena, super = HookSystem.hookScript("Arena")
+local arena, super = HookSystem.hookScript(Arena)
 
 function arena:setFire(should, damage)
     if should then 

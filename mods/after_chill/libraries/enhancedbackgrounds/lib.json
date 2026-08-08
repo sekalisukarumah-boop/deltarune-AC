@@ -1,0 +1,27 @@
+{
+    "id": "betterbgs",
+    "version": "1.0.0",
+    "engineVersion": "0.11.0-dev",
+
+    "authors": [
+        "YeetusSnoopy",        
+
+        "Fabr",                // Original Concept Creator + Assets Contributor.
+
+        "JaruEthaus",           // Petal Rain port.
+
+        "Diamond Deltahedron", // Teevie Crowd + PaSpeaker ports + CH4 ports
+
+        "HmmNoPls",            // Port of the "scr_lerpvar" function from Deltarune, among a few other lerping functions. + TitanDarkController Port + Snowflakes
+   
+        "Hyperboid",            // Ripple and Water Effect + CH4 ports
+
+        "Skarph",               // Spotlight effects
+
+        "l0calch4rt3r"          //winterbattleback assets
+
+
+    ],
+
+    "config": {}
+}

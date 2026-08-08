@@ -12,20 +12,23 @@ function noelle:init()
     self.money = 40
     self.tired_percentage = 0 
     self.disable_mercy = true 
-    self.exit_on_defeat = false
     self.dialogue = ""
 
     self.spare_points = 0
 
-    self.check = "AT 14 DF "..self.defense.."\n* A lost girl.\n* ..."
+    self.check = {
+        "AT 14 DF 10\n* A lost girl, not knowing what to do about her father.", 
+        "Noelle will do anything to try and revive him,[wait:3] including not letting you seal the fountain..."
+    } 
 
     self.text = {
-        "* Ice falls down from the sky.",
-        "* The air is getting colder, and you shiver a little.",
-        "* Smells like peppermint.", 
+        "* Smells like frostbite.",
+        "* ...Berdly can't keep his eyes off Noelle.",
+        "* You can't look at anything the same way again.", 
         "* The wind sends chills down your spine.", 
-        "* Snowflakes twirl, dancing through the wind.", 
-        "* You start to regret your actions."
+        "* Noelle can't keep her focus straight.", 
+        "* When did you start being yourself?", 
+        "* Ralsei stays resilient through the cold."
     }
 
     -- self.text_alt = { 

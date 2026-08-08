@@ -20,15 +20,23 @@ function EnemyBattler:init()
         dynamic_tp = MathUtils.clamp(MathUtils.roundFromZero((scaling_kills * 1.5)), 10, 50)
     end
 
-    self:registerAct("Rupture", "Bonus DMG\nwhen TIRED", {}, dynamic_tp) 
+    self.rupt = self:registerAct("Rupture", "Bonus DMG\nwhen TIRED", {}, dynamic_tp) 
+    TableUtils.removeValue(self.acts, self.rupt)
     end 
 end 
 
-function EnemyBattler:onDefeat(damage, number)
+function EnemyBattler:onTurnStart(...)
+    super.onTurnStart(self, ...)
+    if (not self:getAct("Rupture")) and (Game:getFlag("enemies_killed", 0) >= 10) and Game:getFlag("encounter#ralsei:violenced") then 
+    table.insert(self.acts, self.rupt)
+    end 
+end 
+
+function EnemyBattler:onDefeat(...)
     -- so here be like, add it on IF rupture hasn't been unlocked yet, so, if its bigger than  like, the amount needed, then start counting the rupture kills.
     if Game:getFlag("enemies_killed") <= 9 then 
     Game:addFlag("enemies_killed", 1)
-    super.onDefeat(self, damage, number)
+    super.onDefeat(self, ...)
     end 
 end 
 

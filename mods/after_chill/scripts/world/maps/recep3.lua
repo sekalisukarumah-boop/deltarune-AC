@@ -10,7 +10,7 @@ return {
   tilewidth = 40,
   tileheight = 40,
   nextlayerid = 10,
-  nextobjectid = 151,
+  nextobjectid = 152,
   backgroundcolor = { 19, 19, 43 },
   properties = {
     ["music"] = "hallway"
@@ -547,14 +547,14 @@ return {
           x = 760,
           y = 720,
           width = 754,
-          height = 80,
+          height = 79.0909,
           rotation = 0,
           visible = true,
           polygon = {
             { x = 0, y = 0 },
             { x = 754, y = 0 },
-            { x = 754, y = 80 },
-            { x = 0, y = 80 }
+            { x = 754, y = 79.0909 },
+            { x = 0, y = 79.0909 }
           },
           properties = {
             ["lanes"] = 7
@@ -585,16 +585,16 @@ return {
           type = "",
           shape = "polygon",
           x = 1080,
-          y = 480,
+          y = 443.333,
           width = 80,
-          height = 240,
+          height = 276.667,
           rotation = 0,
           visible = true,
           polygon = {
             { x = 0, y = 0 },
             { x = 80, y = 0 },
-            { x = 80, y = 240 },
-            { x = 0, y = 240 }
+            { x = 80, y = 276.667 },
+            { x = 0, y = 276.667 }
           },
           properties = {
             ["lanes"] = 7

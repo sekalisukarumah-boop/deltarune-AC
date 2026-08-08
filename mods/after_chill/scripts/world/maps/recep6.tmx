@@ -3,6 +3,9 @@
  <editorsettings>
   <export target="recep6.lua" format="lua"/>
  </editorsettings>
+ <properties>
+  <property name="music" value="wind_normal"/>
+ </properties>
  <tileset firstgid="1" source="../tilesets/Receptionist.tsx"/>
  <imagelayer id="2" name="Image Layer 1" tintcolor="#646578" parallaxx="0.3" parallaxy="0.3" repeatx="1" repeaty="1">
   <image source="../../../assets/sprites/tilesets/indoors recep bg_1.png" width="972" height="848"/>

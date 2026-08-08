@@ -11,7 +11,9 @@ return {
   tileheight = 40,
   nextlayerid = 5,
   nextobjectid = 8,
-  properties = {},
+  properties = {
+    ["music"] = "wind_normal"
+  },
   tilesets = {
     {
       name = "Receptionist",
