@@ -22,15 +22,13 @@ end
 function DarkBullet:onCollide(soul)
     super.onCollide(self, soul)
     
-    if self.safe > 3 then
+    if self.safe > 3 and Game.battle.tired_bar then
         if not Game.battle.tired_on_cooldown then
             Game.battle.tired_on_cooldown = true
             Game.battle.timer:after(0.5, function()
                 Game.battle.tired_on_cooldown = false
             end)
-            if Game.battle.tired_bar then 
-                Game.battle.tired_bar:addTired(self:getTired())
-            end        
+            Game.battle.tired_bar:addTired(self:getTired())     
             for _, follower in ipairs(Game.battle.party) do 
                 follower.hit_count = 0 
                 local status = follower:statusMessage("mercy", self:getTired() or 5)

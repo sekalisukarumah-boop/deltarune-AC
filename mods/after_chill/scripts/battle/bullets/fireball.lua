@@ -2,7 +2,7 @@ local Fireball, super = Class(Bullet)
 
 function Fireball:init(x, y)
     super.init(self, x, y, "bullets/fire")
-
+self.sprite:play(0.1, true)
     self.destroy_on_hit = false
     self.tp = 2
     self.state = "ROTATE" 

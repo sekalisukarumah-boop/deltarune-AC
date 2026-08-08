@@ -2,7 +2,6 @@ local star_bomb_bullet, super = Class(Bullet)
 
 function star_bomb_bullet:init(x, y, target_x, target_y, side)
     super.init(self, x, y, "bullets/star")
-    self:setOrigin(0.5, 0.5)
     self.damage = 0 
     self.can_graze = 0
     self.target_x = target_x

@@ -2,6 +2,7 @@ local solar_ring_bullet, super = Class("DarkBullet")
 
 function solar_ring_bullet:init(x, y, dir, speed)
     super.init(self, x, y, "bullets/fire")
+    self.sprite:play(0.1, true)
     self:setHitbox(0, 0, 10, 12)
     self:addFX(ColorMaskFX({0.4, 0.6, 1.0}, 0.4))
     self.physics.direction = dir
