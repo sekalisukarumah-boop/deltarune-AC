@@ -15,8 +15,8 @@ return {
         local slopestar = Game.world.map:getTileLayer("Slope stars")
         local slopestarshine = Game.world.map:getTileLayer("Slope shine")
         
-        slopeCloud.visible = true
-        cloudbg.visible = true
+        slopeCloud.visible = true 
+        cloudbg.visible = true 
         kris:addFX(ColorMaskFX({0,0,0},0.5))
         ralsei:addFX(ColorMaskFX({0,0,0},0.5))
 
@@ -38,9 +38,7 @@ return {
         
         kris:addFX(ColorMaskFX({0,0,0.1},0.35))
         ralsei:addFX(ColorMaskFX({0,0,0.1},0.35))
-
-        cutscene:setSpeaker(ralsei)
-        cutscene:text("* Wow Kris,[wait:5] this is quite the long slide huh!", "pleased")
+        cutscene:text("* Wow Kris,[wait:5] this is quite the long slide huh!", "pleased", "ralsei")
 
         slopeCloud.visible = false
         cloudbg.visible = false

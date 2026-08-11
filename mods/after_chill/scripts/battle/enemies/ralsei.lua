@@ -217,7 +217,7 @@ function ralsei:sendAngel()
                 mem:heal(MathUtils.round(mem.chara:getStat("health")/3))
             end 
             sprite.physics.speed_y = -4 
-            sprite:fadeTo(0, 0.5)
+            sprite:fadeOutSpeedAndRemove(0.5)
             sprite.update = function(spelf)
             old_update(spelf)
             end 
@@ -298,7 +298,7 @@ if not Game.battle:hasCutscene() then
             rtext("So...[wait:3] Kris?[wait:5] Please hear me.")
             rtext("I don't blame you for any of this.", 64)
             cutscene:wait(1)
-            rtext("Keep fighting,[wait:5] Kris.\n[wait:5]Don't let your own voice\ngo completely quiet.", 147, 319)
+            rtext("Now,[wait:5] goodbye Kris...", 147, 319)
             Game.battle.music:fade(0, 0.5)
             Game.fader:fadeIn(nil, {speed = 0.5})
             sprite:fadeOutAndRemove(0.5)
@@ -419,12 +419,12 @@ end
 
 function ralsei:setHardMode()
     self.waves = {
+        "ralsei/fiery_aim",
         "ralsei/fire_circle",
         "ralsei/solar_pulse",
         "ralsei/pacify_wave",
         "ralsei/pacify_wave_2",
         "ralsei/angel", 
-    -- "ralsei/star_bomb", 
         "ralsei/z_rainstorm"
     }
     self.check = "AT "..self.attack.." DF 12\n* Standing in your way. \n* FIGHT him to his demise."
