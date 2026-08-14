@@ -135,7 +135,7 @@ be discharged.)</property>
    <point/>
   </object>
  </objectgroup>
- <objectgroup color="#5500ff" id="5" name="collision" visible="0">
+ <objectgroup color="#5500ff" id="5" name="collision">
   <object id="1" x="278.909" y="360.136" width="41.0909" height="773.227"/>
   <object id="2" x="282.909" y="1132.36" width="41.0909" height="493.091"/>
   <object id="3" x="478.242" y="404.667" width="41.0909" height="1223.82"/>
@@ -154,6 +154,6 @@ be discharged.)</property>
   <object id="19" x="526.896" y="67.2638" width="24.5145" height="40.624"/>
   <object id="24" x="192.223" y="200.064" width="7.44368" height="39.3111"/>
   <object id="25" x="399.926" y="189.447" width="7.86019" height="53.2525"/>
-  <object id="27" x="301.333" y="1566.67" width="198" height="32"/>
+  <object id="27" x="301.333" y="1600.67" width="198" height="32"/>
  </objectgroup>
 </map>
