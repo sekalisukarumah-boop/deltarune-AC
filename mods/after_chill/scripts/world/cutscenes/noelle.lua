@@ -18,6 +18,7 @@ return {
             noelle:slideTo(noelle.x, 282, 2, "in-cubic")
             cutscene:wait(2)
             Assets.playSound("dtrans_flip")
+            Game.stage:shake(2)
             noelle.scale_x = -2
             noelle:setSprite("collapsed")
             cutscene:wait(2)
