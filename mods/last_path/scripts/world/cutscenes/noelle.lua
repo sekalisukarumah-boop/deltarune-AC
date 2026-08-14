@@ -11,7 +11,7 @@ return {
         cutscene:wait(1) 
         end   
         local function gonerText(str, x, y)
-        local txt = DialogueText("[speed:0.425][spacing:6][style:GONER][voice:none]" ..str, x or 80, y or 80, {style = "GONER"}) -- goner text function 
+        local txt = DialogueText("[speed:0.425][spacing:6][style:GONER][voice:none]" ..str, x or 80, y or 80, {style = "GONER"})
         txt:setParallax(0, 0)
         txt.layer = 9999
         Game.stage:addChild(txt)
@@ -135,8 +135,7 @@ return {
             Game:setFlag("footstep", true)
             cutscene:wait(0.5)
             cutscene:fadeIn(0.5)
-            cutscene:wait(0.4)
-            ralsei:walkTo(ralsei.x - 1400, ralsei.y, 8)
+            ralsei:walkTo(ralsei.x - 1400, ralsei.y, 10)
             cutscene:wait(0.5)
             cutscene:setTextboxTop(false)
             cutscene:setSpeaker("ralsei")
@@ -156,7 +155,7 @@ return {
             noelle:resetSprite()
             cutscene:wait(cutscene:setAnimation(noelle, "battle/spell")) 
             noelle:resetSprite()
-            noelle:setFacing("up")
+            noelle:setFacing("right")
             local function iceshock(kx, ky)
             Assets.playSound("icespell")
         local function createParticle(x, y)
@@ -219,7 +218,6 @@ end
     cutscene:setTextboxTop(false)
     cutscene:text("* I-I don't understand-[wait:2][next]", "concern_smile")
     cutscene:setTextboxTop(true)
-   -- cutscene:text("* ")
     cutscene:text("* All I need to do...[wait:5] is freeze enemies that block my path.", "upset_side", "noelle")
     Game.world.music:fade(0, 0.5)
     cutscene:wait(0.5)
@@ -227,6 +225,43 @@ end
     Game:removePartyMember("kris")
     Game:addPartyMember("noelle")
     noelle:convertToPlayer()
-    cutscene:startEncounter("forced", nil, {{"ralsei_forced", ralsei}})
+    cutscene:startEncounter("forced", nil, {{"ralsei_forced", ralsei}}, {wait = false})
+    end,  
+
+    kris = function(cutscene)
+        Game:removePartyMember("noelle")
+        Game:addPartyMember("kris")
+        cutscene:wait(cutscene:loadMap("recep4")) 
+        Game.stage:setWeather("snow", true, true)
+        cutscene:getCharacter("kris"):setFacing("down")
+        Game.stage.timer:tween(0.5, Game.fader, {alpha = 0})
+        cutscene:wait(0.5)
     end, 
+
+    jump = function(cutscene)
+        cutscene:text("* It's a dead end.")
+        cutscene:text("* Would you like to jump off?")
+        local choice = cutscene:choicer({"Yes", "No"})
+        local kris = cutscene:getCharacter("kris")
+        if choice == 1 then 
+           kris:walkTo(kris.x - 30, kris.y, 0.4, "right", true)
+           cutscene:wait(0.4)
+           Game.world.camera.keep_in_bounds = false
+           Assets.playSound("jump")
+           kris:setAnimation("jump_ball")
+           local kris = Game.world:getCharacter("kris") 
+           Game.world.timer:tween(1.2, kris, {x = 564, y = 1176}, "linear")
+           Game.world.timer:tween(0.6, kris.sprite, {y = -80}, "out-cubic", function()
+            Game.world.timer:tween(0.6, kris.sprite, {y = 0}, "in-cubic")
+           end)
+           cutscene:wait(1.2)
+           kris:setAnimation("jump_fall")
+           kris.physics.speed_y = 4
+           kris.physics.gravity = 0.2
+           cutscene:wait(1.5)
+           Game.world.music:fade(0, 0.5)
+           cutscene:fadeOut(0.5)
+           cutscene:wait(1)
+        end 
+    end,
 }

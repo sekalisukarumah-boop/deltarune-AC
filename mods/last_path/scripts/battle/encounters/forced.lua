@@ -21,6 +21,11 @@ function forced:init()
     self:addEnemy("ralsei_forced", 558, 281)
 end
 
+function forced:onReturnToWorld(...)
+    super.onReturnToWorld(self, ...)
+    Game.world:startCutscene("noelle.kris")
+end 
+
 function forced:getPartyPosition(i)
     if i == 1 then 
         return 125, 293
