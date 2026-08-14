@@ -100,7 +100,7 @@ function ralsei_forced:startSequence()
         cutscene:wait(1) 
         end   
         local function gonerText(str, x, y)
-        local txt = DialogueText("[noskip][voice:none]" ..str, x or 80, y or 80, {style = "GONER"}) -- HOW DO I DSIABLE THE VOICEEEEEE 
+        local txt = DialogueText("[speed:0.425][spacing:6][style:GONER][voice:none]" ..str, x or 80, y or 80, {style = "GONER"}) -- HOW DO I DSIABLE THE VOICEEEEEE 
         txt:setParallax(0, 0)
         txt.layer = 9999
         Game.stage:addChild(txt)

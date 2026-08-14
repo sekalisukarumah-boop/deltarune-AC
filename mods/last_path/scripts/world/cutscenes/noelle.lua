@@ -11,7 +11,7 @@ return {
         cutscene:wait(1) 
         end   
         local function gonerText(str, x, y)
-        local txt = DialogueText("[noskip][voice:none]" ..str, x or 80, y or 80, {style = "GONER"}) -- goner text function 
+        local txt = DialogueText("[speed:0.425][spacing:6][style:GONER][voice:none]" ..str, x or 80, y or 80, {style = "GONER"}) -- goner text function 
         txt:setParallax(0, 0)
         txt.layer = 9999
         Game.stage:addChild(txt)
@@ -150,7 +150,7 @@ return {
             cutscene:panTo(Game.world.camera.x - 240, Game.world.camera.y, 3, "in-out-sine")
             cutscene:wait(3)
             cutscene:text("* Another enemy..?", "down", "noelle")
-            cutscene:text("* Wh-[next]", "su(rprise_confused", "ralsei")
+            cutscene:text("* Wh-[next]", "surprise_confused", "ralsei")
             cutscene:wait(0.5)
             Assets.playSound("wing")
             noelle:resetSprite()

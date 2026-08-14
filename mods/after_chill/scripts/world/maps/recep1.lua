@@ -1,7 +1,7 @@
 return {
-  version = "1.10",
+  version = "1.11",
   luaversion = "5.1",
-  tiledversion = "1.11.2",
+  tiledversion = "1.12.2",
   class = "",
   orientation = "orthogonal",
   renderorder = "right-down",
@@ -9,8 +9,8 @@ return {
   height = 17,
   tilewidth = 40,
   tileheight = 40,
-  nextlayerid = 11,
-  nextobjectid = 23,
+  nextlayerid = 14,
+  nextobjectid = 26,
   properties = {
     ["music"] = "hallway",
     ["name"] = "Receptionist Bridge"
@@ -132,6 +132,7 @@ return {
           width = 39.8111,
           height = 123.311,
           rotation = 0,
+          opacity = 1,
           visible = true,
           properties = {
             ["map"] = "recep2",
@@ -148,6 +149,7 @@ return {
           width = 124.217,
           height = 41.4056,
           rotation = 0,
+          opacity = 1,
           visible = true,
           properties = {
             ["map"] = "krisspawn",
@@ -164,6 +166,7 @@ return {
           width = 34,
           height = 34,
           rotation = 0,
+          opacity = 1,
           visible = true,
           properties = {
             ["item"] = "sharp_syringe"
@@ -179,13 +182,15 @@ return {
           width = 54,
           height = 44,
           rotation = 0,
+          opacity = 1,
           visible = true,
           properties = {
             ["actor"] = "sirengeist",
             ["chase"] = true,
             ["encounter"] = "sirengeist3",
             ["enemy"] = "sirengeist",
-            ["once"] = true
+            ["once"] = true,
+            ["path"] = "circle"
           }
         },
         {
@@ -198,6 +203,7 @@ return {
           width = 80,
           height = 80,
           rotation = 0,
+          opacity = 1,
           visible = true,
           properties = {
             ["cutscene"] = "musicnotif.recep"
@@ -230,6 +236,7 @@ return {
           width = 0,
           height = 0,
           rotation = 0,
+          opacity = 1,
           visible = true,
           properties = {}
         },
@@ -243,6 +250,21 @@ return {
           width = 0,
           height = 0,
           rotation = 0,
+          opacity = 1,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 25,
+          name = "spawn",
+          type = "",
+          shape = "point",
+          x = 560,
+          y = 360,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          opacity = 1,
           visible = true,
           properties = {}
         }
@@ -272,6 +294,7 @@ return {
           width = 41.4056,
           height = 41.4056,
           rotation = 0,
+          opacity = 1,
           visible = true,
           properties = {}
         },
@@ -285,6 +308,7 @@ return {
           width = 41.4056,
           height = 414.056,
           rotation = 0,
+          opacity = 1,
           visible = true,
           properties = {}
         },
@@ -298,6 +322,7 @@ return {
           width = 41.4056,
           height = 248.433,
           rotation = 0,
+          opacity = 1,
           visible = true,
           properties = {}
         },
@@ -311,6 +336,7 @@ return {
           width = 1001.14,
           height = 41.4056,
           rotation = 0,
+          opacity = 1,
           visible = true,
           properties = {}
         },
@@ -324,6 +350,7 @@ return {
           width = 697.894,
           height = 37.4056,
           rotation = 0,
+          opacity = 1,
           visible = true,
           properties = {}
         },
@@ -337,6 +364,7 @@ return {
           width = 41.4056,
           height = 248.433,
           rotation = 0,
+          opacity = 1,
           visible = true,
           properties = {}
         },
@@ -350,6 +378,7 @@ return {
           width = 318.506,
           height = 41.4056,
           rotation = 0,
+          opacity = 1,
           visible = true,
           properties = {}
         },
@@ -363,6 +392,7 @@ return {
           width = 327.839,
           height = 41.4056,
           rotation = 0,
+          opacity = 1,
           visible = true,
           properties = {}
         },
@@ -376,6 +406,7 @@ return {
           width = 41.4056,
           height = 82.8111,
           rotation = 0,
+          opacity = 1,
           visible = true,
           properties = {}
         },
@@ -389,6 +420,7 @@ return {
           width = 455.461,
           height = 41.4056,
           rotation = 0,
+          opacity = 1,
           visible = true,
           properties = {}
         },
@@ -402,6 +434,7 @@ return {
           width = 40,
           height = 120,
           rotation = 0,
+          opacity = 1,
           visible = true,
           properties = {}
         }
@@ -444,6 +477,66 @@ return {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 320, 321, 321, 321, 321, 321,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
       }
+    },
+    {
+      type = "objectgroup",
+      draworder = "topdown",
+      id = 11,
+      name = "paths",
+      class = "",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      parallaxx = 1,
+      parallaxy = 1,
+      properties = {},
+      objects = {
+        {
+          id = 23,
+          name = "circle",
+          type = "",
+          shape = "ellipse",
+          x = 240,
+          y = -40,
+          width = 360,
+          height = 280,
+          rotation = 0,
+          opacity = 1,
+          visible = true,
+          properties = {}
+        }
+      }
+    },
+    {
+      type = "objectgroup",
+      draworder = "topdown",
+      id = 12,
+      name = "controllers",
+      class = "",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      parallaxx = 1,
+      parallaxy = 1,
+      properties = {},
+      objects = {}
+    },
+    {
+      type = "objectgroup",
+      draworder = "topdown",
+      id = 13,
+      name = "battleareas",
+      class = "",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      parallaxx = 1,
+      parallaxy = 1,
+      properties = {},
+      objects = {}
     }
   }
 }

@@ -1,5 +1,5 @@
 return {
-  version = "1.10",
+  version = "1.11",
   luaversion = "5.1",
   tiledversion = "1.12.2",
   class = "",
@@ -3291,7 +3291,7 @@ return {
     },
     {
       type = "imagelayer",
-      image = "../../../assets/sprites/world/Forest2x.png",
+      image = "../../../assets/sprites/world/Forest.png",
       id = 4,
       name = "Overlay",
       class = "",
@@ -3299,8 +3299,8 @@ return {
       opacity = 0.44,
       offsetx = 0,
       offsety = 0,
-      parallaxx = 1.5,
-      parallaxy = 1.5,
+      parallaxx = 1,
+      parallaxy = 1,
       tintcolor = { 87, 94, 216 },
       repeatx = true,
       repeaty = true,

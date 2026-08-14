@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="34" height="17" tilewidth="40" tileheight="40" infinite="0" nextlayerid="11" nextobjectid="23">
+<map version="1.11" tiledversion="1.12.2" orientation="orthogonal" renderorder="right-down" width="34" height="17" tilewidth="40" tileheight="40" infinite="0" nextlayerid="14" nextobjectid="26">
  <editorsettings>
   <export target="recep1.lua" format="lua"/>
  </editorsettings>
@@ -60,6 +60,7 @@
     <property name="encounter" value="sirengeist3"/>
     <property name="enemy" value="sirengeist"/>
     <property name="once" type="bool" value="true"/>
+    <property name="path" value="circle"/>
    </properties>
   </object>
   <object id="22" name="script" x="221.333" y="522.333" width="80" height="80">
@@ -73,6 +74,9 @@
    <point/>
   </object>
   <object id="16" name="entrance2" x="1149.09" y="375.317">
+   <point/>
+  </object>
+  <object id="25" name="spawn" x="560" y="360">
    <point/>
   </object>
  </objectgroup>
@@ -110,4 +114,11 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
+ <objectgroup color="#ff0000" id="11" name="paths">
+  <object id="23" name="circle" x="240" y="-40" width="360" height="280">
+   <ellipse/>
+  </object>
+ </objectgroup>
+ <objectgroup color="#00c000" id="12" name="controllers"/>
+ <objectgroup color="#00ff00" id="13" name="battleareas"/>
 </map>
