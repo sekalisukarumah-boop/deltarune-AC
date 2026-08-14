@@ -261,7 +261,19 @@ end
            cutscene:wait(1.5)
            Game.world.music:fade(0, 0.5)
            cutscene:fadeOut(0.5)
-           cutscene:wait(1)
+           cutscene:wait(2)
+           cutscene:wait(cutscene:loadMap("recep5")) 
+           Game.world.camera.keep_in_bounds = true 
+           Game.stage:setWeather("snow", true, true)
+           kris = Game.world:getCharacter("kris") 
+           kris:setSprite("landed")
+           cutscene:wait(cutscene:playSound("impact"))
+           cutscene:fadeIn(0.5)
+           cutscene:wait(0.5)
+           Assets.playSound("wing")
+           kris:shake(2)
+           cutscene:wait(cutscene:setAnimation(kris, {"landed", 1/6, false}))
+           kris:resetSprite()
         end 
     end,
 }

@@ -368,19 +368,6 @@ return {
           properties = {}
         },
         {
-          id = 154,
-          name = "savepoint",
-          type = "",
-          shape = "point",
-          x = 156,
-          y = 231,
-          width = 0,
-          height = 0,
-          rotation = 0,
-          visible = true,
-          properties = {}
-        },
-        {
           id = 156,
           name = "interactable",
           type = "",

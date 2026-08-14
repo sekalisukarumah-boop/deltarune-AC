@@ -98,9 +98,6 @@
  </objectgroup>
  <objectgroup color="#ff55ff" id="3" name="objects">
   <object id="65" name="slidearea" x="179" y="360.667" width="85" height="559.333"/>
-  <object id="154" name="savepoint" x="156" y="231">
-   <point/>
-  </object>
   <object id="156" name="interactable" x="392.97" y="920" width="5.0303" height="118.667">
    <properties>
     <property name="cutscene" value="noelle.jump"/>
