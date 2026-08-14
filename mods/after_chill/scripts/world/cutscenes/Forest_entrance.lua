@@ -27,7 +27,9 @@ return {
         cutscene:fadeOut(0)
         cutscene:wait(1)
         cutscene:fadeIn(0.25)
-
+       
+        --Grabs and sets up characters
+        
         kris:setAnimation("slide")
         ralsei:setAnimation("slide")
         cutscene:wait(1)

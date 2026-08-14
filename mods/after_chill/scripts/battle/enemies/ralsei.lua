@@ -321,20 +321,16 @@ function ralsei:spellEffectHeal()
     self:setAnimation("spell")
     self.hit_count = 0 
     self:heal(45)
-     for _, child in ipairs(Game.battle.children) do 
-        if child:includes(DamageNumber) then 
-            child.x = child.x - 22
-            child.y = child.y + 20 
-        end 
+    for _, child in ipairs(Game.stage:getObjects(DamageNumber)) do 
+        child.x = child.x - 22
+        child.y = child.y + 20 
     end 
 end 
 
 function ralsei:onHurt(damage, battler)
-    for _, child in ipairs(Game.battle.children) do 
-        if child:includes(DamageNumber) then 
-            child.x = child.x - 22
-            child.y = child.y + 20 
-        end 
+    for _, child in ipairs(Game.stage:getObjects(DamageNumber)) do 
+        child.x = child.x - 22
+        child.y = child.y + 20 
     end 
     if self.health <= (self.max_health * 0.5) and Game:getFlag("enemies_killed", 0) >= 10 then 
         if not self.acts[5] then 
@@ -371,8 +367,7 @@ function ralsei:onHurt(damage, battler)
             local fx = self:addFX(ColorMaskFX(COLORS.white, 0))
             Game:getPartyMember("ralsei"):setFlag("serious", true)
             self:setAnimation("attack")
-            Game.battle.music:seek(20)
-            Game.battle.music:fade(1, 1)
+            Game.battle.music:play("ralsei_v")
             Game.battle.timer:tween(0.4, fx, {amount = 1})
             cutscene:wait(0.4)
             Game.battle.timer:tween(0.4, fx, {amount = 0})
