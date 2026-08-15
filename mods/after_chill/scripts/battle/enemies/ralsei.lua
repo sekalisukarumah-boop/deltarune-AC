@@ -368,7 +368,7 @@ function ralsei:onHurt(damage, battler)
             local fx = self:addFX(ColorMaskFX(COLORS.white, 0))
             Game:getPartyMember("ralsei"):setFlag("serious", true)
             self:setAnimation("attack")
-            Game.battle.music:play("ralsei_v")
+            Game.battle.music:play("ralsei_v", 1)
             Game.battle.timer:tween(0.4, fx, {amount = 1})
             cutscene:wait(0.4)
             Game.battle.timer:tween(0.4, fx, {amount = 0})
@@ -416,12 +416,11 @@ end
 function ralsei:setHardMode()
     self.waves = {
         "ralsei/fiery_aim",
+        "ralsei/pacify_wave", -- these two would be the introductory waves. me thinks, ill do that later.s
+        "ralsei/tired_throw",
         "ralsei/fire_circle",
-        "ralsei/solar_pulse",
-        "ralsei/pacify_wave",
         "ralsei/pacify_wave_2",
         "ralsei/angel", 
-        "ralsei/z_rainstorm"
     }
     self.check = "AT "..self.attack.." DF 12\n* Standing in your way. \n* FIGHT him to his demise."
     self.health = 500 

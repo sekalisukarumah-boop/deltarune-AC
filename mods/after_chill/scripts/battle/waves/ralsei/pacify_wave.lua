@@ -4,7 +4,7 @@ function pacify_wave:init()
     super.init(self)
     self.time = 11.3
     self.pacify = {}
-    self.loop_timer = nil 
+    self.loop_timer = nil
 end
 
 function pacify_wave:onArenaEnter()
@@ -18,15 +18,17 @@ function pacify_wave:onStart()
     self.loop_timer = self.timer:everyInstant(1.5, function()
         if ralsei then
             ralsei:setAnimation("spell", function()
-                Assets.playSound("spell_pacify") 
+                Assets.playSound("spell_pacify")
                 local cx, cy = SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2
                 cx, cy = ralsei:getRelativePos(ralsei.width / 2 - 20, ralsei.height / 2 - 10)
                 self.timer:script(function(wait)
                     for i = 1, love.math.random(3, 5) do
-                        local z_bullet = self:spawnBullet("pacify_z_bullet", cx, cy)
-                        z_bullet.tiredness = 8 
-                        table.insert(self.pacify, z_bullet)
-                        wait(0.08) 
+                        if not self.finished then
+                            local z_bullet = self:spawnBullet("pacify_z_bullet", cx, cy)
+                            z_bullet.tiredness = 8
+                            table.insert(self.pacify, z_bullet)
+                            wait(0.08)
+                        end
                     end
                 end)
             end)
@@ -34,20 +36,32 @@ function pacify_wave:onStart()
     end)
 end
 
-function pacify_wave:beforeEnd()
+function pacify_wave:cleanupWaveStuff()
     if self.loop_timer then
-        Game.battle.timer:cancel(self.loop_timer)
+        self.timer:cancel(self.loop_timer)
+        self.loop_timer = nil
     end
+    self.timer:clear()
+    if self.pacify then
+        for _, z_bullet in ipairs(self.pacify) do
+            if z_bullet and z_bullet.stage then
+                z_bullet:remove()
+            end
+        end
+        self.pacify = {}
+    end
+    
     Assets.stopSound("spell_pacify")
+end
+
+function pacify_wave:beforeEnd()
+    self:cleanupWaveStuff()
     super.beforeEnd(self)
 end
 
 function pacify_wave:onEnd()
-    if self.loop_timer then
-        Game.battle.timer:cancel(self.loop_timer)
-    end
-    Assets.stopSound("spell_pacify")
+    self:cleanupWaveStuff()
     super.onEnd(self)
-end 
+end
 
 return pacify_wave
