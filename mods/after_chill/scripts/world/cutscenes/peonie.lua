@@ -3,19 +3,18 @@ return {
     -- This allows it to fetch us useful documentation that shows all of the available cutscene functions while writing our cutscenes!
 
     appear = function(cutscene)
-    cutscene:wait(cutscene:playSound("rustle"))
-    local peonie = ChaserEnemy("peonie", 596, 503)
-    Game.world:spawnObject(peonie, 9999)
-    peonie.aura = false
-    peonie.alpha = 0
-    return {
+        cutscene:wait(cutscene:playSound("rustle"))
+        local peonie = ChaserEnemy("peonie", 596, 503)
+        Game.world:spawnObject(peonie, 9999)
+        peonie.aura = false
+        peonie.alpha = 0
+        local sfx = Assets.playSound("grab")
         peonie:fadeTo(1, sfx:getDuration())
         cutscene:wait(sfx:getDuration())
         peonie:shake(2)
         cutscene:startEncounter("peonie", nil, {{"peonie", peonie}})
         peonie:remove()
     end,
-}
 
     puzzle = function(cutscene)
     cutscene:wait(cutscene:playSound("won"))
