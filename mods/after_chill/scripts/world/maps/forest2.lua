@@ -1,7 +1,7 @@
 return {
-  version = "1.11",
+  version = "1.10",
   luaversion = "5.1",
-  tiledversion = "1.12.2",
+  tiledversion = "1.11.2",
   class = "",
   orientation = "orthogonal",
   renderorder = "right-down",
@@ -10,7 +10,7 @@ return {
   tilewidth = 40,
   tileheight = 40,
   nextlayerid = 117,
-  nextobjectid = 91,
+  nextobjectid = 92,
   properties = {
     ["has_tile_sounds"] = true,
     ["music"] = "bloom_f"
@@ -45,7 +45,7 @@ return {
       name = "stepsounds",
       class = "",
       visible = true,
-      opacity = 1,
+      opacity = 0,
       offsetx = 0,
       offsety = 0,
       parallaxx = 1,
@@ -159,7 +159,6 @@ return {
           width = 0,
           height = 0,
           rotation = 0,
-          opacity = 1,
           visible = true,
           properties = {}
         },
@@ -173,7 +172,6 @@ return {
           width = 0,
           height = 0,
           rotation = 0,
-          opacity = 1,
           visible = true,
           properties = {}
         },
@@ -187,7 +185,6 @@ return {
           width = 0,
           height = 0,
           rotation = 0,
-          opacity = 1,
           visible = true,
           properties = {}
         },
@@ -201,7 +198,6 @@ return {
           width = 0,
           height = 0,
           rotation = 0,
-          opacity = 1,
           visible = true,
           properties = {}
         }
@@ -231,7 +227,6 @@ return {
           width = 440,
           height = 40,
           rotation = 0,
-          opacity = 1,
           visible = true,
           properties = {}
         },
@@ -245,7 +240,6 @@ return {
           width = 40,
           height = 400,
           rotation = 0,
-          opacity = 1,
           visible = true,
           properties = {}
         },
@@ -259,7 +253,6 @@ return {
           width = 360,
           height = 40,
           rotation = 0,
-          opacity = 1,
           visible = true,
           properties = {}
         },
@@ -273,7 +266,6 @@ return {
           width = 680,
           height = 40,
           rotation = 0,
-          opacity = 1,
           visible = true,
           properties = {}
         },
@@ -287,7 +279,6 @@ return {
           width = 40,
           height = 400,
           rotation = 0,
-          opacity = 1,
           visible = true,
           properties = {}
         },
@@ -301,7 +292,6 @@ return {
           width = 120,
           height = 40,
           rotation = 0,
-          opacity = 1,
           visible = true,
           properties = {}
         },
@@ -315,7 +305,6 @@ return {
           width = 160,
           height = 40,
           rotation = 0,
-          opacity = 1,
           visible = true,
           properties = {}
         },
@@ -329,7 +318,6 @@ return {
           width = 40,
           height = 120,
           rotation = 0,
-          opacity = 1,
           visible = true,
           properties = {}
         },
@@ -343,7 +331,6 @@ return {
           width = 40,
           height = 120,
           rotation = 0,
-          opacity = 1,
           visible = true,
           properties = {}
         },
@@ -357,7 +344,6 @@ return {
           width = 1000,
           height = 40,
           rotation = 0,
-          opacity = 1,
           visible = true,
           properties = {}
         },
@@ -371,7 +357,6 @@ return {
           width = 520,
           height = 40,
           rotation = 0,
-          opacity = 1,
           visible = true,
           properties = {}
         },
@@ -385,7 +370,6 @@ return {
           width = 40,
           height = 797.333,
           rotation = 0,
-          opacity = 1,
           visible = true,
           properties = {}
         },
@@ -399,7 +383,6 @@ return {
           width = 40,
           height = 520,
           rotation = 0,
-          opacity = 1,
           visible = true,
           properties = {}
         },
@@ -413,7 +396,6 @@ return {
           width = 246,
           height = 40,
           rotation = 0,
-          opacity = 1,
           visible = true,
           properties = {}
         },
@@ -427,7 +409,6 @@ return {
           width = 40,
           height = 40,
           rotation = 0,
-          opacity = 1,
           visible = true,
           properties = {}
         },
@@ -441,7 +422,6 @@ return {
           width = 44.1818,
           height = 37.1818,
           rotation = 0,
-          opacity = 1,
           visible = true,
           properties = {}
         },
@@ -455,7 +435,6 @@ return {
           width = 44.1818,
           height = 34.9091,
           rotation = 0,
-          opacity = 1,
           visible = true,
           properties = {}
         },
@@ -469,7 +448,6 @@ return {
           width = 80,
           height = 40,
           rotation = 0,
-          opacity = 1,
           visible = true,
           properties = {}
         },
@@ -483,7 +461,6 @@ return {
           width = 80,
           height = 40,
           rotation = 0,
-          opacity = 1,
           visible = true,
           properties = {}
         }
@@ -563,7 +540,6 @@ return {
           width = 40,
           height = 280,
           rotation = 0,
-          opacity = 1,
           visible = true,
           properties = {
             ["map"] = "forest3",
@@ -580,7 +556,6 @@ return {
           width = 40,
           height = 280,
           rotation = 0,
-          opacity = 1,
           visible = true,
           properties = {
             ["map"] = "forest1",
@@ -597,7 +572,6 @@ return {
           width = 120.788,
           height = 39.9697,
           rotation = 0,
-          opacity = 1,
           visible = true,
           properties = {
             ["text1"] = "* (You try to poke your hand at the missing side of the bush.)",
@@ -614,7 +588,6 @@ return {
           width = 120.788,
           height = 44.6364,
           rotation = 0,
-          opacity = 1,
           visible = true,
           properties = {
             ["text1"] = "* (You try to poke your hand at the missing side of the bush.)",
@@ -631,7 +604,6 @@ return {
           width = 197,
           height = 31,
           rotation = 0,
-          opacity = 1,
           visible = true,
           properties = {
             ["map"] = "forest2a",
@@ -648,7 +620,6 @@ return {
           width = 0,
           height = 0,
           rotation = 0,
-          opacity = 1,
           visible = true,
           properties = {}
         },
@@ -662,7 +633,6 @@ return {
           width = 158,
           height = 180,
           rotation = 0,
-          opacity = 1,
           gid = 1201,
           visible = true,
           properties = {
@@ -679,7 +649,6 @@ return {
           width = 158,
           height = 180,
           rotation = 0,
-          opacity = 1,
           gid = 1201,
           visible = true,
           properties = {
@@ -696,7 +665,6 @@ return {
           width = 44.1818,
           height = 29.1818,
           rotation = 0,
-          opacity = 1,
           visible = true,
           properties = {
             ["text1"] = "* It's a tree.[wait:5]\n* You wish there was candy on it."
@@ -712,7 +680,6 @@ return {
           width = 44.1818,
           height = 29.1818,
           rotation = 0,
-          opacity = 1,
           visible = true,
           properties = {
             ["text1"] = "* It's a tree.[wait:5]\n* You wish there was candy on it."
@@ -728,7 +695,6 @@ return {
           width = 0,
           height = 0,
           rotation = 0,
-          opacity = 1,
           visible = true,
           properties = {}
         },
@@ -742,7 +708,6 @@ return {
           width = 39.5,
           height = 279.333,
           rotation = 0,
-          opacity = 1,
           visible = true,
           properties = {
             ["cutscene"] = "peonie.appear"
@@ -758,7 +723,6 @@ return {
           width = 158,
           height = 180,
           rotation = 0,
-          opacity = 1,
           gid = 1201,
           visible = true,
           properties = {}
@@ -773,8 +737,20 @@ return {
           width = 158,
           height = 180,
           rotation = 0,
-          opacity = 1,
           gid = 1201,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 91,
+          name = "",
+          type = "",
+          shape = "point",
+          x = 502,
+          y = 519.5,
+          width = 0,
+          height = 0,
+          rotation = 0,
           visible = true,
           properties = {}
         }
