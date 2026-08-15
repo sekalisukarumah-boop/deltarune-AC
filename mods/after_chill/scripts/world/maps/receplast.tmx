@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.12.2" orientation="orthogonal" renderorder="right-down" width="16" height="12" tilewidth="40" tileheight="40" infinite="0" nextlayerid="13" nextobjectid="3">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="16" height="12" tilewidth="40" tileheight="40" infinite="0" nextlayerid="13" nextobjectid="3">
  <editorsettings>
   <export target="receplast.lua" format="lua"/>
  </editorsettings>
@@ -85,9 +85,7 @@
 6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup color="#ff00ff" id="9" name="objects">
-  <object id="2" name="script" x="80" y="160" width="80" height="80"/>
- </objectgroup>
+ <objectgroup color="#ff00ff" id="9" name="objects"/>
  <objectgroup color="#aa00ff" id="10" name="markers">
   <object id="1" name="entranceA" x="121" y="198">
    <point/>

@@ -10,7 +10,7 @@ return {
   tilewidth = 40,
   tileheight = 40,
   nextlayerid = 8,
-  nextobjectid = 23,
+  nextobjectid = 24,
   properties = {
     ["music"] = "wind",
     ["name"] = "Receptionest - Slide"
@@ -197,9 +197,9 @@ return {
           type = "",
           shape = "rectangle",
           x = 2656.67,
-          y = 1160,
+          y = 1166.75,
           width = 89.0003,
-          height = 40,
+          height = 9.25,
           rotation = 0,
           visible = true,
           properties = {
@@ -215,7 +215,7 @@ return {
           x = 2656.34,
           y = 840,
           width = 87.0003,
-          height = 378.333,
+          height = 358.583,
           rotation = 0,
           visible = true,
           properties = {}
@@ -254,6 +254,21 @@ return {
             ["marker"] = "savespawn",
             ["text1"] = "* Ralsei has now joined your party.",
             ["text2"] = "* The power of fluffyboys shines within you. "
+          }
+        },
+        {
+          id = 23,
+          name = "script",
+          type = "",
+          shape = "rectangle",
+          x = 2655.75,
+          y = 1123,
+          width = 88,
+          height = 16.75,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["cutscene"] = "forest.fall"
           }
         }
       }
