@@ -100,7 +100,7 @@ function ralsei_forced:startSequence()
         cutscene:wait(1) 
         end   
         local function gonerText(str, x, y)
-        local txt = DialogueText("[speed:0.425][spacing:6][style:GONER][voice:none]" ..str, x or 80, y or 80, {style = "GONER"}) -- HOW DO I DSIABLE THE VOICEEEEEE 
+        local txt = DialogueText("[noskip][speed:0.425][spacing:6][style:GONER][voice:none]" ..str, x or 80, y or 80, {style = "GONER"}) -- HOW DO I DSIABLE THE VOICEEEEEE 
         txt:setParallax(0, 0)
         txt.layer = 9999
         Game.stage:addChild(txt)
@@ -108,13 +108,13 @@ function ralsei_forced:startSequence()
         gonerTextFade(txt)
         end 
         gonerText("THE LONELY ONE.[wait:20]\nHIS LIGHT HAS FADED.")
-        gonerText("THE EXPERIMENT CANNOT PROCEED[wait:10]\nIN THIS DARKNESS.")
+        gonerText("THE EXPERIMENT CANNOT[wait:10]\nPROCEED IN THIS\nDARKNESS.")
         Assets.playSound("ui_spooky_action")
         local soul = SoulAppearance(SCREEN_WIDTH/2, 260)
         soul.layer = 9999 
         Game.stage:addChild(soul)
         cutscene:wait(1.5)
-        gonerText("WILL YOU OFFER[wait:10]\nSOME OF YOUR[wait:10]\nSENTIENCE TO RESTORE HIM?")
+        gonerText("WILL YOU OFFER[wait:10]\nSOME OF YOUR[wait:10]\nSENTIENCE TO[wait:10]\nRESTORE HIM?")
         local bx, by = sprite:getRelativePos(sprite.width/2, sprite.height/2)
         local snd = Assets.playSound("ui_spooky_action")
         soul:slideTo(bx, by, snd:getDuration())

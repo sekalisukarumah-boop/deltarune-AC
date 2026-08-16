@@ -533,15 +533,25 @@ end
     iceshock(x, y)
     Game.stage:shake(2)
     end 
+    local function checkDist(ix, iy)
+        local rd = MathUtils.dist(ix, iy, ralsei.x, ralsei.y)
+        local nd = MathUtils.dist(ix, iy, noelle.x, noelle.y)
+        if rd >= 200 and nd >= 200 then 
+            return true 
+        else 
+            return false 
+        end 
+    end 
     for i = 1, 8 do 
     local ix = love.math.random(0, SCREEN_WIDTH)
     local iy = love.math.random(0, SCREEN_HEIGHT)
-    local dist_to_ralsei = MathUtils.dist(ix, iy, ralsei.x, ralsei.y)
-    local dist_to_noelle = MathUtils.dist(ix, iy, noelle.x, noelle.y)
-    if dist_to_ralsei >= 200 and dist_to_noelle >= 200 then 
-        shock(ix, iy)
+    if not checkDist(ix, iy) then 
+        shock(MathUtils.clamp(ix + MathUtils.clamp(love.math.random(-200, 200), -100, 100), 0, SCREEN_WIDTH), MathUtils.clamp(iy + MathUtils.clamp(love.math.random(-200, 200), -100, 100), 0, SCREEN_HEIGHT)) 
         cutscene:wait(0.4)
-    end  
+    else 
+        shock(ix, iy) 
+        cutscene:wait(0.4)
+    end 
     end
     local effect = OverworldSnowEffect()
     Game.world:addChild(effect)
