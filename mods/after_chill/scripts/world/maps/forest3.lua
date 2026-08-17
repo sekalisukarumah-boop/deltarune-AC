@@ -1096,13 +1096,16 @@ return {
           name = "transition",
           type = "",
           shape = "rectangle",
-          x = 1960,
+          x = 1988,
           y = 1720,
-          width = 40,
+          width = 12,
           height = 160,
           rotation = 0,
           visible = true,
-          properties = {}
+          properties = {
+            ["map"] = "forest4",
+            ["marker"] = "entranceA"
+          }
         },
         {
           id = 67,
@@ -3116,7 +3119,7 @@ return {
       id = 6,
       name = "markers",
       class = "",
-      visible = false,
+      visible = true,
       opacity = 1,
       offsetx = 0,
       offsety = 0,
@@ -3143,7 +3146,7 @@ return {
           name = "entranceB",
           type = "",
           shape = "point",
-          x = 1920,
+          x = 1959.67,
           y = 1800,
           width = 0,
           height = 0,

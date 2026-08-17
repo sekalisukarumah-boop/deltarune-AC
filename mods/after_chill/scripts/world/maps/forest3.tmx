@@ -291,7 +291,12 @@
     <property name="marker" value="exitA"/>
    </properties>
   </object>
-  <object id="65" name="transition" x="1960" y="1720" width="40" height="160"/>
+  <object id="65" name="transition" x="1988" y="1720" width="12" height="160">
+   <properties>
+    <property name="map" value="forest4"/>
+    <property name="marker" value="entranceA"/>
+   </properties>
+  </object>
   <object id="67" gid="1201" x="660" y="908.722" width="153.122" height="174.443">
    <properties>
     <property name="solid" type="bool" value="true"/>
@@ -910,11 +915,11 @@
  <objectgroup color="#55aa00" id="8" name="battleareas" visible="0">
   <object id="217" x="280" y="920" width="1160" height="280"/>
  </objectgroup>
- <objectgroup color="#aa00ff" id="6" name="markers" visible="0" tintcolor="#aa00ff">
+ <objectgroup color="#aa00ff" id="6" name="markers" tintcolor="#aa00ff">
   <object id="63" name="entranceA" x="86" y="306">
    <point/>
   </object>
-  <object id="66" name="entranceB" x="1920" y="1800">
+  <object id="66" name="entranceB" x="1959.67" y="1800">
    <point/>
   </object>
   <object id="213" name="spawn" x="261.333" y="305.333">
