@@ -5,6 +5,10 @@ return {
     ---@param cutscene WorldCutscene
     fall = function(cutscene, event)
         --setup stuff.
+        if not Game:hasPartyMember("ralsei") then  
+            cutscene:after(function() Game.world:startCutscene("forest.genofall") end)
+            return 
+        end 
         cutscene:wait(cutscene:mapTransition("receplast"))
         Game.world.music:play("wind", 0.2)
         local kris = cutscene:getCharacter("kris")
@@ -19,7 +23,7 @@ return {
         local slopestar = Game.world.map:getTileLayer("Slope stars")
         local slopestarshine = Game.world.map:getTileLayer("Slope shine")
         
-        local snd = Assets.playSound("waterfall")
+        local snd = Assets.playSound("waterfall", 1.5)
         snd:setLooping(true)
         
         slopeCloud.visible = false
@@ -124,5 +128,70 @@ return {
         
         cutscene:text("* Glad you're okay,[wait:2] let's go now,[wait:2] Kris!", "wink", "ralsei")
         
+    end,
+
+    genofall = function(cutscene)
+        cutscene:wait(cutscene:mapTransition("receplast"))
+        Game.world.music:play("wind", 0.2)
+        local kris = cutscene:getCharacter("kris")
+
+        Game.world.map:getTileLayer("Cloud").visible = true 
+        Game.world.map:getTileLayer("Slope clouds").visible = true 
+
+        local snd = Assets.playSound("waterfall", 1.5)
+        snd:setLooping(true)
+
+        kris:addFX(ColorMaskFX({0,0,0},0.5))
+        kris:moveTo(68,-40, 0.1)
+        cutscene:shakeCharacter("kris", 0.5, 0, 0, 0.08)
+        cutscene:wait(1)
+        cutscene:fadeIn(0.25)
+       
+        --Grabs and sets up characters
+        
+        kris:setAnimation("slide")
+        cutscene:wait(1)
+        cutscene:slideTo("kris", 90, 310, 4, "out-back")
+        
+        kris:addFX(ColorMaskFX({0,0,0.1},0.35))
+
+        cutscene:wait(6)
+
+        cutscene:text("* The faint sound of water rushing is all you can hear.")
+
+        cutscene:wait(1)
+        cutscene:text("* A small light flickers beneath you.")
+
+        cutscene:wait(1)
+
+        cutscene:text("* The cliff's floor is rapidly approaching.")
+
+        cutscene:slideTo("kris", 104, 400, 0.6)
+
+        cutscene:wait(0.25)
+        snd:stop()
+
+        cutscene:fadeOut(0.5)
+        Game.world.music:fade(0, 0.5)
+
+        cutscene:wait(1)
+
+        cutscene:wait(cutscene:loadMap("forest1"))
+        cutscene:attachCamera()
+        kris = cutscene:getCharacter("kris")
+
+        kris:setSprite("landed")
+        kris:setPosition(254, 403)
+        cutscene:wait(cutscene:playSound("impact"))
+        cutscene:wait(0.5)
+        cutscene:fadeIn(0.25)
+        cutscene:wait(0.5)
+
+        Assets.playSound("wing")
+        kris:shake(2)
+
+        kris:setAnimation({"landed", 1/6, false})
+        kris:resetSprite()
+        kris:setFacing("up")
     end,
 }

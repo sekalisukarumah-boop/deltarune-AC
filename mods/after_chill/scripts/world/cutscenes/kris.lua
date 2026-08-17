@@ -224,7 +224,7 @@ end
         cutscene:wait(cutscene:walkTo(kris, rx, ry, 2))
         cutscene:panTo(Game.world.camera.x + 200, Game.world.camera.y, 1, "in-quad")
         cutscene:wait(1)
-        local ralsei = Game.world:spawnNPC("ralsei", 2000, kris.y + 6)
+        local ralsei = cutscene:spawnNPC("ralsei", 2000, kris.y + 6)
         ralsei:setFacing("left")
         ralsei.alpha = 0
         cutscene:text("* The wind blows fiercely.")
@@ -232,8 +232,8 @@ end
         ralsei.alpha = 1
         cutscene:startEncounter("ralsei", nil, {{"ralsei", ralsei}})
         end 
-        if Game:getFlag("enemy#ralsei:spared_but_not", false) then -- Game:getFlag("enemy#ralsei:spared_but_not", false)
-            -- the spared after being hit
+        if Game:getFlag("enemy#ralsei:spared_but_not", false) then 
+            -- the spared after being hit, it better fucking work istg 
         local kris = cutscene:getCharacter("kris")
         local ralsei = cutscene:getCharacter("ralsei")
         kris:resetSprite()
@@ -255,7 +255,7 @@ end
         Game.world.music:setVolume(1)
         cutscene:wait(1)
         elseif Game:getFlag("enemy#ralsei:spared") then
-            -- straight up Being spared
+            -- now this is being spared
         local kris = cutscene:getCharacter("kris")
         local ralsei = cutscene:getCharacter("ralsei")
         kris:resetSprite()
@@ -263,7 +263,7 @@ end
         ralsei:resetSprite()
         cutscene:setSpeaker("ralsei")
         cutscene:wait(0.5)
-        cutscene:text("* Kris,[wait:2] you didn't mean any harm!", "blush_pleased")
+        cutscene:text("* Kris,[wait:2] I knew you didn't mean any harm!", "blush_pleased")
         cutscene:text("* I was worried,[wait:3] since you tried to attack me...", "down")
         cutscene:text("* Regardless,[wait:2] we need to seal this fountain.[wait:10] I feel like the darkness is overtaking light.", "roaring")
         cutscene:text("* This might be,[wait:5] our final adventure together...", "roaring")
@@ -276,7 +276,7 @@ end
         cutscene:attachFollowers()
         cutscene:attachCamera(1)
         Game.world.music:setVolume(1)
-        elseif Game:getFlag("enemy#ralsei:violenced_not_geno", false) then 
+        elseif Game:getFlag("encounter#ralsei:violenced_not_geno", false) then 
         -- you killed him but not through rupture
         Game.world.music:setVolume(1)
         local kris = cutscene:getCharacter("kris")
