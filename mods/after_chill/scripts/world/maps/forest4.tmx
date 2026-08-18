@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="20" height="16" tilewidth="40" tileheight="40" infinite="0" nextlayerid="11" nextobjectid="53">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="20" height="16" tilewidth="40" tileheight="40" infinite="0" nextlayerid="11" nextobjectid="57">
  <editorsettings>
   <export target="forest4.lua" format="lua"/>
  </editorsettings>
@@ -74,17 +74,18 @@
  <objectgroup id="10" name="objects_roses">
   <object id="13" gid="57" x="510.75" y="170.38" width="32" height="32"/>
   <object id="12" gid="57" x="581.625" y="170.375" width="32" height="32"/>
-  <object id="35" gid="57" x="463" y="254.5" width="32" height="32"/>
+  <object id="35" gid="57" x="463" y="287.5" width="32" height="32"/>
   <object id="42" gid="57" x="606.5" y="317.5" width="32" height="32"/>
   <object id="43" gid="57" x="534" y="397.5" width="32" height="32"/>
-  <object id="44" gid="97" x="264.333" y="249.167" width="32" height="32"/>
-  <object id="45" gid="97" x="344.333" y="315.333" width="32" height="32"/>
-  <object id="46" gid="97" x="128.667" y="259.667" width="32" height="32"/>
-  <object id="47" gid="97" x="69" y="328.667" width="32" height="32"/>
-  <object id="48" gid="97" x="213.833" y="332.667" width="32" height="32"/>
+  <object id="44" gid="97" x="257" y="309.167" width="32" height="32"/>
+  <object id="45" gid="97" x="539" y="547.333" width="32" height="32"/>
+  <object id="46" gid="97" x="88.667" y="328.334" width="32" height="32"/>
   <object id="49" gid="57" x="600" y="497.333" width="32" height="32"/>
   <object id="50" gid="97" x="395" y="246" width="32" height="32"/>
-  <object id="51" gid="97" x="21.5" y="241.5" width="32" height="32"/>
+  <object id="53" gid="96" x="38.5758" y="261.083" width="48" height="48"/>
+  <object id="54" gid="96" x="169" y="251" width="48" height="48"/>
+  <object id="55" gid="97" x="520" y="302" width="32" height="32"/>
+  <object id="56" gid="96" x="341.333" y="336" width="48" height="48"/>
  </objectgroup>
  <objectgroup color="#0000ff" id="5" name="collision">
   <object id="22" x="-0.333333" y="155.5" width="440.167" height="48"/>
