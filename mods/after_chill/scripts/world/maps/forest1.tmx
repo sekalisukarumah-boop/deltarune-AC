@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.11" tiledversion="1.12.2" orientation="orthogonal" renderorder="right-down" width="50" height="14" tilewidth="40" tileheight="40" infinite="0" nextlayerid="23" nextobjectid="35">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="50" height="14" tilewidth="40" tileheight="40" infinite="0" nextlayerid="23" nextobjectid="35">
  <editorsettings>
   <export target="forest1.lua" format="lua"/>
  </editorsettings>
  <properties>
   <property name="has_tile_sounds" type="bool" value="true"/>
   <property name="music" value="bloom_f"/>
-  <property name="name" value="Blooming Forest - Cliff"/>
+  <property name="name" value="Blooming Forest - Cliff Base"/>
   <property name="step_sound" value="assets/sounds/step/snow"/>
  </properties>
  <tileset firstgid="1" source="../tilesets/Forest.tsx"/>
@@ -223,7 +223,7 @@ of numb.</property>
  <imagelayer id="17" name="Image Layer 2" tintcolor="#aaaaaa" offsetx="2" offsety="-141" parallaxx="1.5" parallaxy="0.75" repeatx="1">
   <image source="../../../assets/sprites/world/Forest Roof.png" width="600" height="240"/>
  </imagelayer>
- <imagelayer id="9" name="Overlay_Trees" visible="0" opacity="0.44" tintcolor="#575ed8" parallaxx="1" parallaxy="1" repeatx="1" repeaty="1">
+ <imagelayer id="9" name="Overlay_Trees" visible="0" opacity="0.44" tintcolor="#575ed8" repeatx="1" repeaty="1">
   <image source="../../../assets/sprites/world/Forest.png" width="1200" height="480"/>
  </imagelayer>
  <objectgroup color="#ff0000" id="20" name="paths"/>

@@ -14,7 +14,7 @@ return {
   backgroundcolor = { 1, 1, 16 },
   properties = {
     ["music"] = "hallway",
-    ["name"] = "Receptionist Hallway"
+    ["name"] = "Receptionist - Hallway"
   },
   tilesets = {
     {

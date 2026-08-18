@@ -4,7 +4,7 @@ return {
   tiledversion = "1.11.2",
   name = "trees",
   class = "",
-  tilewidth = 79,
+  tilewidth = 83,
   tileheight = 90,
   spacing = 0,
   margin = 0,
@@ -23,20 +23,26 @@ return {
   },
   properties = {},
   wangsets = {},
-  tilecount = 2,
+  tilecount = 3,
   tiles = {
     {
       id = 0,
-      image = "../../../assets/sprites/tilesets/tree.png",
+      image = "../../../assets/sprites/tilesets/trees/tree.png",
       width = 79,
       height = 90,
       probability = -3
     },
     {
       id = 1,
-      image = "../../../assets/sprites/tilesets/rose.png",
+      image = "../../../assets/sprites/tilesets/trees/rose.png",
       width = 41,
       height = 68
+    },
+    {
+      id = 2,
+      image = "../../../assets/sprites/tilesets/trees/tree2.png",
+      width = 83,
+      height = 79
     }
   }
 }
