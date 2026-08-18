@@ -34,7 +34,7 @@ function Fireball:fireAtSoul()
     if not Game.battle.soul then return end
     
     self.state = "BLAST"
-    local angle_to_soul = Utils.angle(self.x, self.y, Game.battle.soul.x, Game.battle.soul.y)
+    local angle_to_soul = MathUtils.angle(self.x, self.y, Game.battle.soul.x, Game.battle.soul.y)
     self.physics.direction = angle_to_soul
     self.rotation = angle_to_soul -- Snap sprite rotation forward towards target
     self.physics.speed = 11

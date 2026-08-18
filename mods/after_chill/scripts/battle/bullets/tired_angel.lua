@@ -21,9 +21,9 @@ function tired_angel:burstProjectiles()
         local offset_y = by + (i * 12)     
         local b = self.wave:spawnBullet("tired_z_bullet", offset_x, offset_y)
         local base_angle = MathUtils.angle(b.x, b.y, Game.battle.soul.x, Game.battle.soul.y)
-        local spread_offset = (i - (3 + 1) / 2) * 0.7
+        local spread_offset = (i - (3 + 1) / 2) * 0.14
         b.physics.direction = base_angle + spread_offset
-        b.physics.speed = 4
+        b.physics.speed = 8 
         b.physics.gravity = 0.3
         b.physics.gravity_direction = b.physics.direction
     end 

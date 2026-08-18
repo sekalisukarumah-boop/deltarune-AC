@@ -395,8 +395,9 @@ function ralsei:onHurt(damage, battler)
 end 
 end 
 
-function ralsei:onSpared()
+function ralsei:onSpared(...)
     self:setFlag("spared", true)
+    super.onSpared(self, ...)
 end 
 
 function ralsei:getNextWaves()

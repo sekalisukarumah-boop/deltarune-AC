@@ -7,7 +7,6 @@ function tired_z_bullet:init(x, y)
     local target_y = Game.battle.soul.y
     self:setScale(1.2)
     self:setHitbox(0, 0, 20, 20)
-    self.damage = 0 
    -- self.physics.spin = love.math.random(-0.002, 0.002) 
     self.destroy_on_hit = true 
     self.tiredness = 16

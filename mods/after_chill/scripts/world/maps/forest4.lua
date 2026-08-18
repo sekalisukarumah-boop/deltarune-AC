@@ -9,8 +9,8 @@ return {
   height = 16,
   tilewidth = 40,
   tileheight = 40,
-  nextlayerid = 8,
-  nextobjectid = 40,
+  nextlayerid = 11,
+  nextobjectid = 53,
   properties = {
     ["has_tile_sounds"] = true,
     ["music"] = "bloom_f",
@@ -26,11 +26,12 @@ return {
     {
       name = "trees",
       firstgid = 1201,
-      filename = "../tilesets/trees.tsx"
+      filename = "../tilesets/trees.tsx",
+      exportfilename = "../tilesets/trees.lua"
     },
     {
       name = "debug",
-      firstgid = 1202,
+      firstgid = 1203,
       filename = "../tilesets/debug.tsx",
       exportfilename = "../tilesets/debug.lua"
     }
@@ -57,19 +58,19 @@ return {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1202, 1202, 1202, 1202, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1202, 1202, 1202, 1202, 0, 0, 0, 0,
-        1207, 1207, 1207, 1207, 1207, 1207, 1207, 1207, 1207, 1207, 1207, 1202, 1202, 1202, 1202, 1202, 0, 0, 0, 0,
-        1207, 1207, 1207, 1207, 1207, 1207, 1207, 1207, 1207, 1207, 1207, 1202, 1202, 1202, 1202, 1202, 0, 0, 0, 0,
-        1207, 1207, 1207, 1207, 1207, 1207, 1207, 1207, 1207, 1207, 1207, 1202, 1202, 1202, 1202, 1202, 0, 0, 0, 0,
-        1207, 1207, 1207, 1207, 1207, 1207, 1207, 1207, 1207, 1207, 1207, 1207, 1207, 1202, 1202, 1202, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1202, 1202, 1202, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1202, 1202, 1202, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1202, 1202, 1202, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1202, 1202, 1202, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1202, 1202, 1202, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1202, 1202, 1202, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1202, 1202, 1202, 0, 0, 0, 0
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1203, 1203, 1203, 1203, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1203, 1203, 1203, 1203, 0, 0, 0, 0,
+        1208, 1208, 1208, 1208, 1208, 1208, 1208, 1208, 1208, 1208, 1208, 1203, 1203, 1203, 1203, 1203, 0, 0, 0, 0,
+        1208, 1208, 1208, 1208, 1208, 1208, 1208, 1208, 1208, 1208, 1208, 1203, 1203, 1203, 1203, 1203, 0, 0, 0, 0,
+        1208, 1208, 1208, 1208, 1208, 1208, 1208, 1208, 1208, 1208, 1208, 1203, 1203, 1203, 1203, 1203, 0, 0, 0, 0,
+        1208, 1208, 1208, 1208, 1208, 1208, 1208, 1208, 1208, 1208, 1208, 1208, 1208, 1203, 1203, 1203, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1203, 1203, 1203, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1203, 1203, 1203, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1203, 1203, 1203, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1203, 1203, 1203, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1203, 1203, 1203, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1203, 1203, 1203, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1203, 1203, 1203, 0, 0, 0, 0
       }
     },
     {
@@ -137,11 +138,209 @@ return {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 134, 85, 82, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 85, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 85, 82, 83, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 81, 86, 87, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 85, 86, 87, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 81, 82, 83, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 85, 86, 87, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 85, 86, 87, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 85, 86, 87, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 85, 86, 87, 0, 0, 0, 0
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 85, 86, 83, 0, 0, 0, 0
+      }
+    },
+    {
+      type = "objectgroup",
+      draworder = "topdown",
+      id = 10,
+      name = "objects_roses",
+      class = "",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      parallaxx = 1,
+      parallaxy = 1,
+      properties = {},
+      objects = {
+        {
+          id = 13,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 510.75,
+          y = 170.38,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 57,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 12,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 581.625,
+          y = 170.375,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 57,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 35,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 463,
+          y = 254.5,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 57,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 42,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 606.5,
+          y = 317.5,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 57,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 43,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 534,
+          y = 397.5,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 57,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 44,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 264.333,
+          y = 249.167,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 97,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 45,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 344.333,
+          y = 315.333,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 97,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 46,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 128.667,
+          y = 259.667,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 97,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 47,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 69,
+          y = 328.667,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 97,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 48,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 213.833,
+          y = 332.667,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 97,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 49,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 600,
+          y = 497.333,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 57,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 50,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 395,
+          y = 246,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 97,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 51,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 21.5,
+          y = 241.5,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          gid = 97,
+          visible = true,
+          properties = {}
+        }
       }
     },
     {
@@ -278,6 +477,7 @@ return {
           rotation = 0,
           visible = true,
           properties = {
+            ["marker"] = "markeridk",
             ["text1"] = "* The flowers smell really nice.[wait:8]\n* You feel welcomed by the atmosphere."
           }
         },
@@ -373,38 +573,10 @@ return {
           type = "",
           shape = "rectangle",
           x = 298.667,
-          y = 229.333,
-          width = 82.6667,
-          height = 85.3333,
+          y = 203.333,
+          width = 21.6667,
+          height = 146.333,
           rotation = 0,
-          visible = true,
-          properties = {}
-        },
-        {
-          id = 12,
-          name = "",
-          type = "",
-          shape = "rectangle",
-          x = 581.625,
-          y = 170.375,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 57,
-          visible = true,
-          properties = {}
-        },
-        {
-          id = 13,
-          name = "",
-          type = "",
-          shape = "rectangle",
-          x = 510.75,
-          y = 170.38,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 57,
           visible = true,
           properties = {}
         },
@@ -466,20 +638,6 @@ return {
           properties = {}
         },
         {
-          id = 35,
-          name = "",
-          type = "",
-          shape = "rectangle",
-          x = 463,
-          y = 254.5,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          gid = 57,
-          visible = true,
-          properties = {}
-        },
-        {
           id = 36,
           name = "",
           type = "",
@@ -522,6 +680,22 @@ return {
             ["text1"] = "* (You sneeze at the rosy smell of the flowers.) ",
             ["text2"] = "* (You're pretty sure you\ninhaled some pollen.)"
           }
+        },
+        {
+          id = 52,
+          name = "transition",
+          type = "",
+          shape = "rectangle",
+          x = 518,
+          y = 631.333,
+          width = 122,
+          height = 8,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["map"] = "forest5",
+            ["marker"] = "entranceA"
+          }
         }
       }
     },
@@ -551,6 +725,32 @@ return {
           rotation = 0,
           visible = true,
           properties = {}
+        },
+        {
+          id = 40,
+          name = "entranceB",
+          type = "",
+          shape = "point",
+          x = 578.667,
+          y = 616.333,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 41,
+          name = "markeridk",
+          type = "",
+          shape = "point",
+          x = 512,
+          y = 204.67,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {}
         }
       }
     },
@@ -560,7 +760,7 @@ return {
       id = 2,
       name = "overlay",
       class = "",
-      visible = false,
+      visible = true,
       opacity = 0.44,
       offsetx = 80,
       offsety = 80,

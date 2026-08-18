@@ -23,7 +23,7 @@ return {
   },
   properties = {},
   wangsets = {},
-  tilecount = 1,
+  tilecount = 2,
   tiles = {
     {
       id = 0,
@@ -31,6 +31,12 @@ return {
       width = 79,
       height = 90,
       probability = -3
+    },
+    {
+      id = 1,
+      image = "../../../assets/sprites/tilesets/rose.png",
+      width = 41,
+      height = 68
     }
   }
 }

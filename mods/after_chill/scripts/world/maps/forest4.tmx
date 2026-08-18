@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="20" height="16" tilewidth="40" tileheight="40" infinite="0" nextlayerid="8" nextobjectid="40">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="20" height="16" tilewidth="40" tileheight="40" infinite="0" nextlayerid="11" nextobjectid="53">
  <editorsettings>
   <export target="forest4.lua" format="lua"/>
  </editorsettings>
@@ -10,25 +10,25 @@
  </properties>
  <tileset firstgid="1" source="../tilesets/Forest.tsx"/>
  <tileset firstgid="1201" source="../tilesets/trees.tsx"/>
- <tileset firstgid="1202" source="../tilesets/debug.tsx"/>
+ <tileset firstgid="1203" source="../tilesets/debug.tsx"/>
  <layer id="7" name="stepsounds" width="20" height="16" opacity="0">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,1202,1202,1202,1202,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,1202,1202,1202,1202,0,0,0,0,
-1207,1207,1207,1207,1207,1207,1207,1207,1207,1207,1207,1202,1202,1202,1202,1202,0,0,0,0,
-1207,1207,1207,1207,1207,1207,1207,1207,1207,1207,1207,1202,1202,1202,1202,1202,0,0,0,0,
-1207,1207,1207,1207,1207,1207,1207,1207,1207,1207,1207,1202,1202,1202,1202,1202,0,0,0,0,
-1207,1207,1207,1207,1207,1207,1207,1207,1207,1207,1207,1207,1207,1202,1202,1202,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,1202,1202,1202,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,1202,1202,1202,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,1202,1202,1202,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,1202,1202,1202,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,1202,1202,1202,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,1202,1202,1202,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,1202,1202,1202,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,1203,1203,1203,1203,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,1203,1203,1203,1203,0,0,0,0,
+1208,1208,1208,1208,1208,1208,1208,1208,1208,1208,1208,1203,1203,1203,1203,1203,0,0,0,0,
+1208,1208,1208,1208,1208,1208,1208,1208,1208,1208,1208,1203,1203,1203,1203,1203,0,0,0,0,
+1208,1208,1208,1208,1208,1208,1208,1208,1208,1208,1208,1203,1203,1203,1203,1203,0,0,0,0,
+1208,1208,1208,1208,1208,1208,1208,1208,1208,1208,1208,1208,1208,1203,1203,1203,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,1203,1203,1203,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,1203,1203,1203,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,1203,1203,1203,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,1203,1203,1203,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,1203,1203,1203,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,1203,1203,1203,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,1203,1203,1203,0,0,0,0
 </data>
  </layer>
  <layer id="1" name="grass" width="20" height="16">
@@ -64,13 +64,28 @@
 0,0,0,0,0,0,0,0,0,0,0,0,134,85,82,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,85,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,85,82,83,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,81,86,87,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,85,86,87,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,81,82,83,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,85,86,87,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,85,86,87,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,85,86,87,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,85,86,87,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,85,86,83,0,0,0,0
 </data>
  </layer>
+ <objectgroup id="10" name="objects_roses">
+  <object id="13" gid="57" x="510.75" y="170.38" width="32" height="32"/>
+  <object id="12" gid="57" x="581.625" y="170.375" width="32" height="32"/>
+  <object id="35" gid="57" x="463" y="254.5" width="32" height="32"/>
+  <object id="42" gid="57" x="606.5" y="317.5" width="32" height="32"/>
+  <object id="43" gid="57" x="534" y="397.5" width="32" height="32"/>
+  <object id="44" gid="97" x="264.333" y="249.167" width="32" height="32"/>
+  <object id="45" gid="97" x="344.333" y="315.333" width="32" height="32"/>
+  <object id="46" gid="97" x="128.667" y="259.667" width="32" height="32"/>
+  <object id="47" gid="97" x="69" y="328.667" width="32" height="32"/>
+  <object id="48" gid="97" x="213.833" y="332.667" width="32" height="32"/>
+  <object id="49" gid="57" x="600" y="497.333" width="32" height="32"/>
+  <object id="50" gid="97" x="395" y="246" width="32" height="32"/>
+  <object id="51" gid="97" x="21.5" y="241.5" width="32" height="32"/>
+ </objectgroup>
  <objectgroup color="#0000ff" id="5" name="collision">
   <object id="22" x="-0.333333" y="155.5" width="440.167" height="48"/>
   <object id="23" x="1.58333" y="351" width="517.667" height="48"/>
@@ -83,6 +98,7 @@
   <object id="1" gid="1201" x="251" y="202.333" width="156" height="180"/>
   <object id="2" name="savepoint" x="560.333" y="182.667">
    <properties>
+    <property name="marker" value="markeridk"/>
     <property name="text1">* The flowers smell really nice.[wait:8]
 * You feel welcomed by the atmosphere.</property>
    </properties>
@@ -100,9 +116,7 @@
 inhaled some pollen.)</property>
    </properties>
   </object>
-  <object id="10" name="bouquet" x="298.667" y="229.333" width="82.6667" height="85.3333"/>
-  <object id="12" gid="57" x="581.625" y="170.375" width="32" height="32"/>
-  <object id="13" gid="57" x="510.75" y="170.38" width="32" height="32"/>
+  <object id="10" name="bouquet" x="298.667" y="203.333" width="21.6667" height="146.333"/>
   <object id="19" gid="1201" x="370.167" y="478.5" width="156" height="180"/>
   <object id="21" gid="1201" x="619.333" y="362" width="156" height="180"/>
   <object id="29" name="transition" x="2" y="202" width="18.3333" height="150.667">
@@ -114,7 +128,6 @@ inhaled some pollen.)</property>
   <object id="33" name="shadow" x="205" y="95">
    <point/>
   </object>
-  <object id="35" gid="57" x="463" y="254.5" width="32" height="32"/>
   <object id="36" gid="1201" x="680" y="531.333" width="156" height="180"/>
   <object id="38" gid="1201" x="659.333" y="614.667" width="156" height="180"/>
   <object id="39" name="interactable" x="116" y="360" width="128" height="38">
@@ -124,13 +137,25 @@ inhaled some pollen.)</property>
 inhaled some pollen.)</property>
    </properties>
   </object>
+  <object id="52" name="transition" x="518" y="631.333" width="122" height="8">
+   <properties>
+    <property name="map" value="forest5"/>
+    <property name="marker" value="entranceA"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup color="#5500ff" id="6" name="markers">
   <object id="30" name="entranceA" x="48.6667" y="278">
    <point/>
   </object>
+  <object id="40" name="entranceB" x="578.667" y="616.333">
+   <point/>
+  </object>
+  <object id="41" name="markeridk" x="512" y="204.67">
+   <point/>
+  </object>
  </objectgroup>
- <imagelayer id="2" name="overlay" visible="0" opacity="0.44" tintcolor="#575ed8" offsetx="80" offsety="80" repeatx="1" repeaty="1">
+ <imagelayer id="2" name="overlay" opacity="0.44" tintcolor="#575ed8" offsetx="80" offsety="80" repeatx="1" repeaty="1">
   <image source="../../../assets/sprites/world/Forest.png" width="1200" height="480"/>
  </imagelayer>
 </map>
