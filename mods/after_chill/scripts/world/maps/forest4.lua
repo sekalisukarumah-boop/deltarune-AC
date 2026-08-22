@@ -14,7 +14,7 @@ return {
   properties = {
     ["has_tile_sounds"] = true,
     ["music"] = "bloom_f",
-    ["name"] = "Blooming Forest - Flower Field"
+    ["name"] = "Blooming Forest - Flower Bed"
   },
   tilesets = {
     {

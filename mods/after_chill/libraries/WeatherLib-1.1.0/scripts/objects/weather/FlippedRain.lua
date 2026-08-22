@@ -25,9 +25,9 @@ function FlippedRain:onThreshold()
             local a = 0.25 * (i - 1)
             local b = 0.25 * i
 
-            local number = Utils.pick({"three", "five", "six", "nine", "nine_alt"})
-            local x = math.random(SCREEN_WIDTH * a, SCREEN_WIDTH * b)
-            local y = math.random(0, 40)
+            local number = TableUtils.pick({"three", "five", "six", "nine", "nine_alt"})
+            local x = love.math.random(SCREEN_WIDTH * a, SCREEN_WIDTH * b)
+            local y = love.math.random(0, 40)
             local worldx, worldy = self:getRelativePos(x, 0 - y, self.addto)
             local rain = FlippedRainPiece("world/flippedrain", number, worldx - SCREEN_WIDTH/2, worldy, speedmult * 20, self)
             if self:getPieceAmount(rain) < 45 then self:addPiece(rain) end -- controls how many pieces can be on the screen at once

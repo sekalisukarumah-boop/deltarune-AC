@@ -60,7 +60,7 @@ function WeatherHandler:update()
         if self.type == "rain" or self.type == "cd" then
             if self.raintimerreset then
                 self.raintimerreset = false
-                self.raintimerthres = math.random(1, 6)
+                self.raintimerthres = love.math.random(1, 6)
             elseif self.raintimer >= self.raintimerthres then
 
                 local amount = self.intensity
@@ -72,10 +72,10 @@ function WeatherHandler:update()
                 for i = amount, 1, -1 do
                     self.raintimer = 0
                     self.raintimerreset = true
-                    local number = Utils.pick({"three", "five", "six", "nine", "nine_alt"})
-                    if self.type == "cd" then number = Utils.pick({"cat", "dog"}) end
-                    local x = math.random(SCREEN_WIDTH * 0, SCREEN_WIDTH/4)
-                    local y = math.random(0, 40)
+                    local number = TableUtils.pick({"three", "five", "six", "nine", "nine_alt"})
+                    if self.type == "cd" then number = TableUtils.pick({"cat", "dog"}) end
+                    local x = love.math.random(SCREEN_WIDTH * 0, SCREEN_WIDTH/4)
+                    local y = love.math.random(0, 40)
                     local worldx, worldy = self:getRelativePos(x, 0 - y, self.addto)
                     local rain = RainPiece(number, worldx, worldy, 20 * speedmult, self)
 
@@ -83,10 +83,10 @@ function WeatherHandler:update()
 
                     self.raintimer = 0
                     self.raintimerreset = true
-                    local number = Utils.pick({"three", "five", "six", "nine", "nine_alt"})
-                    if self.type == "cd" then number = Utils.pick({"cat", "dog"}) end
-                    local x = math.random(SCREEN_WIDTH * 0.25, SCREEN_WIDTH * 0.5)
-                    local y = math.random(0, 40)
+                    local number = TableUtils.pick({"three", "five", "six", "nine", "nine_alt"})
+                    if self.type == "cd" then number = TableUtils.pick({"cat", "dog"}) end
+                    local x = love.math.random(SCREEN_WIDTH * 0.25, SCREEN_WIDTH * 0.5)
+                    local y = love.math.random(0, 40)
                     local worldx, worldy = self:getRelativePos(x, 0 - y, self.addto)
                     local rain = RainPiece(number, worldx, worldy, 20 * speedmult, self)
 
@@ -94,10 +94,10 @@ function WeatherHandler:update()
 
                     self.raintimer = 0
                     self.raintimerreset = true
-                    local number = Utils.pick({"three", "five", "six", "nine", "nine_alt"})
-                    if self.type == "cd" then number = Utils.pick({"cat", "dog"}) end
-                    local x = math.random(SCREEN_WIDTH * 0.5, SCREEN_WIDTH * 0.75)
-                    local y = math.random(0, 40)
+                    local number = TableUtils.pick({"three", "five", "six", "nine", "nine_alt"})
+                    if self.type == "cd" then number = TableUtils.pick({"cat", "dog"}) end
+                    local x = love.math.random(SCREEN_WIDTH * 0.5, SCREEN_WIDTH * 0.75)
+                    local y = love.math.random(0, 40)
                     local worldx, worldy = self:getRelativePos(x, 0 - y, self.addto)
                     local rain = RainPiece(number, worldx, worldy, 20 * speedmult, self)
 
@@ -105,10 +105,10 @@ function WeatherHandler:update()
 
                     self.raintimer = 0
                     self.raintimerreset = true
-                    local number = Utils.pick({"three", "five", "six", "nine", "nine_alt"})
-                    if self.type == "cd" then number = Utils.pick({"cat", "dog"}) end
-                    local x = math.random(SCREEN_WIDTH * 0.75, SCREEN_WIDTH)
-                    local y = math.random(0, 40)
+                    local number = TableUtils.pick({"three", "five", "six", "nine", "nine_alt"})
+                    if self.type == "cd" then number = TableUtils.pick({"cat", "dog"}) end
+                    local x = love.math.random(SCREEN_WIDTH * 0.75, SCREEN_WIDTH)
+                    local y = love.math.random(0, 40)
                     local worldx, worldy = self:getRelativePos(x, 0 - y, self.addto)
                     local rain = RainPiece(number, worldx, worldy, 20 * speedmult, self)
 
@@ -116,10 +116,10 @@ function WeatherHandler:update()
 
                     self.raintimer = 0
                     self.raintimerreset = true
-                    local number = Utils.pick({"three", "five", "six", "nine", "nine_alt"})
-                    if self.type == "cd" then number = Utils.pick({"cat", "dog"}) end
-                    local x = math.random(SCREEN_WIDTH, SCREEN_WIDTH * 1.25)
-                    local y = math.random(0, 40)
+                    local number = TableUtils.pick({"three", "five", "six", "nine", "nine_alt"})
+                    if self.type == "cd" then number = TableUtils.pick({"cat", "dog"}) end
+                    local x = love.math.random(SCREEN_WIDTH, SCREEN_WIDTH * 1.25)
+                    local y = love.math.random(0, 40)
                     local worldx, worldy = self:getRelativePos(x, 0 - y, self.addto)
                     local rain = RainPiece(number, worldx, worldy, 20 * speedmult, self)
 
@@ -127,10 +127,10 @@ function WeatherHandler:update()
 
                     self.raintimer = 0
                     self.raintimerreset = true
-                    local number = Utils.pick({"three", "five", "six", "nine", "nine_alt"})
-                    if self.type == "cd" then number = Utils.pick({"cat", "dog"}) end
-                    local x = math.random(SCREEN_WIDTH * 1.25, SCREEN_WIDTH * 1.5)
-                    local y = math.random(0, 40)
+                    local number = TableUtils.pick({"three", "five", "six", "nine", "nine_alt"})
+                    if self.type == "cd" then number = TableUtils.pick({"cat", "dog"}) end
+                    local x = love.math.random(SCREEN_WIDTH * 1.25, SCREEN_WIDTH * 1.5)
+                    local y = love.math.random(0, 40)
                     local worldx, worldy = self:getRelativePos(x, 0 - y, self.addto)
                     local rain = RainPiece(number, worldx, worldy, 20 * speedmult, self)
                     self.addto:addChild(rain)
@@ -144,8 +144,8 @@ function WeatherHandler:update()
         if self.type == "snow" then
             if self.snowtimerreset then
                 self.snowtimerreset = false
-                self.snowtimerthres = math.random(5, 10)
-                self.snowcount = Utils.clamp(math.random(Utils.round(2 * self.intensity), Utils.round(4 * self.intensity)), 2, 20)
+                self.snowtimerthres = love.math.random(5, 10)
+                self.snowcount = MathUtils.clamp(love.math.random(MathUtils.round(2 * self.intensity), MathUtils.round(4 * self.intensity)), 2, 20)
 
             elseif self.snowtimer >= self.snowtimerthres then
 
@@ -153,13 +153,13 @@ function WeatherHandler:update()
                 self.snowtimerreset = true
 
                 for i = self.snowcount, 1, -1 do
-                    local number = Utils.pick({"a", "b", "c", "d"})
-                    local speed = Utils.clamp(Utils.random(Utils.round(3 * self.intensity), Utils.round(6 * self.intensity)), 3, 14)
-                    local rotspeed = Utils.random(0.5, 6)
-                    local sinerspeed = Utils.random(0.6, 4)
-                    local lifespan = Utils.random(70, 120)
-                    local x = math.random(SCREEN_WIDTH * - 0.25, SCREEN_WIDTH * 1.25)
-                    local y = math.random(40, 60)
+                    local number = TableUtils.pick({"a", "b", "c", "d"})
+                    local speed = MathUtils.clamp(MathUtils.random(MathUtils.round(3 * self.intensity), MathUtils.round(6 * self.intensity)), 3, 14)
+                    local rotspeed = MathUtils.random(0.5, 6)
+                    local sinerspeed = MathUtils.random(0.6, 4)
+                    local lifespan = MathUtils.random(70, 120)
+                    local x = love.math.random(SCREEN_WIDTH * - 0.25, SCREEN_WIDTH * 1.25)
+                    local y = love.math.random(40, 60)
                     local worldx, worldy = self:getRelativePos(x, 0 - y, self.addto)
                     local snow = SnowPiece(number, worldx, worldy, speed, rotspeed, sinerspeed, lifespan, self)
                     self.addto:addChild(snow)
@@ -174,9 +174,9 @@ function WeatherHandler:update()
             if self.thundertimerreset == true then
                 self.thundertimerreset = false
                 if self.intensity == 1 then 
-                    self.thundertimer = 30 * math.random(8, 11)
+                    self.thundertimer = 30 * love.math.random(8, 11)
                 else
-                    self.thundertimer = 30 * math.random(8 - self.intensity, 11 - self.intensity)
+                    self.thundertimer = 30 * love.math.random(8 - self.intensity, 11 - self.intensity)
                 end
             end
 
@@ -204,23 +204,23 @@ function WeatherHandler:update()
                 self.windtimerreset = false
 
                 if self.intensity == 1 then 
-                    self.windtimer = 30 * math.random(6, 14)
+                    self.windtimer = 30 * love.math.random(6, 14)
                 else
-                    self.windtimer = 30 * math.random(6 - self.intensity, 14 - self.intensity)
+                    self.windtimer = 30 * love.math.random(6 - self.intensity, 14 - self.intensity)
                 end
             end
 
             if self.windtimer <= 0 then
                 self.windtimerreset = true
                 --print("WOO OHOOO WIND YESS!! IM SO HAPPY")
-                local ammount = math.random(1, 7)
+                local ammount = love.math.random(1, 7)
                 for i = ammount, 1, -1 do
                     if self.sfx then Assets.stopAndPlaySound("wind", 0.8, 1.2) end
                     Game.stage.timer:script(function(wait)
                         wait(1.5)
-                        local speed = Utils.random(15, 19)
-                        local y = math.random(SCREEN_HEIGHT * - 0.5, SCREEN_HEIGHT * 0.25)
-                        local x = math.random(40, 60) + (i * 120)
+                        local speed = MathUtils.random(15, 19)
+                        local y = love.love.math.random(SCREEN_HEIGHT * - 0.5, SCREEN_HEIGHT * 0.25)
+                        local x = love.love.math.random(40, 60) + (i * 120)
                         local worldx, worldy = self:getRelativePos(SCREEN_WIDTH + x, y, self.addto)
                         local leaf = LeafPiece(worldx, worldy, speed, self)
                         self.addto:addChild(leaf)
@@ -235,17 +235,17 @@ function WeatherHandler:update()
         if self.type == "volcanic" then
             if self.dusttimerreset then
                 self.dusttimerreset = false
-                self.dusttimer = math.random(5, 6)
+                self.dusttimer = love.math.random(5, 6)
             elseif self.dusttimer <= 0 then
 
                 self.dusttimerreset = true
-                local ammount = math.random(3, 5)
+                local ammount = love.math.random(3, 5)
                 for i = ammount, 1, -1 do
 
-                    local letter = Utils.pick({"a", "b", "c", "d", "e"})
-                    local speed = Utils.random(15, 19)
-                    local y = math.random(0, SCREEN_HEIGHT)
-                    local x = math.random(40, 60) + (i * 120)
+                    local letter = TableUtils.pick({"a", "b", "c", "d", "e"})
+                    local speed = MathUtils.random(15, 19)
+                    local y = love.love.math.random(0, SCREEN_HEIGHT)
+                    local x = love.love.math.random(40, 60) + (i * 120)
                     local worldx, worldy = self:getRelativePos(SCREEN_WIDTH + x, y, self.addto)
                     local dust = DustPiece(letter, worldx, worldy, speed, self)
                     self.addto:addChild(dust)
@@ -263,9 +263,9 @@ function WeatherHandler:update()
             if self.thundertimerreset == true then
                 self.thundertimerreset = false
                 if self.intensity == 1 then 
-                    self.thundertimer = 30 * math.random(8, 11)
+                    self.thundertimer = 30 * love.math.random(8, 11)
                 else
-                    self.thundertimer = 30 * math.random(8 - self.intensity, 11 - self.intensity)
+                    self.thundertimer = 30 * love.math.random(8 - self.intensity, 11 - self.intensity)
                 end
             end
 

@@ -29,8 +29,8 @@ return {
         cutscene:text("* I really wonder how Berdly's doing.", "sad_smile", "noelle")
         cutscene:text("* He probably fainted from all the studying he was doing!", "blush_finger", "noelle")
         cutscene:wait(0.5)
-        local sprites = {}
         cutscene:text("* Faha.", "smile_side", "noelle")
+        local sprites = {}
         Game.fader:fadeOut(nil, {color = COLORS.white, speed = 0.5})
         local noelle_spr = Sprite("party/noelle/dark/battle/defeat_1")
         table.insert(sprites, noelle_spr)
