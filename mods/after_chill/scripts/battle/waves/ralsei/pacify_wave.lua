@@ -16,9 +16,8 @@ function pacify_wave:onStart()
     Game.battle.arena:setFire(true, true)
     local ralsei = self:getAttackers()[1]
     self.loop_timer = self.timer:everyInstant(1.5, function()
-        if ralsei then
+            Assets.playSound("spell_pacify")
             ralsei:setAnimation("spell", function()
-                Assets.playSound("spell_pacify")
                 local cx, cy = SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2
                 cx, cy = ralsei:getRelativePos(ralsei.width / 2 - 20, ralsei.height / 2 - 10)
                 self.timer:script(function(wait)
@@ -32,7 +31,6 @@ function pacify_wave:onStart()
                     end
                 end)
             end)
-        end
     end)
 end
 
@@ -56,11 +54,13 @@ end
 
 function pacify_wave:beforeEnd()
     self:cleanupWaveStuff()
+    Assets.stopSound("spell_pacify")
     super.beforeEnd(self)
 end
 
 function pacify_wave:onEnd()
     self:cleanupWaveStuff()
+    Assets.stopSound("spell_pacify")
     super.onEnd(self)
 end
 

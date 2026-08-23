@@ -40,5 +40,15 @@ end)
 end)
 end
 
+function Basic:onEnd()
+    super.onEnd(self)
+    Assets.stopSound("spell_pacify")
+end 
+
+function Basic:beforeEnd()
+    super.beforeEnd(self)
+    Assets.stopSound("spell_pacify")
+end 
+
 
 return Basic
