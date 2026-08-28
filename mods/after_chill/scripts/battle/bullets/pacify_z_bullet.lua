@@ -35,7 +35,7 @@ function pacify_z_bullet:update()
         local current_vx = math.cos(self.physics.direction) * self.physics.speed
         local current_vy = math.sin(self.physics.direction) * self.physics.speed
         
-        local target_angle = Utils.angle(self.x, self.y, soul.x, soul.y)
+        local target_angle = MathUtils.angle(self.x, self.y, soul.x, soul.y)
         
         local target_vx = math.cos(target_angle) * self.base_speed
         local target_vy = math.sin(target_angle) * self.base_speed

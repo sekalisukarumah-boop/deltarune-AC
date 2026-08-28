@@ -28,7 +28,18 @@ function DarkBullet:onCollide(soul)
             Game.battle.timer:after(0.5, function()
                 Game.battle.tired_on_cooldown = false
             end)
-            Game.battle.tired_bar:addTired(self:getTired())     
+            local idk = {}
+            local nullify = false 
+            for i = 1, #Game.battle.party do 
+                if Game.battle:getActionBy(Game.battle.party[i]) == "DEFEND" then 
+                    nullify = true 
+                end 
+            end 
+            if nullify then 
+            Game.battle.tired_bar:addTired(self:getTired()/2)
+            else
+            Game.battle.tired_bar:addTired(self:getTired()) 
+            end      
             for _, follower in ipairs(Game.battle.party) do 
                 follower.hit_count = 0 
                 local status = follower:statusMessage("mercy", self:getTired() or 5)

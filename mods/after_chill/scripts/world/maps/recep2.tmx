@@ -5,7 +5,7 @@
  </editorsettings>
  <properties>
   <property name="music" value="hallway"/>
-  <property name="name" value="Receptionist Hallway"/>
+  <property name="name" value="Receptionist - Hallway"/>
  </properties>
  <tileset firstgid="1" source="../tilesets/Receptionist.tsx"/>
  <imagelayer id="2" name="bg" offsetx="61" offsety="69" parallaxx="0.05" parallaxy="0.05" repeatx="1">

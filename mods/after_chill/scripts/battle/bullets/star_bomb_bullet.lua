@@ -52,7 +52,7 @@ function star_bomb_bullet:explode()
     end
 
     local soul = Game.battle.soul
-    local angle_to_soul = MatgUtils.angle(self.x, self.y, soul.x, soul.y)
+    local angle_to_soul = MathUtils.angle(self.x, self.y, soul.x, soul.y)
 
     for i = 1, 3 do
         local fb = self.wave:spawnBullet("firesnipe", self.x, self.y)

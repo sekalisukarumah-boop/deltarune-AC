@@ -47,7 +47,7 @@ function preview:update()
     end
     for _, p in ipairs(to_remove) do 
         p.sprite:remove() 
-        Utils.removeFromTable(self.particles, p)
+        TableUtils.removeValue(self.particles, p)
     end
 
     self.particle_timer = self.particle_timer + DT

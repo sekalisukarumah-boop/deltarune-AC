@@ -1,7 +1,7 @@
 return {
   version = "1.10",
   luaversion = "5.1",
-  tiledversion = "1.12.2",
+  tiledversion = "1.11.2",
   class = "",
   orientation = "orthogonal",
   renderorder = "right-down",
@@ -16,7 +16,8 @@ return {
     {
       name = "Forest_entrance",
       firstgid = 1,
-      filename = "../tilesets/Forest entrance.tsx"
+      filename = "../tilesets/Forest entrance.tsx",
+      exportfilename = "../tilesets/Forest entrance.lua"
     },
     {
       name = "slope",
@@ -202,22 +203,7 @@ return {
       parallaxx = 1,
       parallaxy = 1,
       properties = {},
-      objects = {
-        {
-          id = 2,
-          name = "script",
-          type = "",
-          shape = "rectangle",
-          x = 80,
-          y = 160,
-          width = 80,
-          height = 80,
-          rotation = 0,
-          opacity = 1,
-          visible = true,
-          properties = {}
-        }
-      }
+      objects = {}
     },
     {
       type = "objectgroup",
@@ -243,7 +229,6 @@ return {
           width = 0,
           height = 0,
           rotation = 0,
-          opacity = 1,
           visible = true,
           properties = {}
         }

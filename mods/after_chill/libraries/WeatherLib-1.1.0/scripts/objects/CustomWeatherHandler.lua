@@ -27,7 +27,7 @@ function CustomWeatherHandler:update()
 
             if self.timer <= 0 then
 
-                self.timer = math.random(self.thres[1], self.thres[2])
+                self.timer = love.math.random(self.thres[1], self.thres[2])
                 if not Game.stage.wpaused then self:onThreshold() else self:onThresholdIndoors() end
 
             end
