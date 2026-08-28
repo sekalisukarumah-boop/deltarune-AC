@@ -1,7 +1,7 @@
 return {
   version = "1.10",
   luaversion = "5.1",
-  tiledversion = "1.12.1",
+  tiledversion = "1.11.2",
   class = "",
   orientation = "orthogonal",
   renderorder = "right-down",
@@ -10,7 +10,7 @@ return {
   tilewidth = 40,
   tileheight = 40,
   nextlayerid = 26,
-  nextobjectid = 65,
+  nextobjectid = 69,
   properties = {
     ["has_tile_sounds"] = true,
     ["music"] = "bloom_f",
@@ -263,7 +263,6 @@ return {
               width = 110,
               height = 130,
               rotation = 0,
-              opacity = 1,
               gid = 1241,
               visible = true,
               properties = {}
@@ -278,7 +277,6 @@ return {
               width = 110,
               height = 130,
               rotation = 0,
-              opacity = 1,
               gid = 1241,
               visible = true,
               properties = {}
@@ -293,7 +291,6 @@ return {
               width = 110,
               height = 130,
               rotation = 0,
-              opacity = 1,
               gid = 1241,
               visible = true,
               properties = {}
@@ -308,7 +305,6 @@ return {
               width = 110,
               height = 130,
               rotation = 0,
-              opacity = 1,
               gid = 1241,
               visible = true,
               properties = {}
@@ -323,7 +319,6 @@ return {
               width = 110,
               height = 130,
               rotation = 0,
-              opacity = 1,
               gid = 1241,
               visible = true,
               properties = {}
@@ -338,7 +333,6 @@ return {
               width = 110,
               height = 130,
               rotation = 0,
-              opacity = 1,
               gid = 1241,
               visible = true,
               properties = {}
@@ -366,10 +360,9 @@ return {
               shape = "rectangle",
               x = 488,
               y = 287,
-              width = 220,
-              height = 260,
+              width = 165,
+              height = 180,
               rotation = 0,
-              opacity = 1,
               gid = 1241,
               visible = true,
               properties = {}
@@ -381,10 +374,9 @@ return {
               shape = "rectangle",
               x = 688,
               y = 287,
-              width = 220,
-              height = 260,
+              width = 165,
+              height = 180,
               rotation = 0,
-              opacity = 1,
               gid = 1241,
               visible = true,
               properties = {}
@@ -396,10 +388,9 @@ return {
               shape = "rectangle",
               x = 888,
               y = 287,
-              width = 220,
-              height = 260,
+              width = 165,
+              height = 180,
               rotation = 0,
-              opacity = 1,
               gid = 1241,
               visible = true,
               properties = {}
@@ -411,10 +402,9 @@ return {
               shape = "rectangle",
               x = 1168,
               y = 287,
-              width = 220,
-              height = 260,
+              width = 165,
+              height = 180,
               rotation = 0,
-              opacity = 1,
               gid = 1241,
               visible = true,
               properties = {}
@@ -426,10 +416,9 @@ return {
               shape = "rectangle",
               x = 1408,
               y = 287,
-              width = 220,
-              height = 260,
+              width = 165,
+              height = 180,
               rotation = 0,
-              opacity = 1,
               gid = 1241,
               visible = true,
               properties = {}
@@ -462,7 +451,6 @@ return {
           width = 0,
           height = 0,
           rotation = 0,
-          opacity = 1,
           visible = true,
           properties = {}
         },
@@ -476,7 +464,6 @@ return {
           width = 0,
           height = 0,
           rotation = 0,
-          opacity = 1,
           visible = true,
           properties = {}
         },
@@ -490,7 +477,6 @@ return {
           width = 0,
           height = 0,
           rotation = 0,
-          opacity = 1,
           visible = true,
           properties = {}
         }
@@ -520,10 +506,9 @@ return {
           width = 0,
           height = 0,
           rotation = 0,
-          opacity = 1,
           visible = true,
           properties = {
-            ["text1"] = "* The forest is beyond freezing.[wait:5]\nYour legs feel nothing short\nof numb.",
+            ["text1"] = "* The forest is beyond freezing.[wait:5]\n* Your legs feel nothing short\nof numb.",
             ["text2"] = "* Somehow,[wait:5] the cold fuels your will.",
             ["text3"] = "* The power of below zero temperatures shine within you."
           }
@@ -538,7 +523,6 @@ return {
           width = 0,
           height = 0,
           rotation = 0,
-          opacity = 1,
           visible = true,
           properties = {}
         },
@@ -552,7 +536,6 @@ return {
           width = 40,
           height = 240,
           rotation = 0,
-          opacity = 1,
           visible = true,
           properties = {
             ["map"] = "forest2",
@@ -569,7 +552,6 @@ return {
           width = 199,
           height = 25,
           rotation = 0,
-          opacity = 1,
           visible = true,
           properties = {
             ["text1"] = "* (What a fun slide!)",
@@ -586,7 +568,6 @@ return {
           width = 1,
           height = 0,
           rotation = 0,
-          opacity = 1,
           visible = true,
           properties = {}
         },
@@ -600,7 +581,6 @@ return {
           width = 71,
           height = 34,
           rotation = 0,
-          opacity = 1,
           visible = true,
           properties = {
             ["cutscene"] = "musicnotif.forest"
@@ -616,7 +596,6 @@ return {
           width = 0,
           height = 0,
           rotation = 0,
-          opacity = 1,
           visible = true,
           properties = {
             ["map1"] = "recep4",
@@ -646,11 +625,10 @@ return {
           type = "",
           shape = "rectangle",
           x = 503,
-          y = 700,
-          width = 220,
-          height = 260,
+          y = 607,
+          width = 165,
+          height = 180,
           rotation = 0,
-          opacity = 1,
           gid = 1241,
           visible = true,
           properties = {}
@@ -661,11 +639,10 @@ return {
           type = "",
           shape = "rectangle",
           x = 743,
-          y = 700,
-          width = 220,
-          height = 260,
+          y = 607,
+          width = 165,
+          height = 180,
           rotation = 0,
-          opacity = 1,
           gid = 1241,
           visible = true,
           properties = {}
@@ -676,11 +653,10 @@ return {
           type = "",
           shape = "rectangle",
           x = 982,
-          y = 700,
-          width = 220,
-          height = 260,
+          y = 607,
+          width = 165,
+          height = 180,
           rotation = 0,
-          opacity = 1,
           gid = 1241,
           visible = true,
           properties = {}
@@ -691,11 +667,10 @@ return {
           type = "",
           shape = "rectangle",
           x = 1222,
-          y = 700,
-          width = 220,
-          height = 260,
+          y = 607,
+          width = 165,
+          height = 180,
           rotation = 0,
-          opacity = 1,
           gid = 1241,
           visible = true,
           properties = {}
@@ -706,11 +681,10 @@ return {
           type = "",
           shape = "rectangle",
           x = 1462,
-          y = 700,
-          width = 220,
-          height = 260,
+          y = 607,
+          width = 165,
+          height = 180,
           rotation = 0,
-          opacity = 1,
           gid = 1241,
           visible = true,
           properties = {}
@@ -721,11 +695,10 @@ return {
           type = "",
           shape = "rectangle",
           x = 1702,
-          y = 700,
-          width = 220,
-          height = 260,
+          y = 607,
+          width = 165,
+          height = 180,
           rotation = 0,
-          opacity = 1,
           gid = 1241,
           visible = true,
           properties = {}
@@ -736,12 +709,51 @@ return {
           type = "",
           shape = "rectangle",
           x = 1942,
-          y = 700,
-          width = 220,
-          height = 260,
+          y = 607,
+          width = 165,
+          height = 180,
           rotation = 0,
-          opacity = 1,
           gid = 1241,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 65,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 2184.88,
+          y = 607,
+          width = 165,
+          height = 180,
+          rotation = 0,
+          gid = 1241,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 66,
+          name = "",
+          type = "",
+          shape = "ellipse",
+          x = 1988.38,
+          y = 531.875,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 67,
+          name = "",
+          type = "",
+          shape = "ellipse",
+          x = 2049.38,
+          y = 534.875,
+          width = 0,
+          height = 0,
+          rotation = 0,
           visible = true,
           properties = {}
         }
@@ -771,7 +783,6 @@ return {
           width = 1678,
           height = 29,
           rotation = 0,
-          opacity = 1,
           visible = true,
           properties = {}
         },
@@ -785,7 +796,6 @@ return {
           width = 2000,
           height = 40,
           rotation = 0,
-          opacity = 1,
           visible = true,
           properties = {}
         },
@@ -799,7 +809,6 @@ return {
           width = 40,
           height = 240,
           rotation = 0,
-          opacity = 1,
           visible = true,
           properties = {}
         },
@@ -813,7 +822,6 @@ return {
           width = 80,
           height = 40,
           rotation = 0,
-          opacity = 1,
           visible = true,
           properties = {}
         },
@@ -827,7 +835,6 @@ return {
           width = 40,
           height = 120,
           rotation = 0,
-          opacity = 1,
           visible = true,
           properties = {}
         },
@@ -841,7 +848,6 @@ return {
           width = 120,
           height = 40,
           rotation = 0,
-          opacity = 1,
           visible = true,
           properties = {}
         },
@@ -855,7 +861,6 @@ return {
           width = 40,
           height = 120,
           rotation = 0,
-          opacity = 1,
           visible = true,
           properties = {}
         }

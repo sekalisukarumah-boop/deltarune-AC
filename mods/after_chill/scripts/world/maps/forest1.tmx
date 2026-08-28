@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.12.1" orientation="orthogonal" renderorder="right-down" width="50" height="14" tilewidth="40" tileheight="40" infinite="0" nextlayerid="26" nextobjectid="65">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="50" height="14" tilewidth="40" tileheight="40" infinite="0" nextlayerid="26" nextobjectid="69">
  <editorsettings>
   <export target="forest1.lua" format="lua"/>
  </editorsettings>
@@ -115,11 +115,11 @@
    <object id="52" name="tree" gid="1241" x="1328" y="231" width="110" height="130"/>
   </objectgroup>
   <objectgroup id="23" name="objects" parallaxx="0.8">
-   <object id="37" name="tree" gid="1241" x="488" y="287" width="220" height="260"/>
-   <object id="38" name="tree" gid="1241" x="688" y="287" width="220" height="260"/>
-   <object id="39" name="tree" gid="1241" x="888" y="287" width="220" height="260"/>
-   <object id="40" name="tree" gid="1241" x="1168" y="287" width="220" height="260"/>
-   <object id="41" name="tree" gid="1241" x="1408" y="287" width="220" height="260"/>
+   <object id="37" name="tree" gid="1241" x="488" y="287" width="165" height="180"/>
+   <object id="38" name="tree" gid="1241" x="688" y="287" width="165" height="180"/>
+   <object id="39" name="tree" gid="1241" x="888" y="287" width="165" height="180"/>
+   <object id="40" name="tree" gid="1241" x="1168" y="287" width="165" height="180"/>
+   <object id="41" name="tree" gid="1241" x="1408" y="287" width="165" height="180"/>
   </objectgroup>
  </group>
  <objectgroup color="#aa00ff" id="14" name="markers">
@@ -137,7 +137,7 @@
   <object id="10" name="savepoint" x="402" y="319">
    <properties>
     <property name="text1">* The forest is beyond freezing.[wait:5]
-Your legs feel nothing short
+* Your legs feel nothing short
 of numb.</property>
     <property name="text2" value="* Somehow,[wait:5] the cold fuels your will."/>
     <property name="text3" value="* The power of below zero temperatures shine within you."/>
@@ -174,13 +174,20 @@ of numb.</property>
   </object>
  </objectgroup>
  <objectgroup id="25" name="fronttrees" class="objects" tintcolor="#afafaf" offsetx="0" offsety="12" parallaxx="1.25" parallaxy="0.75">
-  <object id="58" gid="1241" x="503" y="700" width="220" height="260"/>
-  <object id="59" gid="1241" x="743" y="700" width="220" height="260"/>
-  <object id="60" gid="1241" x="982" y="700" width="220" height="260"/>
-  <object id="61" gid="1241" x="1222" y="700" width="220" height="260"/>
-  <object id="62" gid="1241" x="1462" y="700" width="220" height="260"/>
-  <object id="63" gid="1241" x="1702" y="700" width="220" height="260"/>
-  <object id="64" gid="1241" x="1942" y="700" width="220" height="260"/>
+  <object id="58" gid="1241" x="503" y="607" width="165" height="180"/>
+  <object id="59" gid="1241" x="743" y="607" width="165" height="180"/>
+  <object id="60" gid="1241" x="982" y="607" width="165" height="180"/>
+  <object id="61" gid="1241" x="1222" y="607" width="165" height="180"/>
+  <object id="62" gid="1241" x="1462" y="607" width="165" height="180"/>
+  <object id="63" gid="1241" x="1702" y="607" width="165" height="180"/>
+  <object id="64" gid="1241" x="1942" y="607" width="165" height="180"/>
+  <object id="65" gid="1241" x="2184.88" y="607" width="165" height="180"/>
+  <object id="66" x="1988.38" y="531.875">
+   <ellipse/>
+  </object>
+  <object id="67" x="2049.38" y="534.875">
+   <ellipse/>
+  </object>
  </objectgroup>
  <objectgroup color="#0000ff" id="15" name="collision" visible="0">
   <object id="3" x="320" y="240" width="1678" height="29"/>
