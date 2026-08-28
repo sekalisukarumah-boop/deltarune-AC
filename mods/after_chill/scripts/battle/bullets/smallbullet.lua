@@ -7,7 +7,7 @@ function SmallBullet:init(x, y, dir, speed)
     self.remove_offscreen = false
     if self.physics then 
     self.physics.direction = dir 
-    self.physics.speed = self:getTired()
+    self.physics.speed = speed
     end 
 end
 
