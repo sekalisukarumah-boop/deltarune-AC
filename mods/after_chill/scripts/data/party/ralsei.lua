@@ -46,7 +46,7 @@ function character:init()
     if Game.chapter == 1 then
         self.health = 70
     elseif Game.chapter == 2 then
-        self.health = 100
+        self.health = 120
     elseif Game.chapter == 3 then
         self.health = 140
     else
@@ -63,10 +63,10 @@ function character:init()
         }
     elseif Game.chapter == 2 then
         self.stats = {
-            health = 100,
+            health = 120,
             attack = 10,
             defense = 2,
-            magic = 9,
+            magic = 11,
         }
     elseif Game.chapter == 3 then
         self.stats = {
