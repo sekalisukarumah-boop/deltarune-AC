@@ -145,19 +145,40 @@ return {
             local f2x, f2y = spawn2:getRelativePos(spawn2.width/2, spawn2.height/2)
             effect:makeRipple(f1x, f1y, 20, COLORS.red, 100, 0, 7)
             effect:makeRipple(f2x, f2y, 20, COLORS.red, 100, 0, 7)
-            cutscene:wait(0.5)
-            Assets.playSound("ahh")
-            noelle:shake(2)
-            noelle:setSprite("shocked_behind")
-            cutscene:wait(0.8)
+            cutscene:wait(1)
             noelle:setSprite("head_lowered")
             cutscene:wait(0.2)
             cutscene:text("* (These are just...[wait:5] more enemies,[wait:2] aren't they?)", "surprise_smile", "noelle")
             Assets.playSound("snd_tspawn")
             Game.world.timer:tween(0.2, spawn1, {scale_x = -2.2, scale_y = 2.2})
             cutscene:wait(0.2)
-            spawnMovingBullet()
+            local spawn = Sprite("bullets/darkspace/spr_darkshape_directed_4", 560, 233)
+            Game.world:addChild(spawn)
+            spawn:setLayer(9999)
+            spawn:setScale(2)
+            spawn.physics.speed_x = 2 
+            spawn.physics.gravity = 0.7
+            spawn.physics.gravity_direction = math.rad(0)
             Game.world.timer:tween(0.2, spawn1, {scale_x = -2, scale_y = 2})
+            local con = false
+            Game.world.timer:during(999, function()
+            if not con and spawn.x >= 896 then
+            con = true 
+            return false
+            end
+            end)
+            cutscene:wait(function() return con end)
+            noelle:shake(2)
+            spawn:remove()
+            cutscene:wait(0.1)
+            Assets.playSound("damage")
+            cutscene:detachCamera()
+            noelle:slideTo(noelle.x + 50, noelle.y, 0.3, "out-quad")
+            noelle:setSprite("kneel")
+            cutscene:wait(0.3)
+            cutscene:text("* ")
+
+                
             
             cutscene:wait(10)
         --    cutscene:fadeOut(2)
