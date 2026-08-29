@@ -1,12 +1,11 @@
 ---@class fire_spin_bullet : Bullet
-local fire_spin_bullet, super = Class("DarkBullet")
+local fire_spin_bullet, super = Class(Bullet)
 function fire_spin_bullet:init(x, y)
     super.init(self, x, y, "bullets/fire")
     self.sprite:play(0.1, true)
     self.alpha = 0
     self.is_fired = false
-    self:addFX(ColorMaskFX({0.4, 0.6, 1.0}, 0.6))
-    self.tiredness = 16 
+    self:setHitbox(10, 10, 12, 14)
 end
 
 function fire_spin_bullet:onWaveSpawn()
