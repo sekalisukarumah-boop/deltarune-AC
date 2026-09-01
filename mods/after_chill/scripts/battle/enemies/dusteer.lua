@@ -18,7 +18,7 @@ function dusteer:init()
         "reinfrost/gallop", 
         "reinfrost/snow_graze"
     }
-    self.dialogue = {"*neigh*", "Don't slip on the tracks.", "Snow problem."} 
+    self.dialogue = {"*neigh*", "Don't slip on\nthe tracks.", "It's snow problem."} 
     self.check = "AT 8 DF 7\n* A deer that likes the way you smell.\n* Tramples snow, try [color:yellow]sweeping[color:reset] it!"
 
     self.text = {
@@ -32,7 +32,7 @@ function dusteer:init()
     self.dmg_sprite_offset = {30, 10}
     self.low_health_text = "* Reinfrost's antlers look slightly cracked."
     self:registerAct("Sweep", "Get\nMercy")
-    self:registerAct("HeatUp", "Lower\nAttack", {"ralsei"}, 8)
+    self:registerAct("HeatUp", "Get\n80% Mercy", {"ralsei"}, 8)
     -- Game.battle:registerXAction("N-Sweep", "Get\nMercy")
 end
 
@@ -58,12 +58,27 @@ function dusteer:onAct(battler, name)
     elseif name == "HeatUp" then 
         Game.battle:startActCutscene(function(cutscene)
             cutscene:text("* You and Ralsei gave warm smiles to the enemy!")
+            cutscene:wait(0.2)
+    --        cutscene:text("* (Kris,[wait:3] they must be freezing! The poor things!)")
             local ralsei = Game.battle:getPartyBattler("ralsei")
-            cutscene:wait(cutscene:setAnimation(ralsei, "battle/spell"))
-            cutscene:text("* Ralsei also made the arena warmer,[wait:5] and the cold air feels refreshing!")
-            self.attack = self.attack - 2 
+            ralsei:setAnimation("battle/alt_spell")
+            cutscene:wait(0.2)
+            local spr = Sprite("effects/hazy_glow", 62, 119) 
+            spr.alpha = 0 
+            spr:setScale(0)
+            ralsei.parent:addChild(spr) 
+            spr:setLayer(ralsei.layer - 0.01)
+            spr:setScaleOrigin(0.5, 0.5)
+            spr:setColor(COLORS.orange)
+            local snd = Assets.playSound("spell_cure_slight_smaller")
+            Game.battle.timer:tween(snd:getDuration(), spr, {alpha = 1, scale_x = 0.5, scale_y = 0.5})
+            cutscene:wait(snd:getDuration())
+            spr:fadeOutAndRemove(0.4)
+            Assets.playSound("explosion")
+            spr.graphics.grow = 9
+            cutscene:wait(0.5)
             self:addMercy(75)
-            cutscene:text("* The enemy feels flattered, and\nit's powers were slightly weakened!")
+            cutscene:text("* Ralsei spread heat across the arena![wait:5]\n* The enemy was flattered!")
         end)
     elseif name == "Standard" then 
         if battler.chara.id == "ralsei" then 

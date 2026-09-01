@@ -9,9 +9,10 @@ function actor:init()
         ["float"]        = {"battle_alt/float", 1/8, true},
         ["pray"]         = {"battle_alt/pray", 1/6, true},
         ["sweep"]        = {"battle/sweep", 1/4, true}, 
+        ["up_spell"]     = {"up/spell_up", 1/12, false},
       --  ["float"]        = {"float", 1/8, true},
         ["spell"]        = {"battle/spell", 1/15, false},
     }, false) 
 end
 
-return actor
+return actor                    
