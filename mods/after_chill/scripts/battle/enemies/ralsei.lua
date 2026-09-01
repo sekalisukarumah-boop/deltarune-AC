@@ -199,7 +199,6 @@ function ralsei:sendAngel()
         sprite:fadeTo(1, 0.2, function()
         local old_update = sprite.update
         local wave_offset = love.math.random() * math.pi * 2
-        local start_y = sprite.y
         local timealive = 0 
         sprite:setSprite("effects/angel")
         sprite:play(0.08, true)
@@ -207,7 +206,7 @@ function ralsei:sendAngel()
             old_update(spelf)
             timealive = timealive + DT 
             local wave_movement = math.sin((timealive * 6) + wave_offset) * 9
-            spelf.y = start_y + wave_movement
+            spelf.y = spelf.init_y + wave_movement
         end 
         sprite:slideTo(114, 151, 1.8, "linear", function()
             Assets.playSound("sparkle_glock")
@@ -418,12 +417,13 @@ function ralsei:setHardMode()
     self.waves = {
         "ralsei/fiery_aim",
         "ralsei/pacify_wave", -- these two would be the introductory waves. me thinks, ill do that later.s
+        "ralsei/angel",
         "ralsei/tired_throw",
-        "ralsei/fire_circle",
+        "ralsei/flameline", 
         "ralsei/pacify_wave_2",
-        "ralsei/angel", 
+        "ralsei/fire_circle",
     }
-    self.check = "AT "..self.attack.." DF 12\n* Standing in your way. \n* FIGHT him to his demise."
+    self.check = "AT 14 DF 12\n* Standing in your way. \n* FIGHT him to his demise."
     self.health = 500 
     self.max_health = 500
     if Game.battle:getPartyBattler("kris").chara:checkWeapon("sharp_syringe") then  
