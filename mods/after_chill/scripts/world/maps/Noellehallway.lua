@@ -11,7 +11,9 @@ return {
   tileheight = 40,
   nextlayerid = 9,
   nextobjectid = 8,
-  properties = {},
+  properties = {
+    ["reflections"] = true
+  },
   tilesets = {
     {
       name = "Receptionist",

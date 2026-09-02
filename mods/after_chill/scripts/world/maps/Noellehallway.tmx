@@ -3,6 +3,9 @@
  <editorsettings>
   <export target="Room.lua" format="lua"/>
  </editorsettings>
+ <properties>
+  <property name="reflections" type="bool" value="true"/>
+ </properties>
  <tileset firstgid="1" source="../tilesets/Receptionist.tsx"/>
  <imagelayer id="5" name="bg1" offsetx="240" offsety="0" parallaxx="0.05" repeatx="1">
   <image source="../../../assets/sprites/tilesets/receptionist bg.png" width="640" height="480"/>
