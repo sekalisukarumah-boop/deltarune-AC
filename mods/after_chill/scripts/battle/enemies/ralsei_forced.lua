@@ -134,6 +134,7 @@ end
         cutscene:wait(2)
         for _, ib in ipairs(me_spr) do ib:remove() end 
         Assets.playSound("wing")
+        local noelle = Game.battle:getPartyBattler("noelle")
         noelle:resetSprite()
         cutscene:wait(0.5)
         cutscene:text("* You're...[wait:5] still here?", "upset_down", "noelle")
@@ -188,10 +189,10 @@ end
         cutscene:text("* (That ring...[wait:5] it looks like some sort of [color:yellow]curse[color:reset]?)", "surprise_confused", "ralsei")
         Assets.playSound("wing")
         ralsei:setSprite("walk/right_1")
-        ralsei.y = 294 
+        ralsei.y = 277
         ralsei:setSprite("walk/right")
         ralsei.sprite:play(0.1, true)
-        ralsei:slideTo(176, 297, 2)
+        ralsei:slideTo(135, ralsei.y, 2)
         cutscene:wait(2)
         cutscene:wait(cutscene:setAnimation(ralsei, "hug"))
         Assets.playSound("cure")
