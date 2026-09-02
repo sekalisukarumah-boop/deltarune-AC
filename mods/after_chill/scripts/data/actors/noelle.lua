@@ -13,6 +13,11 @@ function actor:init()
       --  ["float"]        = {"float", 1/8, true},
         ["spell"]        = {"battle/spell", 1/15, false},
     }, false) 
+
+    TableUtils.merge(self.offsets, {
+        ["collapsed_opp"] = {-14, 22},
+        ["collapsed"] = {-14, 22},
+    }, false) 
 end
 
 return actor                    

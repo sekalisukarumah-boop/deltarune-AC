@@ -20,8 +20,8 @@ return {
             cutscene:wait(2)
             Assets.playSound("dtrans_flip")
             Game.stage:shake(2)
-            noelle.scale_x = -2
-            noelle:setSprite("collapsed")
+            noelle:setSprite("collapsed_opp")
+            noelle:setPosition(190, 297)
             cutscene:wait(2)
             for i = 1, 3 do 
                 noelle:shake(2)
@@ -29,7 +29,6 @@ return {
                 cutscene:wait(0.3)
             end 
             noelle:resetSprite()
-            noelle.scale_x = 2 
             noelle:setFacing("up")
             noelle:setPosition(178, 295)
             cutscene:wait(0.4)
@@ -98,9 +97,8 @@ return {
             cutscene:text("*[noskip][speed:0.7] Kris...[wait:5] faha...[wait:5]\n* [shake:1]Kris[shake:0].", "down_smile")
             cutscene:text("*[noskip][speed:0.7] Their voice... \n* It's everywhere...", "down")
             cutscene:wait(0.5)
-            cutscene:text("* [noskip][speed:0.7]This thorn...[wait:5] it helps me...[wait:5] to be stronger...", "sad_side")
-            cutscene:text("* [noskip][speed:0.7]A-[wait:2]and I need to be strong...[wait:5] for dad...", "upset_down_b")
-            cutscene:text("* [noskip][speed:0.7]I need to find more enemies...[wait:5]", "sad")
+            cutscene:text("* [noskip][speed:0.7]This thorn,[wait:5] it helps me get stronger...", "sad_side")
+            cutscene:text("* [noskip][speed:0.7] I have to keep freezing enemies.[wait:2].[wait:2].", "sad_smile")
             Assets.playSound("wing")
             noelle:shake(2)
             noelle:resetSprite()
@@ -120,7 +118,8 @@ return {
             cutscene:wait(1)
             local spawn1 = Game.world:spawnNPC("titanspawn", noelle.x - 100, 560)
             spawn1:setOrigin(0.5, 0.5)
-            spawn1.scale_x = -2 
+            spawn1:setScale(1.5)
+            spawn1.scale_x = -1.5
             local l = Game.stage:getObjects(TileLayer)[1].layer - 0.01
             spawn1:setLayer(l)
             spawn1:slideTo(spawn1.x, 125, 2, "out-cubic")
@@ -129,10 +128,10 @@ return {
             local snd = Assets.playSound("snd_spawn_weaker")
             cutscene:wait(snd:getDuration() - 0.3)
             Assets.playSound("wing")
-            noelle.scale_x = -2 
-            noelle:setSprite("splice")
+            noelle:setSprite("splice_opp")
             local spawn2 = Game.world:spawnNPC("titanspawn", noelle.x + 100, 560)
             spawn2:setOrigin(0.5, 0.5)
+            spawn2:setScale(1.5)
             spawn2:setLayer(l)
             spawn2:slideTo(spawn2.x, 125, 2, "out-cubic")
             cutscene:wait(2)
@@ -144,8 +143,8 @@ return {
             Assets.playSound("snd_explosion_mmx")
             local f1x, f1y = spawn1:getRelativePos(spawn1.width/2, spawn1.height/2)
             local f2x, f2y = spawn2:getRelativePos(spawn2.width/2, spawn2.height/2)
-            effect:makeRipple(f1x, f1y, 20, COLORS.red, 100, 0, 7)
-            effect:makeRipple(f2x, f2y, 20, COLORS.red, 100, 0, 7)
+            effect:makeRipple(f1x, f1y, 20, COLORS.red, spawn1.width * 1.2, 0, 7)
+            effect:makeRipple(f2x, f2y, 20, COLORS.red, spawn2.width * 1.2, 0, 7)
             spawn1:setLayer(100)
             spawn2:setLayer(100)
             cutscene:wait(0.2)
