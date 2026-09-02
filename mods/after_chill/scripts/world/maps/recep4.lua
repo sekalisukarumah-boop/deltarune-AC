@@ -1265,21 +1265,6 @@ return {
     {
       type = "objectgroup",
       draworder = "topdown",
-      id = 10,
-      name = "climbing",
-      class = "objects",
-      visible = true,
-      opacity = 1,
-      offsetx = 0,
-      offsety = 0,
-      parallaxx = 1,
-      parallaxy = 1,
-      properties = {},
-      objects = {}
-    },
-    {
-      type = "objectgroup",
-      draworder = "topdown",
       id = 5,
       name = "markers",
       class = "",
@@ -1437,7 +1422,8 @@ return {
           visible = true,
           properties = {
             ["actor"] = "nurse_shop",
-            ["cutscene"] = "nurse.sell"
+            ["cutscene"] = "nurse.sell",
+            ["reflect"] = true
           }
         },
         {

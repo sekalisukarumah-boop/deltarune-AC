@@ -1,14 +1,22 @@
 local Character, super = HookSystem.hookScript(Character)
 
 function Character:canReflect()
-    local f = false 
-    if (StringUtils.contains(Game.world.map.id, "recep")) or (Game.world.map.data and Game.world.map.data.properties and Game.world.map.data.properties["reflections"]) then 
-    if (not self:includes(ChaserEnemy)) and (not self:includes(NPC)) then 
-    f = true 
-    end 
+    if self:includes(ChaserEnemy) then
+        return false
     end
-  return f 
-end 
+
+   if self:includes(NPC) then
+    return (self.reflections == true) or 
+           (self.data and self.data.properties and self.data.properties["reflect"] == true)
+    end
+    
+    if StringUtils.contains(Game.world.map.id, "recep") or 
+       (Game.world.map.data and Game.world.map.data.properties and Game.world.map.data.properties["reflections"]) then 
+        return true
+    end
+
+    return false 
+end
 
 function Character:init(...)
    super.init(self, ...)

@@ -160,7 +160,6 @@
    <polygon points="0,0 -84,80 -6.66667,166.667 82.6667,80"/>
   </object>
  </objectgroup>
- <objectgroup color="#55ffff" id="10" name="climbing" class="objects"/>
  <objectgroup color="#aa00ff" id="5" name="markers">
   <object id="54" name="entranceA" x="217.333" y="89.3333">
    <point/>
@@ -199,6 +198,7 @@
    <properties>
     <property name="actor" value="nurse_shop"/>
     <property name="cutscene" value="nurse.sell"/>
+    <property name="reflect" type="bool" value="true"/>
    </properties>
    <point/>
   </object>
