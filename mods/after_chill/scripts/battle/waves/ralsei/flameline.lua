@@ -6,9 +6,14 @@ function FlameLine:init()
     self.active_trail = nil 
 end
 
+function FlameLine:onArenaEnter()
+    Game.battle.arena:setFire(true, false)
+end 
+
 function FlameLine:onStart()
     local arena = Game.battle.arena
     local soul = Game.battle.soul
+    arena:setFire(true, true)
 
     self.timer:everyInstant(1.5, function()
         Assets.stopAndPlaySound("flower", 2, 1)

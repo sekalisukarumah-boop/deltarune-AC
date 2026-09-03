@@ -79,6 +79,7 @@ function ralsei_forced:startSequence()
         ralsei.sprite.freeze_progress = 0 
         local snd = Assets.playSound("petrify")
         Game.battle.timer:tween(0.75, ralsei.sprite, {freeze_progress = 1})
+        cutscene:wait(1)
         Game.battle.music:fade(0, 1)
         Game.fader:fadeOut(nil, {speed = 1})
         local sprite = Sprite(ralsei.sprite.texture_path, 562, 184)
@@ -209,7 +210,7 @@ end
         cutscene:text("* (That should help!)", "small_smile_side", "ralsei")
         cutscene:fadeOut(1)
         sprite:fadeOutAndRemove(1)
-        cutscene:wait(0.5)
+        cutscene:wait(2)
         cutscene:after(function() Game.battle:setState("TRANSITIONOUT") end)
 
         --[[Game.battle.music:play("AUDIO_DRONE", 0)
