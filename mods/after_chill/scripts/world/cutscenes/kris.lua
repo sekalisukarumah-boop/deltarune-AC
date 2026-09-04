@@ -319,6 +319,7 @@ end
         else
         -- ralsei flees (rupture)
         Game.world.music:setVolume(1)
+        Game.world.music:setPitch(0.8)
         local kris = cutscene:getCharacter("kris")
         local ralsei = cutscene:getCharacter("ralsei")
         kris:resetSprite()
@@ -331,8 +332,10 @@ end
         cutscene:text("* Kris can now use [color:red]RUPTURE[color:reset]!")
         cutscene:wait(1)
         Assets.playSound("wind", 0.5, 1.5)
+        local fx = Game.stage:addFX(GenocideFX(99), "geno")
+        fx.progress = 0
+        Game.world.timer:tween(4, fx, {progress = 1}, "linear")
         cutscene:wait(4)
-        Game.stage:addFX(GenocideFX(false, 99), "geno")
         end 
     end, 
 

@@ -57,6 +57,12 @@ function Mod:onMapMusic(map, music)
     end  
 end 
 
+function Mod.scr_wave_relative(arg0, arg1, speed_seconds, elapsed_time)
+    local a4 = (arg1 - arg0) * 0.5;
+    return arg0 + a4 + (math.sin((elapsed_time / speed_seconds) * (2 * math.pi)) * a4);
+end
+
+
 Mod.wave_shader = love.graphics.newShader([[
     extern number wave_sine;
     extern number wave_mag;
