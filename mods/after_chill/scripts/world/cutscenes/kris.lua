@@ -224,6 +224,7 @@ end
         Assets.playSound("weaponpull_fast")
         kris:setAnimation({"battle/intro", 1/15, false}, function() kris:setAnimation("battle/idle") end)
         ralsei:slideTo(ralsei.x + 100, ralsei.y, 9/15, "out-quad")
+        ralsei.scale_x = 2 
         ralsei:setSprite("ow")
         cutscene:wait(9/15)
         cutscene:wait(0.5)
@@ -232,7 +233,6 @@ end
         Assets.playSound("wing")
         ralsei:shake(2)
         ralsei:resetSprite()
-        ralsei.scale_x = 2 
         ralsei:setFacing("left")
         cutscene:text("* Kris...[wait:5] you...", "scared_down")
         ralsei:setSprite("look_d")
@@ -243,7 +243,6 @@ end
         cutscene:text("* We don't have to fight...[wait:5] just put your sword-[wait:2][next]", "pleased")
         Assets.playSound("weaponpull_fast")
         kris:setAnimation("battle/attack_ready")
-        ralsei:setSprite("what")
         cutscene:wait(0.6)
         cutscene:text("* Kris,[wait:2] if only a battle will make you listen...", "disappointed_down")
         cutscene:text("* Then so be it!", "determined_up")
