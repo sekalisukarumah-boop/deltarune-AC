@@ -14,8 +14,8 @@ function ralsei:init()
     self.money = 63
     self.dmg_sprite_offset = {-14, 13}
     self.tired_percentage = 0
-    self.mercy = 100  
-    self.spare_points = 20 
+    self.mercy = 0
+    self.spare_points = 0
     self.wave_index = 1
     self.geno_text_now = false 
     self.waves = {
@@ -68,12 +68,6 @@ end
 function ralsei:onAct(battler, name)
     if name == "Apologize" then
         local ap = self.apologize or 0 
-        if not self:getFlag("dead") then 
-            return {
-            "* You apologized to Ralsei.",
-            "* Nothing happened."
-        }
-        end 
         if ap == 0 then  
         self.apologize = ap + 1 
         return {
@@ -84,8 +78,7 @@ function ralsei:onAct(battler, name)
         self.apologize = ap + 1 
         return { 
             "* You apologized about starting a battle with him.", 
-            "* Ralsei looks at you.", 
-            "* (Nothing seems to happen...)[wait:5]\n* (Try apologizing again!)"
+            "* Ralsei looks at you hesitantly.", 
         }
     elseif ap == 2 then 
         Game.battle:startActCutscene(function(cutscene)
@@ -93,10 +86,12 @@ function ralsei:onAct(battler, name)
             Game.battle.music:fade(0, 0.5)
             cutscene:wait(0.5)
             Assets.playSound("mercyadd")
-            cutscene:text("* Kris tried to spare Ralsei.")
             self:mercyFlash()
+            cutscene:text("* Kris tried to spare Ralsei.")
             cutscene:wait(0.5)
+            if self.vig then 
             self.vig:fadeTo(0, 0.5)
+            end 
             Game.stage:removeFX("shiftfx")
             Game.battle.background:remove()
             cutscene:wait(0.5)
@@ -106,7 +101,9 @@ function ralsei:onAct(battler, name)
             self:addMercy(100)
             cutscene:text("* W[wait:2]-well,[wait:2] that was unexpected...", "blush_pleased_open", "ralsei")
             cutscene:after(function()
+                if Game.battle.tired_bar then 
                 Game.battle.tired_bar:slideTo(-300, Game.battle.tired_bar.y, 1)
+                end 
                 self:spare()
                 self:setFlag("spared_but_not", true)
                 Game.battle:setState("VICTORY")
@@ -346,8 +343,7 @@ function ralsei:onHurt(damage, battler)
         self:spellEffectHeal()
     end 
     if not Game.battle:hasCutscene() then
-    if self.mercy == 100 then 
-        self.mercy = 0 
+    if self.disable_mercy == false then 
         self.disable_mercy = true 
         Game.battle.battle_ui:endAttack()
         Game.battle:startCutscene(function(cutscene)

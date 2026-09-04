@@ -2,7 +2,7 @@ local tired_throw, super = Class(Wave)
 
 function tired_throw:init()
     super.init(self)
-    self.time = 14
+    self.time = 9
 end
 
 function tired_throw:onArenaEnter()

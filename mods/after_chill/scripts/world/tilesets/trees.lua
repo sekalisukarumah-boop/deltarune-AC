@@ -4,8 +4,8 @@ return {
   tiledversion = "1.11.2",
   name = "trees",
   class = "",
-  tilewidth = 83,
-  tileheight = 90,
+  tilewidth = 110,
+  tileheight = 130,
   spacing = 0,
   margin = 0,
   columns = 0,
@@ -23,7 +23,7 @@ return {
   },
   properties = {},
   wangsets = {},
-  tilecount = 3,
+  tilecount = 4,
   tiles = {
     {
       id = 0,
@@ -43,6 +43,12 @@ return {
       image = "../../../assets/sprites/tilesets/trees/tree2.png",
       width = 110,
       height = 110
+    },
+    {
+      id = 3,
+      image = "../../../assets/sprites/tilesets/trees/candy_tree.png",
+      width = 110,
+      height = 130
     }
   }
 }
