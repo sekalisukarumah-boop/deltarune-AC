@@ -7,8 +7,8 @@ function actor:init()
     self.name = "Dummy"
 
     -- Width and height for this actor, used to determine its center
-    self.width = 27
-    self.height = 45
+    self.width = 90
+    self.height = 90
 
     -- Hitbox for this actor in the overworld (optional, uses width and height by default)
     self.hitbox = { 0, 25, 19, 14 }
@@ -20,7 +20,7 @@ function actor:init()
     self.flip = nil
 
     -- Path to this actor's sprites (defaults to "")
-    self.path = "enemies/dummy"
+    self.path = "enemies/gale"
     -- This actor's default sprite or animation, relative to the path (defaults to "")
     self.default = "idle"
 

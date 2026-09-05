@@ -119,8 +119,8 @@ return {
             cutscene:wait(1)
             local spawn1 = Game.world:spawnNPC("titanspawn", noelle.x - 100, 560)
             spawn1:setOrigin(0.5, 0.5)
-            spawn1:setScale(2,2)
-            spawn1.scale_x = -2
+            spawn1:setScale(1.5)
+            spawn1.scale_x = -1.5
             local l = Game.stage:getObjects(TileLayer)[1].layer - 0.01
             spawn1:setLayer(l)
             spawn1:slideTo(spawn1.x, 125, 2, "out-cubic")
@@ -132,7 +132,7 @@ return {
             noelle:setSprite("splice_opp")
             local spawn2 = Game.world:spawnNPC("titanspawn", noelle.x + 100, 560)
             spawn2:setOrigin(0.5, 0.5)
-            spawn2:setScale(2,2)
+            spawn2:setScale(1.5)
             spawn2:setLayer(l)
             spawn2:slideTo(spawn2.x, 125, 2, "out-cubic")
             cutscene:wait(2)

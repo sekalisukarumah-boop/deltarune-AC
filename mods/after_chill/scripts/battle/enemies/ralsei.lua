@@ -19,10 +19,15 @@ function ralsei:init()
     self.wave_index = 1
     self.geno_text_now = false 
     self.waves = {
-        "ralsei/fire_spin", 
-        "ralsei/manual_throw", 
-        "ralsei/star_rain"
+        "ralsei/fiery_aim",
+        "ralsei/pacify_wave", -- these two would be the introductory waves. me thinks, ill do that later.s
+        "ralsei/angel",
+        "ralsei/tired_throw",
+        "ralsei/flameline", 
+        "ralsei/pacify_wave_2",
+        "ralsei/fire_circle",
     }
+    self.disable_mercy = true 
     self.vig = Sprite("world/evil_fucking_vignette", SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
     self.vig.layer = 9999
     self.vig.alpha = 0
@@ -43,16 +48,13 @@ function ralsei:init()
 
     self.check = "AT "..self.attack.." DF "..self.defense.."\n* The dark prince, seemingly lost in his own dark."
 
-    self.text_alt = {
+    self.text = {
         "* Fire emanates from the floor.",
         "* Smells like burnt friendship.",
         "* You shiver a little,[wait:2] even though it isn't cold.", 
         "* Hospital alarms seem to blare even louder,[wait:5] seemingly closer.", 
         "* Is it too late go back.[wait:2].[wait:2].[wait:2]?", 
-        "* The heat is unsettling.[wait:5]\n* You start to feel dizzy."
-    }
-
-    self.text = {
+        "* The heat is unsettling.[wait:5]\n* You start to feel dizzy.", 
         "* Ralsei looks at you nervously.", 
         "* Hospital alarms seem to blare\nin the distance.", 
         "* A tingling feeling in your stomach starts to rise.", 
@@ -342,52 +344,6 @@ function ralsei:onHurt(damage, battler)
         self:getActiveSprite():setAnimation("spell")
         self:spellEffectHeal()
     end 
-    if not Game.battle:hasCutscene() then
-    if self.disable_mercy == false then 
-        self.disable_mercy = true 
-        Game.battle.battle_ui:endAttack()
-        Game.battle:startCutscene(function(cutscene)
-            Game.battle.music:fade(0, 2)
-            cutscene:wait(2)
-            battler:resetSprite()
-            self:setFlag("dead", true)
-            cutscene:battlerText("ralsei", "Y-[wait:2]you...")
-            cutscene:wait(1)
-            cutscene:battlerText("ralsei", "[shake:0.7][speed:0.7][noskip]After everything,\n[wait:5]and [color:red]you[color:reset] just.[wait:2].[wait:2].[wait:2]")
-            battler:shake()
-            Assets.playSound("bump")
-            cutscene:wait(1)
-            cutscene:battlerText("ralsei", "[noskip][speed:0.7]...Forgive me,[wait:2] Kris.")
-            local snd = Assets.playSound("boost")
-            Game.battle.music:fade(1,1)
-            local fx = self:addFX(ColorMaskFX(COLORS.white, 0))
-            Game:getPartyMember("ralsei"):setFlag("serious", true)
-            self:setAnimation("attack")
-            Game.battle.music:play("ralsei_v", 1)
-            Game.battle.timer:tween(0.4, fx, {amount = 1})
-            cutscene:wait(0.4)
-            Game.battle.timer:tween(0.4, fx, {amount = 0})
-            cutscene:wait(0.5)
-            self:setAnimation("spell")
-            Game.stage:addFX(HSVShiftFX(false, 99), "shiftfx")
-            Game.world:addChild(self.vig)
-            self.vig:fadeTo(0.75, 0.3)
-            self.vig:setPosition(322, 165)
-            self.vig:flash()
-            self.max_health = 500 
-            self.health = 500
-            self:healEffect()
-            Assets.playSound("spell_cure_slight_smaller")
-            Game.battle.battle_ui.action_boxes[1].buttons[4].disabled=true
-            cutscene:wait(0.7)
-            self:setHardMode()
-            cutscene:after(function()
-                battler:resetSprite()
-                Game.battle:setState("DEFENDINGBEGIN", {"ralsei/fireshock"})
-            end)
-        end)
-    end 
-end 
 end 
 
 function ralsei:onSpared(...)
@@ -410,15 +366,6 @@ end
 
 
 function ralsei:setHardMode()
-    self.waves = {
-        "ralsei/fiery_aim",
-        "ralsei/pacify_wave", -- these two would be the introductory waves. me thinks, ill do that later.s
-        "ralsei/angel",
-        "ralsei/tired_throw",
-        "ralsei/flameline", 
-        "ralsei/pacify_wave_2",
-        "ralsei/fire_circle",
-    }
     self.check = "AT 14 DF 12\n* Standing in your way. \n* FIGHT him to his demise."
     self.health = 500 
     self.max_health = 500
@@ -437,15 +384,13 @@ function ralsei:setHardMode()
 end 
 
 function ralsei:getEncounterText()
-    if self.kaboom then 
-        self.kaboom = nil
-        return "* Ralsei's [color:yellow]defense[color:reset] went up.[wait:5]\n* Ralsei can heal himself.[wait:5]\n* Ralsei will attempt to induce [color:blue]TIRED[color:reset]."
-    elseif self.geno_text_now then 
+    -- if self.kaboom then 
+    --     self.kaboom = nil
+    --     return "* Ralsei's [color:yellow]defense[color:reset] went up.[wait:5]\n* Ralsei can heal himself.[wait:5]\n* Ralsei will attempt to induce [color:blue]TIRED[color:reset]."
+    if self.geno_text_now then 
         self.geno_text_now = false 
         return "* A new [color:red]ACT[color:reset] appeared...!"
-    elseif self:getFlag("dead") then 
-        return TableUtils.pick(self.text_alt)
-    else 
+    else
         return super.getEncounterText(self)
     end  
 end 
