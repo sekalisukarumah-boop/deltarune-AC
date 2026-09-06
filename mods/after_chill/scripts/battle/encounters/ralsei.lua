@@ -4,7 +4,7 @@ function ralsei:init()
     super.init(self)
 
     -- Text displayed at the bottom of the screen at the start of the encounter
-    self.text = "* Ralsei's [color:yellow]defense[color:reset] went up.[wait:5]\n* Ralsei can heal himself.[wait:5]\n* Ralsei will attempt to induce [color:blue]TIRED[color:reset]."
+    self.text = "* Ralsei's [color:yellow]defense[color:reset] is high.[wait:5]\n* Ralsei can heal himself.[wait:5]\n* Ralsei will attempt to induce [color:blue]TIRED[color:reset]."
 
     -- Battle music ("battle" is rude buster)
     self.music = "ralsei_v"
@@ -26,13 +26,11 @@ function ralsei:onStateChange(old, new)
             Game:saveQuick(141, 435)
             Game.battle.battle_ui:clearEncounterText()
             Game.battle.seen_encounter_text = false
-            Game.battle.current_selecting = 0   
-            Game.battle.music:setVolume(0)      
+            Game.battle.current_selecting = 0     
             Game.battle:startCutscene(function(cutscene)
             local ralsei = Game.battle:getEnemyBattler("ralsei")
             local battler = Game.battle.party[1]
             local snd = Assets.playSound("boost")
-            Game.battle.music:fade(1.4, 2)
             local fx = ralsei:addFX(ColorMaskFX(COLORS.white, 0))
             Game:getPartyMember("ralsei"):setFlag("serious", true)
             ralsei:setAnimation("attack")
@@ -45,6 +43,7 @@ function ralsei:onStateChange(old, new)
             Game.world:addChild(ralsei.vig)
             ralsei.vig:fadeTo(0.75, 0.3)
             ralsei.vig:setPosition(322, 165)
+            Assets.playSound("spell_cure_slight_smaller")
             ralsei.vig:flash()
             Game.battle.background = Game.battle:addChild(FireGlow())
             Game.battle.battle_ui.action_boxes[1].buttons[4].disabled=true

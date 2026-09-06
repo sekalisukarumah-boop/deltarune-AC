@@ -352,16 +352,12 @@ function ralsei:onSpared(...)
 end 
 
 function ralsei:getNextWaves()
-    if self:getFlag("dead") then
     local wave = self.waves[self.wave_index]
     self.wave_index = self.wave_index + 1
     if self.wave_index > #self.waves then
         self.wave_index = 1
     end
     return { wave }
-    else 
-    return super.getNextWaves(self)
-    end 
 end
 
 
