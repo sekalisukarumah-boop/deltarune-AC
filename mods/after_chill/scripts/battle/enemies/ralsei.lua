@@ -226,8 +226,7 @@ end
 
 
 function ralsei:onDefeat()
-if not Game.battle:hasCutscene() then 
-   if self:getFlag("dead") then 
+if not Game.battle:hasCutscene() then  
     self:getActiveSprite():resetSprite()
     self.y = self.y + 20 
     self:getActiveSprite():setSprite("battle_alt/hurt_1")
@@ -311,7 +310,6 @@ if not Game.battle:hasCutscene() then
             self.scale_x = -2 
         end) 
    end
-end
 end   
 
 function ralsei:spellEffectHeal()
@@ -339,7 +337,7 @@ function ralsei:onHurt(damage, battler)
     end
     super.onHurt(self, damage, battler)
     self:getActiveSprite():stopShake()
-    if self:getFlag("dead") and self.health <= (self.max_health * 0.4) and self.health >= (self.max_health * 0.1) then 
+    if self.health <= (self.max_health * 0.4) and self.health >= (self.max_health * 0.1) then 
         self:getActiveSprite():resetSprite()
         self:getActiveSprite():setAnimation("spell")
         self:spellEffectHeal()

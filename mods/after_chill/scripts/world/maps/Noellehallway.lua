@@ -12,6 +12,7 @@ return {
   nextlayerid = 9,
   nextobjectid = 8,
   properties = {
+    ["rain"] = true,
     ["reflections"] = true
   },
   tilesets = {

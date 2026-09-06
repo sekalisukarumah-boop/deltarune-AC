@@ -8,12 +8,4 @@ function ActionButton:init(type, battler, x, y)
     end
 end
 
-function ActionButton:select()
-    if self.type == "spare" and Game:getFlag("geno") then
-        Assets.stopAndPlaySound("error") 
-        return
-    end
-    return super.select(self)
-end
-
 return ActionButton

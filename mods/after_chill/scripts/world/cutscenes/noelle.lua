@@ -7,7 +7,6 @@ return {
             Game:removePartyMember("noelle")
             cutscene:setTextboxTop(true)
             cutscene:wait(cutscene:mapTransition("Noellehallway"))
-            Game.world:addChild(RainTint())
             local kris = cutscene:getCharacter("kris")
             kris.sprite.visible = false 
             Game.world.music:play("wind", 0.3)
@@ -269,7 +268,7 @@ end
             cutscene:wait(1)
             Game:setFlag("footstep", false)
             cutscene:wait(1)
-            cutscene:wait(cutscene:mapTransition("krisspawn"))
+            cutscene:wait(cutscene:mapTransition("recep_start"))
             local kris1 = cutscene:getCharacter("kris")
             kris:setFacing("up")
             cutscene:fadeIn(0.1)
