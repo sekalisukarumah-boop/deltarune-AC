@@ -86,23 +86,6 @@ return {
           }
         },
         {
-          type = "imagelayer",
-          image = "../../../assets/sprites/world/Forest2x.png",
-          id = 19,
-          name = "Overlay_Trees",
-          class = "",
-          visible = true,
-          opacity = 0.46,
-          offsetx = 527,
-          offsety = 182,
-          parallaxx = 0.2,
-          parallaxy = 0.2,
-          tintcolor = { 69, 107, 106 },
-          repeatx = true,
-          repeaty = true,
-          properties = {}
-        },
-        {
           type = "tilelayer",
           x = 0,
           y = 0,
@@ -868,6 +851,23 @@ return {
     },
     {
       type = "imagelayer",
+      image = "../../../assets/sprites/world/Forest2x.png",
+      id = 19,
+      name = "Overlay_Trees",
+      class = "",
+      visible = true,
+      opacity = 0.46,
+      offsetx = 527,
+      offsety = 182,
+      parallaxx = 1.6,
+      parallaxy = 1.6,
+      tintcolor = { 69, 107, 106 },
+      repeatx = true,
+      repeaty = true,
+      properties = {}
+    },
+    {
+      type = "imagelayer",
       image = "../../../assets/sprites/world/Forest Roof.png",
       id = 17,
       name = "Image Layer 2",
@@ -881,23 +881,6 @@ return {
       tintcolor = { 170, 170, 170 },
       repeatx = true,
       repeaty = false,
-      properties = {}
-    },
-    {
-      type = "imagelayer",
-      image = "../../../assets/sprites/world/Forest.png",
-      id = 9,
-      name = "Overlay_Trees",
-      class = "",
-      visible = false,
-      opacity = 0.44,
-      offsetx = 0,
-      offsety = 0,
-      parallaxx = 1,
-      parallaxy = 1,
-      tintcolor = { 87, 94, 216 },
-      repeatx = true,
-      repeaty = true,
       properties = {}
     },
     {

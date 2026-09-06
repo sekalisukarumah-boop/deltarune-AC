@@ -31,9 +31,6 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
   </layer>
-  <imagelayer id="19" name="Overlay_Trees" opacity="0.46" tintcolor="#456b6a" offsetx="527" offsety="182" parallaxx="0.2" parallaxy="0.2" repeatx="1" repeaty="1">
-   <image source="../../../assets/sprites/world/Forest2x.png" width="2400" height="960"/>
-  </imagelayer>
   <layer id="11" name="Tile Layer 2" width="50" height="14">
    <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -198,11 +195,11 @@ of numb.</property>
   <object id="8" x="160" y="320" width="120" height="40"/>
   <object id="9" x="280" y="240" width="40" height="120"/>
  </objectgroup>
+ <imagelayer id="19" name="Overlay_Trees" opacity="0.46" tintcolor="#456b6a" offsetx="527" offsety="182" parallaxx="1.6" parallaxy="1.6" repeatx="1" repeaty="1">
+  <image source="../../../assets/sprites/world/Forest2x.png" width="2400" height="960"/>
+ </imagelayer>
  <imagelayer id="17" name="Image Layer 2" tintcolor="#aaaaaa" offsetx="2" offsety="-141" parallaxx="1.5" parallaxy="0.75" repeatx="1">
   <image source="../../../assets/sprites/world/Forest Roof.png" width="600" height="240"/>
- </imagelayer>
- <imagelayer id="9" name="Overlay_Trees" visible="0" opacity="0.44" tintcolor="#575ed8" repeatx="1" repeaty="1">
-  <image source="../../../assets/sprites/world/Forest.png" width="1200" height="480"/>
  </imagelayer>
  <objectgroup color="#ff0000" id="20" name="paths"/>
  <objectgroup color="#00c000" id="21" name="controllers"/>
