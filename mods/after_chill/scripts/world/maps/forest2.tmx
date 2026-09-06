@@ -205,7 +205,7 @@
  <imagelayer id="112" name="Image Layer 1" tintcolor="#aaaaaaaa" offsetx="-1.33333" offsety="-173.333" repeatx="1">
   <image source="../../../assets/sprites/world/Forest Roof.png" width="600" height="240"/>
  </imagelayer>
- <imagelayer id="111" name="Image Layer 1" opacity="0.44" tintcolor="#575ed8" repeatx="1" repeaty="1">
+ <imagelayer id="111" name="Overlay_Trees" opacity="0.44" tintcolor="#575ed8" parallaxx="1.6" parallaxy="1.6" repeatx="1" repeaty="1">
   <image source="../../../assets/sprites/world/Forest.png" width="1200" height="480"/>
  </imagelayer>
 </map>

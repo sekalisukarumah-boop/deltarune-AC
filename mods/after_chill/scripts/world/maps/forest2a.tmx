@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.12.1" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="40" tileheight="40" infinite="0" nextlayerid="10" nextobjectid="64">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="40" tileheight="40" infinite="0" nextlayerid="10" nextobjectid="64">
  <editorsettings>
   <export target="forest2a.lua" format="lua"/>
  </editorsettings>
@@ -191,7 +191,7 @@
 </data>
  </layer>
  <objectgroup id="7" name="objects_party" visible="0"/>
- <imagelayer id="5" name="Image Layer 1" visible="0" opacity="0.44" tintcolor="#575ed8" repeatx="1" repeaty="1">
+ <imagelayer id="5" name="Overlay_Trees" opacity="0.44" tintcolor="#575ed8" parallaxx="1.6" parallaxy="1.6" repeatx="1" repeaty="1">
   <image source="../../../assets/sprites/world/Forest.png" width="1200" height="480"/>
  </imagelayer>
 </map>
