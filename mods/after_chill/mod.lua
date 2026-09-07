@@ -78,6 +78,7 @@ Mod.wave_shader = love.graphics.newShader([[
 
 function Mod:postInit(is_new_file)
     if is_new_file then
+        Game.world:startCutscene("intro")
         Game:setFlag("footstep", false)
         Game:setFlag("enemies_killed", 0)
         Game:setFlag("geno", false)

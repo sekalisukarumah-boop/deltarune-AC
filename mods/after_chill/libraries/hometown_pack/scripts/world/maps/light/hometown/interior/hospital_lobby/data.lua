@@ -300,37 +300,6 @@ return {
             ["marker"] = "entryhospital",
             ["sound"] = "dooropen"
           }
-        },
-        {
-          id = 24,
-          name = "interactable",
-          type = "",
-          shape = "rectangle",
-          x = 450,
-          y = 130,
-          width = 62,
-          height = 48,
-          rotation = 0,
-          visible = true,
-          properties = {
-            ["cutscene"] = "hometown.hospitalpiano",
-            ["solid"] = true
-          }
-        },
-        {
-          id = 26,
-          name = "script",
-          type = "",
-          shape = "rectangle",
-          x = 462.333,
-          y = 189,
-          width = 39,
-          height = 24.3333,
-          rotation = 0,
-          visible = true,
-          properties = {
-            ["cutscene"] = "start.piano"
-          }
         }
       }
     },

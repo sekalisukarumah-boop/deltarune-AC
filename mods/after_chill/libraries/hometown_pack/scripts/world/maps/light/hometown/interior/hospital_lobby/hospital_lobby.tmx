@@ -53,17 +53,6 @@
     <property name="sound" value="dooropen"/>
    </properties>
   </object>
-  <object id="24" name="interactable" x="450" y="130" width="62" height="48">
-   <properties>
-    <property name="cutscene" value="hometown.hospitalpiano"/>
-    <property name="solid" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="26" name="script" x="462.333" y="189" width="39" height="24.3333">
-   <properties>
-    <property name="cutscene" value="start.piano"/>
-   </properties>
-  </object>
  </objectgroup>
  <objectgroup color="#ff00ff" id="5" name="markers">
   <object id="21" name="spawn" x="480.708" y="204.441">
