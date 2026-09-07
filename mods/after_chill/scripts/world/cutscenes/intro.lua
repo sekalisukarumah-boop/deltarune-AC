@@ -68,8 +68,8 @@ return function(cutscene)
 
     Game.world.timer:during(duration, function()
     elapsed = elapsed + DT
-    local progress = math.min(elapsed / duration, 1.0)  
-    local mixed = ColorUtils.mergeColor({chill:getColor()}, ColorUtils.hexToRGB("A8EBFF"), progress)
+    local progress = (math.min(elapsed / duration, 1.0) ^ 2) * 1.3
+    local mixed = ColorUtils.mergeColor(COLORS.white, ColorUtils.hexToRGB("A8EBFF"), progress)
     chill:setColor(mixed)
     end) 
     cutscene:wait(duration)
