@@ -137,14 +137,14 @@ return {
             cutscene:wait(2)
             noelle:setSprite("head_lowered_look_right")
             cutscene:text("* Are these...[wait:5] just more enemies?", "down_smile", "noelle")
-            -- its Rippling time  
+            -- its Rippling time 
             local effect = Game.world:addChild(RippleEffect())
             effect:setLayer(spawn1.layer - 0.001)
             Assets.playSound("snd_explosion_mmx")
             local f1x, f1y = spawn1:getRelativePos(spawn1.width/2, spawn1.height/2)
             local f2x, f2y = spawn2:getRelativePos(spawn2.width/2, spawn2.height/2)
-            effect:makeRipple(f1x, f1y, 20, COLORS.red, spawn1.width * 1.2, 0, 7)
-            effect:makeRipple(f2x, f2y, 20, COLORS.red, spawn2.width * 1.2, 0, 7)
+            effect:makeRipple(f1x - 3, f1y + 10, 20, COLORS.red, 80, 0, 7)
+            effect:makeRipple(f2x - 3, f2y + 10, 20, COLORS.red, 80, 0, 7)
             spawn1:setLayer(100)
             spawn2:setLayer(100)
             cutscene:wait(0.2)

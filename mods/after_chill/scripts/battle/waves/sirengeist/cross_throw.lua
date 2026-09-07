@@ -4,6 +4,8 @@ local function getHeadPos(ye)
     return rx + 5, ry 
 end 
 
+
+
 function cross_throw:onArenaEnter()
     super.onArenaEnter(self)
        Game.battle.arena:setSize(142/2, 142/2)
@@ -35,6 +37,18 @@ function cross_throw:send()
         self:throwCross(chosen_enemy)
     end
 end 
+
+function cross_throw:afterimage(bullet)
+    self.timer:every(0.05, function()
+        local afterimage = AfterImage(bullet, 1, 0.08)
+        Game.battle:addChild(afterimage)
+        afterimage.physics.speed_x = MathUtils.random(-4, 4)
+        afterimage.physics.speed_y = MathUtils.random(-4, 4)
+        afterimage.physics.friction = 0.2
+        afterimage.alpha = 0.7
+    end)
+end
+
 function cross_throw:throwCross(enemy)
     local bx, by = getHeadPos(enemy)
     local bullet = self:spawnBullet("bullets/cross", bx, by)
@@ -43,6 +57,7 @@ function cross_throw:throwCross(enemy)
     enemy:setSprite("throw") 
     bullet.alpha = 0
     bullet:fadeTo(1, 0.2, function()
+         self:afterimage(bullet)
          bullet.physics.direction = MathUtils.angle(bullet.x, bullet.y, Game.battle.soul.x, Game.battle.soul.y)
          bullet.physics.gravity_direction = MathUtils.angle(bullet.x, bullet.y, Game.battle.soul.x, Game.battle.soul.y)
          bullet.physics.speed = 10  
