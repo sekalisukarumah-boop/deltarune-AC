@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="28" height="12" tilewidth="40" tileheight="40" infinite="0" backgroundcolor="#010110" nextlayerid="12" nextobjectid="57">
+ <editorsettings>
+  <export target="recep_kris.lua" format="lua"/>
+ </editorsettings>
+ <properties>
+  <property name="music" value="wind"/>
+  <property name="name" value="Receptionist - Entrance"/>
+ </properties>
+ <tileset firstgid="1" source="../tilesets/Receptionist.tsx"/>
+ <imagelayer id="3" name="bg" offsetx="78.6667" offsety="-7.3333" parallaxx="0.05" parallaxy="0.05" repeatx="1">
+  <image source="../../../assets/sprites/tilesets/receptionist bg.png" width="640" height="480"/>
+ </imagelayer>
+ <layer id="11" name="ughh_no_shadow" width="28" height="12">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,90,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,90,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,90,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,90,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,90,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,90,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,90,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,90,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,90,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,69,302,302,302,302,302,302,302,302,302,302,302,90,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,88,321,321,321,321,321,321,321,321,321,321,321,90,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,107,340,340,340,340,340,340,340,340,340,340,340,341,0,0,0
+</data>
+ </layer>
+ <layer id="8" name="Tile Layer 1" width="28" height="12">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,88,84,85,86,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,88,84,85,86,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,88,84,85,86,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,88,84,85,86,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,31,32,32,264,32,264,265,0,320,65,85,86,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,50,283,283,283,283,283,284,0,320,65,85,86,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,50,283,283,283,283,283,284,0,320,65,85,86,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,50,283,283,283,283,283,283,264,264,51,51,284,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,50,283,283,283,283,283,283,283,283,283,51,284,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <objectgroup color="#ff00b2" id="4" name="objects">
+  <object id="41" name="npc" x="539" y="208">
+   <properties>
+    <property name="actor" value="lancer_keyitem"/>
+    <property name="reflect" type="bool" value="true"/>
+    <property name="sprite" value="stone"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="55" name="transition" x="839.667" y="1.66667" width="119.667" height="38.3333">
+   <properties>
+    <property name="map" value="recep_start"/>
+    <property name="marker" value="spawn"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup color="#aa55ff" id="6" name="markers">
+  <object id="38" name="spawn" x="591" y="335">
+   <point/>
+  </object>
+  <object id="56" name="entranceA" x="901" y="64.6667">
+   <point/>
+  </object>
+ </objectgroup>
+ <objectgroup id="10" name="collision">
+  <object id="49" x="477.333" y="158.334" width="9.66667" height="202.667"/>
+  <object id="50" x="477.167" y="119.667" width="284.167" height="42.6667"/>
+  <object id="51" x="482" y="360.333" width="517" height="34.6667"/>
+  <object id="52" x="960" y="0.666667" width="39.3333" height="358"/>
+  <object id="53" x="800.333" y="1" width="39.3333" height="278.667"/>
+  <object id="54" x="753.333" y="162" width="88.3333" height="117.667"/>
+ </objectgroup>
+</map>
