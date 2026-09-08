@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="28" height="13" tilewidth="40" tileheight="40" infinite="0" backgroundcolor="#010110" nextlayerid="14" nextobjectid="57">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="28" height="13" tilewidth="40" tileheight="40" infinite="0" backgroundcolor="#010110" nextlayerid="14" nextobjectid="58">
  <editorsettings>
   <export target="recep_kris.lua" format="lua"/>
  </editorsettings>
@@ -76,6 +76,13 @@
     <property name="map" value="recep_start"/>
     <property name="marker" value="spawn"/>
    </properties>
+  </object>
+  <object id="57" name="npc" x="626" y="211">
+   <properties>
+    <property name="actor" value="rouxls"/>
+    <property name="reflect" type="bool" value="true"/>
+   </properties>
+   <point/>
   </object>
  </objectgroup>
  <objectgroup color="#aa55ff" id="6" name="markers">

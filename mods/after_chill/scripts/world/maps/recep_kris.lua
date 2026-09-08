@@ -10,7 +10,7 @@ return {
   tilewidth = 40,
   tileheight = 40,
   nextlayerid = 14,
-  nextobjectid = 57,
+  nextobjectid = 58,
   backgroundcolor = { 1, 1, 16 },
   properties = {
     ["music"] = "wind",
@@ -186,6 +186,22 @@ return {
           properties = {
             ["map"] = "recep_start",
             ["marker"] = "spawn"
+          }
+        },
+        {
+          id = 57,
+          name = "npc",
+          type = "",
+          shape = "point",
+          x = 626,
+          y = 211,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["actor"] = "rouxls",
+            ["reflect"] = true
           }
         }
       }

@@ -93,7 +93,6 @@ return {
             cutscene:text("[noskip][speed:0.7][shake:1]* ...", "down_smile")
             cutscene:wait(1.2)
             cutscene:choicer({"Smile."}, {color = COLORS.red, highlight = COLORS.red})
-            cutscene:wait(cutscene:playSound("ominous", 1, 0.7))
             cutscene:text("*[noskip][speed:0.7] Smile?", "down_smile")
             cutscene:text("*[noskip][speed:0.7] That voice,[wait:2] it must be back...", "down")
             cutscene:wait(0.5)
@@ -268,10 +267,20 @@ end
             cutscene:wait(1)
             Game:setFlag("footstep", false)
             cutscene:wait(1)
-            cutscene:wait(cutscene:mapTransition("recep_start"))
-            local kris1 = cutscene:getCharacter("kris")
-            kris:setFacing("up")
-            cutscene:fadeIn(0.1)
+            cutscene:wait(cutscene:mapTransition("recep_kris"))
+            kris = cutscene:getCharacter("kris")
+            kris:setSprite("fell")
+            local sfx = Assets.playSound("him_quick")
+            cutscene:fadeIn(sfx:getDuration() - 0.25)
+            cutscene:wait(1 + (sfx:getDuration() - 0.25))
+            for i = 1, 3 do 
+                kris:shake(2)
+                cutscene:wait(cutscene:playSound("wing"))
+                cutscene:wait(0.75)
+            end 
+            kris:resetSprite()
+            kris:setFacing("down")
+            cutscene:wait(0.25)
     end, 
 
     ambush = function(cutscene)
