@@ -39,11 +39,11 @@ function KeyPadProcessor:onLoad()
         if self.target then
             local offset_x, offset_y = self.target:getRelativePos(0, 0, self)
             group:addCollider(Hitbox(self, offset_x, offset_y, self.target.width, self.target.height))
-        end
-        self.collider = group
-        
-    else
-        self.solid = false 
+        end 
+        self.collider = group    
+    elseif self:getFlag("completed") then 
+        self.solid = false   
+        self.k.tile = self.k.tile + 1 
         if self.target then 
             self.target:remove() 
         end
@@ -72,6 +72,7 @@ function KeyPadProcessor:onSuccess()
     local player = Game.world.player
     Game.lock_movement = true 
     local s 
+    self.k.tile = self.k.tile + 1 
     player:walkTo(player.x, player.y + 25, 0.25, "up", true)
     
     Game.world.timer:after(0.75, function()
