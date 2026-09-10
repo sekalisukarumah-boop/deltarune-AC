@@ -92,7 +92,7 @@ return {
             cutscene:wait(2.2)
             cutscene:text("[noskip][speed:0.7][shake:1]* ...", "down_smile")
             cutscene:wait(1.2)
-            cutscene:choicer({"Smile."}, {color = COLORS.red, highlight = COLORS.red})
+            cutscene:choicer({"Smile."}, {color = COLORS.red, highlight = COLORS.red}) -- figure out a way on how to make it centered
             cutscene:text("*[noskip][speed:0.7] Smile?", "down_smile")
             cutscene:text("*[noskip][speed:0.7] That voice,[wait:2] it must be back...", "down")
             cutscene:wait(0.5)
@@ -117,8 +117,7 @@ return {
             cutscene:wait(1)
             local spawn1 = Game.world:spawnNPC("titanspawn", noelle.x - 100, 560)
             spawn1:setOrigin(0.5, 0.5)
-            spawn1:setScale(1.5)
-            spawn1.scale_x = -1.5
+            spawn1:setScale(-1.5, 1.5)
             local l = Game.stage:getObjects(TileLayer)[1].layer - 0.01
             spawn1:setLayer(l)
             spawn1:slideTo(spawn1.x, 125, 2, "out-cubic")

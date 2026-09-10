@@ -348,9 +348,7 @@ return {
           rotation = 0,
           visible = true,
           properties = {
-            ["text1"] = "* (Seems somebody was meant to\nbe discharged.)",
-            ["text2"] = "* (However,[wait:5] they were-[wait:3][next])",
-            ["text3"] = "* (The rest of the sign is completely scratched out.)"
+            ["cutscene"] = "hospital.patient0034"
           }
         },
         {
@@ -397,10 +395,10 @@ return {
           properties = {
             ["door_target"] = { id = 48 },
             ["keypad"] = { id = 49 },
-            ["num1"] = 1,
-            ["num2"] = 2,
-            ["num3"] = 2,
-            ["num4"] = 5
+            ["num1"] = 0,
+            ["num2"] = 0,
+            ["num3"] = 3,
+            ["num4"] = 4
           }
         },
         {

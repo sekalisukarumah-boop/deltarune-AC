@@ -207,10 +207,7 @@
   </object>
   <object id="37" name="interactable" x="281" y="109.25" width="78.75" height="39.5">
    <properties>
-    <property name="text1">* (Seems somebody was meant to
-be discharged.)</property>
-    <property name="text2" value="* (However,[wait:5] they were-[wait:3][next])"/>
-    <property name="text3" value="* (The rest of the sign is completely scratched out.)"/>
+    <property name="cutscene" value="hospital.patient0034"/>
    </properties>
   </object>
   <object id="38" name="transition" x="321.25" y="1595.5" width="158.5" height="4.5">
@@ -224,10 +221,10 @@ be discharged.)</property>
    <properties>
     <property name="door_target" type="object" value="48"/>
     <property name="keypad" type="object" value="49"/>
-    <property name="num1" type="float" value="1"/>
-    <property name="num2" type="float" value="2"/>
-    <property name="num3" type="float" value="2"/>
-    <property name="num4" type="float" value="5"/>
+    <property name="num1" type="float" value="0"/>
+    <property name="num2" type="float" value="0"/>
+    <property name="num3" type="float" value="3"/>
+    <property name="num4" type="float" value="4"/>
    </properties>
   </object>
   <object id="48" gid="365" x="546.667" y="160.333" width="66" height="96.3333"/>
