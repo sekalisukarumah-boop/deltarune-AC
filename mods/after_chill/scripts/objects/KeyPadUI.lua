@@ -19,7 +19,6 @@ function KeyPadUI:update()
     
     if self.window_state ~= "DEFAULT" then return end
 
-    -- Cancel now ALWAYS closes the menu immediately, ignoring typed numbers!
     if Input.pressed("cancel") then 
         self:closeUpSequence(false) 
         return
@@ -87,7 +86,7 @@ function KeyPadUI:insertNum()
     self.processor.code:addNumberToAnswer(digit)
     
     if #self.processor.code.answer == 4 then
-        if Utils.equal(self.processor.code.answer, self.code or self.processor.code.passcode) then
+        if self.processor.code:check() then
             Assets.playSound("won")
             self.window_state = "SUCCESS"
             Game.world.timer:after(1.2, function()
@@ -133,7 +132,6 @@ function KeyPadUI:draw()
     local base_x = -(grid_w / 2)
     local base_y = -(grid_h / 2) + 40 
 
-    -- ================= DRAW WINDOW =================
     local win_w = grid_w
     local win_h = 60
     local win_x = base_x
@@ -174,8 +172,6 @@ function KeyPadUI:draw()
         end
     end
 
-    -- ================= DRAW KEYPAD =================
-    -- Changed loop limit to 11 to include the backspace block shape!
     for i = 1, 11 do
         local col, row
         if i == 10 then 
@@ -217,7 +213,7 @@ function KeyPadUI:draw()
                 label_text = "0"
             elseif i == 11 then
                 label_text = "<-"
-                text_offset_x = 18 -- Shift text slightly left to fit the wider arrow text
+                text_offset_x = 18
             else
                 label_text = tostring(i)
             end

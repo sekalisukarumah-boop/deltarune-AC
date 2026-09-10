@@ -2,10 +2,10 @@ local KeyPadProcessor, super = Class(Event)
 
 function KeyPadProcessor:init(data)
     super.init(self, data.x, data.y, data.width, data.height)
+
     self.data = data
     self.code = self:addChild(KeyCode(data.properties)) 
     
-    -- Keep standard initialization properties here
     self.rect = Game.world:addChild(Rectangle(0, 0, 9999, 9999))
     self.rect:setColor(COLORS.black)
     self.rect.alpha = 0
@@ -24,8 +24,7 @@ end
 
 function KeyPadProcessor:onLoad()
     super.onLoad(self)
-    
-    -- Grab the door target now that ALL events are guaranteed to exist in the world!
+
     self.target = Game.world:getEvent(self.data.properties["door_target"])
     self.k = Game.world:getEvent(self.data.properties["keypad"])
 
@@ -34,8 +33,6 @@ function KeyPadProcessor:onLoad()
             t.y = t.y - 1000
         end 
         
-        -- ================= MULTI-HITBOX SETUP =================
-        -- Build the combined collider group safely now that self.target is alive
         local group = ColliderGroup(self)
         group:addCollider(Hitbox(self, 0, 0, self.width, self.height))
         
@@ -44,7 +41,6 @@ function KeyPadProcessor:onLoad()
             group:addCollider(Hitbox(self, offset_x, offset_y, self.target.width, self.target.height))
         end
         self.collider = group
-        -- ======================================================
         
     else
         self.solid = false 
