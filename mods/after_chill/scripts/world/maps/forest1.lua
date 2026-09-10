@@ -861,7 +861,7 @@ return {
       offsety = 100,
       parallaxx = 1.6,
       parallaxy = 1.6,
-      tintcolor = { 69, 107, 106 },
+      tintcolor = { 87, 94, 216 },
       repeatx = true,
       repeaty = true,
       properties = {}

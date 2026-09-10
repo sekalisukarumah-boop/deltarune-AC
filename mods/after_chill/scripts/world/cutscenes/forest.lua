@@ -6,7 +6,7 @@ return {
     fall = function(cutscene, event)
         --setup stuff.
         if not Game:hasPartyMember("ralsei") then  
-            cutscene:after(function() Game.world:startCutscene("forest.genofall") end)
+            cutscene:gotoCutscene("forest.genofall")
             return 
         end 
         cutscene:wait(cutscene:mapTransition("receplast"))
@@ -157,14 +157,16 @@ return {
 
         cutscene:wait(6)
 
-        cutscene:text("* The faint sound of water rushing is all you can hear.")
+        cutscene:text("* (The faint sound of water rushing is all you can hear.)")
 
         cutscene:wait(1)
-        cutscene:text("* A small light flickers beneath you.")
+        cutscene:text("* (The cliff's base is slowly approaching.)")
 
-        cutscene:wait(1)
+        cutscene:wait(0.5)
+        cutscene:text("* (A small light flickers beneath you.)")
 
-        cutscene:text("* The cliff's floor is rapidly approaching.")
+        cutscene:wait(0.5)
+        cutscene:text("* (A bed of snow awaits to cushion your fall.)")
 
         cutscene:slideTo("kris", 104, 400, 0.6)
 
@@ -190,7 +192,7 @@ return {
         Assets.playSound("wing")
         kris:shake(2)
 
-        kris:setAnimation({"landed", 1/6, false})
+        cutscene:wait(cutscene:setAnimation(kris, {"landed", 1/6, false})) 
         kris:resetSprite()
         kris:setFacing("up")
     end,
