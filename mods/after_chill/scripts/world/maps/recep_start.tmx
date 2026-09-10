@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="20" height="40" tilewidth="40" tileheight="40" infinite="0" backgroundcolor="#010110" nextlayerid="9" nextobjectid="39">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="20" height="40" tilewidth="40" tileheight="40" infinite="0" backgroundcolor="#010110" nextlayerid="9" nextobjectid="53">
  <editorsettings>
   <export target="recep_start.lua" format="lua"/>
  </editorsettings>
@@ -9,6 +9,7 @@
   <property name="reflections" type="bool" value="true"/>
  </properties>
  <tileset firstgid="1" source="../tilesets/Receptionist.tsx"/>
+ <tileset firstgid="362" source="../tilesets/cones.tsx"/>
  <imagelayer id="3" name="bg" visible="0" offsetx="-1.33333" offsety="72.6667" parallaxx="0.05" parallaxy="0.05" repeatx="1">
   <image source="../../../assets/sprites/tilesets/receptionist bg.png" width="640" height="480"/>
  </imagelayer>
@@ -189,7 +190,7 @@
 </data>
  </layer>
  <objectgroup color="#ff00b2" id="4" name="objects">
-  <object id="28" name="transition" x="551.644" y="109.455" width="57.6117" height="41.0909">
+  <object id="28" name="transition" x="562.644" y="114.455" width="35.6117" height="41.0909">
    <properties>
     <property name="map" value="recep1"/>
     <property name="marker" value="entranceA"/>
@@ -218,6 +219,18 @@ be discharged.)</property>
     <property name="marker" value="entranceA"/>
    </properties>
   </object>
+  <object id="49" gid="366" x="520.333" y="140.515" width="18" height="20"/>
+  <object id="51" name="keypad" x="519.727" y="120.136" width="18.7273" height="32.6364">
+   <properties>
+    <property name="door_target" type="object" value="48"/>
+    <property name="keypad" type="object" value="49"/>
+    <property name="num1" type="float" value="1"/>
+    <property name="num2" type="float" value="2"/>
+    <property name="num3" type="float" value="2"/>
+    <property name="num4" type="float" value="5"/>
+   </properties>
+  </object>
+  <object id="48" gid="365" x="546.667" y="160.333" width="66" height="96.3333"/>
  </objectgroup>
  <objectgroup color="#aa55ff" id="6" name="markers">
   <object id="29" name="entranceA" x="581.364" y="201.807">

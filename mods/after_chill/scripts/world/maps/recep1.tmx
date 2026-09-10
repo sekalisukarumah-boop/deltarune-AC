@@ -65,7 +65,7 @@
   </object>
   <object id="17" name="transition" x="197.572" y="682.75" width="124.217" height="41.4056">
    <properties>
-    <property name="map" value="krisspawn"/>
+    <property name="map" value="recep_start"/>
     <property name="marker" value="entranceA"/>
    </properties>
   </object>

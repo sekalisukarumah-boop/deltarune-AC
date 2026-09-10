@@ -10,7 +10,7 @@ return {
   tilewidth = 40,
   tileheight = 40,
   nextlayerid = 9,
-  nextobjectid = 39,
+  nextobjectid = 53,
   backgroundcolor = { 1, 1, 16 },
   properties = {
     ["music"] = "wind",
@@ -23,6 +23,12 @@ return {
       firstgid = 1,
       filename = "../tilesets/Receptionist.tsx",
       exportfilename = "../tilesets/Receptionist..lua"
+    },
+    {
+      name = "cones",
+      firstgid = 362,
+      filename = "../tilesets/cones.tsx",
+      exportfilename = "../tilesets/cones.lua"
     }
   },
   layers = {
@@ -302,9 +308,9 @@ return {
           name = "transition",
           type = "",
           shape = "rectangle",
-          x = 551.644,
-          y = 109.455,
-          width = 57.6117,
+          x = 562.644,
+          y = 114.455,
+          width = 35.6117,
           height = 41.0909,
           rotation = 0,
           visible = true,
@@ -362,6 +368,54 @@ return {
             ["map"] = "recep_kris",
             ["marker"] = "entranceA"
           }
+        },
+        {
+          id = 49,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 520.333,
+          y = 140.515,
+          width = 18,
+          height = 20,
+          rotation = 0,
+          gid = 366,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 51,
+          name = "keypad",
+          type = "",
+          shape = "rectangle",
+          x = 519.727,
+          y = 120.136,
+          width = 18.7273,
+          height = 32.6364,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["door_target"] = { id = 48 },
+            ["keypad"] = { id = 49 },
+            ["num1"] = 1,
+            ["num2"] = 2,
+            ["num3"] = 2,
+            ["num4"] = 5
+          }
+        },
+        {
+          id = 48,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 546.667,
+          y = 160.333,
+          width = 66,
+          height = 96.3333,
+          rotation = 0,
+          gid = 365,
+          visible = true,
+          properties = {}
         }
       }
     },

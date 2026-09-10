@@ -10,7 +10,7 @@ return {
   tilewidth = 40,
   tileheight = 40,
   nextlayerid = 12,
-  nextobjectid = 37,
+  nextobjectid = 39,
   properties = {
     ["music"] = "hallway",
     ["name"] = "Receptionist - Stage"

@@ -12,6 +12,7 @@ function actor:init()
         ["up_spell"]     = {"up/spell_up", 1/12, false},
       --  ["float"]        = {"float", 1/8, true},
         ["spell"]        = {"battle/spell", 1/15, false},
+        -- You can hook here, ["battle/idle"] = {"my/different/id", speed, loop} bc it will override 
     }, false) 
 
     TableUtils.merge(self.offsets, {

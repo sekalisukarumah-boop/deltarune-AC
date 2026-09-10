@@ -188,7 +188,7 @@ return {
           rotation = 0,
           visible = true,
           properties = {
-            ["map"] = "krisspawn",
+            ["map"] = "recep_start",
             ["marker"] = "entranceA"
           }
         },
