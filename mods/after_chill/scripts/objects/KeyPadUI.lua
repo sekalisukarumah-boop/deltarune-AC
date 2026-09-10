@@ -199,11 +199,11 @@ function KeyPadUI:draw()
         love.graphics.setLineWidth(2)
         Draw.rectangle("line", button_x, button_y, box_size, box_size)
         
-        if i == self.selected_index and self.heart then
+        if i == self.selected_index then
             Draw.setColor(COLORS.red, COLORS.red, COLORS.red, self.keypad_alpha)
             local heart_x = button_x + 21
             local heart_y = button_y + 22
-            Draw.draw(self.heart, heart_x, heart_y, 0, 2, 2)
+            Draw.draw(Assets.getTexture("player/heart"), heart_x, heart_y, 0)
         else
             love.graphics.setFont(Assets.getFont("main_mono"))
             local label_text = ""
