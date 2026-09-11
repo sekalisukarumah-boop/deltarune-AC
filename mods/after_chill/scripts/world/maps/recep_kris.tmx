@@ -68,6 +68,9 @@
     <property name="actor" value="lancer_keyitem"/>
     <property name="reflect" type="bool" value="true"/>
     <property name="sprite" value="stone"/>
+    <property name="text1_1" value="* It's a statue of a round,[wait:3] spade-like boy."/>
+    <property name="text1_2" value="* [noskip][speed:0.7][voice:sign]You knew it would happen."/>
+    <property name="text2_1" value="* Just an innocent sleep."/>
    </properties>
    <point/>
   </object>
@@ -81,6 +84,9 @@
    <properties>
     <property name="actor" value="rouxls"/>
     <property name="reflect" type="bool" value="true"/>
+    <property name="text1_1" value="* It's a statue of the duke of puzzles himself."/>
+    <property name="text1_2" value="*[noskip][speed:0.7][voice:sign] Thoust knewest this would transpire."/>
+    <property name="text2_1" value="* ...Always out of place."/>
    </properties>
    <point/>
   </object>

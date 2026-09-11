@@ -357,9 +357,9 @@ return {
           type = "",
           shape = "rectangle",
           x = 321.25,
-          y = 1595.5,
+          y = 1598,
           width = 158.5,
-          height = 4.5,
+          height = 2,
           rotation = 0,
           visible = true,
           properties = {
@@ -398,7 +398,8 @@ return {
             ["num1"] = 0,
             ["num2"] = 0,
             ["num3"] = 3,
-            ["num4"] = 4
+            ["num4"] = 4,
+            ["transition"] = { id = 28 }
           }
         },
         {
@@ -406,8 +407,8 @@ return {
           name = "",
           type = "",
           shape = "rectangle",
-          x = 545.667,
-          y = 160.333,
+          x = 549,
+          y = 159.666,
           width = 66,
           height = 96.3333,
           rotation = 0,
@@ -725,8 +726,8 @@ return {
           name = "",
           type = "",
           shape = "rectangle",
-          x = 301.333,
-          y = 1600.67,
+          x = 438.833,
+          y = 1651.17,
           width = 198,
           height = 32,
           rotation = 0,

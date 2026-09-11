@@ -210,7 +210,7 @@
     <property name="cutscene" value="hospital.patient0034"/>
    </properties>
   </object>
-  <object id="38" name="transition" x="321.25" y="1595.5" width="158.5" height="4.5">
+  <object id="38" name="transition" x="321.25" y="1598" width="158.5" height="2">
    <properties>
     <property name="map" value="recep_kris"/>
     <property name="marker" value="entranceA"/>
@@ -225,9 +225,10 @@
     <property name="num2" type="float" value="0"/>
     <property name="num3" type="float" value="3"/>
     <property name="num4" type="float" value="4"/>
+    <property name="transition" type="object" value="28"/>
    </properties>
   </object>
-  <object id="48" gid="365" x="545.667" y="160.333" width="66" height="96.3333"/>
+  <object id="48" gid="365" x="549" y="159.666" width="66" height="96.3333"/>
  </objectgroup>
  <objectgroup color="#aa55ff" id="6" name="markers">
   <object id="29" name="entranceA" x="581.364" y="201.807">
@@ -259,6 +260,6 @@
   <object id="19" x="526.896" y="67.2638" width="24.5145" height="40.624"/>
   <object id="24" x="192.223" y="200.064" width="7.44368" height="39.3111"/>
   <object id="25" x="399.926" y="189.447" width="7.86019" height="53.2525"/>
-  <object id="27" x="301.333" y="1600.67" width="198" height="32"/>
+  <object id="27" x="438.833" y="1651.17" width="198" height="32"/>
  </objectgroup>
 </map>

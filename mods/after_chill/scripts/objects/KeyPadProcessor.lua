@@ -26,11 +26,14 @@ function KeyPadProcessor:onLoad()
     super.onLoad(self)
 
     self.target = Game.world:getEvent(self.data.properties["door_target"])
+    self.transition = Game.world:getEvent(self.data.properties["transition"])
     self.k = Game.world:getEvent(self.data.properties["keypad"])
 
     if self:getFlag("completed", false) ~= true then 
         for _, t in ipairs(Game.stage:getObjects(Transition)) do 
+        if t == self.transition then  
             t.y = t.y - 1000
+        end 
         end 
         
         local group = ColliderGroup(self)
@@ -82,9 +85,11 @@ function KeyPadProcessor:onSuccess()
             target_door:slideTo(target_door.x + 66, target_door.y, s:getDuration())
         end 
         Game.world.timer:after(s:getDuration(), function()
-            for _, t in ipairs(Game.stage:getObjects(Transition)) do 
-                t.y = t.y + 1000
-            end 
+              for _, t in ipairs(Game.stage:getObjects(Transition)) do 
+        if t == self.transition then  
+            t.y = t.y + 1000
+        end 
+        end 
             Game.lock_movement = false
         end)
     end)

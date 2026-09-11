@@ -169,7 +169,10 @@ return {
           properties = {
             ["actor"] = "lancer_keyitem",
             ["reflect"] = true,
-            ["sprite"] = "stone"
+            ["sprite"] = "stone",
+            ["text1_1"] = "* It's a statue of a round,[wait:3] spade-like boy.",
+            ["text1_2"] = "* [noskip][speed:0.7][voice:sign]You knew it would happen.",
+            ["text2_1"] = "* Just an innocent sleep."
           }
         },
         {
@@ -201,7 +204,10 @@ return {
           visible = true,
           properties = {
             ["actor"] = "rouxls",
-            ["reflect"] = true
+            ["reflect"] = true,
+            ["text1_1"] = "* It's a statue of the duke of puzzles himself.",
+            ["text1_2"] = "*[noskip][speed:0.7][voice:sign] Thoust knewest this would transpire.",
+            ["text2_1"] = "* ...Always out of place."
           }
         }
       }

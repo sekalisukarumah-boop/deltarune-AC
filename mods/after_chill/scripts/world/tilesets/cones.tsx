@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.10" tiledversion="1.11.2" name="cones" tilewidth="26" tileheight="38" tilecount="5" columns="0">
+<tileset version="1.10" tiledversion="1.11.2" name="cones" tilewidth="26" tileheight="38" tilecount="6" columns="0">
  <editorsettings>
   <export target="cones.lua" format="lua"/>
  </editorsettings>
@@ -18,5 +18,8 @@
  </tile>
  <tile id="5">
   <image source="../../../assets/sprites/tilesets/keypad_o.png" width="9" height="10"/>
+ </tile>
+ <tile id="7">
+  <image source="../../../assets/sprites/effects/vine.png" width="20" height="20"/>
  </tile>
 </tileset>

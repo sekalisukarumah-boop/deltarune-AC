@@ -23,7 +23,7 @@ return {
   },
   properties = {},
   wangsets = {},
-  tilecount = 5,
+  tilecount = 6,
   tiles = {
     {
       id = 0,
@@ -54,6 +54,12 @@ return {
       image = "../../../assets/sprites/tilesets/keypad_o.png",
       width = 9,
       height = 10
+    },
+    {
+      id = 7,
+      image = "../../../assets/sprites/effects/vine.png",
+      width = 20,
+      height = 20
     }
   }
 }
