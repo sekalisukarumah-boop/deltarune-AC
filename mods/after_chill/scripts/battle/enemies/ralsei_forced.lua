@@ -134,7 +134,6 @@ function ralsei_forced:startSequence()
 end  
         cutscene:wait(2)
         for _, ib in ipairs(me_spr) do ib:remove() end 
-        Assets.playSound("wing")
         local noelle = Game.battle:getPartyBattler("noelle")
         noelle:resetSprite()
         cutscene:wait(0.5)
@@ -151,7 +150,7 @@ end
         noelle:shake()
         Assets.playSound("damage")
         noelle:getActiveSprite():setSprite("kneel_right")
-        noelle.y = 296 
+        noelle.y = shield.y + 98
         cutscene:wait(1)
         cutscene:text("[shake:1]* I can't... [wait:5]go any further...", nil, "noelle")
         cutscene:text("[shake:1]* It hurts...[wait:5] so much...", nil, "noelle")
@@ -177,7 +176,8 @@ end
         shield:setSprite("effects/shield_1")
         shield:remove()
         cutscene:wait(0.5)
-          local star = Sprite("effects/criticalswing/sparkle", 119, 275) 
+        local nx, ny = noelle:getRelativePos(noelle.width/2, noelle.height/2)
+        local star = Sprite("effects/criticalswing/sparkle", nx - 7, ny + 22) 
         Assets.playSound("bump")
         star:addFX(ColorMaskFX(COLORS.black)) 
         star:addFX(OutlineFX())
@@ -190,10 +190,9 @@ end
         cutscene:text("* (That ring...[wait:5] it looks like some sort of [color:yellow]curse[color:reset]?)", "surprise_confused", "ralsei")
         Assets.playSound("wing")
         ralsei:setSprite("walk/right_1")
-        ralsei.y = 277
         ralsei:setSprite("walk/right")
         ralsei.sprite:play(0.1, true)
-        ralsei:slideTo(135, ralsei.y, 2)
+        ralsei:slideTo(noelle.x + 47, noelle.y + 5, 2)
         cutscene:wait(2)
         cutscene:wait(cutscene:setAnimation(ralsei, "hug"))
         Assets.playSound("cure")
