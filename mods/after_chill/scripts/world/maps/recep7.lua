@@ -1,7 +1,7 @@
 return {
   version = "1.10",
   luaversion = "5.1",
-  tiledversion = "1.11.2",
+  tiledversion = "1.12.2",
   class = "",
   orientation = "orthogonal",
   renderorder = "right-down",
@@ -26,17 +26,17 @@ return {
   layers = {
     {
       type = "imagelayer",
-      image = "../../../assets/sprites/tilesets/recep+wonderlandbg.png",
+      image = "../../../assets/sprites/tilesets/recep wonderland.png",
       id = 3,
       name = "bg",
       class = "",
       visible = true,
       opacity = 1,
-      offsetx = -1384.24,
-      offsety = -339.394,
+      offsetx = -1338.24,
+      offsety = -305.394,
       parallaxx = 0.25,
       parallaxy = 0.25,
-      repeatx = false,
+      repeatx = true,
       repeaty = false,
       properties = {}
     },
@@ -196,6 +196,7 @@ return {
           width = 0,
           height = 0,
           rotation = 0,
+          opacity = 1,
           visible = true,
           properties = {}
         },
@@ -209,6 +210,7 @@ return {
           width = 0,
           height = 0,
           rotation = 0,
+          opacity = 1,
           visible = true,
           properties = {}
         },
@@ -222,6 +224,7 @@ return {
           width = 0,
           height = 0,
           rotation = 0,
+          opacity = 1,
           visible = true,
           properties = {}
         }
@@ -251,6 +254,7 @@ return {
           width = 89.0003,
           height = 9.25,
           rotation = 0,
+          opacity = 1,
           visible = true,
           properties = {
             ["map"] = "forest1",
@@ -267,6 +271,7 @@ return {
           width = 87.0003,
           height = 358.583,
           rotation = 0,
+          opacity = 1,
           visible = true,
           properties = {}
         },
@@ -280,6 +285,7 @@ return {
           width = 16.6667,
           height = 63.3333,
           rotation = 0,
+          opacity = 1,
           visible = true,
           properties = {
             ["map"] = "recep5",
@@ -296,6 +302,7 @@ return {
           width = 0,
           height = 0,
           rotation = 0,
+          opacity = 1,
           visible = true,
           properties = {
             ["flag"] = "encounter#ralsei:violenced",
@@ -316,6 +323,7 @@ return {
           width = 88,
           height = 16.75,
           rotation = 0,
+          opacity = 1,
           visible = true,
           properties = {
             ["cutscene"] = "forest.fall"
@@ -347,6 +355,7 @@ return {
           width = 2640,
           height = 40,
           rotation = 0,
+          opacity = 1,
           visible = true,
           properties = {}
         },
@@ -360,6 +369,7 @@ return {
           width = 40,
           height = 160,
           rotation = 0,
+          opacity = 1,
           visible = true,
           properties = {}
         },
@@ -373,6 +383,7 @@ return {
           width = 122,
           height = 40,
           rotation = 0,
+          opacity = 1,
           visible = true,
           properties = {}
         },
@@ -386,6 +397,7 @@ return {
           width = 56.3333,
           height = 320,
           rotation = 0,
+          opacity = 1,
           visible = true,
           properties = {}
         },
@@ -399,6 +411,7 @@ return {
           width = 54.6667,
           height = 359.333,
           rotation = 0,
+          opacity = 1,
           visible = true,
           properties = {}
         },
@@ -412,6 +425,7 @@ return {
           width = 2400,
           height = 40,
           rotation = 0,
+          opacity = 1,
           visible = true,
           properties = {}
         },
@@ -425,6 +439,7 @@ return {
           width = 40,
           height = 80,
           rotation = 0,
+          opacity = 1,
           visible = true,
           properties = {}
         },
@@ -438,6 +453,7 @@ return {
           width = 240,
           height = 40,
           rotation = 0,
+          opacity = 1,
           visible = true,
           properties = {}
         },
@@ -451,6 +467,7 @@ return {
           width = 240,
           height = 40,
           rotation = 0,
+          opacity = 1,
           visible = true,
           properties = {}
         }
