@@ -68,9 +68,9 @@
     <property name="actor" value="lancer_keyitem"/>
     <property name="reflect" type="bool" value="true"/>
     <property name="sprite" value="stone"/>
-    <property name="text1_1" value="* It's a statue of a round,[wait:3] spade-like boy."/>
-    <property name="text1_2" value="* [noskip][speed:0.7][voice:sign]You knew it would happen."/>
-    <property name="text2_1" value="* Just an innocent sleep."/>
+    <property name="text1_1" value="* (It's a statue of a round,[wait:3] spade-like boy.)"/>
+    <property name="text1_2" value="* (You knew this would happen.)"/>
+    <property name="text2_1" value="* (...)"/>
    </properties>
    <point/>
   </object>
@@ -84,9 +84,10 @@
    <properties>
     <property name="actor" value="rouxls"/>
     <property name="reflect" type="bool" value="true"/>
-    <property name="text1_1" value="* It's a statue of the duke of puzzles himself."/>
-    <property name="text1_2" value="*[noskip][speed:0.7][voice:sign] Thoust knewest this would transpire."/>
-    <property name="text2_1" value="* ...Always out of place."/>
+    <property name="text1_1" value="* (Behold. A Statueth of the Supreme Duke of Puzzles.)"/>
+    <property name="text1_2" value="* (Thoust Knewest this Would Transpire.)"/>
+    <property name="text1_3" value="* (For some reason[wait:2], you imagined that in an &quot;Old English&quot; accent.)"/>
+    <property name="text2_1" value="* (...)"/>
    </properties>
    <point/>
   </object>

@@ -170,9 +170,9 @@ return {
             ["actor"] = "lancer_keyitem",
             ["reflect"] = true,
             ["sprite"] = "stone",
-            ["text1_1"] = "* It's a statue of a round,[wait:3] spade-like boy.",
-            ["text1_2"] = "* [noskip][speed:0.7][voice:sign]You knew it would happen.",
-            ["text2_1"] = "* Just an innocent sleep."
+            ["text1_1"] = "* (It's a statue of a round,[wait:3] spade-like boy.)",
+            ["text1_2"] = "* (You knew this would happen.)",
+            ["text2_1"] = "* (...)"
           }
         },
         {
@@ -205,9 +205,10 @@ return {
           properties = {
             ["actor"] = "rouxls",
             ["reflect"] = true,
-            ["text1_1"] = "* It's a statue of the duke of puzzles himself.",
-            ["text1_2"] = "*[noskip][speed:0.7][voice:sign] Thoust knewest this would transpire.",
-            ["text2_1"] = "* ...Always out of place."
+            ["text1_1"] = "* (Behold. A Statueth of the Supreme Duke of Puzzles.)",
+            ["text1_2"] = "* (Thoust Knewest this Would Transpire.)",
+            ["text1_3"] = "* (For some reason[wait:2], you imagined that in an \"Old English\" accent.)",
+            ["text2_1"] = "* (...)"
           }
         }
       }
