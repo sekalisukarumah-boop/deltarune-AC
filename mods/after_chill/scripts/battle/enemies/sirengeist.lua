@@ -38,9 +38,9 @@ function sirengeist:init()
         "* Aren't sirens meant to be attractive?",
         "* You can hear whispers.\n* They seem loud in your ears."
     }
-    self:registerAct("Mute", "Get\nMercy")
+    self:registerAct("Mute", "Gain\nMercy")
     self:registerAct("MuteX", "Full\nMercy", {"ralsei"}, 8)
-    self:registerAct("TryMagic", "Learn\nMagic", {}, 16)
+    self:registerAct("TryMagic", "Attack\nGhost", {}, 16)
 end
 
 function sirengeist:getNextWaves()
