@@ -72,7 +72,7 @@ return {
                 cutscene:text("* Would you like to look at my wares?")
             end,
             buy_intro = function() cutscene:text("* Glad you decided to take a look at my wares!") cutscene:wait(0.2) end,
-            buy_success = function() cutscene:text("* You're always welcome,[wait:2] sweet.") end,
+            buy_success = function() cutscene:text("* Thank you!") end,
             buy_fail = function()
                 cutscene:text("* Sweet,[wait:5] you don't have enough money.")
                 cutscene:text("* Remember,[wait:5] it costs [color:yellow]$140[color:reset].")
@@ -158,7 +158,7 @@ end,
                 cutscene:text("* Sorry,[wait:2] sweet,[wait:2] but I don't need anything from ya!")
             elseif choice == 3 then 
                 -- idk, thisis intentional btw.
-                cutscene:gotoCutscene("ktalk", 1)
+                cutscene:gotoCutscene("nurse.ktalk", 1)
             elseif choice == 4 then
                 cutscene:text("* Take care!")
             end 
@@ -234,12 +234,12 @@ end,
         cutscene:text("* The only person I've seen running around was this girl,[wait:5] with a white dress.")
         cutscene:text("* Kind of looked like Noelle,[wait:5] but I hardly believe she'd be here.")
     elseif choice == 4 then 
-        if count == 1 then 
-        cutscene:text("* Hah,[wait:2] yes,[wait:2] I sell candy!")
-        cutscene:text("* It's actually medicine,[wait:4] but it's still good.")
-        cutscene:text("* If you want a [color:yellow]HoneyDrop[color:reset],[wait:2] let me know!")
+        if count <= 1 then -- Changes from '== 1' to '<= 1' to catch the true first run
+            cutscene:text("* Hah,[wait:2] yes,[wait:2] I sell candy!")
+            cutscene:text("* It's actually medicine,[wait:4] but it's still good.")
+            cutscene:text("* If you want a [color:yellow]HoneyDrop[color:reset],[wait:2] let me know!")
         else 
-        cutscene:text("* It's still some sort of candy!")
+            cutscene:text("* It's still some sort of candy!")
         end 
     end
 end,
