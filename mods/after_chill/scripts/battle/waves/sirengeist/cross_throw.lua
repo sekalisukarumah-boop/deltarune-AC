@@ -4,23 +4,40 @@ local function getHeadPos(ye)
     return rx + 5, ry 
 end 
 
-
-
 function cross_throw:onArenaEnter()
     super.onArenaEnter(self)
-       Game.battle.arena:setSize(142/2, 142/2)
+    Game.battle.arena:setSize(142/2, 142/2)
 end 
 
 function cross_throw:onStart()
    self.time = 8
    self.wave_attackers = self:getAttackers()
    self.current_index = 1
+   self.active_crosses = {}
    self:send()
+   self:startAfterimageLoop()
+end
+
+function cross_throw:startAfterimageLoop()
+    self.timer:every(0.05, function()
+        for i = #self.active_crosses, 1, -1 do
+            local bullet = self.active_crosses[i]
+            if bullet and bullet.stage and bullet.alpha > 0.1 then
+                local afterimage = AfterImage(bullet, 1, 0.08)
+                Game.battle:addChild(afterimage)
+                afterimage.physics.speed_x = MathUtils.random(-4, 4)
+                afterimage.physics.speed_y = MathUtils.random(-4, 4)
+                afterimage.physics.friction = 0.2
+                afterimage.alpha = 0.7
+            elseif bullet and not bullet.stage then
+                table.remove(self.active_crosses, i)
+            end
+        end
+    end)
 end
 
 function cross_throw:send()
     local total_enemies = #self.wave_attackers
-
     local chosen_enemy = nil
     for attempt = 1, total_enemies do
         local check_enemy = self.wave_attackers[self.current_index]
@@ -38,17 +55,6 @@ function cross_throw:send()
     end
 end 
 
-function cross_throw:afterimage(bullet)
-    self.timer:every(0.05, function()
-        local afterimage = AfterImage(bullet, 1, 0.08)
-        Game.battle:addChild(afterimage)
-        afterimage.physics.speed_x = MathUtils.random(-4, 4)
-        afterimage.physics.speed_y = MathUtils.random(-4, 4)
-        afterimage.physics.friction = 0.2
-        afterimage.alpha = 0.7
-    end)
-end
-
 function cross_throw:throwCross(enemy)
     local bx, by = getHeadPos(enemy)
     local bullet = self:spawnBullet("bullets/cross", bx, by)
@@ -56,8 +62,9 @@ function cross_throw:throwCross(enemy)
     bullet.graphics.spin = 0.2
     enemy:setSprite("throw") 
     bullet.alpha = 0
+    table.insert(self.active_crosses, bullet)
+    
     bullet:fadeTo(1, 0.2, function()
-         self:afterimage(bullet)
          bullet.physics.direction = MathUtils.angle(bullet.x, bullet.y, Game.battle.soul.x, Game.battle.soul.y)
          bullet.physics.gravity_direction = MathUtils.angle(bullet.x, bullet.y, Game.battle.soul.x, Game.battle.soul.y)
          bullet.physics.speed = 10  
