@@ -73,7 +73,7 @@ function MovingObject:getMovinFoo(dir)
 
         self.moving = true
         self.movedir = dir
-        local speed = self.max_speed / 2
+        local speed = (self.max_speed / 2)
         if dir == "up" then
             self:setSpeed(0, -speed)
         end
@@ -90,6 +90,7 @@ function MovingObject:getMovinFoo(dir)
 end
 
 function MovingObject:stopMoving(prev_x, prev_y)
+    -- FIX: Removed * DT from here so it doesn't warp to the top-left corner
     local snap_x = math.floor(prev_x / 10 + 0.5) * 10
     local snap_y = math.floor(prev_y / 10 + 0.5) * 10
 
@@ -176,11 +177,11 @@ end
 
 function MovingObject:update()
     if self.velx ~= 0 then
-        self.velx = (self.max_speed * MathUtils.sign(self.velx)) * DTMULT
+        self.velx = self.max_speed * MathUtils.sign(self.velx)
     end
 
     if self.vely ~= 0 then
-        self.vely = (self.max_speed * MathUtils.sign(self.vely)) * DTMULT
+        self.vely = self.max_speed * MathUtils.sign(self.vely)
     end
 
     if self.jumping then
@@ -192,31 +193,39 @@ function MovingObject:update()
         end
     end
 
-    for _ = 1, math.floor(math.abs(self.velx * DTMULT)) do
-        local last_x = self.x
-        self.x = self.x + (self.velx > 0 and 1 or -1)
+    -- 30FPS Time Accumulator System
+    self.movement_accumulator = (self.movement_accumulator or 0) + DT
+    local step_time = 1 / 30
 
-        if self:doCollision(last_x, self.y) then
-            self.x = last_x
-            self.velx = 0
-            break
+    while self.movement_accumulator >= step_time do
+        self.movement_accumulator = self.movement_accumulator - step_time
+
+        for _ = 1, math.abs(self.velx) do
+            local last_x = self.x
+            self.x = self.x + (self.velx > 0 and 1 or -1)
+
+            if self:doCollision(last_x, self.y) then
+                self.x = last_x
+                self.velx = 0
+                break
+            end
         end
-    end
 
-    for _ = 1, math.floor(math.abs(self.vely * DTMULT)) do
-        local last_y = self.y
-        self.y = self.y + (self.vely > 0 and 1 or -1)
+        for _ = 1, math.abs(self.vely) do
+            local last_y = self.y
+            self.y = self.y + (self.vely > 0 and 1 or -1)
 
-        if self:doCollision(self.x, last_y) then
-            self.y = last_y
-            self.vely = 0
-            break
+            if self:doCollision(self.x, last_y) then
+                self.y = last_y
+                self.vely = 0
+                break
+            end
         end
     end
 
     if self.moving and self.velx == 0 and self.vely == 0 then
-		self:stopMoving(self.x, self.y)
-	end
+        self:stopMoving(self.x, self.y)
+    end
 
     for i = #self.storedinputdementia, 1, -1 do
         if self.storedinputs[i] == nil then
@@ -231,6 +240,7 @@ function MovingObject:update()
             end
         end
     end
+    
     local prev_x, prev_y = self.x, self.y
     self.sintimer = self.sintimer + (DTMULT / (15 / 2))
 

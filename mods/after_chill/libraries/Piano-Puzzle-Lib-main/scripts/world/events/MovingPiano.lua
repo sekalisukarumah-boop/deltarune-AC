@@ -118,6 +118,7 @@ end
 
 function MovingPiano:onInteract(player, dir)
     if dir == "up" then
+        self.world:setCameraTarget(self)
         self.characters = Game.world.followers
         Game.world.followers = {}
         self.player = player
@@ -126,7 +127,6 @@ function MovingPiano:onInteract(player, dir)
         local kry = self.y + 40 + 53
         local dist = math.max(MathUtils.round(MathUtils.dist(self.player.x, self.player.y, krx, kry) / 4), 1)
         dist = dist / 30
-        self.world:setCameraAttached(false)
         self.player:walkTo(krx, kry, dist, "up")
         for _, chara in ipairs(self.characters) do
             chara:walkTo(krx, kry, dist, "up")
@@ -183,7 +183,7 @@ function MovingPiano:exit()
         player:setParent(Game.world)
         player:setPosition(self.x + 40, self.y + 40 + 53)
         Game.world.can_open_menu = true
-        self.world:setCameraAttached(true)
+        self.world:setCameraTarget(self.player)
         self.player:resetSprite()
         for i, chara in ipairs(self.characters) do
             local follower = chara:convertToFollower()
@@ -220,8 +220,8 @@ function MovingPiano:doCollision(prev_x, prev_y)
     local vx, vy = self:getSpeedXY()
     if vx ~= 0 or vy ~= 0 then
         for _, collider in ipairs(Game.world.map.piano_collision) do
-            if self.newcollider:meetsCollider(collider) then
-                if self.fakeCollider:meetsCollider(collider) then
+            if self.newcollider:collidesWith(collider) then
+                if self.fakeCollider:collidesWith(collider) then
                     self:stopMoving(prev_x, prev_y)
                     return true
                 end
@@ -231,8 +231,8 @@ function MovingPiano:doCollision(prev_x, prev_y)
         if self.moving then
             for _, event in ipairs(Game.world.children) do
                 if event ~= self and event:includes(MovingObject) then
-                    if self.newcollider:meetsCollider(event.fakeCollider or event.collider) then
-                        if self.fakeCollider:meetsCollider(event.fakeCollider or event.collider) then
+                    if self.newcollider:collidesWith(event.fakeCollider or event.collider) then
+                        if self.fakeCollider:collidesWith(event.fakeCollider or event.collider) then
                             self:stopMoving(prev_x, prev_y)
                             return true
                         end
@@ -384,11 +384,14 @@ function MovingPiano:updateRiders()
 end
 
 function MovingPiano:update()
+    -- Run the base event update first
     super.update(self)
 
-    self.dusttimer = self.dusttimer + 1
+    -- Spawning the dust trail behind the moving piano
+    self.dusttimer = self.dusttimer + DT
     if self.moving and not self.jumping then
-        if (math.floor(self.dusttimer) % 2) == 0 then
+        if self.dusttimer >= 0.066 then
+            self.dusttimer = 0
             local xOffset = 0.5
             local yOffset = (MathUtils.random(0.6) + 0.2) * 20
 
@@ -396,7 +399,7 @@ function MovingPiano:update()
                 xOffset = yOffset
                 yOffset = 0.5
             else
-                yOffset = yOffset -2
+                yOffset = yOffset - 2
             end
 
             local dust = Sprite("effects/climb_dust_small")
@@ -413,20 +416,16 @@ function MovingPiano:update()
     end
 
     self:updateRiders()
+    
     if self.show_ui then
         if self.ui == nil then
             self.ui = MovingPianoUI(self)
             Game.stage:addChild(self.ui)
         end
     end
-    if self.controlled then
-        if not self.faked and self.fakeout then
-            Game.world.camera.x = MathUtils.lerp(Game.world.camera.x, self.fakeout.x, 0.15)
-            Game.world.camera.y = MathUtils.lerp(Game.world.camera.y, self.fakeout.y, 0.15)
-        else
-            Game.world.camera.x = MathUtils.lerp(Game.world.camera.x, self.x + 40, 0.15)
-            Game.world.camera.y = MathUtils.lerp(Game.world.camera.y, self.y + 40 + (self.yoffset), 0.15)
-        end
+    if self.moving then
+        self.x = math.floor(self.x + 0.5)
+        self.y = math.floor(self.y + 0.5)
     end
 
     if not self.current_bookshelf or not self.current_bookshelf.controlled or not self.player or self.exiting then
@@ -436,6 +435,8 @@ function MovingPiano:update()
     if self.fakeout ~= nil then
         self.can_exit = not self.faked
     end
+    
+    -- Processing input hold length to exit the piano event
     if self.can_exit and Input.down("cancel") and self.ui.drawpos >= 1 and not self.current_bookshelf.moving and self.current_bookshelf.controlled then
         self.ui.exitlength = MathUtils.clamp(self.ui.exitlength + (DTMULT * 2) / 30, 0, 1)
         if self.ui.exitlength >= 1 then
@@ -445,6 +446,7 @@ function MovingPiano:update()
         self.ui.exitlength = 0
     end
 
+    -- Handling twotone palette swaps
     if self.type == "twotone" then
         if Input.pressed("menu", false) and self.ui.drawpos >= 1 and not self.current_bookshelf.moving then
             self.twotone_id = self.twotone_id + 1
@@ -457,6 +459,8 @@ function MovingPiano:update()
             Game.world.timer:tween(0.15, self.player, {x = target_x}, "linear")
         end
     end
+    
+    -- Processing active movement commands
     local dir = nil
     if Input.down("up") then
         dir = "up"
@@ -487,9 +491,11 @@ function MovingPiano:update()
     end
 end
 
+
+
 function MovingPiano:draw()
     super.draw(self)
-    self.siner = self.siner + 1
+    self.siner = self.siner + DT
     local drawx = (self.sprite.width)
     local drawy = -36 - 46 + 10
 
