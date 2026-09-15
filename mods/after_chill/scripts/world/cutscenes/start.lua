@@ -222,13 +222,13 @@ return {
         noelle:setSprite("walk_sad")
         noelle:setFacing("left")
         cutscene:wait(0.5)
-        cutscene:text("* (I..[wait:3] I have to,[wait:5] for dad.)")
-        cutscene:text("* (After all,[wait:7] I did have some\nsort of magic.)")
+        cutscene:text("* (...I[wait:2]-I had some sort of magic,[wait:2] didn't I?)")
+        cutscene:text("* (I..[wait:3] I have to try,[wait:3] for dad.)")
         cutscene:wait(1)
         cutscene:text("* (So,[wait:5] if Queen was really right...)")
         cutscene:wait(1)
         cutscene:text("* (Then if I concentrate my will into a blade...)")
-        cutscene:text("* (Blade...[wait:5] blade.\n* Something sharp could do,[wait:5] right?)")
+        cutscene:text("* (Blade...[wait:3] blade.)\n* (Something sharp would do,[wait:2] right?)")
         noelle:setSprite("reach")
         cutscene:wait(0.2)
         noelle:setAnimation("rummage")
@@ -266,7 +266,7 @@ return {
         end, function()
             noelle:setPosition(target_x, target_y)
         end)
-        cutscene:wait(duration)
+        cutscene:wait(0.6)
         noelle:setSprite("make_fountain/target_3")
         noelle:setPosition(202, 169)
         cutscene:wait(0.1)
@@ -304,32 +304,30 @@ return {
         local pillar = FMPillar(183, 269, noelle)
         pillar.layer = noelle.layer - 0.01
         Game.world:addChild(pillar)
+
+        cutscene:wait(7)
+
+        local particle_timer = Game.world.timer:every(1/30, function()
+            Game.world:spawnObject(FMBall(183, 269), noelle.layer + 0.02)
+        end)
+
         cutscene:wait(7)
         noelle:resetSprite() 
         Assets.playSound("bump", 0.6)
         noelle:shake(2)
         noelle:setPosition(170, 264)
         noelle:setSprite("make_fountain/jump_off_landed")  
-        local ball_instances = {}
-        local particle_timer = Game.world.timer:every(0.04, function()
-            local p = FMBall(183 + love.math.random(-10, 10), 270)
-            p.layer = noelle.layer + 5 
-            table.insert(ball_instances, p)
-            Game.world:addChild(p)
-        end)
+        
         cutscene:wait(1)
         local fog = FMCeilingFog()
         fog.layer = noelle.layer + 5
         Game.world:addChild(fog)
+        
         cutscene:wait(12)
         Game.world.timer:cancel(particle_timer)
-        TableUtils.filterInPlace(ball_instances, function(ball)
-        if ball.stage then 
-        ball:remove() 
-        return false 
+        for _, ball in ipairs(Game.stage:getObjects(FMBall)) do
+            ball:remove()
         end
-        return true
-        end)
         cutscene:wait(6)
         cutscene:after(function()
             Game.world:startCutscene("noelle.fall")
