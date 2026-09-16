@@ -1,7 +1,7 @@
 return function(cutscene)
-
+    Game:setBorder("simple")
     Game.world.fader.alpha = 1
-    cutscene:wait(0.5)
+    cutscene:wait(1)
     Assets.playSound("noise")
     local logo = Game.stage:addChild(Sprite("logo", 113, 130))
     logo:setScale(2)
@@ -94,6 +94,7 @@ return function(cutscene)
     chill:fadeOutAndRemove(0.5)
     snow:fadeOutAndRemove(0.5)
     Game.world.music:fade(0, 0.5)
-    cutscene:wait(0.5)
+    cutscene:wait(1)
+    Game:setBorder("leaves")
     cutscene:gotoCutscene("start.piano")
 end

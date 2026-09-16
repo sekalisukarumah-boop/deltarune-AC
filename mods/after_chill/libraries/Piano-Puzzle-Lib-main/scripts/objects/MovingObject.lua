@@ -159,7 +159,8 @@ end
 
 function MovingObject:jump()
     if not self.jumping then
-        self.jumpvel = -16
+        -- Lowered from -16 to -8 so it does not launch too high into the air
+        self.jumpvel = -8
         self.yoffset = self.jumpvel
         self.jumping = true
         Assets.playSound("piano_jump")
@@ -185,7 +186,8 @@ function MovingObject:update()
     end
 
     if self.jumping then
-        self.jumpvel = self.jumpvel + 0.65 * DTMULT
+        -- Reduced gravity from 0.65 to 0.20 to keep it airborne longer for maximum horizontal glide
+        self.jumpvel = self.jumpvel + 0.20 * DTMULT
         self.yoffset = self.yoffset + self.jumpvel
 
         if self.yoffset >= 0 and not self.jumpedoff then

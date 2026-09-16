@@ -4,6 +4,7 @@
   <export target="Room.lua" format="lua"/>
  </editorsettings>
  <properties>
+  <property name="border" value="recep"/>
   <property name="rain" type="bool" value="true"/>
   <property name="reflections" type="bool" value="true"/>
  </properties>

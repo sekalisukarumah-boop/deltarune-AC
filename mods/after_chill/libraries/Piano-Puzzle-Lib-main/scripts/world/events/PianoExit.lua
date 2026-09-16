@@ -24,7 +24,7 @@ function PianoExit:update()
     if self.triggered then return end
 
     for _, object in ipairs(Game.world.map:getEvents()) do
-        if object.id == "MovingPiano" and self:meetsObject(object) and object.controlled == true then
+        if object.id == "MovingPiano" and self:collidesWith(object) and object.controlled == true then
             self.triggered = true
             object.jumpedoff = true
 
