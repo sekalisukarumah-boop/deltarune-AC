@@ -8,7 +8,6 @@ function preview:init(mod, button, menu)
     
     self.snow_group = Object()
     self.ambient_timer = 0
-    Kristal.Console:warn("sfhjdfg")
     
     button:setColor(0.6, 0.9, 1.0)
     button:setFavoritedColor(0.8, 0.8, 1)

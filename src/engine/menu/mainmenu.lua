@@ -42,6 +42,7 @@ function MainMenu:enter()
     self.title_screen = MainMenuTitle(self)
     self.options = MainMenuOptions(self)
     self.credits = MainMenuCredits(self)
+    self.about = MainMenuAbout(self)
     self.mod_list = MainMenuModList(self)
     self.mod_create = MainMenuModCreate(self)
     self.mod_config = MainMenuModConfig(self)
@@ -58,6 +59,7 @@ function MainMenu:enter()
     self.state_manager:addState("TITLE", self.title_screen)
     self.state_manager:addState("OPTIONS", self.options)
     self.state_manager:addState("CREDITS", self.credits)
+    self.state_manager:addState("ABOUT", self.about)
     self.state_manager:addState("MODSELECT", self.mod_list)
     self.state_manager:addState("MODCREATE", self.mod_create)
     self.state_manager:addState("MODCONFIG", self.mod_config)
@@ -133,7 +135,7 @@ function MainMenu:enter()
                 if trimmed_commit then
                     self.ver_string = self.ver_string .. " (" .. trimmed_commit .. ")"
                 end
-                self.ver_string = nil 
+                self.ver_string = self.ver_string .. " (outdated!)"
             end
         end)
     end
@@ -280,7 +282,7 @@ function MainMenu:update()
         if v.update then
             local success, msg = pcall(v.update, v)
             if not success then
-                Kristal.Console:warn("preview.lua error in " .. Kristal.Mods.getMod(k).name .. ": " .. msg)
+                Logging.errorNotify("preview.lua error in " .. Kristal.Mods.getMod(k).name .. ": " .. msg)
                 self.mod_list.scripts[k] = nil
             end
         end
@@ -325,7 +327,7 @@ function MainMenu:draw()
             love.graphics.push()
             local success, msg = pcall(script.drawOverlay, script)
             if not success then
-                Kristal.Console:warn("preview.lua error in " .. Kristal.Mods.getMod(modid).name .. ": " .. msg)
+                Logging.errorNotify("preview.lua error in " .. Kristal.Mods.getMod(modid).name .. ": " .. msg)
                 self.mod_list.scripts[modid] = nil
             end
             love.graphics.pop()
@@ -411,7 +413,7 @@ function MainMenu:drawBackground()
             love.graphics.push()
             local success, msg = pcall(script.draw, script)
             if not success then
-                Kristal.Console:warn("preview.lua error in " .. mod.name .. ": " .. msg)
+                Logging.errorNotify("preview.lua error in " .. mod.name .. ": " .. msg)
                 self.mod_list.scripts[mod.id] = nil
             end
             love.graphics.pop()
@@ -446,13 +448,13 @@ function MainMenu:drawVersion()
 
     if not TARGET_MOD then
         local ver_string = self.ver_string
-        if self.state == "TITLE" and Kristal.Version.major == 0 then
-            ver_string = ver_string .. " (Unstable)"
+        if (self.state == "TITLE" or self.state == "ABOUT") and Kristal.Version.major == 0 then
+            ver_string = ver_string .. " (In-development)"
         end
 
         love.graphics.setFont(self.small_font)
         Draw.setColor(1, 1, 1, 0.5)
-     --   love.graphics.print(ver_string, 4, ver_y)
+    --    love.graphics.print(ver_string, 4, ver_y)
 
         if self.selected_mod then
             local compatible, mod_version = self.mod_list:checkCompatibility()
@@ -464,11 +466,11 @@ function MainMenu:drawVersion()
                 elseif Kristal.Version > mod_version then
                     op = ">"
                 end
-                love.graphics.print(" " .. op .. " v" .. tostring(mod_version), 4 + self.small_font:getWidth(ver_string), ver_y)
+       --         love.graphics.print(" " .. op .. " v" .. tostring(mod_version), 4 + self.small_font:getWidth(ver_string), ver_y)
             end
         end
     else
-    local full_ver = "Kristal"-- .. self.ver_string
+        local full_ver = "Kristal: " .. self.ver_string
 
         if self.selected_mod.version then
             ver_y = ver_y - self.small_font:getHeight()
@@ -477,7 +479,7 @@ function MainMenu:drawVersion()
 
         love.graphics.setFont(self.small_font)
         Draw.setColor(1, 1, 1, 0.5)
-     --   love.graphics.print(full_ver, 4, ver_y)
+    --    love.graphics.print(full_ver, 4, ver_y)
     end
 
     Draw.setColor(1, 1, 1)

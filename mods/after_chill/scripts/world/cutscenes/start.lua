@@ -268,7 +268,7 @@ return {
         end)
         cutscene:wait(0.6)
         noelle:setSprite("make_fountain/target_3")
-        noelle:setPosition(202, 169)
+        noelle:setPosition(183, 181)
         cutscene:wait(0.1)
         local n_x, n_y = noelle:getRelativePos(0, 0, Game.world)
         n_y = n_y + 20
@@ -311,19 +311,18 @@ return {
             Game.world:spawnObject(FMBall(183, 269), noelle.layer + 0.02)
         end)
 
-        cutscene:wait(7)
         noelle:resetSprite() 
+        noelle:setSprite("make_fountain/jump_off_landed")  
         Assets.playSound("bump", 0.6)
         noelle:shake(2)
         noelle:setPosition(170, 264)
-        noelle:setSprite("make_fountain/jump_off_landed")  
         
         cutscene:wait(1)
         local fog = FMCeilingFog()
         fog.layer = noelle.layer + 5
         Game.world:addChild(fog)
         
-        cutscene:wait(12)
+        cutscene:wait(15)
         Game.world.timer:cancel(particle_timer)
         for _, ball in ipairs(Game.stage:getObjects(FMBall)) do
             ball:remove()

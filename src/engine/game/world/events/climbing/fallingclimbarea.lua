@@ -8,7 +8,7 @@
 
 --- A FallingClimbArea is an area the player can climb on. It will fall once the player leaves it.
 ---
---- `FallingClimbArea` is an [`Event`](lua://Event.init) - naming an object `FallingClimbArea` on an `objects` layer in a map creates this object.
+--- `FallingClimbArea` is an [`Event`](lua://Event.init) - naming an object `fallingclimbarea` on an `objects` layer in a map creates this object.
 ---
 ---@class FallingClimbArea : ClimbArea
 ---
@@ -57,7 +57,7 @@ function FallingClimbArea:onRemove(parent)
 end
 
 function FallingClimbArea:onCollide(character)
-    if character.is_player and character:isClimbing() and character.climb_state:isOverlappingInstance(self) and self.state == 0 then
+    if self.state == 0 and character.is_player and character:isClimbing() then
         self.state = 1
     end
 end
@@ -76,7 +76,7 @@ function FallingClimbArea:update()
     local target = Game.world.player
 
     if self.breaks_on_leave then
-        if target ~= nil and (not target.climb_state:isOverlappingInstance(self)) then
+        if target ~= nil and (not target:meetsObject(self)) then
             if self.dont_break == nil then
                 self.state = 2
                 should_destroy = true

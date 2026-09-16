@@ -269,7 +269,6 @@ end
             cutscene:wait(cutscene:mapTransition("recep_kris"))
             kris = cutscene:getCharacter("kris")
             kris:setSprite("fell")
-            local sfx = Assets.playSound("him_quick")
             cutscene:fadeIn(sfx:getDuration() - 0.25)
             cutscene:wait(1 + (sfx:getDuration() - 0.25))
             for i = 1, 3 do 
@@ -293,9 +292,9 @@ end
         kris:walkTo(kris.x, kris.y - 80, 2)
         cutscene:wait(2)
         local text = DialogueText("[noskip][style:dark][speed:0.3][voice:none](It was as if your very SOUL was glowing...)", 80, 80)
-            text.layer = WORLD_LAYERS["top"]
-            text:setParallax(0, 0)
-            cutscene.world:addChild(text)
+        text:setLayer(WORLD_LAYERS["top"]) 
+        text:setParallax(0, 0)
+        cutscene.world:addChild(text)
         cutscene:wait(function() return not text:isTyping()        end)
         text:fadeOutAndRemove(0.5)
         local noelle = cutscene:spawnNPC("noelle", 700, 364)

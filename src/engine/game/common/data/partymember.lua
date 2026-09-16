@@ -416,7 +416,7 @@ end
 --- Sets this party member's health value
 ---@param health number
 function PartyMember:setHealth(health)
-    if INVINCIBILITY then
+    if INVINCIBILITY and health < self:getHealth() then
         return
     end
 
@@ -542,6 +542,16 @@ function PartyMember:addSpell(spell)
         spell = Registry.createSpell(spell)
     end
     table.insert(self.spells, spell)
+end
+
+--- Inserts a spell to this party member's set of available spells at `index` position
+---@param index number
+---@param spell string|Spell
+function PartyMember:insertSpell(index, spell)
+    if type(spell) == "string" then
+        spell = Registry.createSpell(spell)
+    end
+    table.insert(self.spells, index, spell)
 end
 
 --- Removes a spell from this party member's available spells
@@ -675,7 +685,7 @@ end
 function PartyMember:getEquipmentBonus(stat)
     local total = 0
     for _, item in ipairs(self:getEquipment()) do
-        total = total + item:getStatBonus(stat)
+        total = total + item:getStatBonus(stat, self)
     end
     return total
 end
@@ -684,7 +694,7 @@ end
 function PartyMember:getStats(light)
     local stats = TableUtils.copy(self:getBaseStats(light))
     for _, item in ipairs(self:getEquipment()) do
-        for stat, amount in pairs(item:getStatBonuses()) do
+        for stat, amount in pairs(item:getStatBonuses(self)) do
             if stats[stat] then
                 stats[stat] = stats[stat] + amount
             else
@@ -860,16 +870,16 @@ function PartyMember:loadEquipment(data)
                     weapon:load(data.weapon)
                     self:setWeapon(weapon)
                 else
-                    Kristal.Console:error("Could not load weapon \"" .. data.weapon.id .. "\"")
+                    Logging.errorNotify("Could not load weapon \"" .. data.weapon.id .. "\"")
                 end
             else
-                Kristal.Console:error("Could not load weapon \"" .. data.weapon.id .. "\"")
+                Logging.errorNotify("Could not load weapon \"" .. data.weapon.id .. "\"")
             end
         else
             if Registry.getItem(data.weapon) then
                 self:setWeapon(data.weapon)
             else
-                Kristal.Console:error("Could not load weapon \"" .. (data.weapon or "nil") .. "\"")
+                Logging.errorNotify("Could not load weapon \"" .. (data.weapon or "nil") .. "\"")
             end
         end
     end
@@ -885,16 +895,16 @@ function PartyMember:loadEquipment(data)
                         armor:load(v)
                         self:setArmor(tonumber(k), armor)
                     else
-                        Kristal.Console:error("Could not load armor \"" .. v.id .. "\"")
+                        Logging.errorNotify("Could not load armor \"" .. v.id .. "\"")
                     end
                 else
-                    Kristal.Console:error("Could not load armor \"" .. v.id .. "\"")
+                    Logging.errorNotify("Could not load armor \"" .. v.id .. "\"")
                 end
             else
                 if Registry.getItem(v) then
                     self:setArmor(tonumber(k), v)
                 else
-                    Kristal.Console:error("Could not load armor \"" .. (v or "nil") .. "\"")
+                    Logging.errorNotify("Could not load armor \"" .. (v or "nil") .. "\"")
                 end
             end
         end
@@ -917,7 +927,7 @@ function PartyMember:loadSpells(data)
         if Registry.getSpell(v) then
             self:addSpell(v)
         else
-            Kristal.Console:error("Could not load spell \"" .. (v or "nil") .. "\"")
+            Logging.errorNotify("Could not load spell \"" .. (v or "nil") .. "\"")
         end
     end
 end

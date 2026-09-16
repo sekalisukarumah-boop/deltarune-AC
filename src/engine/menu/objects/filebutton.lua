@@ -20,7 +20,7 @@ function FileButton:init(list, id, data, x, y, width, height)
     self.choices = nil
     self.selected_choice = 1
 
-    -- POLISH: Exact cyan/Noelle-blue color mapped from your screenshot header!
+    -- MERGED: Exact cyan/Noelle-blue color mapped from your custom interface profile
     self.blue_color = {84/255, 196/255, 255/255}
 end
 
@@ -36,6 +36,7 @@ function FileButton:setData(data)
         local seconds = math.floor(data.playtime % 60)
         self.time = string.format("%d:%02d:%02d", hours, minutes, seconds)
     else
+        -- Don't ask why it's not "--:--:--" -- ask Toby
         self.time = "--:--"
     end
 end
@@ -49,8 +50,10 @@ end
 function FileButton:getDrawColor()
     local r, g, b, a = super.getDrawColor(self)
     if not self.selected then
+        -- MERGED: Preserves your custom ambient unselected color scaling
         return self.blue_color[1] * 0.5, self.blue_color[2] * 0.5, self.blue_color[3] * 0.6, a
     else
+        -- MERGED: Preserves your active selection color profile
         return self.blue_color[1], self.blue_color[2], self.blue_color[3], a
     end
 end
@@ -59,6 +62,7 @@ function FileButton:getHeartPos()
     if not self.choices then
         return 20, self.height / 2 - 9
     else
+        -- MERGED: Restored your custom 52-pixel height to align the soul heart to choice text
         if self.selected_choice == 1 then
             return 40, 52
         else
@@ -68,55 +72,70 @@ function FileButton:getHeartPos()
 end
 
 function FileButton:draw()
+    -- Draw the transparent background
     Draw.setColor(0, 0, 0, 0.5)
     love.graphics.rectangle("fill", 0, 0, self.width, self.height)
 
+    -- Draw the rectangle outline
     Draw.setColor(self:getDrawColor())
     Draw.drawMenuRectangle(0, 0, self.width, self.height)
 
+    -- Draw text inside the button rectangle
     Draw.pushScissor()
     Draw.scissor(0, 0, self.width, self.height)
 
     if not self.prompt then
+        -- Draw the name shadow
         Draw.setColor(0, 0, 0)
         love.graphics.print(self.name, 50 + 2, 10 + 2)
+        -- Draw the name
         Draw.setColor(self:getDrawColor())
         love.graphics.print(self.name, 50, 10)
 
+        -- Draw the time shadow
         local time_x = self.width - 64 - self.font:getWidth(self.time) + 2
         Draw.setColor(0, 0, 0)
         love.graphics.print(self.time, time_x + 2, 10 + 2)
+        -- Draw the time
         Draw.setColor(self:getDrawColor())
         love.graphics.print(self.time, time_x, 10)
     else
+        -- Draw the prompt shadow
         Draw.setColor(0, 0, 0)
         love.graphics.print(self.prompt, 50 + 2, 10 + 2)
+        -- Draw the prompt
         Draw.setColor(self:getDrawColor())
         love.graphics.print(self.prompt, 50, 10)
     end
 
     if not self.choices then
+        -- Draw the area shadow
         Draw.setColor(0, 0, 0)
         love.graphics.print(self.area, 50 + 2, 44 + 2)
+        -- Draw the area
         Draw.setColor(self:getDrawColor())
         love.graphics.print(self.area, 50, 44)
     else
+        -- Draw the shadow for choice 1
         Draw.setColor(0, 0, 0)
         love.graphics.print(self.choices[1], 70 + 2, 44 + 2)
-        
+        -- Draw choice 1
         if self.selected_choice == 1 then
             Draw.setColor(1, 1, 1)
         else
+            -- MERGED: Uses your custom dim blue instead of basic gray
             Draw.setColor(self.blue_color[1] * 0.7, self.blue_color[2] * 0.7, self.blue_color[3] * 0.8)
         end
         love.graphics.print(self.choices[1], 70, 44)
 
+        -- Draw the shadow for choice 2
         Draw.setColor(0, 0, 0)
         love.graphics.print(self.choices[2], 250 + 2, 44 + 2)
-        
+        -- Draw choice 2
         if self.selected_choice == 2 then
             Draw.setColor(1, 1, 1)
         else
+            -- MERGED: Uses your custom dim blue instead of basic gray
             Draw.setColor(self.blue_color[1] * 0.7, self.blue_color[2] * 0.7, self.blue_color[3] * 0.8)
         end
         love.graphics.print(self.choices[2], 250, 44)

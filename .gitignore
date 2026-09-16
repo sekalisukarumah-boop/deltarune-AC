@@ -3,8 +3,6 @@
 
 mods/*
 !mods/example/
-!mods/after_chill/ 
-!mods/last_path/ 
 
 build/
 output/

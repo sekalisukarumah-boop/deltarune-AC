@@ -42,7 +42,6 @@
     },
     "diagnostics.disable": [
         "duplicate-set-field",
-        "need-check-nil",
-        "deprecated"
+        "need-check-nil"
     ]
 }

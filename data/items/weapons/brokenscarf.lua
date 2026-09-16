@@ -19,9 +19,9 @@ function item:init()
     self.description = "A scarf that was torn to pieces in the\nbattle, revealing it was all for show."
 
     -- Default shop price (sell price is halved)
-    self.price = 2
+    self.price = 0
     -- Whether the item can be sold
-    self.can_sell = true
+    self.can_sell = false
 
     -- Consumable target mode (ally, party, enemy, enemies, or none)
     self.target = "none"
@@ -55,14 +55,14 @@ function item:init()
     }
 end
 
-function item:getStatBonuses()
+function item:getStatBonuses(character)
     -- TODO: Stat Display callbacks?
     -- Return empty bonuses outside of battle to hide stats visually
     if Game.state ~= "BATTLE" then
         return {}
     end
 
-    return super.getStatBonuses(self)
+    return super.getStatBonuses(self, character)
 end
 
 return item

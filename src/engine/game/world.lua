@@ -424,8 +424,10 @@ function World:onKeyPressed(key)
             if self.music then
                 if self.music:isPlaying() then
                     self.music:pause()
+                    Debug.LOGGER:infoNotify("World music: " .. FormatString("PAUSED", ConsoleFormats.YELLOW))
                 else
                     self.music:resume()
+                    Debug.LOGGER:infoNotify("World music: " .. FormatString("RESUMED", ConsoleFormats.GREEN))
                 end
             end
         end
@@ -446,28 +448,31 @@ function World:onKeyPressed(key)
             for _, party in ipairs(Game.party) do
                 party:heal(math.huge)
             end
-        end
-        if key == "b" then
-            Game.world:hurtParty(math.huge)
+            Debug.LOGGER:infoNotify(FormatString("Healed party", ConsoleFormats.GREEN))
         end
         if key == "k" then
             Game:setTension(Game:getMaxTension())
             Assets.playSound("cardrive", 0.8, 1.4)
+            Debug.LOGGER:infoNotify("Tension: " .. FormatString("100%", ConsoleFormats.YELLOW))
         end
         if key == "n" then
             NOCLIP = not NOCLIP
             if NOCLIP then
                 Assets.playSound("petrify")
+                Debug.LOGGER:infoNotify("Noclip: " .. FormatString("ON", ConsoleFormats.GREEN))
             else
                 Assets.playSound("bump")
+                Debug.LOGGER:infoNotify("Noclip: " .. FormatString("OFF", ConsoleFormats.RED))
             end
         end
         if key == "i" then
             INVINCIBILITY = not INVINCIBILITY
             if INVINCIBILITY then
                 Assets.playSound("sparkle_glock")
+                Debug.LOGGER:infoNotify("Invincibility: " .. FormatString("ON", ConsoleFormats.GREEN))
             else
                 Assets.playSound("bump")
+                Debug.LOGGER:infoNotify("Invincibility: " .. FormatString("OFF", ConsoleFormats.RED))
             end
         end
     end
@@ -525,9 +530,9 @@ end
 function World:checkCollision(collider, enemy_check)
     Object.startCache()
     for _,other in ipairs(self:getCollision(enemy_check)) do
-        if collider:collidesWith(other) and collider ~= other then
+        if collider:meetsCollider(other) and collider ~= other then
             Object.endCache()
-            return true, other.parent
+            return true, other:getOwner()
         end
     end
     Object.endCache()
@@ -543,8 +548,8 @@ function World:checkCollisions(collider, enemy_check)
     local collided_with = {}
     Object.startCache()
     for _, other in ipairs(self:getCollision(enemy_check)) do
-        if collider:collidesWith(other) and collider ~= other then
-            table.insert(collided_with, other.parent)
+        if collider:meetsCollider(other) and collider ~= other then
+            table.insert(collided_with, other:getOwner())
         end
     end
     Object.endCache()
@@ -925,7 +930,7 @@ end
 --- Creates a reaction text on a party member's healthbar (usually used for equipment and items)
 ---@param party_member  string|PartyMember  The party member who will react
 ---@param text          string              The text to display for the reaction
----@param display_time? number              The display time, in seconds, of the reaction (defaults to 5/3 seconds)
+---@param display_time  number?              The display time, in seconds, of the reaction (defaults to 5/3 seconds)
 function World:partyReact(party_member, text, display_time)
     local action_box = self:getActionBox(party_member)
     if action_box then
@@ -935,9 +940,9 @@ end
 
 --- Gets a specific event present in the current map.
 ---
---- If multiple objects are found (if you pass in a name), only the first will be returned. Use `Map:getEvents` to get all of them.
+--- If multiple objects are found (if you pass in a name), only the first will be returned. Use [`getEvents`](lua://World.getEvents) to get all of them.
 ---@param id string|number|TiledObjectRef The id of the event to search for, either as a string or a number
----@return Event event The name of the event, the unique numerical ID, or a Tiled object reference.
+---@return Event? event The name of the event, the unique numerical ID, or a Tiled object reference.
 function World:getEvent(id)
     return self.map:getEvent(id)
 end
@@ -1109,6 +1114,10 @@ function World:loadMap(...)
         end
     end
 
+    for _, battle_border in ipairs(self.map.battle_borders) do
+        battle_border.alpha = 0
+    end
+
     self.map:onEnter()
 
     if callback then
@@ -1273,7 +1282,6 @@ function World:shakeCamera(x, y, friction)
 end
 
 function World:sortChildren()
-    Utils.pushPerformance("World#sortChildren")
     Object.startCache()
     local positions = {}
     for _, child in ipairs(self.children) do
@@ -1291,7 +1299,6 @@ function World:sortChildren()
                     (a:includes(Follower) and b:includes(Follower) and b.index < a.index)))))
     end)
     Object.endCache()
-    Utils.popPerformance()
 end
 
 ---@param parent Object
@@ -1352,7 +1359,7 @@ function World:update()
         for _, obj in ipairs(self.children) do
             if not obj.solid and (obj.onCollide or obj.onEnter or obj.onExit) then
                 for _, char in ipairs(self.stage:getObjects(Character)) do
-                    if obj:collidesWith(char) and self:shouldCharacterCollide(char) then
+                    if obj:meetsObject(char) and self:shouldCharacterCollide(char) then
                         if not obj:includes(OverworldSoul) then
                             table.insert(collided, { obj, char })
                         end
@@ -1400,6 +1407,7 @@ function World:update()
     for _, battle_border in ipairs(self.map.battle_borders) do
         battle_border.alpha = self.battle_alpha
     end
+
     if self.battle_fader then
         self.battle_fader:setColor(0, 0, 0, half_alpha)
     end

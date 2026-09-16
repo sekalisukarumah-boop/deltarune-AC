@@ -78,7 +78,7 @@ function Kristal.verifySoundSystem()
     local source = love.audio.newSource("assets/music/none.ogg", "static")
     local success = source:play()
     if not success then
-        print("Audio has been detected as unavailable, disabling sound for the rest of the session")
+        Logging.warnNotify("Audio has been detected as unavailable, disabling sound for the rest of the session")
         SOUND_DISABLED = true
     end
 end
@@ -101,8 +101,22 @@ function love.load(args)
         end
     end
 
+    if Kristal.Args["disable-stdout-buffer"] then
+        io.stdout:setvbuf("no")
+    end
+
+    Logging.init(Kristal.Args["ansi-colors"])
+    Logging.registerDefaultListeners()
+    Logging.createSystemLogger()
+
+    Debug.init()
+
+    Hotswapper.init()
+
     -- load the version
     Kristal.Version = SemVer(love.filesystem.read("VERSION"))
+
+    Logging.info("Kristal v" .. tostring(Kristal.Version))
 
     -- load the settings.json
     Kristal.Config = Kristal.loadConfig()
@@ -157,6 +171,9 @@ function love.load(args)
     Registry.initialize()
     Registry.saveData()
 
+    -- register collisions
+    CollisionRegistry.refresh()
+
     -- Chapter defaults
     Kristal.ChapterConfigs = {}
     Kristal.ChapterConfigs[1] = JSON.decode(love.filesystem.read("configs/chapter1.json"))
@@ -174,10 +191,6 @@ function love.load(args)
     -- screen canvas
     SCREEN_CANVAS = love.graphics.newCanvas(SCREEN_WIDTH, SCREEN_HEIGHT)
     SCREEN_CANVAS:setFilter("nearest", "nearest")
-
-    PERFORMANCE_TEST = nil
-    ---@type string?
-    PERFORMANCE_TEST_STAGE = nil
 
     SCREENSHOT_DISPLAY = 1
     TAKING_SCREENSHOT = false
@@ -243,11 +256,6 @@ function love.focus()
 end
 
 function love.draw()
-    if PERFORMANCE_TEST_STAGE == "DRAW" then
-        PERFORMANCE_TEST = {}
-        Utils.pushPerformance("Total")
-    end
-
     -- We need to draw the game to a canvas, so we can scale
     -- Also, to draw the borders later
     Draw.reset()
@@ -293,13 +301,6 @@ function love.draw()
 
     Draw._clearUnusedCanvases()
 
-    if PERFORMANCE_TEST then
-        Utils.popPerformance()
-        Utils.printPerformance()
-        PERFORMANCE_TEST_STAGE = nil
-        PERFORMANCE_TEST = nil
-    end
-
     local screenshot_size = MathUtils.lerp(20, 0, SCREENSHOT_DISPLAY)
     if screenshot_size > 0 and not TAKING_SCREENSHOT then
         local w = love.graphics.getWidth() / Kristal.getGameScale()
@@ -331,11 +332,10 @@ function Kristal.drawBorders()
             love.graphics.scale(Kristal.getGameScale())
             Draw.setColor(1, 1, 1, dynamic and BORDER_ALPHA or 1)
             love.graphics.push("all")
+            local border_width, border_height = 1920 * BORDER_SCALE, 1080 * BORDER_SCALE
             love.graphics.translate(
-                ((love.graphics.getWidth() / Kristal.getGameScale())) / 2 +
-                (((love.graphics.getHeight() / Kristal.getGameScale()) / -2) * (16 / 9)),
-                ((love.graphics.getHeight() / Kristal.getGameScale()) / 2) +
-                ((love.graphics.getHeight() / Kristal.getGameScale()) / -2)
+                (love.graphics.getWidth() / Kristal.getGameScale() - border_width) / 2,
+                (love.graphics.getHeight() / Kristal.getGameScale() - border_height) / 2
             )
             if border_texture then
                 Draw.draw(border_texture, 0, 0, 0, BORDER_SCALE)
@@ -356,11 +356,6 @@ function Kristal.drawBorders()
 end
 
 function love.update(dt)
-    if PERFORMANCE_TEST_STAGE == "UPDATE" then
-        PERFORMANCE_TEST = {}
-        Utils.pushPerformance("Total")
-    end
-
     BASE_DT = dt
     if FAST_FORWARD then
         CURRENT_SPEED_MULT = FAST_FORWARD_SPEED
@@ -456,14 +451,6 @@ function love.update(dt)
 
     -- Update overlay last (after loader, which sometimes updates the overlay)
     Kristal.Overlay:update()
-
-    if PERFORMANCE_TEST then
-        Utils.popPerformance()
-        print("-------- PERFORMANCE --------")
-        Utils.printPerformance()
-        PERFORMANCE_TEST_STAGE = "DRAW"
-        PERFORMANCE_TEST = nil
-    end
 end
 
 function love.textinput(key)
@@ -555,15 +542,18 @@ function Kristal.onKeyPressed(key, is_repeat)
             Input.resetBinds()
             Input.saveBinds()
             Assets.playSound("impact")
+            Logging.warnNotify("Input binds reset to defaults")
             return
         end
 
         if Mod ~= nil then
             if Input.ctrl() and Input.shift() and Input.alt() and key == "m" and not is_repeat then -- Enable developer mode for the current project
-                if not DEBUG_OVERRIDE then
+                if (not DEBUG_OVERRIDE) and (not Mod.info.dev) then
                     DEBUG_OVERRIDE = true
                     Assets.playSound("bump")
                     Assets.playSound("him_quick")
+
+                    Logging.infoNotify("Developer mode enabled for this session")
                 end
                 return
             end
@@ -610,7 +600,7 @@ function Kristal.onKeyPressed(key, is_repeat)
             elseif key == "f6" then
                 DEBUG_RENDER = not DEBUG_RENDER
             elseif key == "f8" then
-                print("Hotswapping files...\nNOTE: Might be unstable. If anything goes wrong, it's not our fault :P")
+                Hotswapper.LOGGER:infoNotify("Hotswapping files...\nNOTE: Might be unstable. If anything goes wrong, it's not our fault :P")
                 Hotswapper.scan()
             elseif key == "r" and Input.ctrl() and (not console_open) then
                 -- CTRL+R to reload
@@ -685,7 +675,7 @@ function Kristal.onWheelMoved(x, y)
 end
 
 local function error_printer(msg, layer)
-    print((debug.traceback("Error: " .. tostring(msg), 1 + (layer or 1)):gsub("\n[^\n]+$", "")))
+    Logging.error((debug.traceback("Error: " .. tostring(msg), 1 + (layer or 1)):gsub("\n[^\n]+$", "")))
 end
 
 --- Kristal alternative to the default love.errorhandler. \
@@ -757,7 +747,7 @@ function Kristal.errorHandler(msg, trace_level)
     if not critical and not trace then
         error_printer(msg, trace_level)
     elseif trace then
-        print("Error: " .. msg .. "\n" .. trace)
+        Logging.error("Error: " .. msg .. "\n" .. trace)
     end
 
     if not love.window or not love.graphics or not love.event then
@@ -838,7 +828,7 @@ function Kristal.errorHandler(msg, trace_level)
     local w = 0
     local h = 18
     if Mod then
-        mod_string = "Mod: " .. Mod.info.id .. " " .. (Mod.info.version or "v?.?.?")
+        mod_string = "Project: " .. Mod.info.id .. " " .. (Mod.info.version or "v?.?.?")
         if TableUtils.getKeyCount(Mod.libs) > 0 then
             lib_string = "Libraries:"
             for _, lib in Kristal.iterLibraries() do
@@ -971,7 +961,7 @@ function Kristal.errorHandler(msg, trace_level)
             love.graphics.print("Press ESC to restart the game", 8, window_height - (critical and 20 or 40))
         else
             Draw.setColor(1, 1, 1, 1)
-            love.graphics.print("Press ESC to return to mod menu", 8, window_height - (critical and 20 or 40))
+            love.graphics.print("Press ESC to return to menu", 8, window_height - (critical and 20 or 40))
         end
         if not critical then
             Draw.setColor(copy_color)
@@ -1250,6 +1240,7 @@ function Kristal.clearModState()
     Mod = nil
 
     Kristal.resetDevMode()
+    Debug.reset()
 
     -- Close the console or debug menu if open
     -- (We don't care much if someone "smuggles" them out of the Game state, but we'll try to close them if we can)
@@ -1285,6 +1276,9 @@ function Kristal.clearModState()
     -- Restore assets and registry
     Assets.restoreData()
     Registry.restoreData()
+
+    -- Refresh the collision registry
+    CollisionRegistry.refresh()
 
     -- force garbage collection
     collectgarbage("collect")
@@ -1396,6 +1390,7 @@ function Kristal.quickReload(mode)
                 if Kristal.preInitMod(mod_id) then
                     Kristal.setDesiredWindowTitleAndIcon()
                     Kristal.setState("Game", save_id)
+                    Debug.reset()
                     Kristal.resetDevMode()
                     if Kristal.isDevMode() then
                         DEBUG_OVERRIDE = dev_debug_override
@@ -1523,6 +1518,7 @@ function Kristal.loadMod(id, save_id, save_name, after)
             Kristal.setDesiredWindowTitleAndIcon()
             Kristal.setState("Game", save_id, save_name)
             Kristal.resetDevMode()
+            Debug.reset()
         end
     end)
 
@@ -1624,6 +1620,9 @@ function Kristal.preInitMod(id)
 
     -- Initialize registry
     Registry.initialize()
+
+    -- Refresh collision registry
+    CollisionRegistry.refresh()
 
     -- Return true if no "preInit" explicitly returns true
     return use_callback
@@ -1884,7 +1883,8 @@ function Kristal.getDefaultConfig()
         rightStickDeadzone = 0.2,
         defaultName = "",
         skipNameEntry = false,
-        verboseLoader = false
+        verboseLoader = false,
+        loggerOnlyWarns = false
     }
 
     return config
@@ -1893,26 +1893,25 @@ end
 --- Called internally. Loads the saved user config, with default values.
 ---@return table config The user config.
 function Kristal.loadConfig()
+    Logging.infoNotify("Loading settings from " .. FormatString("settings.json", ConsoleFormats.GRAY))
     local config = Kristal.getDefaultConfig()
 
     if love.filesystem.getInfo("settings.json") then
         local success, message = pcall(JSON.decode, love.filesystem.read("settings.json"))
         if not success then
-            print("Error loading settings.json: " .. tostring(message))
-            print("Using default config.")
+            Logging.errorNotify("Error loading settings.json: " .. tostring(message) .. "\nUsing default config.")
             return config
         end
 
         local config_type = type(message)
         if config_type ~= "table" then
-            print("Error loading settings.json: Expected table, got " .. config_type)
-            print("Using default config.")
+            Logging.errorNotify("Error loading settings.json: Expected table, got " .. config_type .. "\nUsing default config.")
             return config
         end
 
         TableUtils.merge(config, message)
     else
-        print("No settings.json found, using default config.")
+        Logging.infoNotify("No settings.json found, using default config.")
     end
 
     return config
@@ -1920,7 +1919,12 @@ end
 
 --- Saves the current config table to the `settings.json`.
 function Kristal.saveConfig()
-    love.filesystem.write("settings.json", JSON.encode(Kristal.Config))
+    Logging.infoNotify("Saving " .. FormatString("settings.json", ConsoleFormats.GRAY))
+    local success, message = love.filesystem.write("settings.json", JSON.encode(Kristal.Config))
+
+    if not success then
+        Logging.errorNotify("Error saving settings.json: " .. tostring(message))
+    end
 end
 
 --- Saves the game.
@@ -1928,11 +1932,16 @@ end
 ---@param data? table  The data to save to the file. (Defaults to the output of `Game:save()`)
 function Kristal.saveGame(id, data)
     id = id or Game.save_id
+    local path = "saves/" .. Mod.info.id .. "/file_" .. id .. ".json"
+
+    Logging.info(FormatString("Writing save file "):add(FormatString(tostring(id), ConsoleFormats.GREEN)):add(" to path "):add(FormatString(path, ConsoleFormats.GRAY)))
+
     data = data or Game:save()
     Game.save_id = id
     Game.quick_save = nil
+
     love.filesystem.createDirectory("saves/" .. Mod.info.id)
-    love.filesystem.write("saves/" .. Mod.info.id .. "/file_" .. id .. ".json", JSON.encode(data))
+    love.filesystem.write(path, JSON.encode(data))
 end
 
 --- Loads the game from a save file.
@@ -1941,10 +1950,14 @@ end
 function Kristal.loadGame(id, fade)
     id = id or Game.save_id
     local path = "saves/" .. Mod.info.id .. "/file_" .. id .. ".json"
+
+    Logging.info(FormatString("Loading save file "):add(FormatString(tostring(id), ConsoleFormats.GREEN)):add(" from path "):add(FormatString(path, ConsoleFormats.GRAY)))
+
     if love.filesystem.getInfo(path) then
         local data = JSON.decode(love.filesystem.read(path))
         Game:load(data, id, fade)
     else
+        Logging.info(FormatString("Save file "):add(FormatString(tostring(id), ConsoleFormats.GREEN)):add(" does not exist, starting new game."))
         Game:load(nil, id, fade)
     end
 end
@@ -2201,6 +2214,46 @@ function Kristal.clearModSubclasses()
         end
     end
     MOD_SUBCLASSES = {}
+end
+
+---@alias (private) API_TYPE "function" | "functionvariant" | "method" | "methodvariant" | "callback" | "field" | "constant" | "custom"
+---@alias (private) DEPRECATION_TYPE_NEW_NAME "replaced" | "renamed"
+
+--- Logs a warning informing developers that the called function or method is deprecated.
+--- Paramaters are identical to LÖVE 12's' `love.markDeprecated`.
+---@param level integer Callstack level responsible for calling the deprecated API
+---@param name string The name of the API that was called
+---@param api_type API_TYPE What kind of API was called to emit the warning
+---@param deprecation_type DEPRECATION_TYPE_NEW_NAME
+---@param new_name string The new name of the API if it was renamed, or the replacement(s).
+--- Should not be specified if deprecation_type is "noreplacement".
+---@overload fun(level:integer, name:string, api_type: API_TYPE, deprecation_type: "noreplacement")
+function Kristal.markDeprecated(level, name, api_type, deprecation_type, new_name)
+    local api_name_type = ""
+    if api_type == "functionvariant" then
+        api_name_type = "function variant " .. name
+    elseif api_type == "methodvariant" then
+        api_name_type = "method variant " ..name
+    elseif api_type == "custom" then
+        api_name_type = name
+    else
+        api_name_type = api_type .. " " .. name
+    end
+    local deprecation_message = string.format("Using deprecated %s", api_name_type)
+    if deprecation_type == "replaced" then
+        deprecation_message = string.format("%s (replaced by %s)", deprecation_message, new_name)
+    ---@diagnostic disable-next-line: unknown-diag-code # LuaLS doesn't have unnecessary-if
+    ---@diagnostic disable-next-line: unnecessary-if # EmmyLua doesn't understand that deprecation_type could be "noreplacement"
+    elseif deprecation_type == "renamed" then
+        deprecation_message = string.format("%s (renamed to %s)", deprecation_message, new_name)
+    end
+    local info = debug.getinfo(level + 1, "Sl")
+    if not info then
+        Logging.warnNotify("Failed to find debug info for deprecation warning: " .. deprecation_message)
+        return
+    end
+    local source_line = string.format("%s:%s", info.short_src, info.currentline)
+    Logging.warnNotify(string.format("%s: %s", source_line, deprecation_message))
 end
 
 --- Executes a `.lua` script inside the project folder.

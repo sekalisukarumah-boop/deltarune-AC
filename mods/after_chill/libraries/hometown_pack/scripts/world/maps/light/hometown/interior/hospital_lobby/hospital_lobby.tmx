@@ -7,7 +7,6 @@
   <property name="border" value="leaves"/>
   <property name="inside" type="bool" value="true"/>
   <property name="light" type="bool" value="true"/>
-  <property name="music" value="hometown"/>
  </properties>
  <imagelayer id="7" name="room">
   <image source="../../../../../../../assets/sprites/world/maps/hometown/interior/hospitallobby.png" width="640" height="480"/>

@@ -9,7 +9,7 @@
     "party": ["kris", "noelle"],
     "useSaves": true,
     "money": 1800,
-    "inventory": {
+    "darkInventory": {
         "key_items": ["cell_phone"]
     },
     "equipment": {},
@@ -31,8 +31,8 @@
             "awakeMessages": false,
             "checkActDescription": true,
             "useSaves": true, 
-            "lightTextboxStyle": "light",
-            "darkTextboxStyle": "dark"
+            // "lightTextboxStyle": "light",
+            // "darkTextboxStyle": "dark"
         }
     }
 }

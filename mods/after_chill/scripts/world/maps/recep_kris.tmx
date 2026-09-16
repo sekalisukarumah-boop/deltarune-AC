@@ -96,7 +96,7 @@
   <object id="38" name="spawn" x="591" y="335">
    <point/>
   </object>
-  <object id="56" name="entranceA" x="901" y="64.6667">
+  <object id="56" name="entranceA" x="901" y="88">
    <point/>
   </object>
  </objectgroup>

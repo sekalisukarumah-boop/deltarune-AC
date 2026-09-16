@@ -1,5 +1,5 @@
 return {
-  version = "1.11",
+  version = "1.10",
   luaversion = "5.1",
   tiledversion = "1.11.2",
   class = "",
@@ -14,8 +14,7 @@ return {
   properties = {
     ["border"] = "leaves",
     ["inside"] = true,
-    ["light"] = true,
-    ["music"] = "hometown"
+    ["light"] = true
   },
   tilesets = {},
   layers = {

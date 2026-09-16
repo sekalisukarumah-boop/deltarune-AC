@@ -216,6 +216,61 @@ function Battle:init()
 
     self.defending_begin_timer = 0
     self.defending_end_timer = 0
+
+    self.action_button_types = {}
+end
+
+--- Registers the action buttons.
+function Battle:registerActionButtons()
+    self:registerDefaultActionButtons()
+
+    self.encounter:registerActionButtons()
+    Kristal.callEvent(KRISTAL_EVENT.registerActionButtons)
+end
+
+--- Registers the default action buttons.
+function Battle:registerDefaultActionButtons()
+    self:registerActionButton("fight", function(battler, x, y) return FightButton(battler, x, y) end)
+    self:registerActionButton("act", function(battler, x, y) return ActButton(battler, x, y) end)
+    self:registerActionButton("magic", function(battler, x, y) return MagicButton(battler, x, y) end)
+    self:registerActionButton("item", function(battler, x, y) return ItemButton(battler, x, y) end)
+    self:registerActionButton("defend", function(battler, x, y) return DefendButton(battler, x, y) end)
+    self:registerActionButton("spare", function(battler, x, y) return SpareButton(battler, x, y) end)
+end
+
+--- Register a new action button with the given ID.
+---@param id string The ID of the button.
+---@param constructor fun(battler: PartyBattler, x: number, y: number):ActionButton  A constructor function that takes event data and returns a button instance.
+function Battle:registerActionButton(id, constructor)
+    if self.action_button_types[id] then
+        Logging.warn("Replacing already-registered button '" .. id .. "'...")
+    end
+
+    self.action_button_types[id] = constructor
+end
+
+--- Check if a button with the given ID is registered.
+---@param id string The ID of the button.
+function Battle:hasActionButton(id)
+    return self.action_button_types[id] ~= nil
+end
+
+--- Get the constructor function registered with the given ID.
+---@param id string The ID of the button.
+function Battle:getActionButton(id)
+    return self.action_button_types[id]
+end
+
+--- Create a new action button instance of the given ID, using the provided data.
+---@param id string The ID of the button.
+---@return ActionButton button The created button instance.
+function Battle:createActionButton(id, battler, x, y)
+    local event_class = self.action_button_types[id]
+    if event_class then
+        return event_class(battler, x, y)
+    else
+        error("ActionButton '" .. id .. "' is not registered!")
+    end
 end
 
 function Battle:createPartyBattlers()
@@ -304,6 +359,8 @@ function Battle:postInit(state, encounter)
             self:addChild(enemy)
         end
     end
+
+    self:registerActionButtons()
 
     self:createUI()
 
@@ -1332,7 +1389,9 @@ function Battle:processAction(action)
             end
         end
 
-        battler:setAnimation("battle/attack", function()
+        battler:setAnimation("battle/attack")
+
+        self.timer:after(10 / 30, function()
             action.icon = nil
 
             if action.target and action.target.done_state then
@@ -1493,7 +1552,7 @@ function Battle:processAction(action)
 
     else
         -- we don't know how to handle this...
-        Kristal.Console:warn("Unhandled battle action: " .. tostring(action.action))
+        Logging.warnNotify("Unhandled battle action: " .. tostring(action.action))
         return true
     end
 end
@@ -1695,10 +1754,7 @@ function Battle:powerAct(spell, battler, user, target)
     local user_battler = self:getPartyBattler(user)
     local user_index = self:getPartyIndex(user)
 
-    if user_battler == nil then
-        Kristal.Console:error("Invalid power act user: " .. tostring(user))
-        return
-    end
+    assert(battler ~= nil, "Invalid battler for powerAct: " .. tostring(battler))
 
     if type(spell) == "string" then
         spell = Registry.createSpell(spell)
@@ -1921,11 +1977,18 @@ function Battle:commitSingleAction(action)
         anim = action.data:getSelectAnimation()
         local result = action.data:onSelect(battler, action.target)
         if result ~= false then
-            if action.tp then
+            if action.tp ~= nil then
+                local amount = action.tp
+
+                if Game:getConfig("newSpellCostCalculation") then
+                    -- Floor to 100 (if negative, ceil)
+                    amount = MathUtils.roundToZero(amount)
+                end
+
                 if action.tp > 0 then
-                    Game:giveTension(action.tp)
+                    Game:giveTension(amount)
                 elseif action.tp < 0 then
-                    Game:removeTension(-action.tp)
+                    Game:removeTension(-amount)
                 end
             end
             battler:setAnimation(anim)
@@ -2058,6 +2121,7 @@ end
 ---@param collider Collider|Object
 ---@return boolean          collided
 ---@return Arena|Solid?     colliding_with
+---@deprecated Use `Battle:solidMeetsCollider` or `Battle:solidMeetsObject` instead
 function Battle:checkSolidCollision(collider)
     if NOCLIP then return false end
     Object.startCache()
@@ -2069,6 +2133,52 @@ function Battle:checkSolidCollision(collider)
     end
     for _, solid in ipairs(Game.stage:getObjects(Solid)) do
         if solid:collidesWith(collider) then
+            Object.endCache()
+            return true, solid
+        end
+    end
+    Object.endCache()
+    return false
+end
+
+--- Returns whether a Collider collides with a Solid or the arena
+---@param collider Collider
+---@return boolean          collided
+---@return Arena|Solid?     colliding_with
+function Battle:solidMeetsCollider(collider)
+    if NOCLIP then return false end
+    Object.startCache()
+    if self.arena then
+        if self.arena:meetsCollider(collider) then
+            Object.endCache()
+            return true, self.arena
+        end
+    end
+    for _, solid in ipairs(Game.stage:getObjects(Solid)) do
+        if solid:meetsCollider(collider) then
+            Object.endCache()
+            return true, solid
+        end
+    end
+    Object.endCache()
+    return false
+end
+
+--- Returns whether an Object collides with a Solid or the arena
+---@param object Object
+---@return boolean          collided
+---@return Arena|Solid?     colliding_with
+function Battle:solidMeetsObject(object)
+    if NOCLIP then return false end
+    Object.startCache()
+    if self.arena then
+        if self.arena:meetsObject(object) then
+            Object.endCache()
+            return true, self.arena
+        end
+    end
+    for _, solid in ipairs(Game.stage:getObjects(Solid)) do
+        if solid:meetsObject(object) then
             Object.endCache()
             return true, solid
         end
@@ -2440,7 +2550,7 @@ function Battle:nextTurn()
     while not (self.party[self.current_selecting]:isActive()) do
         self.current_selecting = self.current_selecting + 1
         if self.current_selecting > #self.party then
-            Kristal.Console:warn("Nobody up! This shouldn't happen...")
+            Logging.warnNotify("Nobody up! This shouldn't happen...")
             self.current_selecting = 1
             break
         end
@@ -3061,7 +3171,6 @@ function Battle:drawDebug()
     self:debugPrintOutline("CTRL+Y - win battle", 4, 96)
     self:debugPrintOutline("CTRL+M - pause/resume music", 4, 112)
     self:debugPrintOutline("CTRL+F - end current wave", 4, 128)
-    self:debugPrintOutline("CTRL+B - kill party", 4, 144)
     self:debugPrintOutline("CTRL+K - fill tension", 4, 160)
     self:debugPrintOutline("CTRL+N - toggle noclip", 4, 176)
     self:debugPrintOutline("CTRL+I - toggle invincibility", 4, 192)
@@ -3264,6 +3373,171 @@ function Battle:addMenuItem(tbl)
     return tbl
 end
 
+--- An internal function responsible for adding the default X-Action to the battle menu.
+function Battle:addDefaultXActionMenuItems(battler)
+    local spell = {
+        ["name"] = Game.battle.enemies[1]:getXAction(battler),
+        ["target"] = "xact",
+        ["id"] = 0,
+        ["default"] = true,
+        ["party"] = {},
+        ["tp"] = 0
+    }
+
+    Game.battle:addMenuItem({
+        ["name"] = battler.chara:getXActName() or "X-Action",
+        ["tp"] = 0,
+        ["color"] = { battler.chara:getXActColor() },
+        ["data"] = spell,
+        ["callback"] = function(menu_item)
+            Game.battle.selected_xaction = spell
+            Game.battle:setState("ENEMYSELECT", "XACT")
+        end
+    })
+end
+
+--- An internal function responsible for adding X-Actions to the battle menu.
+function Battle:addXActionMenuItems(battler)
+    if Game.battle.encounter.default_xactions and battler.chara:hasXAct() then
+        self:addDefaultXActionMenuItems(battler)
+    end
+
+    for id, action in ipairs(Game.battle.xactions) do
+        if action.party == battler.chara.id then
+            local spell = {
+                ["name"] = action.name,
+                ["target"] = "xact",
+                ["id"] = id,
+                ["default"] = false,
+                ["party"] = {},
+                ["tp"] = action.tp or 0
+            }
+
+            Game.battle:addMenuItem({
+                ["name"] = action.name,
+                ["tp"] = action.tp or 0,
+                ["description"] = action.description,
+                ["color"] = action.color or { 1, 1, 1, 1 },
+                ["data"] = spell,
+                ["callback"] = function(menu_item)
+                    Game.battle.selected_xaction = spell
+                    Game.battle:setState("ENEMYSELECT", "XACT")
+                end
+            })
+        end
+    end
+end
+
+--- An internal function responsible for adding spells to the battle menu.
+function Battle:addSpellMenuItems(battler)
+    for _, spell in ipairs(battler.chara:getSpells()) do
+        ---@type table|function
+        local color = spell.color or { 1, 1, 1, 1 }
+        if spell:hasTag("spare_tired") then
+            local has_tired = false
+            for _, enemy in ipairs(Game.battle:getActiveEnemies()) do
+                if enemy.tired then
+                    has_tired = true
+                    break
+                end
+            end
+            if has_tired then
+                color = { 0, 178 / 255, 1, 1 }
+                if Game:getConfig("pacifyGlow") then
+                    color = function()
+                        return ColorUtils.mergeColor({ 0, 0.7, 1, 1 }, COLORS.white, 0.5 + math.sin(Game.battle.pacify_glow_timer / 4) * 0.5)
+                    end
+                end
+            end
+        end
+
+        Game.battle:addMenuItem({
+            ["name"] = spell:getName(),
+            ["tp"] = spell:getTPCost(battler.chara),
+            ["unusable"] = not spell:isUsable(battler.chara),
+            ["description"] = spell:getBattleDescription(),
+            ["party"] = spell.party,
+            ["color"] = color,
+            ["data"] = spell,
+            ["callback"] = function(menu_item)
+                Game.battle.selected_spell = menu_item
+
+                if not spell:getTarget() or spell:getTarget() == "none" then
+                    Game.battle:pushAction("SPELL", nil, menu_item)
+                elseif spell:getTarget() == "ally" then
+                    Game.battle:setState("PARTYSELECT", "SPELL")
+                elseif spell:getTarget() == "enemy" then
+                    Game.battle:setState("ENEMYSELECT", "SPELL")
+                elseif spell:getTarget() == "party" then
+                    Game.battle:pushAction("SPELL", Game.battle.party, menu_item)
+                elseif spell:getTarget() == "enemies" then
+                    Game.battle:pushAction("SPELL", Game.battle:getActiveEnemies(), menu_item)
+                end
+            end
+        })
+    end
+end
+
+--- Attempts to enter a party member's spell menu.
+---
+--- If the user has no spells or X-actions, this will return false and do nothing.
+---
+---@param battler PartyBattler The PartyBattler to enter the spell menu for.
+---@return boolean success Whether the menu was entered or not.
+function Battle:enterSpellMenu(battler)
+    self:clearMenuItems()
+
+    self:addXActionMenuItems(battler)
+    self:addSpellMenuItems(battler)
+
+    if #self.menu_items > 0 then
+        self:setState("MENUSELECT", "SPELL")
+        return true
+    end
+
+    return false
+end
+
+--- Attempts to enter the item menu.
+---
+--- If the user has no items, this will return false and do nothing.
+---
+---@return boolean success Whether the menu was entered or not.
+function Battle:enterItemsMenu()
+    Game.battle:clearMenuItems()
+
+    for _, item in ipairs(Game.inventory:getStorage("items")) do
+        Game.battle:addMenuItem({
+            ["name"] = item:getName(),
+            ["unusable"] = item.usable_in ~= "all" and item.usable_in ~= "battle",
+            ["description"] = item:getBattleDescription(),
+            ["data"] = item,
+            ["callback"] = function(menu_item)
+                Game.battle.selected_item = menu_item
+
+                if not item:getTarget() or item:getTarget() == "none" then
+                    Game.battle:pushAction("ITEM", nil, menu_item)
+                elseif item:getTarget() == "ally" then
+                    Game.battle:setState("PARTYSELECT", "ITEM")
+                elseif item:getTarget() == "enemy" then
+                    Game.battle:setState("ENEMYSELECT", "ITEM")
+                elseif item:getTarget() == "party" then
+                    Game.battle:pushAction("ITEM", Game.battle.party, menu_item)
+                elseif item:getTarget() == "enemies" then
+                    Game.battle:pushAction("ITEM", Game.battle:getActiveEnemies(), menu_item)
+                end
+            end
+        })
+    end
+
+    if #Game.battle.menu_items > 0 then
+        Game.battle:setState("MENUSELECT", "ITEM")
+        return true
+    end
+
+    return false
+end
+
 ---@param key string
 function Battle:onKeyPressed(key)
     if Kristal.isDevMode() and Input.ctrl() then
@@ -3271,25 +3545,27 @@ function Battle:onKeyPressed(key)
             for _, party in ipairs(self.party) do
                 party:heal(math.huge)
             end
+            Debug.LOGGER:infoNotify(FormatString("Healed party", ConsoleFormats.GREEN))
         end
         if key == "y" then
             Input.clear(nil, true)
             self:setState("VICTORY")
+            Debug.LOGGER:infoNotify(FormatString("Ending battle", ConsoleFormats.YELLOW))
         end
         if key == "m" then
             if self.music then
                 if self.music:isPlaying() then
                     self.music:pause()
+                    Debug.LOGGER:infoNotify("Battle music: " .. FormatString("PAUSED", ConsoleFormats.YELLOW))
                 else
                     self.music:resume()
+                    Debug.LOGGER:infoNotify("Battle music: " .. FormatString("RESUMED", ConsoleFormats.GREEN))
                 end
             end
         end
         if self.state == "DEFENDING" and key == "f" then
             self:endWaves()
-        end
-        if key == "b" then
-            self:hurt(math.huge, true, "ALL")
+            Debug.LOGGER:infoNotify(FormatString("Ending waves", ConsoleFormats.YELLOW))
         end
         if key == "k" then
             Game:setTension(Game:getMaxTension())
@@ -3298,21 +3574,27 @@ function Battle:onKeyPressed(key)
             if self.tension_bar ~= nil then
                 self.tension_bar:flash()
             end
+
+            Debug.LOGGER:infoNotify("Tension: " .. FormatString("100%", ConsoleFormats.YELLOW))
         end
         if key == "n" then
             NOCLIP = not NOCLIP
             if NOCLIP then
                 Assets.playSound("petrify")
+                Debug.LOGGER:infoNotify("Noclip: " .. FormatString("ON", ConsoleFormats.GREEN))
             else
                 Assets.playSound("bump")
+                Debug.LOGGER:infoNotify("Noclip: " .. FormatString("OFF", ConsoleFormats.RED))
             end
         end
         if key == "i" then
             INVINCIBILITY = not INVINCIBILITY
             if INVINCIBILITY then
                 Assets.playSound("sparkle_glock")
+                Debug.LOGGER:infoNotify("Invincibility: " .. FormatString("ON", ConsoleFormats.GREEN))
             else
                 Assets.playSound("bump")
+                Debug.LOGGER:infoNotify("Invincibility: " .. FormatString("OFF", ConsoleFormats.RED))
             end
         end
     end
@@ -3594,6 +3876,7 @@ function Battle:handleActionSelectInput(key)
 
     if Input.isConfirm(key) then
         actbox:select()
+
         self.ui_select:stop()
         self.ui_select:play()
         return
