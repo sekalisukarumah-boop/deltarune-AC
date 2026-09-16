@@ -4,6 +4,7 @@
   <export target="forest1.lua" format="lua"/>
  </editorsettings>
  <properties>
+  <property name="border" value="forest_p"/>
   <property name="has_tile_sounds" type="bool" value="true"/>
   <property name="music" value="bloom_f"/>
   <property name="name" value="Blooming Forest - Cliff Base"/>

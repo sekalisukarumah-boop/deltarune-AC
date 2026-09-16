@@ -12,6 +12,7 @@ return {
   nextlayerid = 26,
   nextobjectid = 69,
   properties = {
+    ["border"] = "forest_p",
     ["has_tile_sounds"] = true,
     ["music"] = "bloom_f",
     ["name"] = "Blooming Forest - Cliff Base",
