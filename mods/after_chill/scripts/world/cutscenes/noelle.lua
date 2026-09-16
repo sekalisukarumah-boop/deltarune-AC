@@ -92,7 +92,18 @@ return {
             cutscene:wait(2.2)
             cutscene:text("[noskip][speed:0.7][shake:1]* ...", "down_smile")
             cutscene:wait(1.2)
-            cutscene:choicer({"Smile."}, {color = COLORS.red, highlight = COLORS.red}) -- figure out a way on how to make it centered
+            local _, box = cutscene:choicer({"Smile."}, {color = COLORS.red, highlight = COLORS.red, wait = false})
+            local text_width = 40
+            local centered_x = math.floor((box.width / 2) - (text_width / 2) - 16)
+            box.text_positions = { {centered_x, box.text_positions[1][2]} }
+            local fie = box.heart_positions
+            if fie and fie[1] then
+            local cx = math.floor(centered_x - 22)
+            box.heart_positions = { {cx, math.floor(fie[1][2] - 1)} }
+            end
+            box.current_choice = 1 
+            cutscene:wait(function() return box:isRemoved() end) 
+            cutscene:closeText()
             cutscene:text("*[noskip][speed:0.7] Smile?", "down_smile")
             cutscene:text("*[noskip][speed:0.7] That voice,[wait:2] it must be back...", "down")
             cutscene:wait(0.5)

@@ -30,8 +30,7 @@ return {
         Game.world.timer:tween(1, noelle, {alpha = 1})
         Game.world.timer:tween(1, k, {alpha = 1})
         Game.world.timer:tween(1, kris, {alpha = 0})
-        local effect = OverworldSnowEffect()
-        Game.world:addChild(effect)
+        local effect =  Game.world:addChild(OverworldSnowEffect())
         effect.layer = noelle.layer - 0.01 
         cutscene:wait(1)
         k:walkTo(559, k.y, 6)
@@ -575,7 +574,7 @@ end
     Game.world.timer:tween(0.25, fx, {amount = 0})
     cutscene:wait(0.5)
     cutscene:text("* Need to...[wait:2][func:shake] freeze...[wait:2][func:shake] more enemies...", "down_smile", "noelle", {functions = {shake = bumpshake}})
-    local ralsei = cutscene:spawnNPC("ralsei", 2411, 535)
+    local ralsei = cutscene:spawnNPC("ralsei", 2173, 535)
     ralsei:setFacing("left")
     ralsei.reflections = true 
     cutscene:wait(cutscene:fadeOut(0.5))
@@ -590,8 +589,7 @@ end
     cutscene:text("* Maybe the dark fountain is here!", "blush_smile", "ralsei")
     cutscene:text("* I hope Kris is close!", "blush_pleased", "ralsei")
     ralsei:walkTo(ralsei.x, 1420, 4)
-    cutscene:wait(4)
-    ralsei:resetSprite()
+    cutscene:wait(4.1)
     ralsei:setFacing("left")
     cutscene:text("* The dark presence feels even stronger..!", "pleading_closed", "ralsei")
     ralsei:alert(0.5)
