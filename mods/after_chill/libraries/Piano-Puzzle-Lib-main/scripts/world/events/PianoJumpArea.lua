@@ -12,7 +12,7 @@ end
 
 function PianoJumpArea:update()
     for _, object in ipairs(Game.world.map:getEvents()) do
-        if object:includes(MovingObject) and self:collidesWith(object) and object.jump ~= nil then
+        if object:includes(MovingObject) and self:meetsObject(object) and object.jump ~= nil then
             object:jump()
         end
     end

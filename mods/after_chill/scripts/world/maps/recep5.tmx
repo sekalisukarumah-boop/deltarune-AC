@@ -145,7 +145,7 @@
   </object>
   <object id="31" name="transition" x="3188.67" y="607.333" width="10.6667" height="61.3333">
    <properties>
-    <property name="map" value="recep7"/>
+    <property name="map" value="recep5b"/>
     <property name="marker" value="entranceA"/>
    </properties>
   </object>
