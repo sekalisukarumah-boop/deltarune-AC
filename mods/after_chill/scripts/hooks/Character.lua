@@ -58,8 +58,13 @@ function Character:draw()
    end, "replace", 1)
 
    love.graphics.setStencilTest("greater", 0)
+   local width, height
+   if self.actor then 
+    width = self.actor:getWidth()
+    height = self.actor:getHeight()
+   end 
 
-   love.graphics.translate(self.x - self.width, self.y + self.height * 2)
+   love.graphics.translate(self.x - width, self.y + height * 2)
    love.graphics.scale(1 * scale_x, -1 * scale_y)
 
    love.graphics.setShader(self.fade_out_shader)

@@ -16,12 +16,6 @@ return {
         local snake_1 = cutscene:spawnNPC("snake", 3200, 402)
         local snake_2 = cutscene:spawnNPC("snake", 3110, 475)
         local snake_3 = cutscene:spawnNPC("snake", 3200, 552)
-        snake_1:setSprite("idle_4")
-        snake_2:setSprite("idle_4")
-        snake_3:setSprite("idle_4")
-        snake_1:setScale(2.8)
-        snake_2:setScale(2.8)
-        snake_3:setScale(2.8)
         snake_1.reflections = true 
         snake_2.reflections = true 
         snake_3.reflections = true 
