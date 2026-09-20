@@ -30,6 +30,7 @@ end
 
 function actor:onSpriteUpdate(sprite) 
    -- Logging.info(""..sprite.frame.."")
+    if Game.battle == nil then
     if sprite.frame == 5 or sprite.frame == 4 then
         self.height = 16
     elseif sprite.frame == 6 or sprite.frame == 7 then 
@@ -43,6 +44,7 @@ function actor:onSpriteUpdate(sprite)
     elseif sprite.frame == 3 then 
         self.height = 19
     end 
+end 
 end
 
 return actor
