@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="89" height="18" tilewidth="40" tileheight="40" infinite="0" nextlayerid="19" nextobjectid="209">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="89" height="18" tilewidth="40" tileheight="40" infinite="0" nextlayerid="19" nextobjectid="210">
  <editorsettings>
   <export target="recep5b.lua" format="lua"/>
  </editorsettings>
@@ -132,9 +132,10 @@
     <property name="marker" value="entranceC"/>
    </properties>
   </object>
-  <object id="195" name="warning_spawner" x="1876.79" y="405.076" width="382.642" height="70.6399">
+  <object id="195" name="bead_spawner" x="1876.79" y="405.076" width="361.309" height="70.6399">
    <properties>
-    <property name="lanes" type="float" value="14"/>
+    <property name="bead_y" type="float" value="384"/>
+    <property name="beads" type="float" value="4"/>
    </properties>
   </object>
   <object id="205" name="script" x="2482" y="366.667" width="25.3333" height="146">
@@ -144,7 +145,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup color="#55ff7f" id="17" name="battleareas">
+ <objectgroup color="#55ff7f" id="17" name="battleareas" visible="0">
   <object id="204" x="1881.23" y="404.678" width="378.377" height="65.9729"/>
  </objectgroup>
  <objectgroup color="#ff55ff" id="13" name="objects_party">

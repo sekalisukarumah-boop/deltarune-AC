@@ -10,7 +10,7 @@ return {
   tilewidth = 40,
   tileheight = 40,
   nextlayerid = 19,
-  nextobjectid = 209,
+  nextobjectid = 210,
   properties = {
     ["music"] = "hallway"
   },
@@ -672,17 +672,18 @@ return {
         },
         {
           id = 195,
-          name = "warning_spawner",
+          name = "bead_spawner",
           type = "",
           shape = "rectangle",
           x = 1876.79,
           y = 405.076,
-          width = 382.642,
+          width = 361.309,
           height = 70.6399,
           rotation = 0,
           visible = true,
           properties = {
-            ["lanes"] = 14
+            ["bead_y"] = 384,
+            ["beads"] = 4
           }
         },
         {
@@ -709,7 +710,7 @@ return {
       id = 17,
       name = "battleareas",
       class = "",
-      visible = true,
+      visible = false,
       opacity = 1,
       offsetx = 0,
       offsety = 0,
