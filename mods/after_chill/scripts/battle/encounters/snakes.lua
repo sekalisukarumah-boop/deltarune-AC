@@ -8,7 +8,8 @@ function snakes:init()
 
     self.music = "silly"
     -- Enables the purple grid battle background
-    self.background = false
+    self.snow_background = false
+    self.background = true 
     self:addEnemy("snake", 460, 110)
     self:addEnemy("snake", 430, 200)
     self:addEnemy("snake", 460, 290)

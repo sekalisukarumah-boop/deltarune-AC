@@ -2,6 +2,7 @@ local Encounter, super = HookSystem.hookScript(Encounter)
 
 function Encounter:init(...)
     super.init(self, ...)
+    self.snow_background = true 
 end 
 
 function Encounter:onStateChange(old, new, reason) 
@@ -12,12 +13,12 @@ function Encounter:onStateChange(old, new, reason)
     Game.battle.music:seek(mus)
     self.music = "snowstorm_g"
     end 
-    if self.background then 
+    if self.snow_background then 
     self.bg = SnowflakeBG()
     Game.battle:addChild(self.bg)
     end 
     elseif new == "TRANSITIONOUT" then 
-    if self.background then 
+    if self.snow_background then 
     self.bg:remove()
     end 
     end 

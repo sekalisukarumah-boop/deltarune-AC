@@ -9,6 +9,8 @@ function forced:init()
     -- Enables the purple grid battle background
     self.background = false 
     self.hide_world = false  
+    self.snow_background = false 
+
     self.dialogue_lines = {
     [1] = {
         {"Calm down\n[wait:5]please..!"},
@@ -18,10 +20,11 @@ function forced:init()
         {"I might..."}, 
     }
 }
-    self:addEnemy("ralsei_forced", 543, 264)
+    self:addEnemy("ralsei_forced", 543, 264):addFX(ColorMaskFX(COLORS.black))
 end
 
 function forced:getPartyPosition(i)
+    Game.battle.party[i]:addFX(ColorMaskFX(COLORS.black))
     if i == 1 then 
         return 101, 267
     else 

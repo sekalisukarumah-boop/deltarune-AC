@@ -6,8 +6,9 @@ function shadow:init()
     self.reduced_tension = true 
     self.text = "* [color:yellow]TP[color:reset] restricted outside of [color:green]???[color:reset]\n* (...)"
 
-    self.music = "alarm"
+    self.music = "shadow"
     self.background = false 
+    self.snow_background = false 
     self.hide_world = false 
     self:addEnemy("shadow", 516, 265)
     self.star1 = Sprite("effects/star", -100, 190)

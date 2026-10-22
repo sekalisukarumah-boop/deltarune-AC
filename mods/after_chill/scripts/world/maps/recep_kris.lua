@@ -207,7 +207,7 @@ return {
             ["reflect"] = true,
             ["text1_1"] = "* (Behold. A Statueth of the Supreme Duke of Puzzles.)",
             ["text1_2"] = "* (Thoust Knewest this Would Transpire.)",
-            ["text1_3"] = "* (For some reason[wait:2], you imagined that in an \"Old English\" accent.)",
+            ["text1_3"] = "* (For some reason[wait:2], you imagined that in a broken Shakespearean accent.)",
             ["text2_1"] = "* (...)"
           }
         }

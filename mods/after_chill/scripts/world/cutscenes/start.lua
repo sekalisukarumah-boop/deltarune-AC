@@ -12,12 +12,14 @@ return {
         Game.world.timer:tween(0.5, Game.world.fader, {alpha = 0})
         local kris = cutscene:getCharacter("kris")
         local noelle = cutscene:getCharacter("noelle") 
-        kris:setFacing("up")
+        kris:setAnimation({"piano", 1/12, true})
         noelle:setFacing("up")
         noelle:setPosition(480, 253)
         cutscene:wait(0.8)
         local sfx = Assets.playSound("kris_legend")
-        cutscene:wait(16.3)
+        cutscene:wait(18.3)
+        kris:resetSprite()
+        kris:setFacing("up")
         -- cutscene:wait(cutscene:playSound("pianonoise"))
         -- cutscene:wait(0.2)
         cutscene:text("* W[wait:2]-wow,[wait:2] Kris,[wait:5] that was amazing...", "blush_surprise_smile", "noelle")
@@ -249,8 +251,8 @@ return {
         cutscene:wait(0.2)
         local start_x = noelle.x
         local start_y = noelle.y
-        local target_x = 202
-        local target_y = 121
+        local target_x = 195
+        local target_y = 151
         local arc_height = 40 
         local duration = 0.8  -- Total air-time
         local elapsed_time = 0
@@ -268,10 +270,10 @@ return {
         end)
         cutscene:wait(0.6)
         noelle:setSprite("make_fountain/target_3")
-        noelle:setPosition(183, 181)
+        noelle:setPosition(195, 151)
         cutscene:wait(0.1)
         local n_x, n_y = noelle:getRelativePos(0, 0, Game.world)
-        n_y = n_y + 20
+        n_y = n_y + 25
         local total_stars = 14 
         local spacing = 12           
         local wave_height = 6     
@@ -296,7 +298,7 @@ return {
             end)
             cutscene:wait(delay_per_star)
         end
-        cutscene:wait(cutscene:slideTo(noelle, 184, 269, 0.5, "in-expo"))
+        cutscene:wait(cutscene:slideTo(noelle, 170, 233, 0.5, "in-expo"))
         noelle:setSprite("make_fountain/make_1")
         Game.world:shake(10, 10)
         noelle:setAnimation("make_fountain/make_loop")
@@ -315,7 +317,7 @@ return {
         noelle:setSprite("make_fountain/jump_off_landed")  
         Assets.playSound("bump", 0.6)
         noelle:shake(2)
-        noelle:setPosition(170, 264)
+        noelle:setPosition(113, 214)
         
         cutscene:wait(1)
         local fog = FMCeilingFog()

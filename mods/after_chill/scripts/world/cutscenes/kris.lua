@@ -659,12 +659,19 @@ end
     end 
     end
     local effect = OverworldSnowEffect()
+    local fx = ColorMaskFX(COLORS.black)
+    fx.amount = 0
+    noelle:addFX(fx)
+    ralsei:addFX(fx)
+    Game.world.timer:tween(0.5, fx, {amount = 1})
+    effect.layer = noelle.layer - 0.0001
+    noelle.reflections = false 
+    ralsei.reflections = false 
     Game.world:addChild(effect)
     cutscene:wait(1)
     cutscene:text("* Noelle can't stop attacking...")
     cutscene:wait(cutscene:playSound("halberd_flash"))
     cutscene:text("* [color:yellow]TENSION[color:reset] is high,[wait:2] but [color:blue]draining[color:reset]!")
-    effect:remove()
     cutscene:wait(0.5)
     cutscene:startEncounter("forced", nil, {{"ralsei_forced", ralsei}})
     Game.world.music:play("wind_normal")

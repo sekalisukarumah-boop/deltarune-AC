@@ -86,7 +86,7 @@
     <property name="reflect" type="bool" value="true"/>
     <property name="text1_1" value="* (Behold. A Statueth of the Supreme Duke of Puzzles.)"/>
     <property name="text1_2" value="* (Thoust Knewest this Would Transpire.)"/>
-    <property name="text1_3" value="* (For some reason[wait:2], you imagined that in an &quot;Old English&quot; accent.)"/>
+    <property name="text1_3" value="* (For some reason[wait:2], you imagined that in a broken Shakespearean accent.)"/>
     <property name="text2_1" value="* (...)"/>
    </properties>
    <point/>
