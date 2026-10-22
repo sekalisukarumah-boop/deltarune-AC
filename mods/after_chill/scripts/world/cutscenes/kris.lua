@@ -574,17 +574,23 @@ end
     Game.world.timer:tween(0.25, fx, {amount = 0})
     cutscene:wait(0.5)
     cutscene:text("* Need to...[wait:2][func:shake] freeze...[wait:2][func:shake] more enemies...", "down_smile", "noelle", {functions = {shake = bumpshake}})
-    local ralsei = cutscene:spawnNPC("ralsei", 2173, 535)
+    cutscene:wait(cutscene:fadeOut(0.5))
+
+    cutscene:detachCamera()
+
+    local ralsei = cutscene:spawnNPC("ralsei", 2380, 534)
     ralsei:setFacing("left")
     ralsei.reflections = true 
-    cutscene:wait(cutscene:fadeOut(0.5))
+    cutscene:fadeIn(0.4)
+    Game.world.camera:setPosition(2173, 495)
+    ralsei:walkTo(2170, ralsei.y, 1.5)
+
+    cutscene:wait(1.3)
+
     Game.world:setCameraTarget(ralsei)
     cutscene:attachCamera(0.2)
-    cutscene:wait(cutscene:fadeIn(0.4)) 
-    cutscene:detachCamera()
-    ralsei:walkTo(2170, ralsei.y, 0.7)
+
     cutscene:text("* I can sense a dark presence here...", "disappointed_side", "ralsei")
-    cutscene:attachCamera(0)
     cutscene:wait(0.2)
     cutscene:text("* Maybe the dark fountain is here!", "blush_smile", "ralsei")
     cutscene:text("* I hope Kris is close!", "blush_pleased", "ralsei")
@@ -596,13 +602,11 @@ end
     cutscene:wait(0.5)
     cutscene:detachCamera()
     cutscene:panTo(noelle, 0.6, "out-cubic")
-    cutscene:wait(0.6)
     cutscene:wait(1.5)
     cutscene:panTo(ralsei, 0.6, "out-cubic")
     cutscene:wait(0.6)
     Game.world:setCameraTarget(ralsei)
-    cutscene:attachCamera()
-    cutscene:wait(1)
+    cutscene:wait(cutscene:attachCamera(0.5))
     cutscene:text("* Is that...[wait:8]", "surprise_confused", "ralsei")
     cutscene:text("* N-[wait:2]No, it can't be!", "concern_smile", "ralsei")
     ralsei:walkTo(ralsei.x - 300, ralsei.y, 1)
@@ -670,9 +674,11 @@ end
     Game.world:addChild(effect)
     cutscene:wait(1)
     cutscene:text("* Noelle can't stop attacking...")
-    cutscene:wait(cutscene:playSound("halberd_flash"))
     cutscene:text("* [color:yellow]TENSION[color:reset] is high,[wait:2] but [color:blue]draining[color:reset]!")
     cutscene:wait(0.5)
+    for _, t in ipairs(Game.stage:getObjects(FrozenEnemy)) do 
+        t.visible = false 
+    end 
     cutscene:startEncounter("forced", nil, {{"ralsei_forced", ralsei}})
     Game.world.music:play("wind_normal")
     Game:removePartyMember("noelle")

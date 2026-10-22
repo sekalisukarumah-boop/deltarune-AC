@@ -1,6 +1,11 @@
 local Character, super = HookSystem.hookScript(Character)
 
 function Character:canReflect()
+
+    if self.reflections == false then 
+        return false 
+    end 
+    
     if self:includes(ChaserEnemy) then
         return false
     end
