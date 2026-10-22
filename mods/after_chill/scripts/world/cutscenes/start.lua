@@ -71,7 +71,7 @@ return {
         cutscene:wait(0.5)
         noelle:resetSprite()
         noelle:setFacing("up")
-        cutscene:text("[speed:0.7]* I[wait:2]-I'm going to go check up on my father.", "confused_surprise_b", "noelle")
+        cutscene:text("[speed:0.7]* I[wait:2]-I'm going to go check up on my dad.", "confused_surprise_b", "noelle")
         noelle:setSprite("walk_sad")
         cutscene:wait(cutscene:walkTo(noelle, noelle.x, 296))
         cutscene:wait(cutscene:walkTo(noelle, 178, noelle.y, 2.5))
@@ -272,6 +272,7 @@ return {
         end, function()
             noelle:setPosition(target_x, target_y)
         end)
+
         cutscene:wait(0.6)
         noelle:setSprite("make_fountain/target_3")
         noelle:setPosition(195, 151)
@@ -321,7 +322,7 @@ return {
         noelle:setSprite("make_fountain/jump_off_landed")  
         Assets.playSound("bump", 0.6)
         noelle:shake(2)
-        noelle:setPosition(113, 214)
+        noelle:setPosition(130, 218)
         
         cutscene:wait(1)
         local fog = FMCeilingFog()
