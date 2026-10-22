@@ -89,30 +89,63 @@ return {
             noelle:shake(2)
             noelle:resetSprite()
             noelle:setAnimation("pray")
+
             cutscene:wait(2.2)
             cutscene:text("[noskip][speed:0.7][shake:1]* ...", "down_smile")
             cutscene:wait(1.2)
-            local _, box = cutscene:choicer({"Smile."}, {color = COLORS.red, highlight = COLORS.red, wait = false})
+
+            local _1, box1 = cutscene:choicer({"Proceed"}, {color = COLORS.red, highlight = COLORS.red, wait = false})
             local text_width = 40
-            local centered_x = math.floor((box.width / 2) - (text_width / 2) - 16)
-            box.text_positions = { {centered_x, box.text_positions[1][2]} }
-            local fie = box.heart_positions
-            if fie and fie[1] then
-            local cx = math.floor(centered_x - 22)
-            box.heart_positions = { {cx, math.floor(fie[1][2] - 1)} }
+            local centered_x1 = math.floor((box1.width / 2) - (text_width / 2) - 16)
+            box1.text_positions = { {centered_x1, box1.text_positions[1][2]} }
+            local fie1 = box1.heart_positions
+            if fie1 and fie1[1] then
+                local cx = math.floor(centered_x1 - 22)
+                box1.heart_positions = { {cx, math.floor(fie1[1][2] - 1)} }
             end
-            box.current_choice = 1 
-            cutscene:wait(function() return box:isRemoved() end) 
+            box1.current_choice = 1 
+            cutscene:wait(function() return box1:isRemoved() end) 
             cutscene:closeText()
-            cutscene:text("*[noskip][speed:0.7] Smile...?", "down_smile")
+
+            cutscene:text("*[noskip][speed:0.7] P-[wait:2]proceed...?", "down_smile")
+            Assets.playSound("ominous")
             cutscene:wait(0.5)
-            cutscene:text("*[noskip][speed:0.7] That...[wait:5] that voice.\n* It's back,[wait:3] isn't it?", "down")
+            cutscene:text("*[noskip][speed:0.7] That...[wait:5] that voice.[wait:10]\n* It's back,[wait:3] isn't it?", "down")
             cutscene:wait(0.5)
-            cutscene:text("*[noskip][speed:0.7] It...[wait:5] feels so loud in my head...", "sad_side")
-            cutscene:choicer({"Get\nStronger", "Get\nStronger"}, {color = COLORS.red, highlight = COLORS.red})
-            cutscene:wait(0.2)
-            cutscene:text("*[noskip][speed:0.7] I must keep freezing enemies.[wait:2].[wait:2].", "sad_smile")
-            Assets.playSound("wing")
+
+            local _2, box2 = cutscene:choicer({"Proceed"}, {color = COLORS.red, highlight = COLORS.red, wait = false})
+            local centered_x2 = math.floor((box2.width / 2) - (text_width / 2) - 16)
+            box2.text_positions = { {centered_x2, box2.text_positions[1][2]} }
+            local fie2 = box2.heart_positions
+            if fie2 and fie2[1] then
+                local cx = math.floor(centered_x2 - 22)
+                box2.heart_positions = { {cx, math.floor(fie2[1][2] - 1)} }
+            end
+            box2.current_choice = 1 
+            cutscene:wait(function() return box2:isRemoved() end) 
+            cutscene:closeText()
+
+            Assets.playSound("ominous")
+            cutscene:text("*[noskip][speed:0.7] It...[wait:5] It wants me to freeze more enemies.[wait:2].[wait:2].", "sad_smile")
+            cutscene:wait(0.5)
+
+            local _3, box3 = cutscene:choicer({"Proceed"}, {color = COLORS.red, highlight = COLORS.red, wait = false})
+            local centered_x3 = math.floor((box3.width / 2) - (text_width / 2) - 16)
+            box3.text_positions = { {centered_x3, box3.text_positions[1][2]} } 
+            local fie3 = box3.heart_positions
+            if fie3 and fie3[1] then
+                local cx = math.floor(centered_x3 - 22)
+                box3.heart_positions = { {cx, math.floor(fie3[1][2] - 1)} }
+            end
+            box3.current_choice = 1 
+            cutscene:wait(function() return box3:isRemoved() end) 
+            cutscene:closeText()
+            
+            Assets.playSound("ominous")
+            cutscene:wait(0.5)
+            cutscene:text("*[noskip][speed:0.7] Just like before...[wait:6]\nlead the way,[wait:2] Kris.", "sad_smile")
+            cutscene:choicer({"Go\nForward", "Go\nForward"})
+            Assets.playSound("wing") 
             noelle:shake(2)
             noelle:resetSprite()
             noelle:setSprite("walk_sad")

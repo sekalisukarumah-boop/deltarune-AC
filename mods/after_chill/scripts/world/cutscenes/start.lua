@@ -322,7 +322,7 @@ return {
         noelle:setSprite("make_fountain/jump_off_landed")  
         Assets.playSound("bump", 0.6)
         noelle:shake(2)
-        noelle:setPosition(130, 218)
+        noelle:setPosition(136, 225)
         
         cutscene:wait(1)
         local fog = FMCeilingFog()
