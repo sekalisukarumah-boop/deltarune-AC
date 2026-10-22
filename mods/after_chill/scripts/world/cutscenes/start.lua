@@ -244,6 +244,7 @@ return {
         cutscene:text("* (And stab the ground with all your will and determination.)")
         noelle:setSprite("determined_side")
         Game.world.music:fade(0, 1)
+        fade_overlay:removeFX("mask")
         thing:remove()
         cutscene:wait(cutscene:playSound("locker", 0.7, 1))
         cutscene:text("* This is for you,[wait:5] dad.", "upset_down", "noelle")
