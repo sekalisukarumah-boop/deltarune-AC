@@ -167,7 +167,7 @@ return {
         cutscene:text("* [noskip][sound:ahh]DAD!?", "shock", "noelle")
         local fade_overlay = Rectangle(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)
         fade_overlay.color = COLORS.black
-        fade_overlay.layer = 100 
+        fade_overlay.layer = 100
         fade_overlay.alpha = 0
         Game.world:addChild(fade_overlay)
         local snd = Assets.playSound("wind", 0.5, 1.5)
@@ -204,10 +204,13 @@ return {
         local thing = Game.stage:addChild(Spotlight(sx, sy + 5, {
         width = 60,
         beam_height = 300,
-        base_color = {1, 1, 1, 0.7},
-        top_color = {1, 1, 1, 0},
-        bottom_color = {1, 1, 1, 0.6} 
+        base_color = {1, 1, 1, 0.1},
+        top_color = {1, 1, 1, 0.1},
+        bottom_color = {1, 1, 1, 0.1},
+        base_thickness = 15
         }))
+        local mask = fade_overlay:addFX(MaskFX(thing), "mask")
+        mask.inverted = true
         cutscene:wait(cutscene:playSound("locker", 0.7, 1))
         cutscene:wait(0.8)
         cutscene:text("* Please. Y[wait:2]-you can't be gone now...", "terrified_side", "noelle")
