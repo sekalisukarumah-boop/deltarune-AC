@@ -75,6 +75,7 @@ function ralsei_forced:startSequence()
         Game.battle.seen_encounter_text = false
         Game.battle.current_selecting = 0  
         local ralsei = Game.battle:getEnemyBattler("ralsei_forced")
+        local noelle = Game.battle:getPartyBattler("noelle")
         ralsei.sprite.frozen = true 
         ralsei.sprite.freeze_progress = 0 
         local snd = Assets.playSound("petrify")
@@ -106,6 +107,9 @@ function ralsei_forced:startSequence()
         rtext("* This can't be how\nit all ends..!", 158)
         rtext("* I have to...[wait:3]\nkeep trying!", 213)
         rtext("* I won't let myself...[wait:3] succumb!", 80) 
+        -- Game.stage:getObjects(OverworldSnowEffect)[1]:remove()
+        -- ralsei:removeFX("rfrx")
+        -- noelle:removeFX("nfx")
         cutscene:wait(cutscene:playSound("boost", 0.7)) 
         Game.fader:fadeIn(nil, {speed = 0.5})
         cutscene:wait(1)
@@ -116,25 +120,24 @@ function ralsei_forced:startSequence()
         local me_spr = {}
         for i = 1, 4 do
         local sx, sy = ralsei:getRelativePos(ralsei.width/2, ralsei.height/2) 
-    local spr = Sprite("effects/iceshard_1", sx - 15, sy)
-    spr.alpha = 0.7
-    spr:setScale(2.4) 
-    spr.x = spr.x + love.math.random(-12, 12) 
-    spr.y = spr.y + love.math.random(-12, 12)   
-    if i % 2 == 0 then 
-        spr.physics.direction = math.rad(love.math.random(210, 260))
-    else 
-        spr.physics.direction = math.rad(love.math.random(280, 330))
-    end  
-    spr.physics.speed = love.math.random(4, 6)
-    spr.physics.gravity = love.math.random(0.3, 0.6) 
-    spr:setLayer(ralsei.layer + 1)
-    ralsei.parent:addChild(spr) 
-    table.insert(me_spr, spr)
-end  
+        local spr = Sprite("effects/iceshard_1", sx - 15, sy)
+        spr.alpha = 0.7
+        spr:setScale(2.4) 
+        spr.x = spr.x + love.math.random(-12, 12) 
+        spr.y = spr.y + love.math.random(-12, 12)   
+        if i % 2 == 0 then 
+            spr.physics.direction = math.rad(love.math.random(210, 260))
+        else 
+            spr.physics.direction = math.rad(love.math.random(280, 330))
+        end  
+        spr.physics.speed = love.math.random(4, 6)
+        spr.physics.gravity = love.math.random(0.3, 0.6) 
+        spr:setLayer(ralsei.layer + 1)
+        ralsei.parent:addChild(spr) 
+        table.insert(me_spr, spr)
+        end  
         cutscene:wait(2)
         for _, ib in ipairs(me_spr) do ib:remove() end 
-        local noelle = Game.battle:getPartyBattler("noelle")
         cutscene:wait(0.5)
         cutscene:text("* You're...[wait:5] still here?", "upset_down", "noelle")
         cutscene:wait(0.5)
@@ -142,6 +145,7 @@ end
         cutscene:wait(cutscene:setAnimation(noelle, "battle/spell"))
         Assets.playSound("ice_impact")
         local shield = Game.battle:addChild(Sprite("effects/shield", noelle.x + 73, noelle.y - 98)) 
+        shield:addFX(ColorMaskFX(COLORS.black))
         shield:setScale(2)
         shield.scale_x = -2
         shield:play(1/6, false)

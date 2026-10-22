@@ -669,10 +669,11 @@ end
     ralsei:addFX(fx)
     Game.world.timer:tween(0.5, fx, {amount = 1})
     effect.layer = noelle.layer - 0.0001
-    noelle.reflections = false 
     ralsei.reflections = false 
     Game.world:addChild(effect)
-    cutscene:wait(1)
+    cutscene:wait(0.25)
+    noelle.reflections = false 
+    cutscene:wait(0.75)
     cutscene:text("* Noelle can't stop attacking...")
     cutscene:text("* [color:yellow]TENSION[color:reset] is high,[wait:2] but [color:blue]draining[color:reset]!")
     cutscene:wait(0.5)

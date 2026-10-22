@@ -44,7 +44,6 @@ function Mod:init()
         encounter = data.properties.encounter
     })
     end)
-    -- make sure i didnt break SHit
     print("Loadedfhdsf " .. self.info.name .. "!")
 end
 

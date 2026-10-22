@@ -20,11 +20,21 @@ function forced:init()
         {"I might..."}, 
     }
 }
-    self:addEnemy("ralsei_forced", 543, 264):addFX(ColorMaskFX(COLORS.black))
+    self:addEnemy("ralsei_forced", 543, 264):addFX(ColorMaskFX(COLORS.black), "rfrx")
 end
 
+function forced:update()
+    super.update(self)
+      for _, a in ipairs(Game.stage:getObjects(AfterImage)) do
+        -- Only add the effect if they don't already have it to avoid memory bloat
+        if not a:getFX("black_mask") then
+            a:addFX(ColorMaskFX(COLORS.black), "black_mask")
+        end
+    end
+end 
+
 function forced:getPartyPosition(i)
-    Game.battle.party[i]:addFX(ColorMaskFX(COLORS.black))
+    Game.battle.party[i]:addFX(ColorMaskFX(COLORS.black), "nfx")
     if i == 1 then 
         return 101, 267
     else 
