@@ -7,11 +7,17 @@ function Bouquet:init(x, y)
     self.spr_amount = 100
 
     self.top_sprite = Sprite("bouquet/top", 0, 0)
+    self.top_sprite.debug_select = false 
     self:addChild(self.top_sprite)
     self.top_sprite:setOrigin(0.5, 0.5)
     self.top_sprite:setScale(4)
 
+    self.width = (self.top_sprite.width) * 4
+    self:setOrigin(0.5, 0.5)
+    self.height = (self.top_sprite.height) * 4
+
     self.c_sprite = Sprite("bouquet/container", 0, math.floor(self.top_sprite.y - (-6 * self.top_sprite.scale_x / -2)))
+    self.c_sprite.debug_select = false 
     self:addChild(self.c_sprite)
     self.c_sprite:setOrigin(0.5, 0.5)
     self.c_sprite:setScale(4)
@@ -19,43 +25,45 @@ function Bouquet:init(x, y)
     self:fillWithSprites({"enemies/peonie/idle"})
 end
 
+function Bouquet:getDebugRectangle()
+    return {-self.width/2, -self.height/2, self.width, self.height}
+end
+
 function Bouquet:fillWithSprites(tbl)
-    local rx = (self.top_sprite.width * self.top_sprite.scale_x) / 2
-    local ry = ((self.top_sprite.height) * self.top_sprite.scale_y) / 2
-    local pad_x = 26
-    local pad_y = 14
-    rx = rx - pad_x
-    ry = ry - pad_y
+    local visual_rx = (self.top_sprite.width * self.top_sprite.scale_x) / 2
+    local visual_ry = (self.top_sprite.height * self.top_sprite.scale_y) / 2
+    local pad_x = 40
+    local pad_y = 40
 
     local spacing_x = 22
     local spacing_y = 18
 
-    for grid_y = -ry, ry, spacing_y do
-        if grid_y > ry * 0.85 then 
-            break 
-        end
+    local min_x = -visual_rx + pad_x
+    local max_x =  visual_rx - pad_x
+    local min_y = -visual_ry + pad_y
+    local max_y =  visual_ry - pad_y
 
-        for grid_x = -rx, rx, spacing_x do
+    for grid_y = min_y, max_y, spacing_y do
+        for grid_x = min_x, max_x, spacing_x do
             local jitter_x = love.math.random(-4, 4)
             local jitter_y = love.math.random(-4, 4)
             
             local final_x = grid_x + jitter_x
             local final_y = grid_y + jitter_y
-
-            if ((final_x * final_x) / (rx * rx)) + ((final_y * final_y) / (ry * ry)) <= 1 then
+            if final_x >= min_x and final_x <= max_x and final_y >= min_y and final_y <= max_y then
                 local path = TableUtils.pick(tbl) 
-                
-                local spr = Sprite(path, final_x, final_y - 16)
+                local spr = Sprite(path, final_x, final_y)
+                spr.debug_select = false 
                 self:addChild(spr)
                 spr:setScale(1)
                 spr.rotation = math.rad(love.math.random(-45, 45))
                 spr:setOrigin(0.5, 0.5)
-                
                 spr:setLayer(self.top_sprite.layer - 1)
             end
         end
     end
 end
+
 
 function Bouquet:doBreak(snd, ex, ey)
     if snd then Assets.playSound(snd) end 
