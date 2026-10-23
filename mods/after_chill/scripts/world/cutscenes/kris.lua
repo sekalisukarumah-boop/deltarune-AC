@@ -588,7 +588,7 @@ end
     cutscene:wait(1.3)
 
     Game.world:setCameraTarget(ralsei)
-    cutscene:attachCamera(0.2)
+    cutscene:attachCamera(0)
 
     cutscene:text("* I can sense a dark presence here...", "disappointed_side", "ralsei")
     cutscene:wait(0.2)
@@ -687,8 +687,8 @@ end
     cutscene:wait(cutscene:loadMap("recep3"))
     local kris = cutscene:getCharacter("kris")
     kris:setPosition(61, 345)
+    kris:setFacing("right")
     Game.fader:fadeIn(nil, {speed = 1})
     cutscene:wait(1)
-    cutscene:wait(cutscene:playSound("ominous"))
     end 
 }
