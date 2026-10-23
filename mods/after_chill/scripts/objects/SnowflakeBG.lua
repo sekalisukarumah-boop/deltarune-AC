@@ -1,8 +1,10 @@
 local SnowflakeBG, super = Class(BattleBackground)
 
 function SnowflakeBG:init()
-    super.init(self)
+    super.init(self, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)
     self.timer = 0
+
+    self.flakes = {}
 
     local bottom_vertices = {
         {0,   480, 0, 0,  0.4, 0.7, 0.9, 0.5}, 
@@ -34,19 +36,28 @@ function SnowflakeBG:spawnFlake(init)
     f.start_x = love.math.random(0, 100)
     f.sway_speed = love.math.random(1, 3)
     f.sway_width = love.math.random(8, 15)       
+    
     self:addChild(f)
+    table.insert(self.flakes, f) 
 end
 
 function SnowflakeBG:update()
     super.update(self)
     self.timer = self.timer + DT
 
-    for _, f in ipairs(self.children) do
-        f.physics.speed_x = math.sin(self.timer * f.sway_width)  * MathUtils.random(1, 1.3)
-        f.alpha = self.alpha * 0.35
-        if f.y > 500 then
-            f:remove()
-            self:spawnFlake(false)
+    for i = #self.flakes, 1, -1 do
+        local f = self.flakes[i]
+        if f.stage then
+            f.physics.speed_x = math.sin(self.timer * f.sway_width) * MathUtils.random(1, 1.3)
+            f.alpha = self.alpha * 0.35
+            
+            if f.y > 500 then
+                f:remove()
+                table.remove(self.flakes, i)
+                self:spawnFlake(false)
+            end
+        else
+            table.remove(self.flakes, i)
         end
     end
 end
@@ -56,7 +67,8 @@ function SnowflakeBG:draw()
     love.graphics.setBlendMode("add", "alphamultiply")
     love.graphics.setColor(1, 1, 1, self.alpha)
     love.graphics.draw(self.glow_mesh, 0, -110)
-    love.graphics.setBlendMode("alpha")
+    love.graphics.setBlendMode("alpha", "alphamultiply")
+    love.graphics.setColor(1, 1, 1, 1)
 end
 
 return SnowflakeBG
