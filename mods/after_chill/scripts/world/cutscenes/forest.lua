@@ -196,4 +196,15 @@ return {
         kris:resetSprite()
         kris:setFacing("up")
     end,
+
+    bouquet = function(cutscene)
+        if not Game:hasPartyMember("ralsei") then 
+            cutscene:text("* (...You can hear glass breaking.)")
+            cutscene:text("* (Seems more enemies wait up\nfor you ahead.)")
+            if Game:getPartyMember("kris"):hasRupture() then 
+                cutscene:text("* (Use [color:red]RUPTURE[color:reset] to finish them off!)")
+            end 
+            return 
+        end 
+    end, 
 }

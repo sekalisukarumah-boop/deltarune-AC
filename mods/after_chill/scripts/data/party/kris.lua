@@ -1,5 +1,9 @@
 local character, super = Class(PartyMember, "kris")
 
+function character:hasRupture()
+    return self:getTitle() == "LV ? Vessel\nHelpless against\nyour will."
+end 
+
 function character:init()
     super.init(self)
 
