@@ -10,6 +10,7 @@ function ralsei:init()
     self.music = "ralsei_v"
     -- Enables the purple grid battle background
     self.background = false 
+    self.snow_background = false 
     self.hide_world = false 
 
     -- Add the dummy enemy to the encounter

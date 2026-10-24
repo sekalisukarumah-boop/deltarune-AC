@@ -15,7 +15,7 @@ function Basic:onStart()
     self.timer:everyInstant(1.8, function()
         if not Game.battle.soul then return end
         local ralsei = self:getAttackers()[1]
-        ralsei:setAnimation("spell", function()
+        ralsei:setAnimation("spell")
         Assets.playSound("alert")
         local pacify_x, pacify_y = Game.battle.soul:getRelativePos(Game.battle.soul.width/2, Game.battle.soul.height/2, Game.battle)
         local z = self:spawnSprite("effects/spare/z", pacify_x, pacify_y, Game.battle.soul.layer + 0.01)
@@ -36,7 +36,6 @@ function Basic:onStart()
             z.tiredness = 24 
         end, 8)
     end) 
-end)
 end)
 end
 
