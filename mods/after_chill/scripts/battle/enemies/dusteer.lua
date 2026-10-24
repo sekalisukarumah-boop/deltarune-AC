@@ -15,7 +15,7 @@ function dusteer:init()
     self.wave_index = 1
 
     self.waves = { 
-        "reinfrost/gallop", 
+        "reinfrost/gallop",
         "reinfrost/snow_graze"
     }
     self.dialogue = {"*neigh*", "Don't slip on\nthe tracks.", "It's snow problem."} 

@@ -363,7 +363,7 @@ function ralsei:setHardMode()
     self.check = "AT 14 DF 12\n* Standing in your way. \n* FIGHT him to his demise."
     self.health = 500 
     self.max_health = 500
-    if Game.battle:getPartyBattler("kris").chara:checkWeapon("sharp_syringe") then  
+    if Game.battle:getPartyBattler("kris").chara:checkWeapon("sharp_syringe") then
     self.defense = self.defense + 17
     self.attack = self.attack + 3
     else 

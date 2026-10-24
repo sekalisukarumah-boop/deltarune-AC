@@ -204,9 +204,9 @@ return {
         local thing = Game.stage:addChild(Spotlight(sx, sy + 5, {
         width = 60,
         beam_height = 300,
-        base_color = {1, 1, 1, 0.1},
-        top_color = {1, 1, 1, 0.1},
-        bottom_color = {1, 1, 1, 0.1},
+        base_color = {1, 1, 1, 0.01},
+        top_color = {1, 1, 1, 0.01},
+        bottom_color = {1, 1, 1, 0.01},
         base_thickness = 15
         }))
         local mask = fade_overlay:addFX(MaskFX(thing), "mask")

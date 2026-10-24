@@ -1,7 +1,7 @@
 return {
     ---@param cutscene WorldCutscene
   sell = function(cutscene, event)
-    Kristal.Console:warn(event.interact_count)
+    Logging.warnNotify(event.interact_count)
     local function checkMoney()
         if Game.money >= 140 then
             Game.money = Game.money - 140
