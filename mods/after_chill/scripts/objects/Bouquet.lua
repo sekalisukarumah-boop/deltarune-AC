@@ -64,16 +64,20 @@ function Bouquet:fillWithSprites(tbl)
     end
 end
 
+-- doBreak(-115, -76, "break_2")
+-- doBreak(-60, -23, "break_1")
 
-function Bouquet:doBreak(snd, ex, ey)
-    if snd then Assets.playSound(snd) end 
-    self:shake()
+function Bouquet:doBreak(ex, ey, spr)
+    Assets.playSound("explosion", 0.7, 1.1)
+    self:shake(6)
+    Game.stage.timer:after(0.3, function() Assets.stopSound("explosion") end)
     local exp = Sprite("effects/firespell/explosion/spr_omegaflowery_explosion_a", ex, ey)
-    self:addChild(exp)
-    exp:setScale(0.2)
+    self.top_sprite.parent:addChild(exp)
+    exp:setScale(0.6)
     exp:play(0.05, false, function() exp:remove() end)
     exp:setLayer(9999)
- --   self.top_sprite:setSprite("crack_1")
+    spr = spr or "break_1"
+    self.top_sprite:setSprite("bouquet/" .. spr) 
 end 
 
 
