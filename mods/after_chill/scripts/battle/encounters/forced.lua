@@ -26,7 +26,6 @@ end
 function forced:update()
     super.update(self)
       for _, a in ipairs(Game.stage:getObjects(AfterImage)) do
-        -- Only add the effect if they don't already have it to avoid memory bloat
         if not a:getFX("black_mask") then
             a:addFX(ColorMaskFX(COLORS.black), "black_mask")
         end

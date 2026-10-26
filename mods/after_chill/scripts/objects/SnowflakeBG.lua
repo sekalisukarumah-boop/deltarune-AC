@@ -5,14 +5,18 @@ function SnowflakeBG:init()
     self.timer = 0
 
     self.flakes = {}
-
     local bottom_vertices = {
+        {0,   320, 0, 0,  0.4, 0.7, 0.9, 0.0}, 
+        {640, 320, 0, 0,  0.4, 0.7, 0.9, 0.0}, 
+        
         {0,   480, 0, 0,  0.4, 0.7, 0.9, 0.5}, 
         {640, 480, 0, 0,  0.4, 0.7, 0.9, 0.5}, 
-        {640, 320, 0, 0,  0.4, 0.7, 0.9, 0.0}, 
-        {0,   320, 0, 0,  0.4, 0.7, 0.9, 0.0}, 
+
+        {0,   640, 0, 0,  0.4, 0.7, 0.9, 0.5}, 
+        {640, 640, 0, 0,  0.4, 0.7, 0.9, 0.5}, 
     }
-    self.glow_mesh = love.graphics.newMesh(bottom_vertices, "fan", "static")
+
+    self.glow_mesh = love.graphics.newMesh(bottom_vertices, "strip", "static")
 
     for i = 1, 20 do
         self:spawnFlake(true)
@@ -27,7 +31,7 @@ function SnowflakeBG:spawnFlake(init)
     local scale = love.math.random(8, 12) / 10
     f:setScale(scale)
     f:setOrigin(0.5, 0.5)
-    f:setColor(0.8, 0.95, 1, 0)
+    f:setColor(0.8, 0.95, 1, 0.35) -- Set your baseline alpha directly here
     f.physics.speed_y = love.math.random(8, 12)
     f.physics.gravity = 0.5                      
     f.physics.friction = 0.02                    
@@ -36,6 +40,9 @@ function SnowflakeBG:spawnFlake(init)
     f.start_x = love.math.random(0, 100)
     f.sway_speed = love.math.random(1, 3)
     f.sway_width = love.math.random(8, 15)       
+    
+    -- Custom timer variable so it doesn't spawn an afterimage every single frame
+    f.trail_timer = 0
     
     self:addChild(f)
     table.insert(self.flakes, f) 
@@ -49,7 +56,14 @@ function SnowflakeBG:update()
         local f = self.flakes[i]
         if f.stage then
             f.physics.speed_x = math.sin(self.timer * f.sway_width) * MathUtils.random(1, 1.3)
-            f.alpha = self.alpha * 0.35
+            f.trail_timer = f.trail_timer + DT
+            if f.trail_timer >= 0.05 then
+                local trail = AfterImage(f, 0.6, 0.1)
+                self:addChild(trail)
+                trail.debug_select = false
+                trail:addFX(ColorMaskFX(COLORS.white, 0.6))   
+                f.trail_timer = 0
+            end
             
             if f.y > 500 then
                 f:remove()

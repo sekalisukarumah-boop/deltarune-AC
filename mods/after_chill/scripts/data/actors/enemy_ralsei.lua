@@ -5,11 +5,11 @@ function actor:init()
     self.name = "Ralsei"
 
     -- Width and height for this actor, used to determine its center
-    self.width = 19
-    self.height = 40
+    self.width = 28
+    self.height = 46
 
     -- Hitbox for this actor in the overworld (optional, uses width and height by default)
-    self.hitbox = {1, 28, 19, 14}
+   -- self.hitbox = {1, -4, 19, 14}
     
     -- A table that defines where the Soul should be placed on this actor if they are a player.
     -- First value is x, second value is y.

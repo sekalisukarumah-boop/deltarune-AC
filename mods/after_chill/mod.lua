@@ -4,6 +4,22 @@ function Mod:init()
         ["bloom_f"] = 0.4,
         ["fate"]    = 3, 
     }
+    self.mask_shader = love.graphics.newShader[[
+        vec4 effect(vec4 color, Image texture, vec2 texture_coords, vec2 screen_coords) {
+            if (Texel(texture, texture_coords).a == 0.0) {
+                discard;
+            }
+            return vec4(1.0);
+        }
+    ]]
+
+    self.fade_out_shader = love.graphics.newShader[[
+        vec4 effect(vec4 color, Image texture, vec2 texture_coords, vec2 screen_coords) {
+            float fade = mix(0.0, 1.0, texture_coords.y);
+
+            return Texel(texture, texture_coords) * color * vec4(1.0, 1.0, 1.0, fade * 0.3);
+        }
+    ]]
     Game:registerEvent("squeak", function(data)
         return Squeak(data.x, data.y, {data.width, data.height, data.polygon})
     end)

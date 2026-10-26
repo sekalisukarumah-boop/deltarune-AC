@@ -13,8 +13,10 @@ function ralsei:init()
     self.snow_background = false 
     self.hide_world = false 
 
+    self.reflections = true 
+
     -- Add the dummy enemy to the encounter
-    self:addEnemy("ralsei", 533, 271)
+    self:addEnemy("ralsei", 533, 282)
 
 
     --- Uncomment this line to add another!
