@@ -18,9 +18,9 @@ function SmallBullet:update()
     super.update(self)
     if not self.has_stopped then
         if self.timer >= 0 then
-            self.timer = self.timer - 1
+            self.timer = self.timer - DT
         elseif self.timer < 0 then
-            self.timer = 8
+            self.timer = 0.12
             local b = self.wave:spawnBullet("ralsei/smallflame", self.x, self.y, 0, 0)
             table.insert(self.my_trail, b)
             Assets.stopAndPlaySound("noise")
