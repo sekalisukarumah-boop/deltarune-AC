@@ -30,6 +30,8 @@ function Bouquet:init(x, y)
     self.c_sprite:setOrigin(0.5, 0.5)
     self.c_sprite:setScale(4)
 
+    self.sprites = {}
+
     self:fillWithSprites({"enemies/peonie/idle"})
 end
 
@@ -40,8 +42,8 @@ end
 function Bouquet:fillWithSprites(tbl)
     local visual_rx = (self.top_sprite.width * self.top_sprite.scale_x) / 2
     local visual_ry = (self.top_sprite.height * self.top_sprite.scale_y) / 2
-    local pad_x = 40
-    local pad_y = 40
+    local pad_x = 45
+    local pad_y = 45
 
     local spacing_x = 22
     local spacing_y = 18
@@ -59,14 +61,15 @@ function Bouquet:fillWithSprites(tbl)
             local final_x = grid_x + jitter_x
             local final_y = grid_y + jitter_y
             if final_x >= min_x and final_x <= max_x and final_y >= min_y and final_y <= max_y then
-                local path = TableUtils.pick(tbl) 
+                local path = TableUtils.pick(tbl)
                 local spr = Sprite(path, final_x, final_y)
-                spr.debug_select = false 
+                spr.debug_select = false
                 self:addChild(spr)
                 spr:setScale(1)
                 spr.rotation = math.rad(love.math.random(-45, 45))
                 spr:setOrigin(0.5, 0.5)
                 spr:setLayer(self.top_sprite.layer - 1)
+                table.insert(self.sprites, spr)
             end
         end
     end
@@ -88,22 +91,31 @@ end
 
 function Bouquet:doFinal()
     Assets.playSound("glassbreak", 1.2, 1)
+    self.c_sprite:remove()
     self.top_sprite:setSprite("bouquet/top_piece")
     local bot_sprite = self:addChild(Sprite("bouquet/bottom_piece"))
+    bot_sprite.layer = self.top_sprite.layer - 1
     bot_sprite:setScale(4)
     bot_sprite:setOrigin(0.5)
     bot_sprite.physics.direction = math.rad(225)
     self.top_sprite.physics.direction = math.rad(45)
-    bot_sprite.physics.speed = 1
-    self.top_sprite.physics.speed = 1
+    bot_sprite.physics.speed = 0.25
+    self.top_sprite.physics.speed = 0.25
     Game.world.timer:after(1.5, function()
+        Game.world.timer:after(0.75, function()
+            for _, peonie in ipairs(self.sprites) do
+                peonie.physics.gravity = MathUtils.random(0.05, 0.1)
+            end
+        end)
+        self.top_sprite.physics.speed = 1
         self.top_sprite.physics.direction = 0
+        bot_sprite.physics.speed = 1
         bot_sprite.physics.direction = math.rad(180)
         self.top_sprite.physics.gravity = 0.1
-        bot_sprite.physics.gravity = 0.3
+        bot_sprite.physics.gravity = 0.1
         Assets.playSound("fall", 0.8, 0.75)
-        Game.world.timer:tween(2, self.top_sprite, {rotation = math.rad(70)}, "in-quart")
-        Game.world.timer:tween(2, bot_sprite, {rotation = math.rad(-70)}, "in-quart")
+        Game.world.timer:tween(3, self.top_sprite, {rotation = math.rad(70)}, "in-quart")
+        Game.world.timer:tween(3, bot_sprite, {rotation = math.rad(-70)}, "in-quart")
     end)
 end
 

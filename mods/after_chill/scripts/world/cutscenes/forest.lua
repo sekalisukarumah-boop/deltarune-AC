@@ -214,11 +214,11 @@ return {
             cutscene:text("* It sounded like...", "pensive", ral)
             cutscene:text("* Sparkling?", "surprise_smile", ral)
             Game.world.camera.keep_in_bounds = false
-            cutscene:panTo(Game.world.camera.x, Game.world.camera.y - 280, 2.5)
+            cutscene:panTo(Game.world.camera.x, Game.world.camera.y - 260, 2.5)
             cutscene:wait(3)
             local siner = 0
             local hover = true
-            local bouquet = Game.world:addChild(Bouquet(Game.world.camera.x + 160, Game.world.camera.y - 230))
+            local bouquet = Game.world:addChild(Bouquet(Game.world.camera.x + 100, Game.world.camera.y - 230))
             bouquet.layer = WORLD_LAYERS["below_textbox"]
             local cm = bouquet:addFX(ColorMaskFX({1,1,1}, 1))
             Game.world.timer:tween(4, cm, {amount = 0})
@@ -247,6 +247,8 @@ return {
             bouquet:doFinal()
             cutscene:wait(3)
             cutscene:text("* Holy hell Kris did you see that?", "shock_smile", ral, {top = false})
+            cutscene:wait(1)
+            cutscene:attachCamera(0.75)
             cutscene:wait(1)
             Game.world.camera.keep_in_bounds = true
         end 
