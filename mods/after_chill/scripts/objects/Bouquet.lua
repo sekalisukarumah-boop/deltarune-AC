@@ -90,33 +90,47 @@ function Bouquet:doBreak(ex, ey, spr)
 end
 
 function Bouquet:doFinal()
-    Assets.playSound("glassbreak", 1.2, 1)
+    Assets.playSound("glassbreak", 0.8, 0.9)
+    self:shake(12)
+    
     self.c_sprite:remove()
     self.top_sprite:setSprite("bouquet/top_piece")
+    
     local bot_sprite = self:addChild(Sprite("bouquet/bottom_piece"))
     bot_sprite.layer = self.top_sprite.layer - 1
     bot_sprite:setScale(4)
     bot_sprite:setOrigin(0.5)
-    bot_sprite.physics.direction = math.rad(225)
-    self.top_sprite.physics.direction = math.rad(45)
-    bot_sprite.physics.speed = 0.25
-    self.top_sprite.physics.speed = 0.25
-    Game.world.timer:after(1.5, function()
-        Game.world.timer:after(0.75, function()
-            for _, peonie in ipairs(self.sprites) do
-                peonie.physics.gravity = MathUtils.random(0.05, 0.1)
+    bot_sprite.physics.direction = math.rad(210) 
+    self.top_sprite.physics.direction = math.rad(30)        
+    Assets.playSound("fall", 0.7, 0.6)
+    
+    bot_sprite.physics.speed = 6
+    self.top_sprite.physics.speed = 6
+    for i, peonie in ipairs(self.sprites) do
+        Game.world.timer:after(MathUtils.random(0, 0.15), function()
+            if peonie.x < 0 then
+                peonie.physics.direction = math.rad(MathUtils.random(140, 210))
+            else
+                peonie.physics.direction = math.rad(MathUtils.random(-30, 40))
             end
+
+            peonie.physics.speed = MathUtils.random(5, 9)
+            peonie.physics.gravity = MathUtils.random(0.15, 0.3)
+            Game.world.timer:tween(2, peonie, {rotation = peonie.rotation + MathUtils.random(-5, 5)}, "out-cubic")
         end)
-        self.top_sprite.physics.speed = 1
-        self.top_sprite.physics.direction = 0
-        bot_sprite.physics.speed = 1
-        bot_sprite.physics.direction = math.rad(180)
-        self.top_sprite.physics.gravity = 0.1
-        bot_sprite.physics.gravity = 0.1
-        Assets.playSound("fall", 0.8, 0.75)
-        Game.world.timer:tween(3, self.top_sprite, {rotation = math.rad(70)}, "in-quart")
-        Game.world.timer:tween(3, bot_sprite, {rotation = math.rad(-70)}, "in-quart")
+    end
+
+    Game.world.timer:tween(0.4, self.top_sprite.physics, {speed = 1}, "out-quad")
+    Game.world.timer:tween(0.4, bot_sprite.physics, {speed = 1}, "out-quad")
+    
+    Game.world.timer:after(0.4, function()
+        self.top_sprite.physics.gravity = 0.4
+        bot_sprite.physics.gravity = 0.4
+        
+        Game.world.timer:tween(2, self.top_sprite, {rotation = math.rad(120)}, "in-cubic")
+        Game.world.timer:tween(2, bot_sprite, {rotation = math.rad(-120)}, "in-cubic")
     end)
 end
+
 
 return Bouquet

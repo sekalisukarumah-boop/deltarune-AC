@@ -206,51 +206,69 @@ return {
             end 
             return
         else
+            cutscene:setTextboxTop(false)
             local ral = cutscene:getCharacter("ralsei")
+            local kris = cutscene:getCharacter("kris")
             Assets.playSound("stardrop", 0.5)
             cutscene:wait(0.5)
+            local nx, ny = Game.world.camera:getPosition()
             cutscene:text("* Did you hear that,[wait:5] Kris?", "small_smile_side_b", ral)
             cutscene:wait()
             cutscene:text("* It sounded like...", "pensive", ral)
             cutscene:text("* Sparkling?", "surprise_smile", ral)
+            ral:setFacing("up")
+            kris:setFacing("up")
             Game.world.camera.keep_in_bounds = false
             cutscene:panTo(Game.world.camera.x, Game.world.camera.y - 260, 2.5)
             cutscene:wait(3)
             local siner = 0
             local hover = true
-            local bouquet = Game.world:addChild(Bouquet(Game.world.camera.x + 100, Game.world.camera.y - 230))
+            local bouquet = Game.world:addChild(Bouquet(Game.world.camera.x + 100, Game.world.camera.y - 330))
             bouquet.layer = WORLD_LAYERS["below_textbox"]
-            local cm = bouquet:addFX(ColorMaskFX({1,1,1}, 1))
+            local cm = bouquet:addFX(ColorMaskFX({1,1,1}))
             Game.world.timer:tween(4, cm, {amount = 0})
-            local c_y = bouquet.c_sprite.y
-            local i =  bouquet.y + 400
-            bouquet:slideTo(bouquet.x, i, 4)
+            local start_y = bouquet.y
+            local target_y = bouquet.y + 490
+            local slide_duration = 5
+            local timer = 0
+
             cutscene:during(function()
-                if not hover then bouquet.y = i return false end
-                siner = siner + DT
-                bouquet.y = Utils.wave(siner * 1.5, -25, 25)
+                timer = timer + DT
+                local progress = math.min(timer / slide_duration, 1)
+                local current_baseline = Utils.lerp(start_y, target_y, progress)
+                local hover_offset = 0
+                if hover then
+                    siner = siner + DT
+                    hover_offset = Utils.wave(siner * 1.5, -25, 25)
+                end
+                bouquet.y = current_baseline + hover_offset
+                if timer >= 8 then return false end
             end)
+
             cutscene:wait(8)
             hover = false
+
             for i = 1, 5 do
                 Assets.playSound("bump")
                 bouquet:shake(4)
                 cutscene:wait(1 - i*0.15)
             end
+
             cutscene:wait(1)
             bouquet:doBreak(-60, -23, "break_1")
             cutscene:wait(2)
-            cutscene:text("* Ah,[wait:5] shit.[wait:15] It's go time.", "surprise_confused", ral, {top = false})
+            cutscene:text("* K[wait:2]-Kris,[wait:5] maybe we should step back...?", "surprise_confused", ral)
             cutscene:wait(1)
             bouquet:doBreak(-115, -76, "break_2")
             cutscene:wait(2)
             bouquet:doFinal()
             cutscene:wait(3)
-            cutscene:text("* Holy hell Kris did you see that?", "shock_smile", ral, {top = false})
+            cutscene:text("* ", "shock_smile", ral)
             cutscene:wait(1)
-            cutscene:attachCamera(0.75)
+            cutscene:panTo(nx, ny, 1)
             cutscene:wait(1)
-            Game.world.camera.keep_in_bounds = true
+            cutscene:attachCamera()
+            Game.world.camera.keep_in_bounds = true 
         end 
     end, 
 }
