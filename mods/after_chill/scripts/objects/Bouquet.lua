@@ -1,6 +1,14 @@
 ---@class Bouquet : Object
 local Bouquet, super = Class(Object)
 
+--- for anyone here, the code below shows the x & y values for the doBreak helper function, ensuring
+--- that the explosion effect is at the right place. (also i was bored :p)
+
+-- doBreak(-115, -76, "break_2")
+-- doBreak(-60, -23, "break_1")
+
+-- fyi it should do three breaks?  but the third break is it shattering into two pieces so like ye lol 
+
 function Bouquet:init(x, y)
     super.init(self, x, y)
 
@@ -63,9 +71,6 @@ function Bouquet:fillWithSprites(tbl)
         end
     end
 end
-
--- doBreak(-115, -76, "break_2")
--- doBreak(-60, -23, "break_1")
 
 function Bouquet:doBreak(ex, ey, spr)
     Assets.playSound("explosion", 0.7, 1.1)
