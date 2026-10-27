@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="40" tileheight="40" infinite="0" backgroundcolor="#13132b" nextlayerid="11" nextobjectid="158">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="40" tileheight="40" infinite="0" backgroundcolor="#13132b" nextlayerid="11" nextobjectid="172">
  <editorsettings>
   <export target="recep3.lua" format="lua"/>
  </editorsettings>
@@ -243,10 +243,10 @@
 0,0,0,0,0,0,0,0,0,0,65,66,67,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,65,66,67,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,65,66,67,0,0,0,0,0,0,0,0,0,0,0,0,340,340,0,0,340,340,0,0,0,0,0,0,0,0,263,264,264,264,265,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,65,66,67,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,301,302,302,302,303,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,65,66,67,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,320,321,321,321,322,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,84,85,86,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,320,255,256,257,322,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,103,104,105,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,259,320,274,275,276,322,261,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,65,66,67,0,0,263,264,265,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,301,302,302,302,303,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,65,66,67,0,0,282,283,284,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,320,321,321,321,322,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,84,85,86,0,0,301,302,303,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,320,255,256,257,322,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,103,104,105,0,0,320,321,322,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,259,320,274,275,276,322,261,0,0,0,0,0,
 0,0,0,0,0,0,0,263,264,264,283,283,283,264,264,264,264,264,265,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,278,225,293,294,295,227,280,0,0,0,0,0,
 0,0,0,0,0,0,0,282,283,283,283,283,283,283,283,283,283,283,284,0,0,0,0,0,0,0,0,65,67,0,0,0,0,0,0,0,0,0,278,279,279,279,279,279,280,0,0,0,0,0,
 0,0,0,0,0,0,0,282,283,283,283,283,283,283,283,283,283,283,284,62,63,64,64,64,64,64,64,3758096469,3758096469,64,64,64,64,64,64,64,64,64,278,279,279,279,279,279,280,0,0,0,0,0,
@@ -350,7 +350,7 @@
    </properties>
    <polygon points="0,0 754,0 754,79.0909 0,79.0909"/>
   </object>
-  <object id="142" name="enemy" x="456.25" y="763.75" width="31.5" height="28.5">
+  <object id="142" name="enemy" x="329.25" y="724.75" width="31.5" height="28.5">
    <properties>
     <property name="actor" value="dusteer"/>
     <property name="chase" type="bool" value="true"/>
@@ -421,8 +421,28 @@
    </properties>
    <point/>
   </object>
+  <object id="166" name="keypad" x="1698.42" y="617.909" width="18.7273" height="42.2728">
+   <properties>
+    <property name="door_target" type="object" value="167"/>
+    <property name="keypad" type="object" value="168"/>
+    <property name="num1" type="float" value="0"/>
+    <property name="num2" type="float" value="0"/>
+    <property name="num3" type="float" value="8"/>
+    <property name="num4" type="float" value="6"/>
+    <property name="transition" type="object" value="41"/>
+   </properties>
+  </object>
+  <object id="167" gid="365" x="1626.75" y="680.5" width="66" height="96.3333"/>
+  <object id="168" gid="366" x="1699.18" y="638.409" width="18" height="20"/>
+  <object id="169" gid="326" x="660.558" y="624.914" width="42" height="42"/>
+  <object id="170" gid="325" x="618.03" y="624.914" width="42" height="42"/>
+  <object id="171" name="interactable" x="618.744" y="618.323" width="84" height="14.9243">
+   <properties>
+    <property name="cutscene" value="hospital.patient0086"/>
+   </properties>
+  </object>
  </objectgroup>
- <objectgroup color="#aa00ff" id="4" name="markers" visible="0">
+ <objectgroup color="#aa00ff" id="4" name="markers">
   <object id="2" name="entranceA" x="35.9997" y="345">
    <point/>
   </object>
