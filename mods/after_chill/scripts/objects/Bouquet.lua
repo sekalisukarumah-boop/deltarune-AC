@@ -74,6 +74,7 @@ end
 
 function Bouquet:doBreak(ex, ey, spr)
     Assets.playSound("explosion", 0.7, 1.1)
+    Assets.playSound("glassbreak", 1.2, 1)
     self:shake(6)
     Game.stage.timer:after(0.3, function() Assets.stopSound("explosion") end)
     local exp = Sprite("effects/firespell/explosion/spr_omegaflowery_explosion_a", ex, ey)
@@ -83,8 +84,27 @@ function Bouquet:doBreak(ex, ey, spr)
     exp:setLayer(9999)
     spr = spr or "break_1"
     self.top_sprite:setSprite("bouquet/" .. spr) 
-end 
+end
 
-
+function Bouquet:doFinal()
+    Assets.playSound("glassbreak", 1.2, 1)
+    self.top_sprite:setSprite("bouquet/top_piece")
+    local bot_sprite = self:addChild(Sprite("bouquet/bottom_piece"))
+    bot_sprite:setScale(4)
+    bot_sprite:setOrigin(0.5)
+    bot_sprite.physics.direction = math.rad(225)
+    self.top_sprite.physics.direction = math.rad(45)
+    bot_sprite.physics.speed = 1
+    self.top_sprite.physics.speed = 1
+    Game.world.timer:after(1.5, function()
+        self.top_sprite.physics.direction = 0
+        bot_sprite.physics.direction = math.rad(180)
+        self.top_sprite.physics.gravity = 0.1
+        bot_sprite.physics.gravity = 0.3
+        Assets.playSound("fall", 0.8, 0.75)
+        Game.world.timer:tween(2, self.top_sprite, {rotation = math.rad(70)}, "in-quart")
+        Game.world.timer:tween(2, bot_sprite, {rotation = math.rad(-70)}, "in-quart")
+    end)
+end
 
 return Bouquet

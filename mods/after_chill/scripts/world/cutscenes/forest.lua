@@ -199,12 +199,56 @@ return {
 
     bouquet = function(cutscene)
         if not Game:hasPartyMember("ralsei") then 
-            cutscene:text("* (...You can hear glass breaking.)")
+            cutscene:text("* (...[wait:5] You can hear glass breaking.)")
             cutscene:text("* (Seems more enemies wait up\nfor you ahead.)")
             if Game:getPartyMember("kris"):hasRupture() then 
                 cutscene:text("* (Use [color:red]RUPTURE[color:reset] to finish them off!)")
             end 
-            return 
+            return
+        else
+            local ral = cutscene:getCharacter("ralsei")
+            Assets.playSound("stardrop", 0.5)
+            cutscene:wait(0.5)
+            cutscene:text("* Did you hear that,[wait:5] Kris?", "small_smile_side_b", ral)
+            cutscene:wait()
+            cutscene:text("* It sounded like...", "pensive", ral)
+            cutscene:text("* Sparkling?", "surprise_smile", ral)
+            Game.world.camera.keep_in_bounds = false
+            cutscene:panTo(Game.world.camera.x, Game.world.camera.y - 280, 2.5)
+            cutscene:wait(3)
+            local siner = 0
+            local hover = true
+            local bouquet = Game.world:addChild(Bouquet(Game.world.camera.x + 160, Game.world.camera.y - 230))
+            bouquet.layer = WORLD_LAYERS["below_textbox"]
+            local cm = bouquet:addFX(ColorMaskFX({1,1,1}, 1))
+            Game.world.timer:tween(4, cm, {amount = 0})
+            local c_y = bouquet.c_sprite.y
+            bouquet:slideTo(bouquet.x, bouquet.y + 400, 4)
+            cutscene:during(function()
+                if not hover then bouquet.top_sprite.y = 0 bouquet.c_sprite.y = c_y return false end
+                siner = siner + DT
+                bouquet.top_sprite.y = Utils.wave(siner * 1.5, -25, 25)
+                bouquet.c_sprite.y = Utils.wave(siner * 1.5, c_y - 25, c_y + 25)
+            end)
+            cutscene:wait(8)
+            hover = false
+            for i = 1, 5 do
+                Assets.playSound("bump")
+                bouquet:shake(4)
+                cutscene:wait(1 - i*0.15)
+            end
+            cutscene:wait(1)
+            bouquet:doBreak(-60, -23, "break_1")
+            cutscene:wait(2)
+            cutscene:text("* Ah,[wait:5] shit.[wait:15] It's go time.", "surprise_confused", ral, {top = false})
+            cutscene:wait(1)
+            bouquet:doBreak(-115, -76, "break_2")
+            cutscene:wait(2)
+            bouquet:doFinal()
+            cutscene:wait(3)
+            cutscene:text("* Holy hell Kris did you see that?", "shock_smile", ral, {top = false})
+            cutscene:wait(1)
+            Game.world.camera.keep_in_bounds = true
         end 
     end, 
 }
