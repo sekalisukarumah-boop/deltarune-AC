@@ -10,7 +10,7 @@ return {
   tilewidth = 40,
   tileheight = 40,
   nextlayerid = 26,
-  nextobjectid = 69,
+  nextobjectid = 70,
   properties = {
     ["border"] = "forest_p",
     ["has_tile_sounds"] = true,
@@ -584,6 +584,21 @@ return {
           properties = {
             ["map1"] = "recep4",
             ["marker1"] = "warpdoorpath"
+          }
+        },
+        {
+          id = 69,
+          name = "script",
+          type = "",
+          shape = "rectangle",
+          x = 1374.67,
+          y = 288,
+          width = 25.3333,
+          height = 231.333,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["cutscene"] = "forest.bouquet"
           }
         }
       }

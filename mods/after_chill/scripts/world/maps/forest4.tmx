@@ -88,7 +88,6 @@
   <object id="56" gid="96" x="341.333" y="336" width="48" height="48"/>
  </objectgroup>
  <objectgroup color="#0000ff" id="5" name="collision">
-  <object id="22" x="-0.333333" y="155.5" width="440.167" height="48"/>
   <object id="23" x="1.58333" y="351" width="517.667" height="48"/>
   <object id="25" x="440.667" y="80.6667" width="37.3333" height="120.667"/>
   <object id="26" x="479.333" y="78.6667" width="158.667" height="38"/>

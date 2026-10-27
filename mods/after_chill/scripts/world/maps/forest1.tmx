@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="50" height="14" tilewidth="40" tileheight="40" infinite="0" nextlayerid="26" nextobjectid="69">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="50" height="14" tilewidth="40" tileheight="40" infinite="0" nextlayerid="26" nextobjectid="70">
  <editorsettings>
   <export target="forest1.lua" format="lua"/>
  </editorsettings>
@@ -169,6 +169,11 @@ of numb.</property>
     <property name="marker1" value="warpdoorpath"/>
    </properties>
    <point/>
+  </object>
+  <object id="69" name="script" x="1374.67" y="288" width="25.3333" height="231.333">
+   <properties>
+    <property name="cutscene" value="forest.bouquet"/>
+   </properties>
   </object>
  </objectgroup>
  <objectgroup id="25" name="fronttrees" class="objects" tintcolor="#afafaf" offsetx="0" offsety="12" parallaxx="1.25" parallaxy="0.75">

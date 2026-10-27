@@ -372,19 +372,6 @@ return {
       properties = {},
       objects = {
         {
-          id = 22,
-          name = "",
-          type = "",
-          shape = "rectangle",
-          x = -0.333333,
-          y = 155.5,
-          width = 440.167,
-          height = 48,
-          rotation = 0,
-          visible = true,
-          properties = {}
-        },
-        {
           id = 23,
           name = "",
           type = "",
