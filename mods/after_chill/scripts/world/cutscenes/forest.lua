@@ -223,12 +223,12 @@ return {
             local cm = bouquet:addFX(ColorMaskFX({1,1,1}, 1))
             Game.world.timer:tween(4, cm, {amount = 0})
             local c_y = bouquet.c_sprite.y
-            bouquet:slideTo(bouquet.x, bouquet.y + 400, 4)
+            local i =  bouquet.y + 400
+            bouquet:slideTo(bouquet.x, i, 4)
             cutscene:during(function()
-                if not hover then bouquet.top_sprite.y = 0 bouquet.c_sprite.y = c_y return false end
+                if not hover then bouquet.y = i return false end
                 siner = siner + DT
-                bouquet.top_sprite.y = Utils.wave(siner * 1.5, -25, 25)
-                bouquet.c_sprite.y = Utils.wave(siner * 1.5, c_y - 25, c_y + 25)
+                bouquet.y = Utils.wave(siner * 1.5, -25, 25)
             end)
             cutscene:wait(8)
             hover = false
