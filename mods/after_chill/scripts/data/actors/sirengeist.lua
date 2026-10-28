@@ -58,11 +58,8 @@ end
 function actor:onSpriteUpdate(sprite)
     sprite:setScale(1.8)
     if Game.battle and Game.battle.encounter.id ~= "forced" then 
-    if not sprite.base_y then
-        sprite.base_y = sprite.y
-    end
     self.siner = self.siner + (DT * 3)
-    sprite.y = sprite.base_y + (math.sin(self.siner) * 3.2)
+    sprite.y = sprite.init_y + (math.sin(self.siner) * 3.2)
     else 
     sprite.alpha = 0.8 
     end 

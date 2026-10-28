@@ -10,9 +10,11 @@ function sirengeist:init()
     
     -- Organize the order that recruits show up in the recruit menu
     self.index = 1
+
+    self.scale = 2.8
     
     -- Selection Display
-    self.description = "A cute flower.\nIt fell off a bouquet."
+    self.description = "A little silly ghost.\nIt loves to blare its siren."
     self.chapter = "?"
     self.level = 8
     self.attack = 10
@@ -26,11 +28,11 @@ function sirengeist:init()
     self.box_gradient_type = "bright"
     
     -- Dyes the box gradient
-    self.box_gradient_color = {0.92, 0.94, 0.95, 0.8} 
+    self.box_gradient_color = {0.992, 0.815, 0.090, 0.8} 
     
     -- Sets the animated sprite in the box
     -- Syntax: Sprite/Animation path, offset_x, offset_y, animation_speed
-    self.box_sprite = {"enemies/sirengeist/spared", 0, 0, 4/30}
+    self.box_sprite = {"enemies/sirengeist/spared", 0, 0, 4/30}  
     
     -- Recruit Status (saved to the save file)
     -- Number: Recruit Progress
