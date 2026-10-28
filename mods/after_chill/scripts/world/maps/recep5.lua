@@ -278,7 +278,8 @@ return {
           visible = true,
           properties = {
             ["marker"] = "entranceA",
-            ["text1"] = "* The power of emptiness and wind shines within you."
+            ["text1"] = "* For some reason,[wait:3] the gushing wind and barren surroundings provide a strange comfort.",
+            ["text2"] = "* The power of lonely wind\nshines within you. "
           }
         },
         {

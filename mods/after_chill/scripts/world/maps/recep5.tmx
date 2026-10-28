@@ -133,7 +133,9 @@
   <object id="16" name="savepoint" x="360" y="400">
    <properties>
     <property name="marker" value="entranceA"/>
-    <property name="text1" value="* The power of emptiness and wind shines within you."/>
+    <property name="text1" value="* For some reason,[wait:3] the gushing wind and barren surroundings provide a strange comfort."/>
+    <property name="text2">* The power of lonely wind
+shines within you. </property>
    </properties>
    <point/>
   </object>

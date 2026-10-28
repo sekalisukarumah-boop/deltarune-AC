@@ -158,7 +158,7 @@
 * The power of loud silence shines within you.</property>
     <property name="marker" value="savespawn"/>
     <property name="text1" value="* Ralsei has now joined your party."/>
-    <property name="text2" value="* The power of fluffyboys shines within you. "/>
+    <property name="text2" value="* The power of fluffy princes shine within you. "/>
    </properties>
    <point/>
   </object>

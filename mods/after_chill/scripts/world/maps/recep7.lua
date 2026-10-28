@@ -386,7 +386,7 @@ return {
             ["flagged_text2"] = "* It's very quiet.[wait:5]\n* The power of loud silence shines within you.",
             ["marker"] = "savespawn",
             ["text1"] = "* Ralsei has now joined your party.",
-            ["text2"] = "* The power of fluffyboys shines within you. "
+            ["text2"] = "* The power of fluffy princes shine within you. "
           }
         },
         {

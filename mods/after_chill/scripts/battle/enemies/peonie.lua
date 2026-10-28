@@ -34,18 +34,10 @@ function peonie:init()
     }
     self.low_health_percentage = 0.25
     self.low_health_text = "* You can see Peonie wilting slowly."
-    self:registerAct("Prune", "Lower\nDF", {}, 12)
-    self:registerAct("Bloom", "Get\nMercy")
-    self:registerAct("BloomX", "Spare\nEnemy", {"ralsei"}, 18)
+    self:registerAct("Prune", "Lower\nDF", {}, 4)
+    self:registerAct("Bloom", "Gain\nMercy")
+    self:registerAct("BloomX", "Auto-\nSpare", {"ralsei"}, 16)
     self.prune = 0 
-end
-
-function peonie:update()
-    super.update(self)
-    if self.sprite then
-        local center_x, center_y = self.sprite:getRelativePos(0, 0)
-        self.dmg_sprite_offset = {center_x, center_y}
-    end 
 end
 
 function peonie:onAct(battler, name)
@@ -72,10 +64,11 @@ function peonie:onAct(battler, name)
     elseif name == "BloomX" then 
         Game.battle:startActCutscene(function(cutscene)
             cutscene:text("* You and Ralsei encourage the enemy to bloom once again into a\nbeautiful flower!")
+            cutscene:text("* By planting yourself into soil,[wait:4] you can bloom into what you once were!", "blush_smile", "ralsei")
             self:addMercy(100)
             self:spare()
             cutscene:wait(0.5)
-            cutscene:text("* The enemy seemed to leave in a joyful rush!")
+            cutscene:text("* The enemy left to find fertile soil in a joyful rush!")
         end)
     elseif name == "Standard" then 
         if battler.chara.id == "ralsei" then 
