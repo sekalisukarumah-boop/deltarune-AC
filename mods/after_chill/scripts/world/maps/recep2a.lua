@@ -10,7 +10,7 @@ return {
   tilewidth = 40,
   tileheight = 40,
   nextlayerid = 13,
-  nextobjectid = 32,
+  nextobjectid = 39,
   properties = {
     ["music"] = "hallway"
   },
@@ -251,7 +251,7 @@ return {
       id = 4,
       name = "objects",
       class = "",
-      visible = false,
+      visible = true,
       opacity = 1,
       offsetx = 0,
       offsety = 0,
@@ -375,6 +375,108 @@ return {
           rotation = 0,
           visible = true,
           properties = {}
+        },
+        {
+          id = 33,
+          name = "bloom",
+          type = "",
+          shape = "point",
+          x = 340.909,
+          y = 22.9091,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["alpha"] = 50,
+            ["scalex"] = 50,
+            ["scaley"] = 50
+          }
+        },
+        {
+          id = 34,
+          name = "bloom",
+          type = "",
+          shape = "point",
+          x = 339.818,
+          y = 103.091,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["alpha"] = 50,
+            ["scalex"] = 50,
+            ["scaley"] = 50
+          }
+        },
+        {
+          id = 35,
+          name = "bloom",
+          type = "",
+          shape = "point",
+          x = 499.818,
+          y = 22.5455,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["alpha"] = 50,
+            ["scalex"] = 50,
+            ["scaley"] = 50
+          }
+        },
+        {
+          id = 36,
+          name = "bloom",
+          type = "",
+          shape = "point",
+          x = 500.182,
+          y = 102.909,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["alpha"] = 50,
+            ["scalex"] = 50,
+            ["scaley"] = 50
+          }
+        },
+        {
+          id = 37,
+          name = "bloom",
+          type = "",
+          shape = "point",
+          x = 500,
+          y = 182.182,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["alpha"] = 50,
+            ["scalex"] = 50,
+            ["scaley"] = 50
+          }
+        },
+        {
+          id = 38,
+          name = "bloom",
+          type = "",
+          shape = "point",
+          x = 340.182,
+          y = 183.091,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["alpha"] = 50,
+            ["scalex"] = 50,
+            ["scaley"] = 50
+          }
         }
       }
     },

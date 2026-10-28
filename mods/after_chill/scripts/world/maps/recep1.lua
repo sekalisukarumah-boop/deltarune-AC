@@ -10,7 +10,7 @@ return {
   tilewidth = 40,
   tileheight = 40,
   nextlayerid = 15,
-  nextobjectid = 26,
+  nextobjectid = 60,
   properties = {
     ["music"] = "hallway",
     ["name"] = "Receptionist Bridge"
@@ -239,6 +239,465 @@ return {
           visible = true,
           properties = {
             ["cutscene"] = "musicnotif.recep"
+          }
+        },
+        {
+          id = 26,
+          name = "bloom",
+          type = "",
+          shape = "point",
+          x = 300.25,
+          y = 182.75,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["alpha"] = 50,
+            ["scalex"] = 50,
+            ["scaley"] = 50
+          }
+        },
+        {
+          id = 27,
+          name = "bloom",
+          type = "",
+          shape = "point",
+          x = 300.25,
+          y = 262.938,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["alpha"] = 50,
+            ["scalex"] = 50,
+            ["scaley"] = 50
+          }
+        },
+        {
+          id = 28,
+          name = "bloom",
+          type = "",
+          shape = "point",
+          x = 380.333,
+          y = 262.94,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["alpha"] = 50,
+            ["scalex"] = 50,
+            ["scaley"] = 50
+          }
+        },
+        {
+          id = 29,
+          name = "bloom",
+          type = "",
+          shape = "point",
+          x = 380.33,
+          y = 182.75,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["alpha"] = 50,
+            ["scalex"] = 50,
+            ["scaley"] = 50
+          }
+        },
+        {
+          id = 30,
+          name = "bloom",
+          type = "",
+          shape = "point",
+          x = 460,
+          y = 262.94,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["alpha"] = 50,
+            ["scalex"] = 50,
+            ["scaley"] = 50
+          }
+        },
+        {
+          id = 31,
+          name = "bloom",
+          type = "",
+          shape = "point",
+          x = 460,
+          y = 182.75,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["alpha"] = 50,
+            ["scalex"] = 50,
+            ["scaley"] = 50
+          }
+        },
+        {
+          id = 32,
+          name = "bloom",
+          type = "",
+          shape = "point",
+          x = 380.25,
+          y = 463,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["alpha"] = 50,
+            ["scalex"] = 50,
+            ["scaley"] = 50
+          }
+        },
+        {
+          id = 33,
+          name = "bloom",
+          type = "",
+          shape = "point",
+          x = 380.25,
+          y = 543.188,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["alpha"] = 50,
+            ["scalex"] = 50,
+            ["scaley"] = 50
+          }
+        },
+        {
+          id = 38,
+          name = "bloom",
+          type = "",
+          shape = "point",
+          x = 579.667,
+          y = 464.479,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["alpha"] = 50,
+            ["scalex"] = 50,
+            ["scaley"] = 50
+          }
+        },
+        {
+          id = 39,
+          name = "bloom",
+          type = "",
+          shape = "point",
+          x = 579.667,
+          y = 541.667,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["alpha"] = 50,
+            ["scalex"] = 50,
+            ["scaley"] = 50
+          }
+        },
+        {
+          id = 41,
+          name = "bloom",
+          type = "",
+          shape = "point",
+          x = 380.364,
+          y = 621.455,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["alpha"] = 50,
+            ["scalex"] = 50,
+            ["scaley"] = 50
+          }
+        },
+        {
+          id = 43,
+          name = "bloom",
+          type = "",
+          shape = "point",
+          x = 580.25,
+          y = 622.375,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["alpha"] = 50,
+            ["scalex"] = 50,
+            ["scaley"] = 50
+          }
+        },
+        {
+          id = 44,
+          name = "bloom",
+          type = "",
+          shape = "point",
+          x = 780,
+          y = 464.5,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["alpha"] = 50,
+            ["scalex"] = 50,
+            ["scaley"] = 50
+          }
+        },
+        {
+          id = 45,
+          name = "bloom",
+          type = "",
+          shape = "point",
+          x = 780.75,
+          y = 542.5,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["alpha"] = 50,
+            ["scalex"] = 50,
+            ["scaley"] = 50
+          }
+        },
+        {
+          id = 46,
+          name = "bloom",
+          type = "",
+          shape = "point",
+          x = 780.5,
+          y = 622.5,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["alpha"] = 50,
+            ["scalex"] = 50,
+            ["scaley"] = 50
+          }
+        },
+        {
+          id = 47,
+          name = "bloom",
+          type = "",
+          shape = "point",
+          x = 980.25,
+          y = 464.75,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["alpha"] = 50,
+            ["scalex"] = 50,
+            ["scaley"] = 50
+          }
+        },
+        {
+          id = 48,
+          name = "bloom",
+          type = "",
+          shape = "point",
+          x = 980.5,
+          y = 542.5,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["alpha"] = 50,
+            ["scalex"] = 50,
+            ["scaley"] = 50
+          }
+        },
+        {
+          id = 50,
+          name = "bloom",
+          type = "",
+          shape = "point",
+          x = 980.25,
+          y = 622,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["alpha"] = 50,
+            ["scalex"] = 50,
+            ["scaley"] = 50
+          }
+        },
+        {
+          id = 51,
+          name = "bloom",
+          type = "",
+          shape = "point",
+          x = 1140.25,
+          y = 465.5,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["alpha"] = 50,
+            ["scalex"] = 50,
+            ["scaley"] = 50
+          }
+        },
+        {
+          id = 52,
+          name = "bloom",
+          type = "",
+          shape = "point",
+          x = 1140.25,
+          y = 541.5,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["alpha"] = 50,
+            ["scalex"] = 50,
+            ["scaley"] = 50
+          }
+        },
+        {
+          id = 53,
+          name = "bloom",
+          type = "",
+          shape = "point",
+          x = 1140,
+          y = 622.5,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["alpha"] = 50,
+            ["scalex"] = 50,
+            ["scaley"] = 50
+          }
+        },
+        {
+          id = 54,
+          name = "bloom",
+          type = "",
+          shape = "point",
+          x = 1180,
+          y = 622.5,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["alpha"] = 50,
+            ["scalex"] = 50,
+            ["scaley"] = 50
+          }
+        },
+        {
+          id = 55,
+          name = "bloom",
+          type = "",
+          shape = "point",
+          x = 1180.25,
+          y = 542.5,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["alpha"] = 50,
+            ["scalex"] = 50,
+            ["scaley"] = 50
+          }
+        },
+        {
+          id = 56,
+          name = "bloom",
+          type = "",
+          shape = "point",
+          x = 1180.5,
+          y = 465.5,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["alpha"] = 50,
+            ["scalex"] = 50,
+            ["scaley"] = 50
+          }
+        },
+        {
+          id = 57,
+          name = "bloom",
+          type = "",
+          shape = "point",
+          x = 1339.5,
+          y = 464.5,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["alpha"] = 50,
+            ["scalex"] = 50,
+            ["scaley"] = 50
+          }
+        },
+        {
+          id = 58,
+          name = "bloom",
+          type = "",
+          shape = "point",
+          x = 1340.25,
+          y = 542.5,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["alpha"] = 50,
+            ["scalex"] = 50,
+            ["scaley"] = 50
+          }
+        },
+        {
+          id = 59,
+          name = "bloom",
+          type = "",
+          shape = "point",
+          x = 1340.25,
+          y = 623.25,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["alpha"] = 50,
+            ["scalex"] = 50,
+            ["scaley"] = 50
           }
         }
       }

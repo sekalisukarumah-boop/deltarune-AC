@@ -9,7 +9,7 @@
  </properties>
  <tileset firstgid="1" source="../tilesets/Receptionist.tsx"/>
  <imagelayer id="3" name="bg" offsetx="-1338.24" offsety="-100" parallaxx="0.25" parallaxy="0.25" repeatx="1">
-  <image source="../../../assets/sprites/tilesets/recep wonderland.png" width="640" height="480"/>
+  <image source="../../../assets/sprites/tilesets/recep wonderland.png" width="640" height="522"/>
  </imagelayer>
  <imagelayer id="9" name="cliff" offsetx="0" offsety="420" parallaxx="0.25" parallaxy="0.25" repeatx="1">
   <image source="../../../assets/sprites/tilesets/cliff.png" width="640" height="91"/>
@@ -23,7 +23,7 @@
  <imagelayer id="10" name="cliff" locked="1" offsetx="0" offsety="330" parallaxx="0.25" parallaxy="0.25" repeatx="1">
   <image source="../../../assets/sprites/tilesets/cliff.png" width="640" height="91"/>
  </imagelayer>
- <layer id="13" name="below :P" width="75" height="30" tintcolor="#797ea8" parallaxx="0.6">
+ <layer id="13" name="below :P" width="75" height="30" visible="0" tintcolor="#797ea8" parallaxx="0.6">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -57,7 +57,7 @@
 0,320,321,322,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer id="8" name="no_reflections" width="75" height="30" visible="0">
+ <layer id="8" name="no_reflections" width="75" height="30">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
