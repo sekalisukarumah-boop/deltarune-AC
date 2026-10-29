@@ -4,7 +4,8 @@ return {
 
     appear = function(cutscene)
         cutscene:wait(cutscene:playSound("rustle"))
-        local peonie = ChaserEnemy("peonie", 596, 503)
+        local mx, my = cutscene:getMarker("peonie_xy")
+        local peonie = ChaserEnemy("peonie", mx or 0, my or 0)
         Game.world:spawnObject(peonie, 9999)
         peonie.aura = false
         peonie.alpha = 0
@@ -27,7 +28,7 @@ return {
     cutscene:text("* Umm...[wait:5] Kris,[wait:2] do you\nneed my help?", "stressed", "ralsei")
     local choice = cutscene:choicer({"Yes", "Go away\nI can do\nit myself"})
     if choice == 1 then 
-        cutscene:text("* Alright, well...", "blush_surprise", "ralsei")
+        cutscene:text("* Alright,[wait:3] well...", "blush_surprise", "ralsei")
         cutscene:text("* I think I need to press this button!", "small_smile_side", "ralsei")
     else 
         cutscene:text("* I'll just go over here then...", "pensive", "ralsei") 

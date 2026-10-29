@@ -263,7 +263,14 @@ return {
             cutscene:wait(2)
             bouquet:doFinal()
             cutscene:wait(3)
-            cutscene:text("* ", "shock_smile", ral)
+           cutscene:text("* [noskip][wait:120][func:move_down][face:neutral]Okay.", "shock_smile", ral, {
+            functions = {
+                move_down = function()
+                    ral:setFacing("down")
+                    kris:setFacing("down")
+                end
+            }
+            })
             cutscene:wait(1)
             cutscene:panTo(nx, ny, 1)
             cutscene:wait(1)

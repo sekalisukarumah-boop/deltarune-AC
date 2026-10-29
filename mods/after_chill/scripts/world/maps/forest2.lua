@@ -10,7 +10,7 @@ return {
   tilewidth = 40,
   tileheight = 40,
   nextlayerid = 117,
-  nextobjectid = 113,
+  nextobjectid = 114,
   properties = {
     ["has_tile_sounds"] = true,
     ["music"] = "bloom_f"
@@ -196,6 +196,19 @@ return {
           shape = "point",
           x = 1942.67,
           y = 938.667,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 113,
+          name = "peonie_xy",
+          type = "",
+          shape = "point",
+          x = 495,
+          y = 521,
           width = 0,
           height = 0,
           rotation = 0,
@@ -654,7 +667,7 @@ return {
           name = "script",
           type = "",
           shape = "rectangle",
-          x = 559.667,
+          x = 439.667,
           y = 520.667,
           width = 39.5,
           height = 279.333,
