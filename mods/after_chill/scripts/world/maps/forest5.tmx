@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="16" height="15" tilewidth="40" tileheight="40" infinite="0" nextlayerid="16" nextobjectid="147">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="16" height="15" tilewidth="40" tileheight="40" infinite="0" nextlayerid="16" nextobjectid="156">
  <editorsettings>
   <export target="forest5.lua" format="lua"/>
  </editorsettings>
@@ -145,7 +145,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup color="#0000ff" id="5" name="collision">
+ <objectgroup color="#0000ff" id="5" name="collision" visible="0">
   <object id="64" x="79.5" y="-1.33333" width="39" height="480.833"/>
   <object id="65" x="239.5" y="-0.833333" width="39" height="360.833"/>
   <object id="85" x="77.333" y="476.667" width="407.333" height="45.3333"/>
@@ -176,7 +176,7 @@
   </object>
   <object id="67" gid="1202" x="290.5" y="315.167" width="82" height="136"/>
   <object id="69" gid="19" x="131" y="185" width="32" height="32"/>
-  <object id="70" gid="1202" x="292.667" y="218.667" width="82" height="136"/>
+  <object id="70" gid="1202" x="286" y="241.334" width="82" height="136"/>
   <object id="71" gid="1202" x="363.667" y="114.333" width="82" height="136"/>
   <object id="72" gid="1202" x="43.334" y="301.667" width="82" height="136"/>
   <object id="73" gid="1202" x="4.333" y="235.333" width="82" height="136"/>
@@ -215,8 +215,17 @@
    </properties>
   </object>
   <object id="143" gid="19" x="202" y="102" width="32" height="32"/>
+  <object id="147" gid="1202" x="251.667" y="182.667" width="82" height="136"/>
+  <object id="148" gid="1201" x="261" y="149.667" width="110" height="130"/>
+  <object id="149" gid="1201" x="13" y="171" width="110" height="130"/>
+  <object id="150" gid="1201" x="241" y="121.667" width="110" height="130"/>
+  <object id="151" gid="1201" x="251.667" y="316.333" width="110" height="130"/>
+  <object id="152" gid="1201" x="239.667" y="192.333" width="110" height="130"/>
+  <object id="153" gid="1201" x="14.3333" y="396.333" width="110" height="130"/>
+  <object id="154" gid="1201" x="27.6667" y="127" width="110" height="130"/>
+  <object id="155" gid="1202" x="44.3333" y="117.333" width="82" height="136"/>
  </objectgroup>
- <objectgroup color="#5500ff" id="6" name="markers">
+ <objectgroup color="#5500ff" id="6" name="markers" visible="0">
   <object id="61" name="entranceA" x="179.833" y="86.6667">
    <point/>
   </object>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="89" height="18" tilewidth="40" tileheight="40" infinite="0" nextlayerid="19" nextobjectid="210">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="89" height="18" tilewidth="40" tileheight="40" infinite="0" nextlayerid="21" nextobjectid="218">
  <editorsettings>
   <export target="recep5b.lua" format="lua"/>
  </editorsettings>
@@ -82,19 +82,9 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="14" name="pianocollision">
-  <object id="156" x="240.667" y="280.667" width="441" height="44"/>
-  <object id="157" x="235.999" y="158" width="443.667" height="40"/>
-  <object id="162" x="681.702" y="202.512" width="32.632" height="72.9771"/>
-  <object id="163" x="200.667" y="197.333" width="36.6667" height="82.0003"/>
-  <object id="173" x="1362" y="282" width="551" height="42"/>
-  <object id="174" x="1328.33" y="203.333" width="39.3333" height="78.6667"/>
-  <object id="175" x="1315.67" y="145" width="561.666" height="53"/>
-  <object id="192" x="1882" y="155.333" width="43.3333" height="126.667"/>
- </objectgroup>
- <objectgroup color="#0000ff" id="11" name="collision" visible="0">
+ <objectgroup color="#0000ff" id="11" name="collision">
   <object id="108" x="120.834" y="322.333" width="195.833" height="37.3333"/>
-  <object id="112" x="320" y="79.3333" width="40" height="639.333"/>
+  <object id="112" x="320" y="288.333" width="40" height="430.333"/>
   <object id="113" x="80" y="278.5" width="40" height="437.5"/>
   <object id="115" x="121.333" y="720" width="200" height="40"/>
   <object id="185" x="1362.33" y="282" width="438.667" height="40.6667"/>
@@ -107,18 +97,24 @@
   <object id="193" x="2199" y="324.667" width="518.333" height="40.6667"/>
   <object id="194" x="2200.67" y="513.333" width="518.667" height="40.6667"/>
   <object id="197" x="116" y="48" width="242" height="34.3333"/>
-  <object id="198" x="71" y="55" width="56" height="143.333"/>
+  <object id="198" x="71" y="55" width="48" height="143.333"/>
   <object id="200" x="0" y="152.5" width="119.5" height="54"/>
-  <object id="201" x="-1" y="271.5" width="123.5" height="50.5"/>
+  <object id="201" x="-4" y="271.5" width="123.5" height="50.5"/>
   <object id="207" x="2640" y="266.667" width="438.667" height="53.3333"/>
   <object id="208" x="2642" y="558.333" width="438.667" height="53.3333"/>
+  <object id="211" x="318.5" y="80" width="41" height="103"/>
+ </objectgroup>
+ <objectgroup color="#55ff00" id="20" name="blockcollision">
+  <object id="212" x="128" y="102" width="184" height="85.5833"/>
+  <object id="215" x="120" y="286.75" width="199.5" height="33.25"/>
+  <object id="216" x="121" y="201" width="109.25" height="76.5"/>
  </objectgroup>
  <objectgroup id="6" name="paths"/>
  <objectgroup color="#aa00ff" id="5" name="markers">
   <object id="54" name="entranceA" x="54.833" y="243.333">
    <point/>
   </object>
-  <object id="161" name="spawn" x="226.666" y="125.417">
+  <object id="161" name="spawn" x="53.9993" y="244.084">
    <point/>
   </object>
   <object id="206" name="walk_here" x="2639.33" y="439.333">
@@ -144,18 +140,18 @@
     <property name="once" type="bool" value="false"/>
    </properties>
   </object>
+  <object id="217" name="pianomovetrigger" x="630" y="200" width="41.3333" height="78">
+   <properties>
+    <property name="extflag" value="jump"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup color="#55ff7f" id="17" name="battleareas" visible="0">
   <object id="204" x="1881.23" y="404.678" width="378.377" height="65.9729"/>
  </objectgroup>
  <objectgroup color="#ff55ff" id="13" name="objects_party">
-  <object id="153" name="MovingPiano" x="238" y="199">
-   <properties>
-    <property name="can_slow_down" type="bool" value="true"/>
-    <property name="type" value="blue"/>
-   </properties>
+  <object id="153" name="remotepianomove" x="238" y="199">
    <point/>
   </object>
-  <object id="164" name="PianoJumpArea" x="639" y="199.792" width="42.1969" height="77.307"/>
  </objectgroup>
 </map>
