@@ -52,7 +52,7 @@ function RemotePianoMove:init(data)
 	self.hitstop = 0
 	self.drawalpha = 0
 	self.show_instructions = false
-	self.remember_pos = properties["rememberxy"] or true
+	self.remember_pos = false 
 	self.cam_marker = properties["cammarker"] or nil
 	self.dust_timer = (Kristal.getTime()*30) % 2
 	self.last_dust_timer = self.dust_timer
@@ -161,7 +161,7 @@ function RemotePianoMove:onInteract(player, dir)
 					end
 					cutscene:panTo(self.cam_marker, 15/30)
 				else
-					pos = {self.x - 281 + SCREEN_WIDTH/2, self.y - 206 + SCREEN_HEIGHT/2}
+					pos = {self.x - 20 + SCREEN_WIDTH/2, self.y - 206 + SCREEN_HEIGHT/2}
 					local min_x, min_y = Game.world.camera:getMinPosition()
 					local max_x, max_y = Game.world.camera:getMaxPosition()
 					pos[1] = MathUtils.clamp(pos[1], min_x, max_x)
@@ -206,7 +206,7 @@ function RemotePianoMove:onInteract(player, dir)
 					party4 = cutscene:getCharacter(Game.party[4]:getActor().id)
 				end
 				if party2 then
-					pos = {self.x + self.width / 2 + 22 - 1, self.y + self.height}
+					pos = {self.x + self.width / 2 + 31 - 1, self.y + self.height + 69 }
 					party2.sprite:set("jump_ball")
 					cutscene:jumpTo(party2, pos[1], pos[2], jumpstrength, 16/30)
 				end
@@ -220,7 +220,7 @@ function RemotePianoMove:onInteract(player, dir)
 					party4.sprite:set("jump_ball")
 					cutscene:jumpTo(party4, pos[1], pos[2], jumpstrength, 16/30)
 				end
-				pos = {self.x + self.width / 2 - 1, self.y + self.height - 10}
+				pos = {self.x + self.width / 2 - 1 + 31, self.y + self.height + 69}
 				cutscene:jumpTo(leader, pos[1], pos[2], jumpstrength, 16/30)
 				leader.sprite:set("jump_ball")
 				cutscene:wait(16/30)
@@ -863,7 +863,7 @@ function RemotePianoMove:stepTwo()
 		if not self.ignore_layer_set then
 			self.layer = self.start_layer - 0.05
 		end
-		Game.world.player:setPosition(self.x + self.width / 2 - 1, self.y + self.height + (self.yoffset * 1.1) - 10)
+		Game.world.player:setPosition(self.x + self.width / 2 + 31, self.y + self.height + (self.yoffset * 1.1) + 69)
 		Game.world.player:setSprite("piano")
 		Game.world.player.layer = self.layer + 0.01
 		for i, follower in ipairs(Game.world.followers) do
@@ -873,7 +873,7 @@ function RemotePianoMove:stepTwo()
 			local yoff = (self.yoffset * 1.1)
 			if i == 1 then
 				xpos = self.x + self.width / 2 + 22 - 1
-				ypos = self.y + self.height
+				ypos = self.y + self.height + 72
 				follower.layer = self.layer + 0.03
 			end
 			if i == 2 then

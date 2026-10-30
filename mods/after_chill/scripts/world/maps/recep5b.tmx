@@ -140,7 +140,7 @@
     <property name="once" type="bool" value="false"/>
    </properties>
   </object>
-  <object id="217" name="pianomovetrigger" x="630" y="200" width="41.3333" height="78">
+  <object id="217" name="pianomovetrigger" x="664.333" y="200" width="6.99997" height="78">
    <properties>
     <property name="extflag" value="jump"/>
    </properties>
@@ -151,6 +151,9 @@
  </objectgroup>
  <objectgroup color="#ff55ff" id="13" name="objects_party">
   <object id="153" name="remotepianomove" x="238" y="199">
+   <properties>
+    <property name="rememberxy" type="bool" value="false"/>
+   </properties>
    <point/>
   </object>
  </objectgroup>

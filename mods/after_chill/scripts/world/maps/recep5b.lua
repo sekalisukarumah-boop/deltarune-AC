@@ -655,9 +655,9 @@ return {
           name = "pianomovetrigger",
           type = "",
           shape = "rectangle",
-          x = 630,
+          x = 664.333,
           y = 200,
-          width = 41.3333,
+          width = 6.99997,
           height = 78,
           rotation = 0,
           visible = true,
@@ -721,7 +721,9 @@ return {
           height = 0,
           rotation = 0,
           visible = true,
-          properties = {}
+          properties = {
+            ["rememberxy"] = false
+          }
         }
       }
     }
