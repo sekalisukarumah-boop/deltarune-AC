@@ -6,6 +6,7 @@ function licksby1:init()
     -- Text displayed at the bottom of the screen at the start of the encounter
     self.text = "* Licksby glitched its way into\nthe battlefield!"
 
+    --sd
     self.music = "snowstorm"
     -- Enables the purple grid battle background
     self.background = true
