@@ -60,7 +60,7 @@ function Mod:init()
         encounter = data.properties.encounter
     })
     end)
-    print("Loadedfhdsf " .. self.info.name .. "!")
+    print("What the fuck is going on with " .. self.info.name .. "!")
 end
 
 function Mod.scr_wave(arg0, arg1, speed_seconds, phase)
