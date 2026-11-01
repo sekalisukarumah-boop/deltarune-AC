@@ -70,7 +70,7 @@ return {
         ralsei:shake(2)
         ralsei:setFacing("right")
         cutscene:wait(cutscene:playSound("wing"))
-        cutscene:text("* S[wait:2]-Sorry boss..")
+        cutscene:text("* S[wait:2]-Sorry boss...")
         cutscene:text("* Anyway,[wait:3] I take it you two\ndon't have manners?")
         Assets.playSound("wing")
         ralsei:setSprite("battle/hurt_1")

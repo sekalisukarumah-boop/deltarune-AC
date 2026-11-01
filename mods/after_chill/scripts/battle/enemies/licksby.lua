@@ -32,28 +32,40 @@ function licksby:init()
         "* You start to remember your search history.[wait:7]\n* Oh no."
     }
 
-    self:registerAct("Wag")
-    self:registerAct("Pet")
+    self:registerAct("Pet", "Gain\n50% Mercy", {}, 4)
+    self:registerAct("Wag", "Gain\n25% Mercy")
     self:registerAct("PetX", "Gain\n100% Mercy", {"ralsei"}, 8)
 end
 
 function licksby:onActStart(battler, name)
-    if name == "Wag" then 
-        battler:setActSprite("party/kris/dark/wag_1", 0, 0)
-    end 
+    if name == "Wag" then
+        if battler.chara.id == "kris" then 
+        battler:setActSprite("party/kris/dark/wag", -4, 6, 1/8, true)
+        end 
+    else 
     return super.onActStart(self, battler, name)
+    end 
 end 
 
 function licksby:onAct(battler, name)
     if name == "Pet" then
-    self:addMercy(50)
-    return "* You pet the enemy's head![wait:3]\n* It nuzzles your hand!"
+       Game.battle:startActCutscene(function(cutscene)    
+         cutscene:text("* You pet the enemy,[wait:2] and scratched it's ears![func:mercy][wait:7]\n* Licksby purred,[wait:2] nuzzling your hand!", {
+        functions = {
+            mercy = function()
+                self:addMercy(50)
+            end
+        }})
+       end)
     elseif name == "Wag" then 
-        battler:setSprite("wag_1")
-        return { 
-            "* You wagged your tail\nwith the enemy!", 
-            "* They had fun with you!"
-        }
+        Game.battle:startActCutscene(function(cutscene)         
+        cutscene:text("* You pretend to wag your tail with the enemy!")
+        battler:shake(2)
+        battler:resetSprite()
+        self:addMercy(25)
+        cutscene:wait(cutscene:playSound("wing"))
+        cutscene:text("* The enemy smiled and wagged\nits tail faster!")
+    end)
     elseif name == "Standard" then 
         if battler.chara.id == "ralsei" then 
             self:addMercy(50)
