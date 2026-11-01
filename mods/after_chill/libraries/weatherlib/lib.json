@@ -1,0 +1,15 @@
+{
+    "id": "weatherlib",
+    "authors": [
+        "crocokuo", 
+        "fluffyboy"
+    ],
+    "version": "v1.2.0",
+    "engineVer": "v0.10.0-dev",
+
+    "config": {
+        "extraWeathers": [
+            "flipped_rain"
+        ]
+    }
+}

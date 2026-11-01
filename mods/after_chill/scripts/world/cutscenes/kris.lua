@@ -1,0 +1,694 @@
+return {
+    -- The inclusion of the below line tells the language server that the first parameter of the cutscene is `WorldCutscene`.
+    -- This allows it to fetch us useful documentation that shows all of the available cutscene functions while writing our cutscenes!
+
+    ---@param cutscene WorldCutscene
+    shadow = function(cutscene)
+        cutscene:loadMap("room4") -- placeholder code 
+        local kris = cutscene:getCharacter("kris")
+        kris:setPosition(536, 280) 
+        cutscene:wait(0.3)-- also change code 
+        Assets.playSound("damage")
+        kris:shake()
+        local fx = kris:addFX(ColorMaskFX(COLORS.red, 1))
+        kris:setSprite("sit")
+        kris.layer = 0.459
+        Game.world.timer:tween(0.3, fx, {amount = 0})
+        cutscene:wait(0.7)
+        cutscene:panTo(Game.world.camera.x + 200, Game.world.camera.y, 2, "out-sine")
+        cutscene:wait(1)
+        local noelle = cutscene:spawnNPC("noelle", 926, 286)
+        local k = cutscene:spawnNPC("kris", 859, 286)
+        k:setFacing("left")
+        noelle.alpha = 0 
+        local kfx = k:addFX(ColorMaskFX(COLORS.black, 1))
+        local nfx = noelle:addFX(ColorMaskFX(COLORS.black, 1))
+        k.alpha = 0
+        noelle:setSprite("walk_sad")
+        noelle:setFacing("left")
+        Game.world.music:play("wind")
+        Game.world.timer:tween(1, noelle, {alpha = 1})
+        Game.world.timer:tween(1, k, {alpha = 1})
+        Game.world.timer:tween(1, kris, {alpha = 0})
+        local effect =  Game.world:addChild(OverworldSnowEffect())
+        effect.layer = noelle.layer - 0.01 
+        cutscene:wait(1)
+        k:walkTo(559, k.y, 6)
+        noelle:walkTo(623, noelle.y, 6)
+        cutscene:wait(0.5)
+        cutscene:text("*[noskip] Kris..[wait:2] where are we going...?[wait:5][next]", "afraid", "noelle") 
+        cutscene:wait(1)
+        kris.alpha = 1
+        kris.layer = effect.layer - 0.001
+        cutscene:text("*[noskip] To...[wait:2] get stronger?[wait:5][next]", "sad_side", "noelle")
+        cutscene:wait(0.5)
+        effect:remove()
+        Game.world.music:pause()
+        noelle:fadeOutAndRemove(1)
+        k:fadeOutAndRemove(1)
+        cutscene:wait(0.3)
+        cutscene:wait(1)
+        cutscene:setSpeaker("shadow")
+        cutscene:text("* Don't you remember all this?")
+        Assets.playSound("bump")
+        kris:shake()
+        cutscene:wait(0.5)
+        cutscene:text("* Over here,[wait:5] Kris.")
+        local shadow = Game.world:spawnNPC("shadow", 546, 262)  
+        shadow:setAnimation("ball")
+        shadow:setScale(1)
+        kris:shake()
+        Assets.playSound("grab")
+        Assets.playSound("jump")
+        local start_x = shadow.x
+        local start_y = shadow.y
+        local target_x = 863
+        local target_y = 300
+        local arc_height = 80  
+        local duration = 0.8 
+        local elapsed_time = 0
+Game.world.timer:during(duration, function()
+    elapsed_time = elapsed_time + DT
+    local progress = math.min(1.0, elapsed_time / duration)
+    shadow.x = Utils.lerp(start_x, target_x, progress)
+    local base_y = Utils.lerp(start_y, target_y, progress)
+    local height_offset = 4 * arc_height * progress * (1 - progress)
+    
+    shadow.y = base_y - height_offset
+end, function()
+    shadow:setSprite("landed")
+    shadow:addFX(ColorMaskFX(COLORS.black))
+    shadow:addFX(OutlineFX())
+    shadow.sprite.scale_y = 0
+    shadow.sprite.scale_x = 2
+end)
+cutscene:wait(duration)
+local snd = Assets.playSound("appear")
+Game.world.timer:tween(snd:getDuration(), shadow.sprite, {scale_y = -1}) 
+Game.world.timer:during(snd:getDuration(), function()
+shadow:setPosition(893, 323)
+end)
+Game.world.music:play("gallery", 0) 
+Game.world.music:fade(0.7, 1)
+cutscene:wait(1.3)
+Assets.playSound("wing")
+shadow:shake()
+shadow.sprite.scale_y = 2
+shadow.y = 248
+shadow:setSprite("left")
+local function bumpshake()
+kris:shake()
+Assets.playSound("bump")
+Game.stage:shake()
+end 
+cutscene:wait(0.5)
+cutscene:text("* Heh.[wait:5] Look at you.[wait:5] So helpless.")
+bumpshake()
+cutscene:wait(0.5)
+cutscene:text("* That [color:red][shake:1]SOUL[color:reset][shake:0] of yours...")
+bumpshake()
+cutscene:wait(0.5)
+cutscene:text("* Controlling you like a puppet...")
+bumpshake() -- me when helper functions :3 
+cutscene:wait(0.5)
+cutscene:text("*[noskip] Your actions don't matter,[wait:5] do they?[wait:8][next]")
+bumpshake()
+cutscene:wait(0.5)
+cutscene:text("* Berdly, Spamton, [shake:1]Noel[shake:0]-[next]")
+local fx = kris:addFX(ColorMaskFX(COLORS.red, 1))
+Assets.playSound("weaponpull_fast")
+kris:setAnimation("battle/attack_ready")
+shadow.y = 246
+Game.world.timer:tween(0.5, fx, {amount = 0})
+cutscene:wait(1.8)
+cutscene:text("* You're so desperate to break free,[wait:5] huh?")
+cutscene:text("* Kris...[wait:5]")
+Game.world.music:fade(0, 1)
+cutscene:text("*[noskip][speed:0.5] You can't get rid of them.")
+Game.world.music:play("shadow", 0) 
+Game.world.music:fade(0.5, 1)
+local storm_overlay = ThunderTint()
+Game.stage:addChild(storm_overlay)
+storm_overlay.alpha = 0 
+Game.world.timer:tween(0.5, storm_overlay, {alpha = 1})
+cutscene:wait(0.5)
+cutscene:text("* Heh.[wait:5]\n* But you can try getting rid\nof me.")
+cutscene:startEncounter("shadow", nil, {{"shadow", shadow}}, {
+    on_start = function()
+        Game.stage:setWeather("thunder")
+        storm_overlay:remove()
+        shadow:remove()
+    end
+})
+Game.stage:resetWeather()
+Game.world.music:stop()
+if Game:getFlag("shadow_v") then 
+    kris:setSprite("fell")
+    cutscene:wait(0.5)
+    local function bumpshake()
+    kris:shake(2)
+    Assets.playSound("wing")
+    end 
+    bumpshake()
+    cutscene:wait(0.2)
+    bumpshake()
+    cutscene:wait(0.2)
+    kris:resetSprite()
+    kris:setFacing("right")
+    cutscene:attachCamera(1)
+else 
+cutscene:attachCamera(1)
+kris:resetSprite()
+kris:setFacing("left")
+end 
+    end,  
+    
+    ralsei = function(cutscene)
+        local function flash(per, color)
+    local fx = ColorMaskFX(color or COLORS.white)
+    fx.amount = 0 
+    per:addFX(fx, "fx")
+    Game.world.timer:tween(0.25, fx, {amount = 1}, "linear", function()
+    Game.world.timer:tween(0.25, fx, {amount = 0}, "linear", function() per:removeFX("fx") end)
+    end)
+end 
+
+        -- getting markers is a pain 
+        if Game:getFlag("encounter#ralsei:done") then 
+            return -- Hah. Bye. Nothing. Return and NO EARN.
+        end 
+        if Game:getFlag("encounter#ralsei:ralsei", false) == false then 
+        Game.world.music:fade(0, 5)
+        local rx, ry = cutscene:getMarker("kris")
+        local kris = cutscene:getCharacter("kris")
+        cutscene:wait(cutscene:walkTo(kris, rx, ry, 5))
+        cutscene:panTo(Game.world.camera.x + 200, Game.world.camera.y, 1, "in-quad")
+        cutscene:wait(1)
+        local ralsei = Game.world:spawnNPC("ralsei", 2200, kris.y + 6)
+        ralsei.reflections = true
+        ralsei:setFacing("left")
+        ralsei:walkTo(2000, ralsei.y, 0.6)
+        cutscene:wait(0.7)
+        cutscene:look(ralsei, "right") -- what is the difference between this and setFacing ? 
+        cutscene:wait(0.2)
+        cutscene:look(ralsei, "left") 
+        ralsei:alert(0.5)
+        cutscene:wait(0.5)
+        cutscene:setSpeaker("ralsei")
+        cutscene:text("* Oh![wait:2] Kris,[wait:2] there you are!", "blush_surprise") -- he was looking for kris earlier
+        cutscene:text("* I was...[wait:5] looking for you.", "pensive")
+        cutscene:wait(0.4)
+        cutscene:text("* You're asking me...[wait:5] why?", "blush_shy")
+        cutscene:text("* Let's...[wait:3][face:pleased] not focus on that,[wait:2] okay?", "blush")
+        cutscene:text("* We have more pressing matters to attend to.", "small_smile_side")
+        cutscene:wait(0.2)
+        cutscene:text("* Before that,[wait:2] Kris,[wait:5] where's Susie...?", "smile_side")
+        cutscene:wait(0.25)
+        cutscene:look(ralsei, "right")
+        cutscene:wait(0.25)
+        ralsei:setFacing("left")
+        cutscene:wait(0.2)
+        cutscene:text("* She's not with you?[wait:5] That's...[wait:2] weird.", "surprise_neutral_side")
+        cutscene:text("* Well,[wait:2] since she's not here..", "small_smile_side_b") 
+        cutscene:wait(0.2)
+        cutscene:text("* Let's close our eyes,[wait:2] and think about what she's doing now.", "small_smile_side_b")
+        local _, box = cutscene:choicer({"Sounds awful.", "Go away."}, {wait = false})
+        cutscene:wait(function()
+        return Input.pressed("left") or Input.pressed("right")
+        end)
+        cutscene:closeText()
+        Assets.playSound("damage")
+        kris:setSprite("ouch")
+        flash(kris, COLORS.red)
+        cutscene:wait(0.5)
+        cutscene:text("* KRIS! Kris- I-", "shock")
+        ralsei:resetSprite()
+        ralsei:walkTo(kris.x + 50, ralsei.y, 1.5)
+        cutscene:wait(1.5)
+        ralsei.scale_x = -2 
+        ralsei:setAnimation("hug")
+        cutscene:wait(0.1)
+        Assets.playSound("weaponpull_fast")
+        kris:setAnimation({"battle/intro", 1/15, false}, function() kris:setAnimation("battle/idle") end)
+        ralsei:slideTo(ralsei.x + 100, ralsei.y, 9/15, "out-quad")
+        ralsei.scale_x = 2 
+        ralsei:setSprite("ow")
+        cutscene:wait(9/15)
+        cutscene:wait(0.5)
+        ralsei:setAnimation({"landed", 1/6, false})
+        cutscene:wait(0.5)
+        Assets.playSound("wing")
+        ralsei:shake(2)
+        ralsei:resetSprite()
+        ralsei:setFacing("left")
+        cutscene:text("* Kris...[wait:5] why would you brandish your sword on me?", "scared_down")
+        ralsei:setSprite("look_d")
+        cutscene:text("* There's no need to get hostile...[wait:5] I'm just trying to help!", "stressed")
+        cutscene:wait(0.5) 
+        local choice = cutscene:choicer({"Sorry,\n I'll stop.", "It's not\nworth it."})
+        if choice == 1 then
+        Assets.playSound("wing")
+        kris:resetSprite(); kris:setFacing("right")
+        kris:shake(2)   
+        ralsei:setSprite("smile")  
+        cutscene:text("* See,[wait:2] it's okay!", "pleased")
+        cutscene:text("* Here.", "blush_smile")
+        ralsei:resetSprite()
+        ralsei:walkTo(kris.x + 50, ralsei.y, 0.5)
+        cutscene:wait(0.5)
+        cutscene:text("* Back when we were in Cyber City,[wait:2] me and Susie bought some tea.", "blush_smile")
+        cutscene:text("* Have some,[wait:5] it'll make you feel better!", "blush")
+        local scs, txt = Game.inventory:tryGiveItem("ralsei_tea")  
+        Assets.playSound("item")
+        cutscene:setSpeaker(nil)
+        cutscene:text(txt)
+        cutscene:setSpeaker("ralsei")
+        cutscene:wait(0.25)
+        ralsei:resetSprite()
+        ralsei:setFacing("left")
+        cutscene:text("* ...We still have to go seal the fountain.", "small_smile_side")
+        cutscene:wait(0.25)
+        ralsei:setSprite("smile")
+        cutscene:text("* I'll be right behind you,[wait:3] Kris.", "wink")
+        cutscene:text("* Let's get a move on,[wait:2] shall we?", "blush_pleased_open")
+        Game:addPartyMember("ralsei")
+        local follower = Game.world:spawnFollower("ralsei",  {x = ralsei.x, y = ralsei.y, party = "ralsei"})
+        ralsei:remove()
+        follower:setFacing("left")
+        cutscene:interpolateFollowers() 
+        cutscene:attachFollowers()
+        cutscene:attachCamera(1)
+        Game.world.music:setVolume(1)
+        cutscene:wait(1)
+        Game:setFlag("encounter#ralsei:done", true)
+        return 
+        else 
+        ralsei:setSprite("grim")
+        Game:setFlag("can_fight_ralsei", true)
+        cutscene:text("* What isn't worth it?[wait:2] Being...[wait:2] helpful?", "unsure")
+        cutscene:text("* Kris...[wait:5] if something's wron-[next]", "pensive")
+        Assets.playSound("weaponpull_fast")
+        kris:setAnimation("battle/attack_ready")
+        Game.world.music:play("gallery", 0)
+        Game.world.music:fade(0.5, 1)
+        cutscene:wait(1)
+        ralsei:setSprite("what")
+        cutscene:text("* Kris,[wait:3] why do you want to FIGHT me..!", "concern_smile")
+        cutscene:wait(0.5)
+        ralsei:setSprite("grim")
+        cutscene:text("* Kris,[wait:2] please...[wait:3] put down your sword...", "frown_b")
+        cutscene:wait(0.5)
+        cutscene:text("* Fighting won't get us anywhere...!", "pleading")
+        cutscene:wait(1)
+        cutscene:text("* If you're not going to listen to me...", "angry_surprise")
+        cutscene:wait(2)
+        ralsei:setSprite("mad")
+        cutscene:text("* Please,[wait:2] Kris![wait:5] Change your mind![wait:5] I don't want to do this!", "determined")
+        cutscene:wait(0.5)
+        Assets.playSound("wing")
+        ralsei:shake(2)
+        ralsei:resetSprite(); ralsei:setSprite("grim")
+        Game.world.music:fade(0, 0.5)
+        cutscene:wait(0.5)
+        cutscene:text("* (I have no choice,[wait:4] do I...?)", "roaring")
+        Game.world.music:play("hallway", 0)
+        cutscene:text("* Forgive me,[wait:3] Kris...", "determined_up")
+        Assets.playSound("tensionhorn")
+        cutscene:wait(0.2)
+        cutscene:wait(cutscene:playSound("tensionhorn", 1, 1.1))
+        cutscene:startEncounter("ralsei", nil, {{"ralsei", ralsei}})
+        end 
+        if Game:getFlag("can_fight_ralsei") then 
+        elseif Game:getFlag("encounter#ralsei:ralsei", false) then
+        -- the restart scene
+        local kris = cutscene:getCharacter("kris")
+        local rx, ry = cutscene:getMarker("kris")
+        cutscene:wait(cutscene:walkTo(kris, rx, ry, 2))
+        cutscene:panTo(Game.world.camera.x + 200, Game.world.camera.y, 1, "in-quad")
+        cutscene:wait(1)
+        local ralsei = cutscene:spawnNPC("ralsei", 2000, kris.y + 6)
+        ralsei:setFacing("left")
+        ralsei.alpha = 0
+        cutscene:text("* The wind blows fiercely.")
+        cutscene:text("* You can sense a fiery presence.")
+        ralsei.alpha = 1
+        cutscene:startEncounter("ralsei", nil, {{"ralsei", ralsei}})
+        end 
+        if Game:getFlag("enemy#ralsei:spared_but_not", false) then 
+            -- the spared after being hit, it better fucking work istg 
+        local kris = cutscene:getCharacter("kris")
+        local ralsei = cutscene:getCharacter("ralsei")
+        kris:resetSprite()
+        ralsei.x = ralsei.x + 170 
+        ralsei:resetSprite()
+        cutscene:setSpeaker("ralsei")
+        cutscene:wait(0.5)
+        ralsei:setSprite("smile")
+        cutscene:text("* Kris,[wait:2] I knew you didn't mean any harm!", "blush_pleased")
+        cutscene:text("* I was worried,[wait:3] since you tried to attack me...", "down")
+        ralsei:setSprite("look_d")
+        cutscene:text("* Regardless,[wait:2] we need to seal this fountain.", "roaring")
+        cutscene:text("* This might be,[wait:5] our final adventure together...", "roaring")
+        ralsei:setSprite("smile")
+        cutscene:text("* So,[wait:2] let's make it count!", "small_smile")
+        Game:addPartyMember("ralsei")
+        local follower = Game.world:spawnFollower("ralsei",  {x = ralsei.x, y = ralsei.y, party = "ralsei"})
+        ralsei:remove()
+        follower:setFacing("left")
+        cutscene:interpolateFollowers() 
+        cutscene:attachFollowers()
+        cutscene:attachCamera(1)
+        Game.world.music:setVolume(1)
+        cutscene:wait(1)
+        elseif Game:getFlag("enemy#ralsei:spared") then
+            -- now this is being spared
+        local kris = cutscene:getCharacter("kris")
+        local ralsei = cutscene:getCharacter("ralsei")
+        kris:resetSprite()
+        ralsei.x = ralsei.x + 200
+        ralsei:resetSprite()
+        Game:addPartyMember("ralsei")
+        local follower = Game.world:spawnFollower("ralsei",  {x = ralsei.x, y = ralsei.y, party = "ralsei"})
+        ralsei:remove()
+        follower:setFacing("left")
+        cutscene:interpolateFollowers() 
+        cutscene:attachFollowers()
+        cutscene:attachCamera(1)
+        Game.world.music:setVolume(1)
+        elseif Game:getFlag("encounter#ralsei:violenced_not_geno", false) then 
+        -- you killed him but not through rupture
+        Game.world.music:setVolume(1)
+        local kris = cutscene:getCharacter("kris")
+        local ralsei = cutscene:getCharacter("ralsei")
+        kris:resetSprite()
+        kris:setFacing("up")
+        ralsei:remove()
+        cutscene:wait(1)
+        cutscene:attachCamera(1)
+        cutscene:wait(1)
+        else
+        -- ralsei flees (rupture)
+        Game.world.music:setVolume(1)
+        Game.world.music:setPitch(0.8)
+        local kris = cutscene:getCharacter("kris")
+        local ralsei = cutscene:getCharacter("ralsei")
+        kris:resetSprite()
+        kris:setFacing("up")
+        ralsei:remove()
+        cutscene:wait(1)
+        cutscene:setSpeaker(nil)
+        cutscene:attachCamera(1)
+        cutscene:wait(1)
+        cutscene:text("* Kris can now use [color:red]RUPTURE[color:reset]!")
+        cutscene:wait(1)
+        Assets.playSound("wind", 0.5, 1.5)
+        local fx = Game.stage:addFX(GenocideFX(99), "geno")
+        fx.progress = 0
+        Game.world.timer:tween(4, fx, {progress = 1}, "linear")
+        cutscene:wait(4)
+        end 
+    end 
+    end, 
+
+    soul = function(cutscene)
+        Game.fader.alpha = 1
+        cutscene:detachCamera()
+        Game.world.fader.alpha = 1
+        local kris = cutscene:getCharacter("kris")
+        Game.world:addFX(ShaderFX("desat", {amount = 1.5}), "desat")
+        Game.world:addFX(ShaderFX("desat", {amount = 1}), "desat2")
+        Game.world.music:play("wind_normal")
+        cutscene:wait(2)  
+        local function gonerTextFade(text)
+            Game.stage.timer:tween(1, text, { alpha = 0 }, "linear", function() text:remove() end)
+            cutscene:wait(1) 
+        end   
+        local function die_text(str, x, y)
+            local txt = DialogueText("[noskip][speed:1.2]" ..str, x or 110, y or 345) 
+            txt:setParallax(0, 0)
+            txt.layer = 9999
+            Game.stage:addChild(txt)
+            cutscene:wait(function() return not txt:isTyping() end)
+            gonerTextFade(txt)
+        end 
+        local function resetFader(full)
+            Game.fader.alpha = full
+            Game.world.fader.alpha = full 
+        end 
+        local snd = Assets.playSound("static", 0.4, 1.2)
+        kris:setSprite("soul/dead_2")
+        Game.world.timer:tween(snd:getDuration(), Game.world.fader, {alpha = 0})
+        Game.world.timer:tween(snd:getDuration(), Game.fader, {alpha = 0})
+        cutscene:wait(0.6)
+        resetFader(1)
+        Assets.playSound("step1")
+        kris:setPosition(200, 355)
+        Assets.playSound("step2")
+        cutscene:wait(0.5)
+        -- resetFader(0)
+        kris:setAnimation({"soul/take", 0.2, false})
+        cutscene:wait(0.2)
+        resetFader(0)
+        cutscene:wait(0.1)
+        cutscene:wait(cutscene:playSound("static", 0.4, 1.2))
+        resetFader(1)
+        cutscene:wait(0.5)
+        Assets.playSound("hurt")
+        cutscene:wait(cutscene:playSound("damage"))
+        for i = 1, 4 do 
+            Assets.playSound("hurt")
+            cutscene:wait(0.1)
+        end
+        cutscene:wait(cutscene:playSound("break2")) 
+        cutscene:wait(0.3)
+        Assets.playSound("impact")
+        resetFader(0)
+        local rect = Rectangle(0, 0, 9999, 9999)
+        rect:setParallax(0, 0)
+        rect:setColor(COLORS.black)
+        rect.layer = WORLD_LAYERS["below_textbox"]
+        Game.world:addChild(rect)
+        cutscene:wait(0.2)
+        Game.world:removeFX("desat")
+        Game.world:removeFX("desat2")
+        cutscene:wait(0.5)
+        die_text("* The air around you\nfeels suffocating.")
+        die_text("* Your chest feels tight.") 
+        die_text("* You can't breathe.") 
+        die_text("* All you can manage to do...") 
+        cutscene:fadeOut(0.5, {color = COLORS.white})
+        cutscene:wait(1)
+        die_text("* Is think...", 248)
+        cutscene:wait(0.5) 
+        Assets.playSound("break1", 2, 1.2)
+        rect:remove()
+        Game:addPartyMember("noelle")
+        Game:removePartyMember("kris")
+        cutscene:wait(cutscene:mapTransition("recep6"))
+        cutscene:fadeIn(0)
+        cutscene:detachCamera()
+        Game.world.camera:setPosition(997, 240)
+        local noelle = cutscene:getCharacter("noelle")
+        noelle:setPosition(1000, 1417)
+        noelle:setAnimation("float")
+        cutscene:wait(0.5)
+        cutscene:panTo(Game.world.camera.x, Game.world.camera.y + 1150, 5)
+        cutscene:wait(5)
+        local noelle = cutscene:getCharacter("noelle")
+        local function bumpshake()
+            Assets.playSound("bump")
+            noelle:shake(2)
+        end 
+        cutscene:text("* Need to find more[func:shake]... [wait:2] enemies...", "struggling_down", "noelle", {functions = {shake = bumpshake}})
+        cutscene:wait(0.2)
+        noelle:alert()
+        local viro = Game.world:spawnNPC("sirengeist", 1500, 1400)
+        cutscene:panTo(Game.world.camera.x + 150, Game.world.camera.y, 0.8, "in-out-sine")
+        viro:slideTo(1250, 1396, 1.5)
+        cutscene:text("* Another one...", "down", "noelle")
+        cutscene:wait(1.2)
+        viro:resetPhysics()
+        cutscene:text("* I'll make it go away.", "upset_down", "noelle")
+        noelle:setAnimation("battle/spell", function() noelle:setAnimation("float") end)
+        local function iceshock(kx, ky)
+        Assets.playSound("icespell")
+        local function createParticle(x, y)
+        local sprite = Sprite("effects/icespell/snowflake", x, y)
+        sprite:setOrigin(0.5, 0.5)
+        sprite:setScale(1.5)
+        sprite.layer = 99999
+        Game.stage:addChild(sprite)
+        return sprite
+    end
+
+    Game.world.timer:script(function(wait)
+        local particles = {}
+        
+        particles[1] = createParticle(kx - 25, ky - 20)
+        wait(3/30)
+        particles[2] = createParticle(kx + 25, ky - 20)
+        wait(3/30)
+        particles[3] = createParticle(kx, ky + 20)
+        wait(3/30)
+
+        local burst = IceSpellBurst(kx, ky)
+        Game.stage:addChild(burst)
+        
+        for _, particle in ipairs(particles) do
+            if particle and particle.stage then
+                particle:remove()
+            end
+        end
+        
+        for _, particle in ipairs(particles) do
+            for i = 0, 5 do
+                local effect = IceSpellEffect(particle.x, particle.y)
+                effect:setScale(0.75)
+                effect.physics.direction = math.rad(60 * i)
+                effect.physics.speed = 8
+                effect.physics.friction = 0.2
+                effect.layer = 99999
+                Game.stage:addChild(effect)
+            end
+        end
+    end)
+end
+    local vx, vy = viro:getRelativePos(viro.width/2, viro.height/2, Game.stage)
+    iceshock(vx + 15, vy + 20)
+    cutscene:wait(0.2)
+    viro:setAnimation("hurt")
+    viro.sprite.frozen = true 
+    viro.sprite.freeze_progress = 0
+    local snd = Assets.playSound("petrify") 
+    Game.world.timer:tween(0.75, viro.sprite, {freeze_progress = 1})
+    cutscene:wait(snd:getDuration())
+    Game.world.timer:tween(0.2, viro, {rotation = math.rad(25)}, "in-cubic")
+    cutscene:wait(0.2)
+    snd = Assets.playSound("fall")
+    viro:slideTo(viro.x, viro.y + 400, 1.1, "in-quart")
+    cutscene:wait(1.8)
+    snd:stop()
+    Assets.playSound("deathnoise")
+    Assets.playSound("levelup")
+    local fx = noelle:addFX(ColorMaskFX(COLORS.white, 1))
+    Game.world.timer:tween(0.25, fx, {amount = 0})
+    cutscene:wait(0.5)
+    cutscene:text("* Need to...[wait:2][func:shake] freeze...[wait:2][func:shake] more enemies...", "down_smile", "noelle", {functions = {shake = bumpshake}})
+    cutscene:wait(cutscene:fadeOut(0.5))
+
+    cutscene:detachCamera()
+
+    local ralsei = cutscene:spawnNPC("ralsei", 2380, 534)
+    ralsei:setFacing("left")
+    ralsei.reflections = true 
+    cutscene:fadeIn(0.4)
+    Game.world.camera:setPosition(2173, 495)
+    ralsei:walkTo(2170, ralsei.y, 1.5)
+
+    cutscene:wait(1.3)
+
+    Game.world:setCameraTarget(ralsei)
+    cutscene:attachCamera(0)
+
+    cutscene:text("* I can sense a dark presence here...", "disappointed_side", "ralsei")
+    cutscene:wait(0.2)
+    cutscene:text("* Maybe the dark fountain is here!", "blush_smile", "ralsei")
+    cutscene:text("* I hope Kris is close!", "blush_pleased", "ralsei")
+    ralsei:walkTo(ralsei.x, 1420, 4)
+    cutscene:wait(4.1)
+    ralsei:setFacing("left")
+    cutscene:text("* The dark presence feels even stronger..!", "pleading_closed", "ralsei")
+    ralsei:alert(0.5)
+    cutscene:wait(0.5)
+    cutscene:detachCamera()
+    cutscene:panTo(noelle, 0.6, "out-cubic")
+    cutscene:wait(1.5)
+    cutscene:panTo(ralsei, 0.6, "out-cubic")
+    cutscene:wait(0.6)
+    Game.world:setCameraTarget(ralsei)
+    cutscene:wait(cutscene:attachCamera(0.5))
+    cutscene:text("* Is that...[wait:8]", "surprise_confused", "ralsei")
+    cutscene:text("* N-[wait:2]No, it can't be!", "concern_smile", "ralsei")
+    ralsei:walkTo(ralsei.x - 300, ralsei.y, 1)
+    cutscene:wait(0.7)
+    local rx, ry = ralsei:getRelativePos(ralsei.width/2, ralsei.height/2, Game.stage)
+    iceshock(rx - 50, ry)
+    ralsei:resetPhysics()
+    cutscene:wait(0.3)
+    ralsei:setSprite("landed_1")
+    ralsei:slideTo(ralsei.x + 50, ralsei.y, 0.2)
+    cutscene:wait(0.5)
+    ralsei:shake(2)
+    Assets.playSound("wing")
+    ralsei:resetSprite()
+    ralsei:setFacing("left")
+    cutscene:wait(0.3)
+    cutscene:text("*[noskip] W[wait:2]-why is she\nattacking me?", "concern_smile", "ralsei")
+    ralsei:walkTo(ralsei.x - 600, ralsei.y, 3)
+    cutscene:wait(2)
+    cutscene:detachCamera() 
+    cutscene:wait(1)
+    cutscene:panTo(Game.world.camera.x - 400, Game.world.camera.y, 3, "in-sine")
+    cutscene:wait(3)
+ -- kris:setFacing("right")
+    cutscene:text("* Another...[func:shake][wait:5] enemy...[func:shake][wait:5]", "struggling_down", "noelle", {functions = {shake = bumpshake}})
+    cutscene:text("* Must...[wait:5] freeze...[wait:8][next]", "struggling_down_b", "noelle")
+    noelle:setAnimation("battle/spell", function()
+        noelle:setSprite("battle/spell_9")
+    end)
+    ralsei.scale_x = -2 
+    ralsei:setAnimation("battle/defend_ready")
+    local function shock(x, y)
+    iceshock(x, y)
+    Game.stage:shake(2)
+    end 
+    local function checkDist(ix, iy)
+        local rd = MathUtils.dist(ix, iy, ralsei.x, ralsei.y)
+        local nd = MathUtils.dist(ix, iy, noelle.x, noelle.y)
+        if rd >= 200 and nd >= 200 then 
+            return true 
+        else 
+            return false 
+        end 
+    end 
+    for i = 1, 8 do 
+    local ix = love.math.random(0, SCREEN_WIDTH)
+    local iy = love.math.random(0, SCREEN_HEIGHT)
+    if not checkDist(ix, iy) then 
+        shock(MathUtils.clamp(ix + MathUtils.clamp(love.math.random(-200, 200), -100, 100), 0, SCREEN_WIDTH), MathUtils.clamp(iy + MathUtils.clamp(love.math.random(-200, 200), -100, 100), 0, SCREEN_HEIGHT)) 
+        cutscene:wait(0.4)
+    else 
+        shock(ix, iy) 
+        cutscene:wait(0.4)
+    end 
+    end
+    local effect = OverworldSnowEffect()
+    local fx = ColorMaskFX(COLORS.black)
+    fx.amount = 0
+    noelle:addFX(fx)
+    ralsei:addFX(fx)
+    Game.world.timer:tween(0.5, fx, {amount = 1})
+    effect.layer = noelle.layer - 0.0001
+    ralsei.reflections = false 
+    Game.world:addChild(effect)
+    cutscene:wait(0.25)
+    noelle.reflections = false 
+    cutscene:wait(0.75)
+    cutscene:text("* Noelle can't stop attacking...")
+    cutscene:text("* [color:yellow]TENSION[color:reset] is high,[wait:2] but [color:blue]draining[color:reset]!")
+    cutscene:wait(0.5)
+    for _, t in ipairs(Game.stage:getObjects(FrozenEnemy)) do 
+        t.visible = false 
+    end 
+    cutscene:startEncounter("forced", nil, {{"ralsei_forced", ralsei}})
+    Game.world.music:play("wind_normal")
+    Game:removePartyMember("noelle")
+    Game:addPartyMember("kris")
+    cutscene:wait(cutscene:loadMap("recep3"))
+    local kris = cutscene:getCharacter("kris")
+    kris:setPosition(61, 345)
+    kris:setFacing("right")
+    Game.fader:fadeIn(nil, {speed = 1})
+    cutscene:wait(1)
+    end 
+}

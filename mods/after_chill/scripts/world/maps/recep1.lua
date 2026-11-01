@@ -1,0 +1,1004 @@
+return {
+  version = "1.10",
+  luaversion = "5.1",
+  tiledversion = "1.11.2",
+  class = "",
+  orientation = "orthogonal",
+  renderorder = "right-down",
+  width = 34,
+  height = 17,
+  tilewidth = 40,
+  tileheight = 40,
+  nextlayerid = 15,
+  nextobjectid = 60,
+  properties = {
+    ["music"] = "hallway",
+    ["name"] = "Receptionist Bridge"
+  },
+  tilesets = {
+    {
+      name = "Receptionist",
+      firstgid = 1,
+      class = "",
+      tilewidth = 16,
+      tileheight = 16,
+      spacing = 0,
+      margin = 0,
+      columns = 19,
+      image = "../../../assets/sprites/tilesets/Receptionist.png",
+      imagewidth = 318,
+      imageheight = 308,
+      objectalignment = "unspecified",
+      tilerendersize = "grid",
+      fillmode = "stretch",
+      tileoffset = {
+        x = 0,
+        y = 0
+      },
+      grid = {
+        orientation = "orthogonal",
+        width = 16,
+        height = 16
+      },
+      properties = {},
+      wangsets = {},
+      tilecount = 361,
+      tiles = {}
+    },
+    {
+      name = "Receptionist",
+      firstgid = 362,
+      filename = "../tilesets/Receptionist.tsx",
+      exportfilename = "../tilesets/Receptionist..lua"
+    }
+  },
+  layers = {
+    {
+      type = "imagelayer",
+      image = "../../../assets/sprites/tilesets/indoors recep bg_1.png",
+      id = 10,
+      name = "Image Layer 1",
+      class = "",
+      visible = true,
+      opacity = 1,
+      offsetx = -23,
+      offsety = 533,
+      parallaxx = 0.3,
+      parallaxy = 0.3,
+      tintcolor = { 100, 101, 120 },
+      repeatx = true,
+      repeaty = true,
+      properties = {}
+    },
+    {
+      type = "tilelayer",
+      x = 0,
+      y = 0,
+      width = 34,
+      height = 17,
+      id = 14,
+      name = "downwards",
+      class = "",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      parallaxx = 1,
+      parallaxy = 1,
+      tintcolor = { 175, 175, 209 },
+      properties = {},
+      encoding = "lua",
+      data = {
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 301, 302, 302, 302, 302, 302, 302, 302, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 320, 317, 321, 317, 321, 317, 321, 321, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 320, 321, 321, 321, 321, 321, 321, 321, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 320, 317, 0, 317, 0, 317, 0, 321, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 340, 340, 340, 340, 340, 340, 340, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 663, 659, 663, 663, 663, 663, 659, 663, 663, 663, 663, 659, 663, 663, 663, 663, 659, 663, 663, 663, 659, 659, 663, 663, 663, 659,
+        0, 0, 0, 0, 0, 0, 0, 0, 321, 321, 321, 321, 321, 321, 682, 321, 321, 321, 321, 321, 321, 321, 321, 321, 321, 321, 321, 321, 321, 321, 321, 321, 321, 321,
+        0, 0, 0, 0, 0, 0, 0, 0, 321, 678, 321, 321, 321, 321, 678, 321, 321, 321, 321, 678, 321, 321, 321, 321, 678, 321, 321, 321, 678, 678, 321, 321, 321, 678,
+        0, 0, 0, 0, 0, 0, 0, 0, 321, 321, 321, 321, 321, 321, 321, 321, 321, 321, 321, 321, 321, 321, 321, 321, 321, 321, 321, 321, 321, 321, 321, 321, 321, 321,
+        0, 0, 0, 0, 0, 0, 0, 0, 321, 678, 321, 321, 321, 321, 678, 321, 321, 321, 321, 678, 321, 321, 321, 321, 678, 321, 321, 321, 678, 678, 321, 321, 321, 678,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+      }
+    },
+    {
+      type = "tilelayer",
+      x = 0,
+      y = 0,
+      width = 34,
+      height = 17,
+      id = 3,
+      name = "Tile Layer 1",
+      class = "",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      parallaxx = 1,
+      parallaxy = 1,
+      tintcolor = { 175, 175, 209 },
+      properties = {},
+      encoding = "lua",
+      data = {
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 263, 264, 264, 264, 264, 264, 264, 264, 264, 264, 265, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 282, 283, 283, 283, 283, 283, 283, 283, 283, 283, 284, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 282, 283, 284, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 282, 283, 284, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 278, 279, 280, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 682, 0, 682, 0, 682, 0, 278, 279, 280, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 263, 225, 0, 0, 0, 0, 0, 0, 0, 278, 279, 280, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 282, 283, 283, 283, 283, 283, 283, 283, 283, 283, 283, 283, 621, 621, 621, 621, 621, 621, 621, 621, 621, 621, 621, 621, 621, 621, 621, 621, 621,
+        0, 0, 0, 0, 0, 282, 283, 283, 283, 283, 283, 283, 283, 283, 283, 283, 283, 640, 640, 640, 640, 640, 640, 640, 640, 640, 640, 640, 640, 640, 640, 640, 640, 640,
+        0, 0, 0, 0, 0, 282, 283, 644, 644, 644, 644, 644, 644, 644, 644, 644, 644, 640, 640, 640, 640, 640, 640, 640, 640, 640, 640, 640, 640, 640, 640, 640, 640, 640,
+        0, 0, 0, 0, 0, 282, 283, 284, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 282, 283, 284, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 282, 283, 284, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 282, 283, 284, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 282, 283, 284, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 643, 644, 645, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+      }
+    },
+    {
+      type = "objectgroup",
+      draworder = "topdown",
+      id = 4,
+      name = "objects",
+      class = "",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      parallaxx = 1,
+      parallaxy = 1,
+      properties = {},
+      objects = {
+        {
+          id = 2,
+          name = "transition",
+          type = "",
+          shape = "rectangle",
+          x = 1320.27,
+          y = 317.911,
+          width = 39.8111,
+          height = 123.311,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["map"] = "recep2",
+            ["marker"] = "entranceA"
+          }
+        },
+        {
+          id = 17,
+          name = "transition",
+          type = "",
+          shape = "rectangle",
+          x = 197.572,
+          y = 682.75,
+          width = 124.217,
+          height = 41.4056,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["map"] = "recep_start",
+            ["marker"] = "entranceA"
+          }
+        },
+        {
+          id = 20,
+          name = "chest",
+          type = "",
+          shape = "rectangle",
+          x = 304.667,
+          y = 63.3333,
+          width = 34,
+          height = 34,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["item"] = "sharp_syringe"
+          }
+        },
+        {
+          id = 21,
+          name = "enemy",
+          type = "",
+          shape = "rectangle",
+          x = 396,
+          y = 57,
+          width = 54,
+          height = 44,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["actor"] = "sirengeist",
+            ["chase"] = true,
+            ["encounter"] = "sirengeist3",
+            ["enemy"] = "sirengeist",
+            ["once"] = true
+          }
+        },
+        {
+          id = 22,
+          name = "script",
+          type = "",
+          shape = "rectangle",
+          x = 221.333,
+          y = 522.333,
+          width = 80,
+          height = 80,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["cutscene"] = "musicnotif.recep"
+          }
+        },
+        {
+          id = 26,
+          name = "bloom",
+          type = "",
+          shape = "point",
+          x = 300.25,
+          y = 182.75,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["alpha"] = 50,
+            ["scalex"] = 50,
+            ["scaley"] = 50
+          }
+        },
+        {
+          id = 27,
+          name = "bloom",
+          type = "",
+          shape = "point",
+          x = 300.25,
+          y = 262.938,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["alpha"] = 50,
+            ["scalex"] = 50,
+            ["scaley"] = 50
+          }
+        },
+        {
+          id = 28,
+          name = "bloom",
+          type = "",
+          shape = "point",
+          x = 380.333,
+          y = 262.94,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["alpha"] = 50,
+            ["scalex"] = 50,
+            ["scaley"] = 50
+          }
+        },
+        {
+          id = 29,
+          name = "bloom",
+          type = "",
+          shape = "point",
+          x = 380.33,
+          y = 182.75,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["alpha"] = 50,
+            ["scalex"] = 50,
+            ["scaley"] = 50
+          }
+        },
+        {
+          id = 30,
+          name = "bloom",
+          type = "",
+          shape = "point",
+          x = 460,
+          y = 262.94,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["alpha"] = 50,
+            ["scalex"] = 50,
+            ["scaley"] = 50
+          }
+        },
+        {
+          id = 31,
+          name = "bloom",
+          type = "",
+          shape = "point",
+          x = 460,
+          y = 182.75,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["alpha"] = 50,
+            ["scalex"] = 50,
+            ["scaley"] = 50
+          }
+        },
+        {
+          id = 32,
+          name = "bloom",
+          type = "",
+          shape = "point",
+          x = 380.25,
+          y = 463,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["alpha"] = 50,
+            ["scalex"] = 50,
+            ["scaley"] = 50
+          }
+        },
+        {
+          id = 33,
+          name = "bloom",
+          type = "",
+          shape = "point",
+          x = 380.25,
+          y = 543.188,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["alpha"] = 50,
+            ["scalex"] = 50,
+            ["scaley"] = 50
+          }
+        },
+        {
+          id = 38,
+          name = "bloom",
+          type = "",
+          shape = "point",
+          x = 579.667,
+          y = 464.479,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["alpha"] = 50,
+            ["scalex"] = 50,
+            ["scaley"] = 50
+          }
+        },
+        {
+          id = 39,
+          name = "bloom",
+          type = "",
+          shape = "point",
+          x = 579.667,
+          y = 541.667,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["alpha"] = 50,
+            ["scalex"] = 50,
+            ["scaley"] = 50
+          }
+        },
+        {
+          id = 41,
+          name = "bloom",
+          type = "",
+          shape = "point",
+          x = 380.364,
+          y = 621.455,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["alpha"] = 50,
+            ["scalex"] = 50,
+            ["scaley"] = 50
+          }
+        },
+        {
+          id = 43,
+          name = "bloom",
+          type = "",
+          shape = "point",
+          x = 580.25,
+          y = 622.375,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["alpha"] = 50,
+            ["scalex"] = 50,
+            ["scaley"] = 50
+          }
+        },
+        {
+          id = 44,
+          name = "bloom",
+          type = "",
+          shape = "point",
+          x = 780,
+          y = 464.5,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["alpha"] = 50,
+            ["scalex"] = 50,
+            ["scaley"] = 50
+          }
+        },
+        {
+          id = 45,
+          name = "bloom",
+          type = "",
+          shape = "point",
+          x = 780.75,
+          y = 542.5,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["alpha"] = 50,
+            ["scalex"] = 50,
+            ["scaley"] = 50
+          }
+        },
+        {
+          id = 46,
+          name = "bloom",
+          type = "",
+          shape = "point",
+          x = 780.5,
+          y = 622.5,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["alpha"] = 50,
+            ["scalex"] = 50,
+            ["scaley"] = 50
+          }
+        },
+        {
+          id = 47,
+          name = "bloom",
+          type = "",
+          shape = "point",
+          x = 980.25,
+          y = 464.75,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["alpha"] = 50,
+            ["scalex"] = 50,
+            ["scaley"] = 50
+          }
+        },
+        {
+          id = 48,
+          name = "bloom",
+          type = "",
+          shape = "point",
+          x = 980.5,
+          y = 542.5,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["alpha"] = 50,
+            ["scalex"] = 50,
+            ["scaley"] = 50
+          }
+        },
+        {
+          id = 50,
+          name = "bloom",
+          type = "",
+          shape = "point",
+          x = 980.25,
+          y = 622,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["alpha"] = 50,
+            ["scalex"] = 50,
+            ["scaley"] = 50
+          }
+        },
+        {
+          id = 51,
+          name = "bloom",
+          type = "",
+          shape = "point",
+          x = 1140.25,
+          y = 465.5,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["alpha"] = 50,
+            ["scalex"] = 50,
+            ["scaley"] = 50
+          }
+        },
+        {
+          id = 52,
+          name = "bloom",
+          type = "",
+          shape = "point",
+          x = 1140.25,
+          y = 541.5,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["alpha"] = 50,
+            ["scalex"] = 50,
+            ["scaley"] = 50
+          }
+        },
+        {
+          id = 53,
+          name = "bloom",
+          type = "",
+          shape = "point",
+          x = 1140,
+          y = 622.5,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["alpha"] = 50,
+            ["scalex"] = 50,
+            ["scaley"] = 50
+          }
+        },
+        {
+          id = 54,
+          name = "bloom",
+          type = "",
+          shape = "point",
+          x = 1180,
+          y = 622.5,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["alpha"] = 50,
+            ["scalex"] = 50,
+            ["scaley"] = 50
+          }
+        },
+        {
+          id = 55,
+          name = "bloom",
+          type = "",
+          shape = "point",
+          x = 1180.25,
+          y = 542.5,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["alpha"] = 50,
+            ["scalex"] = 50,
+            ["scaley"] = 50
+          }
+        },
+        {
+          id = 56,
+          name = "bloom",
+          type = "",
+          shape = "point",
+          x = 1180.5,
+          y = 465.5,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["alpha"] = 50,
+            ["scalex"] = 50,
+            ["scaley"] = 50
+          }
+        },
+        {
+          id = 57,
+          name = "bloom",
+          type = "",
+          shape = "point",
+          x = 1339.5,
+          y = 464.5,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["alpha"] = 50,
+            ["scalex"] = 50,
+            ["scaley"] = 50
+          }
+        },
+        {
+          id = 58,
+          name = "bloom",
+          type = "",
+          shape = "point",
+          x = 1340.25,
+          y = 542.5,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["alpha"] = 50,
+            ["scalex"] = 50,
+            ["scaley"] = 50
+          }
+        },
+        {
+          id = 59,
+          name = "bloom",
+          type = "",
+          shape = "point",
+          x = 1340.25,
+          y = 623.25,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["alpha"] = 50,
+            ["scalex"] = 50,
+            ["scaley"] = 50
+          }
+        }
+      }
+    },
+    {
+      type = "objectgroup",
+      draworder = "topdown",
+      id = 6,
+      name = "markers",
+      class = "",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      parallaxx = 1,
+      parallaxy = 1,
+      tintcolor = { 175, 175, 209 },
+      properties = {},
+      objects = {
+        {
+          id = 3,
+          name = "entranceA",
+          type = "",
+          shape = "point",
+          x = 255.978,
+          y = 583.75,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 16,
+          name = "entrance2",
+          type = "",
+          shape = "point",
+          x = 1149.09,
+          y = 375.317,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 25,
+          name = "spawn",
+          type = "",
+          shape = "point",
+          x = 560,
+          y = 360,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        }
+      }
+    },
+    {
+      type = "objectgroup",
+      draworder = "topdown",
+      id = 7,
+      name = "collision",
+      class = "",
+      visible = false,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      parallaxx = 1,
+      parallaxy = 1,
+      properties = {},
+      objects = {
+        {
+          id = 4,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 203.239,
+          y = 239.1,
+          width = 41.4056,
+          height = 41.4056,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 5,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 161.833,
+          y = 239.1,
+          width = 41.4056,
+          height = 414.056,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 6,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 320,
+          y = 440,
+          width = 41.4056,
+          height = 248.433,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 7,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 360,
+          y = 440,
+          width = 1001.14,
+          height = 41.4056,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 8,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 672.772,
+          y = 281.839,
+          width = 697.894,
+          height = 37.4056,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 9,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 678.439,
+          y = 33.4056,
+          width = 41.4056,
+          height = 248.433,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 11,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 239.311,
+          y = 276.506,
+          width = 318.506,
+          height = 41.4056,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 12,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 230.645,
+          y = 118.217,
+          width = 327.839,
+          height = 41.4056,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 13,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 201.239,
+          y = 38.7389,
+          width = 41.4056,
+          height = 82.8111,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 14,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 220.645,
+          y = -3.33337,
+          width = 455.461,
+          height = 41.4056,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 24,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 522,
+          y = 158,
+          width = 40,
+          height = 120,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        }
+      }
+    },
+    {
+      type = "tilelayer",
+      x = 0,
+      y = 0,
+      width = 34,
+      height = 17,
+      id = 5,
+      name = "Tile Layer 2",
+      class = "",
+      visible = false,
+      opacity = 1,
+      offsetx = 250,
+      offsety = 0,
+      parallaxx = 1.3,
+      parallaxy = 1,
+      tintcolor = { 121, 126, 163 },
+      properties = {},
+      encoding = "lua",
+      data = {
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 320, 321, 321, 321, 321, 321,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 320, 321, 321, 321, 321, 321,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 320, 321, 321, 321, 321, 321,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 320, 321, 321, 321, 321, 321,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 320, 321, 321, 321, 321, 321,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 320, 321, 321, 321, 321, 321,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 320, 321, 321, 321, 321, 321,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 320, 321, 321, 321, 321, 321,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 320, 321, 321, 321, 321, 321,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 320, 321, 321, 321, 321, 321,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 320, 321, 321, 321, 321, 321,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 320, 321, 321, 321, 321, 321,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 320, 321, 321, 321, 321, 321,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 320, 321, 321, 321, 321, 321,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 320, 321, 321, 321, 321, 321,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 320, 321, 321, 321, 321, 321,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+      }
+    },
+    {
+      type = "objectgroup",
+      draworder = "topdown",
+      id = 11,
+      name = "paths",
+      class = "",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      parallaxx = 1,
+      parallaxy = 1,
+      properties = {},
+      objects = {}
+    },
+    {
+      type = "objectgroup",
+      draworder = "topdown",
+      id = 12,
+      name = "controllers",
+      class = "",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      parallaxx = 1,
+      parallaxy = 1,
+      properties = {},
+      objects = {}
+    },
+    {
+      type = "objectgroup",
+      draworder = "topdown",
+      id = 13,
+      name = "battleareas",
+      class = "",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      parallaxx = 1,
+      parallaxy = 1,
+      properties = {},
+      objects = {}
+    }
+  }
+}

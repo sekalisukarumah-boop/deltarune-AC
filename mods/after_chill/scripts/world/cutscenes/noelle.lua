@@ -1,0 +1,429 @@
+return {
+    -- The inclusion of the below line tells the language server that the first parameter of the cutscene is `WorldCutscene`.
+    -- This allows it to fetch us useful documentation that shows all of the available cutscene functions while writing our cutscenes!
+
+    ---@param cutscene WorldCutscene
+    fall = function(cutscene)
+            Game:removePartyMember("noelle")
+            cutscene:setTextboxTop(true)
+            cutscene:wait(cutscene:mapTransition("Noellehallway"))
+            local kris = cutscene:getCharacter("kris")
+            kris.sprite.visible = false 
+            Game.world.music:play("wind", 0.3)
+            cutscene:wait(2)
+            local noelle = cutscene:spawnNPC("noelle", 170, -100)
+            noelle.reflections = true 
+            Game.world:setCameraTarget(noelle)
+            cutscene:wait(1)
+            noelle:setAnimation("fall")
+            noelle:slideTo(noelle.x, 282, 2, "in-cubic")
+            cutscene:wait(2)
+            Assets.playSound("dtrans_flip")
+            Game.stage:shake(2)
+            noelle:setSprite("collapsed_opp")
+            noelle:setPosition(190, 297)
+            cutscene:wait(2)
+            for i = 1, 3 do 
+                noelle:shake(2)
+                cutscene:wait(cutscene:playSound("wing"))
+                cutscene:wait(0.3)
+            end 
+            noelle:resetSprite()
+            noelle:setFacing("up")
+            noelle:setPosition(178, 295)
+            cutscene:wait(0.4)
+            cutscene:setSpeaker("noelle")
+            cutscene:text("* (What is this place...?)")
+            noelle:setSprite("head_lowered_look_left")
+            cutscene:wait(0.2)
+            cutscene:text("* (It's so cold...)")
+            noelle:setSprite("headtilt")
+            cutscene:wait(0.4)
+            cutscene:text("* (The sky...[wait:2] it's so empty...)")
+            cutscene:wait(0.4)
+            cutscene:text("* (Where are the stars...?)[wait:5]\n* (There isn't even a sun!)")
+            cutscene:wait(1.4)
+            cutscene:setTextboxTop(false)
+            cutscene:text("* O-oh right!", "shock")
+            Assets.playSound("wing")
+            noelle:resetSprite()
+            noelle:shake(2)
+            noelle:setSprite("walk_sad/right_1")
+            cutscene:wait(0.8)
+            cutscene:text("* I-[wait:2]I can't forget about dad!", "afraid_b")
+            noelle:setSprite("walk_look_up")
+            noelle:setFacing("right")
+            cutscene:text("* I have to go find him!", "afraid")
+            Game:setFlag("footstep", true)
+            noelle:walkTo(855, noelle.y, 12)
+            cutscene:wait(4)
+            cutscene:text("[noskip]* So,[wait:2] this is what Susie and Queen were talking about...[wait:5]", "confused_surprise_b", "noelle", {auto = true})
+            cutscene:wait(1)
+            cutscene:text("[noskip]* What a \"dream\"\nthat was![wait:7]", "blush_smile", "noelle", {auto = true}) 
+            cutscene:text("[noskip]* Faha![wait:5][next]", "blush_finger", "noelle")
+            cutscene:wait(1)
+            cutscene:text("[noskip]* Wait...[wait:7]", "surprise_frown_b", "noelle", {auto = true})
+            noelle:resetPhysics()
+            cutscene:text("[noskip]* Does that mean Berdly\nis really-[wait:2]", "terrified", "noelle", {auto = true})
+            local fx = noelle:addFX(ColorMaskFX(COLORS.red, 1))
+            noelle:shake(2)
+            Assets.playSound("damage")
+            noelle:setSprite("kneel_right")
+            Game.world.timer:tween(0.3, fx, {amount = 0})
+            cutscene:wait(1.5)
+            cutscene:text("[noskip][shake:0.5]* W-[wait:2]what just happened?", "surprise_frown_b")
+            local star = Sprite("effects/criticalswing/sparkle", 760, 273) 
+            Assets.playSound("bump")
+            star:addFX(ColorMaskFX(COLORS.black)) 
+            star:addFX(OutlineFX())
+            Game.world:addChild(star)
+            star:setLayer(9999)
+            star:setScale(2)
+            star:play(0.1) 
+            star:fadeOutAndRemove(0.5)
+            cutscene:wait(0.5)
+            Assets.playSound("break1")
+            noelle.sprite:flash()
+            cutscene:wait(1.2)
+            Assets.playSound("wing")
+            noelle:shake(2)
+            noelle:resetSprite()
+            noelle:setAnimation("pray")
+
+            cutscene:wait(2.2)
+            cutscene:text("[noskip][speed:0.7][shake:1]* ...", "down_smile")
+            cutscene:wait(1.2)
+
+            local _1, box1 = cutscene:choicer({"Proceed"}, {color = COLORS.red, highlight = COLORS.red, wait = false})
+            local text_width = 40
+            local centered_x1 = math.floor((box1.width / 2) - (text_width / 2) - 16)
+            box1.text_positions = { {centered_x1, box1.text_positions[1][2]} }
+            local fie1 = box1.heart_positions
+            if fie1 and fie1[1] then
+                local cx = math.floor(centered_x1 - 22)
+                box1.heart_positions = { {cx, math.floor(fie1[1][2] - 1)} }
+            end
+            box1.current_choice = 1 
+            cutscene:wait(function() return box1:isRemoved() end) 
+            cutscene:closeText()
+
+            cutscene:text("*[noskip][speed:0.7] P-[wait:2]proceed...?", "down_smile")
+            Assets.playSound("ominous")
+            cutscene:wait(0.5)
+            cutscene:text("*[noskip][speed:0.7] That...[wait:5] that voice.[wait:10]\n* It's back,[wait:3] isn't it?", "down")
+            cutscene:wait(0.5)
+
+            local _2, box2 = cutscene:choicer({"Proceed"}, {color = COLORS.red, highlight = COLORS.red, wait = false})
+            local centered_x2 = math.floor((box2.width / 2) - (text_width / 2) - 16)
+            box2.text_positions = { {centered_x2, box2.text_positions[1][2]} }
+            local fie2 = box2.heart_positions
+            if fie2 and fie2[1] then
+                local cx = math.floor(centered_x2 - 22)
+                box2.heart_positions = { {cx, math.floor(fie2[1][2] - 1)} }
+            end
+            box2.current_choice = 1 
+            cutscene:wait(function() return box2:isRemoved() end) 
+            cutscene:closeText()
+
+            Assets.playSound("ominous")
+            cutscene:text("*[noskip][speed:0.7] It...[wait:5] It wants me to freeze more enemies.[wait:2].[wait:2].", "sad_smile")
+            cutscene:wait(0.5)
+
+            local _3, box3 = cutscene:choicer({"Proceed"}, {color = COLORS.red, highlight = COLORS.red, wait = false})
+            local centered_x3 = math.floor((box3.width / 2) - (text_width / 2) - 16)
+            box3.text_positions = { {centered_x3, box3.text_positions[1][2]} } 
+            local fie3 = box3.heart_positions
+            if fie3 and fie3[1] then
+                local cx = math.floor(centered_x3 - 22)
+                box3.heart_positions = { {cx, math.floor(fie3[1][2] - 1)} }
+            end
+            box3.current_choice = 1 
+            cutscene:wait(function() return box3:isRemoved() end) 
+            cutscene:closeText()
+            
+            Assets.playSound("ominous")
+            cutscene:wait(0.5)
+            cutscene:text("*[noskip][speed:0.7] Just like before...[wait:6]\nlead the way,[wait:2] Kris.", "sad_smile")
+            cutscene:choicer({"Go\nForward", "Go\nForward"})
+            Assets.playSound("wing") 
+            noelle:shake(2)
+            noelle:resetSprite()
+            noelle:setSprite("walk_sad")
+            noelle:setFacing("right")
+            cutscene:wait(0.4)
+            noelle:walkTo(1200, noelle.y, 6)
+            cutscene:wait(3)
+            noelle:resetPhysics()
+            local sfx = Assets.playSound("snd_spawn_weaker")
+            cutscene:wait(sfx:getDuration() - 0.2)
+            Assets.playSound("wing")
+            noelle:setSprite("walk_look_up")
+            noelle:setFacing("left")
+            cutscene:text("* H-huh?", "shock_b", "noelle")
+            Game.world.music:fade(0, 1, function() Game.world.music:play("breath", 0.2); Game.world.music:fade(0.3, 1) end)
+            cutscene:wait(1)
+            local spawn1 = Game.world:spawnNPC("titanspawn", noelle.x - 100, 560)
+            spawn1:setOrigin(0.5, 0.5)
+            spawn1:setScale(-1.5, 1.5)
+            local l = Game.stage:getObjects(TileLayer)[1].layer - 0.01
+            spawn1:setLayer(l)
+            spawn1:slideTo(spawn1.x, 125, 2, "out-cubic")
+            cutscene:wait(2)
+            cutscene:text("* What is that..?", "shock", "noelle")
+            local snd = Assets.playSound("snd_spawn_weaker")
+            cutscene:wait(snd:getDuration() - 0.3)
+            Assets.playSound("wing")
+            noelle:setSprite("splice_opp")
+            local spawn2 = Game.world:spawnNPC("titanspawn", noelle.x + 100, 560)
+            spawn2:setOrigin(0.5, 0.5)
+            spawn2:setScale(1.5)
+            spawn2:setLayer(l)
+            spawn2:slideTo(spawn2.x, 125, 2, "out-cubic")
+            cutscene:wait(2)
+            noelle:setSprite("head_lowered_look_right")
+            cutscene:text("* Are these...[wait:5] just more enemies?", "down_smile", "noelle")
+            -- its Rippling time 
+            local effect = Game.world:addChild(RippleEffect())
+            effect:setLayer(spawn1.layer - 0.001)
+            Assets.playSound("snd_explosion_mmx")
+            local f1x, f1y = spawn1:getRelativePos(spawn1.width/2, spawn1.height/2)
+            local f2x, f2y = spawn2:getRelativePos(spawn2.width/2, spawn2.height/2)
+            effect:makeRipple(f1x - 3, f1y + 10, 20, COLORS.red, 80, 0, 7)
+            effect:makeRipple(f2x - 3, f2y + 10, 20, COLORS.red, 80, 0, 7)
+            spawn1:setLayer(100)
+            spawn2:setLayer(100)
+            cutscene:wait(0.2)
+            local function iceshock(kx, ky)
+            Assets.playSound("icespell")
+    local function createParticle(x, y)
+        local sprite = Sprite("effects/icespell/snowflake", x, y)
+        sprite:setOrigin(0.5, 0.5)
+        sprite:setScale(1.5)
+        sprite.layer = 99999
+        Game.stage:addChild(sprite)
+        return sprite
+    end
+
+    local particles = {}
+    particles[1] = createParticle(kx-25, ky-20)
+    cutscene:wait(3/30)
+    particles[2] = createParticle(kx+25, ky-20)
+    cutscene:wait(3/30)
+    particles[3] = createParticle(kx, ky+20)
+    cutscene:wait(3/30)
+
+    local burst = IceSpellBurst(kx, ky)
+    Game.stage:addChild(burst)
+    cutscene:shakeCamera(2)
+
+    for _, particle in ipairs(particles) do
+        particle:remove()
+    end
+
+    for _, particle in ipairs(particles) do
+        for i = 0, 5 do
+            local effect = IceSpellEffect(particle.x, particle.y)
+            effect:setScale(0.75)
+            effect.physics.direction = math.rad(60 * i)
+            effect.physics.speed = 8
+            effect.physics.friction = 0.2
+            effect.layer = 99999
+            Game.stage:addChild(effect)
+        end
+    end
+end
+            cutscene:wait(0.5)
+            noelle:resetSprite()
+            noelle:setFacing("up")
+            cutscene:text("* Are they...[wait:3] are they[wait:3] yelling at me?", "sad")
+            cutscene:choicer({"Proceed", "Proceed"}, {color = COLORS.red, higlight = COLORS.red})
+            cutscene:wait(0.5)
+            cutscene:text("* I have to get stronger.\n* I'll freeze these enemies until they get out of my way.", "upset_down", "noelle")
+            cutscene:wait(cutscene:setAnimation(noelle, "up_spell"))
+            local ix,  iy = spawn1:getRelativePos(spawn1.width/2, spawn1.height/2, Game.stage)
+            local sx,  sy = spawn2:getRelativePos(spawn2.width/2, spawn2.height/2, Game.stage)
+            iceshock(ix, iy) -- Game.stage-ify 
+            iceshock(sx, sy)
+            cutscene:wait(0.25)
+            noelle:resetSprite()
+            noelle:shake(2)
+            noelle:setFacing("up")
+            spawn1:shake()
+            spawn2:shake()
+            Assets.playSound("snd_spawn_weaker")
+            cutscene:wait(1)
+            cutscene:text("* W[wait:2]-why won't they freeze..?", "afraid_b", "noelle")
+            cutscene:wait(cutscene:setAnimation(noelle, "up_spell"))
+            iceshock(ix, iy) -- Game.stage-ify  
+            iceshock(sx, sy) -- gng bro i had to sue an entire different calculation. im crine
+            cutscene:wait(0.3)
+            Assets.playSound("snd_spawn_weaker")
+            spawn1:shake()
+            spawn2:shake()
+            cutscene:wait(1)
+            noelle:resetSprite()
+            noelle:shake(2)
+            Assets.playSound("damage")
+            noelle:setSprite("kneel_right")
+            cutscene:wait(0.5)
+            cutscene:text("* I..-[wait:5] It hurts...[wait:5] so much...", "struggling_down", "noelle")
+            cutscene:wait(0.2)
+            cutscene:text("[noskip]* (...Those titan spawns can't stay here for much longer.[wait:2].[wait:2]!)[wait:3][next]", nil, "ralsei")
+            Assets.playSound("firespell")
+            Game.fader:fadeOut(nil, {speed = 0.2, color = COLORS.white})
+            cutscene:wait(0.2)
+            Game.world.music:fade(0, 0.5)
+            cutscene:wait(0.5)
+            Game.fader:fadeIn(nil, {speed = 0.2})
+            Assets.playSound("deathnoise")
+            local function die(spawn)
+            spawn.alpha = 1
+            local death_x, death_y = spawn:getRelativePos(0, 0, spawn)
+            local death = FatalEffect(spawn.sprite:getTexture(), death_x, death_y, function() 
+            spawn:remove() 
+            end) 
+            death:setColor(spawn.sprite:getDrawColor())
+            death:setScale(1)
+            spawn:addChild(death) 
+            spawn.alpha = 0 
+            end
+            die(spawn1)
+            die(spawn2)
+            noelle:setSprite("collapsed_opp")
+            noelle:setPosition(993, 302)
+            local fire1 = Game.world:addChild(Sprite("effects/firespell/firerain/spr_fire_rain", noelle.x - love.math.random(120, 155), love.math.random(265, 257)))
+            fire1:setScale(2) 
+            fire1:play(4/30, true)
+            fire1:setLayer(9999)
+            local fire2 = Game.world:addChild(Sprite("effects/firespell/firerain/spr_fire_rain", noelle.x + love.math.random(120, 155), love.math.random(265, 257)))
+            fire2:setScale(2) 
+            fire2:play(4/30, true)
+            fire2:setLayer(9999)
+            cutscene:wait(0.7)
+            fire2:fadeOutAndRemove(0.4)
+            fire1:fadeOutAndRemove(0.4)
+            cutscene:wait(1)
+            cutscene:fadeOut(2)
+            cutscene:wait(2)
+            Game.inventory:addItem("cd_bagel")
+            Game.inventory:addItem("clubssandwich")
+            Game.inventory:addItem("spagetticode")
+            Game.inventory:addItem("tensionbit")
+            Game.inventory:addItem("dd_burger")
+            cutscene:wait(1)
+            Game:setFlag("footstep", false)
+            cutscene:wait(1)
+            cutscene:wait(cutscene:mapTransition("recep_kris"))
+            kris = cutscene:getCharacter("kris")
+            kris:setSprite("fell")
+            cutscene:fadeIn(sfx:getDuration() - 0.25)
+            cutscene:wait(1 + (sfx:getDuration() - 0.25))
+            for i = 1, 3 do 
+                kris:shake(2)
+                cutscene:wait(cutscene:playSound("wing"))
+                cutscene:wait(0.75)
+            end 
+            kris:resetSprite()
+            kris:setFacing("down")
+            cutscene:wait(0.25)
+    end, 
+
+    ambush = function(cutscene)
+        if Game:hasPartyMember("noelle") then 
+            Game:removePartyMember("noelle")
+            Game:removeFollower("noelle")
+        end 
+        Game:setFlag("footstep", false)
+        cutscene:loadMap("fountain")
+        local kris = cutscene:getCharacter("kris")
+        kris:walkTo(kris.x, kris.y - 80, 2)
+        cutscene:wait(2)
+        local text = DialogueText("[noskip][style:dark][speed:0.3][voice:none](It was as if your very SOUL was glowing...)", 80, 80)
+        text:setLayer(WORLD_LAYERS["top"]) 
+        text:setParallax(0, 0)
+        cutscene.world:addChild(text)
+        cutscene:wait(function() return not text:isTyping()        end)
+        text:fadeOutAndRemove(0.5)
+        local noelle = cutscene:spawnNPC("noelle", 700, 364)
+        cutscene:wait(1)
+        cutscene:text("* What do you think you are doing!?", nil, "noelle")
+        cutscene:wait(0.2)
+        local function iceshock(kx, ky)
+        Assets.playSound("icespell")
+    local function createParticle(x, y)
+        local sprite = Sprite("effects/icespell/snowflake", x, y)
+        sprite:setOrigin(0.5, 0.5)
+        sprite:setScale(1.5)
+        sprite.layer = 99999
+        Game.stage:addChild(sprite)
+        return sprite
+    end
+
+    local particles = {}
+    particles[1] = createParticle(kx-25, ky-20)
+    cutscene:wait(3/30)
+    particles[2] = createParticle(kx+25, ky-20)
+    cutscene:wait(3/30)
+    particles[3] = createParticle(kx, ky+20)
+    cutscene:wait(3/30)
+
+    local burst = IceSpellBurst(kx, ky)
+    Game.stage:addChild(burst)
+    Game.world:shake(4, 4)
+
+    for _, particle in ipairs(particles) do
+        particle:remove()
+    end
+
+    for _, particle in ipairs(particles) do
+        for i = 0, 5 do
+            local effect = IceSpellEffect(particle.x, particle.y)
+            effect:setScale(0.75)
+            effect.physics.direction = math.rad(60 * i)
+            effect.physics.speed = 8
+            effect.physics.friction = 0.2
+            effect.layer = 99999
+            Game.stage:addChild(effect)
+        end
+    end
+end
+    iceshock(361, 355)
+    kris:setSprite("fell")
+    kris:slideTo(98, 356, 0.8, "out-quad")
+    kris:removeFX()
+    Game.world.music:play("gallery", 0.1)
+    noelle:walkTo(543, 345, 3)
+    cutscene:wait(3)
+    Assets.playSound("bump")
+    kris:shake()
+    cutscene:wait(0.5)
+    cutscene:setSpeaker("noelle")
+    cutscene:text("* Kris.\n* There you are.")
+    cutscene:text("* Trying to seal the fountain...?")
+    cutscene:text("* No,[wait:5] no Kris.")
+    cutscene:text("* How could you?")
+    Assets.playSound("bump")
+    kris:shake()
+    cutscene:wait(0.5)
+    noelle:setFacing("down")
+    cutscene:text("* [shake:1]YOU[shake:0] killed my father, didn't you?")
+    cutscene:wait(1)
+    cutscene:text("* Kris wouldn't do that.")
+    local fx = kris:addFX(ColorMaskFX(COLORS.red, 1))
+    Game.world.timer:tween(0.5, fx, {amount = 0})
+    cutscene:wait(1)
+    cutscene:text("* Kris is my friend.")
+    cutscene:text("* So it must be you... [shake:1]"..Game.save_name..".")
+    Assets.playSound("bump")
+    kris:shake()
+    cutscene:wait(0.5)
+    noelle:setFacing("left")
+    cutscene:text("* And I will not let you seal my only chance at saving my father.")
+    Assets.playSound("wing")
+    kris:shake()
+    cutscene:wait(0.3)
+    kris:resetSprite()
+    kris:setFacing("right")
+    cutscene:text("* And I will not let you seal my only chance at saving my father.")
+    end 
+}
