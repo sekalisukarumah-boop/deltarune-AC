@@ -83,7 +83,7 @@
     <property name="once" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="22" name="script" x="221.333" y="522.333" width="80" height="80">
+  <object id="22" name="script" x="204.833" y="596.833" width="108" height="33.5">
    <properties>
     <property name="cutscene" value="musicnotif.recep"/>
    </properties>
@@ -306,7 +306,7 @@
   </object>
  </objectgroup>
  <objectgroup color="#aa00ff" id="6" name="markers" tintcolor="#afafd1">
-  <object id="3" name="entranceA" x="255.978" y="583.75">
+  <object id="3" name="entranceA" x="265" y="661">
    <point/>
   </object>
   <object id="16" name="entrance2" x="1149.09" y="375.317">

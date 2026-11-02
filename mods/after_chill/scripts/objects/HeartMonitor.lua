@@ -1,31 +1,17 @@
 ---@class HeartMonitor : Object
 local HeartMonitor, super = Class(Object)
 
----@param x number The starting X position
----@param y number The starting Y position
----@param range number The total horizontal length (pixels)
----@param speed number How fast the line draws (pixels per second)
----@param spike_start_x number The X offset where the first spike starts
----@param spike_height number How far up/down the spike goes (negative is up)
----@param spike_width number How wide each spike peak is
----@param spike_count number How many spikes to draw
----@param spike_interval number The distance between the start of each spike
----@param fade_speed number How fast it fades out (0 to disable)
-
----@class HeartMonitor : Object
-local HeartMonitor, super = Class(Object)
-
 function HeartMonitor:init(x, y, range, speed, spike_start_x, spike_height, spike_width, spike_count, spike_interval, fade_speed)
     super.init(self, x, y)
     
     self.points = {}
-    self.range = range or 400
+
+    self.range = (range or 400) + 640
     self.base_speed = speed or 150
     self.current_speed = self.base_speed
     
     self.spike_start_x = spike_start_x or 0
     
-    -- MODIFIED: Store spike_height as a table or turn a single number into a table
     if type(spike_height) == "table" then
         self.spike_height = spike_height
     else
@@ -38,7 +24,7 @@ function HeartMonitor:init(x, y, range, speed, spike_start_x, spike_height, spik
     
     self.fade_speed = fade_speed or 1.5
     
-    self.current_x = 0
+    self.current_x = -160
     self.active = true
     self.alpha = 1
     self.layer = 1000
@@ -63,8 +49,6 @@ function HeartMonitor:update()
         
         if self.current_x >= start_point and self.current_x <= end_point then
             local mid_point = start_point + (self.spike_width / 2)
-            
-            -- MODIFIED: Use specific height for this spike index, or fall back to the first one
             local current_spike_height = self.spike_height[i + 1] or self.spike_height[1]
             
             if self.current_x <= mid_point then
@@ -96,13 +80,9 @@ end
 
 function HeartMonitor:draw()
     if #self.points < 2 or self.alpha <= 0 then return end
-    
-    -- Set line properties
     love.graphics.setLineWidth(2)
-    -- Using a dark charcoal/black to match your background design
     love.graphics.setColor(0.15, 0.15, 0.15, self.alpha) 
     
-    -- Unpack coordinates cleanly into flat 1D sequence array [x1, y1, x2, y2...]
     local draw_coords = {}
     for _, p in ipairs(self.points) do
         table.insert(draw_coords, p[1])

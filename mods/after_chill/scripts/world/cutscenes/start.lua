@@ -110,15 +110,18 @@ return {
         cutscene:text("* Thanks,[wait:2] sweetie.", "happier", "rudy")
         cutscene:wait(cutscene:walkTo(noelle, 325, 471, 1.5))
         Assets.playSound("dooropen")
-        noelle:fadeOutAndRemove(0.2)
+        noelle:remove()
         Assets.playSound("doorclose")
         cutscene:wait(0.5)
         local monitor = HeartMonitor(100, 217, 450, 2000, 0, 0, 0, 0, 0, 10)
         monitor.layer = rudy.layer - 0.01
         Assets.playSound("break1")
         Game.world:addChild(monitor)
+
         cutscene:wait(1)
+
         Game.fader:fadeOut(nil, {color = COLORS.white, speed = 0.5})
+
         local rdy = Sprite("world/npcs/rudy/dead", rudy.x, rudy.y)
         rdy:setOrigin(0.5, 1)
         rdy:setScale(2)
@@ -127,32 +130,85 @@ return {
         rdy.alpha = 0 
         local fx = rdy:addFX(ColorMaskFX(COLORS.black))
         Game.stage.timer:tween(0.5, rdy, {alpha = 1})
-        cutscene:wait(1.5)
+        cutscene:wait(0.75)
+
         local monitor = HeartMonitor(100, 217, 420, 600, 100, {-50, -90}, 30, 2, 45, 8)
         monitor.layer = 1000
+        cutscene:wait(2)
         Assets.playSound("break1")
         Game.stage:addChild(monitor)
         cutscene:wait(2)
+
         local monitor = HeartMonitor(100, 217, 420, 600, 270, {-90, -120}, 30, 2, 45, 8)
         monitor.layer = 1000
         Game.stage:addChild(monitor)
-        cutscene:wait(0.3)
+        cutscene:wait(0.5)
         Assets.playSound("break1")
+
         cutscene:wait(1.7)
         local monitor = HeartMonitor(100, 217, 420, 200, 0, 0, 0, 0, 0, 2)
         monitor.layer = 1000
-        local snd = Assets.playSound("flatline", 0.4, 0.7)
         Game.stage:addChild(monitor)
+        cutscene:wait(0.4)
+
+        local snd = Assets.playSound("flatline", 0.4, 0.7)
         local vol = 0.4
         Game.world.timer:doWhile(function() return vol > 0 end, function()
-        vol = vol - (0.1 * DTMULT)
+        vol = vol - (0.02 * DTMULT)
         snd:setVolume(vol)
         end, function() snd:stop() end)
-        cutscene:wait(cutscene:playSound("break2"))
-        cutscene:wait(0.7)
+        cutscene:wait(2)
+
+        -- breaking heart stuff 
+        local sx, sy = rdy:getRelativePos(rdy.width/2, rdy.height/2, Game.stage)
+        rdy:fadeOutAndRemove(0.5)
+
+        local heart = Sprite("player/heart", sx, sy)
+        heart:setLayer(9999)
+        heart:setOrigin(0.5, 1)
+        heart:setScale(1)
+        Game.stage:addChild(heart)
+        heart:setColor(COLORS.black)
+        heart.alpha = 0 
+
+        heart:fadeTo(1, 0.5)
+
+        cutscene:wait(0.75)
+
+        Game.stage.timer:every(0.05, function()
+            heart.x = sx + MathUtils.random(-1, 1)
+            heart.y = sy + MathUtils.random(-1, 1)
+        end, 1/0.05)
+
+        cutscene:wait(1)
+
+        heart:setPosition(sx, sy)
+
+        cutscene:wait(0.25)
+
+        Assets.playSound("break2")
+        local shard_x_table = { -2, 0, 2, 8, 10, 12 }
+        local shard_y_table = { 0, 3, 6 }
+        local shards = {}
+        for i = 1, 7 do
+        local x_pos = shard_x_table[((i - 1) % #shard_x_table) + 1]
+        local y_pos = shard_y_table[((i - 1) % #shard_y_table) + 1]
+        local shard = Sprite("player/heart_shard", heart.x + x_pos, heart.y + y_pos)
+        shard:setColor(COLORS.black)
+        shard.physics.direction = math.rad(MathUtils.random(360))
+        shard.physics.speed = 7
+        shard.physics.gravity = 0.2
+        shard:setLayer(9999)
+        shard:play(5 / 30)
+        table.insert(shards, shard)
+        Game.stage:addChild(shard)
+        end
+
+        heart:remove()
+        cutscene:wait(2)
+
         Game.fader:fadeIn(nil, {speed = 0.5})
-        rdy:removeFX()
-        rdy:remove()
+
         rudy:setSprite("dead")
         cutscene:wait(5.5)
         local noelle = cutscene:spawnNPC("noelle_lw", 326, 481)

@@ -238,7 +238,7 @@ end
             cutscene:text("* Are they...[wait:3] are they[wait:3] yelling at me?", "sad")
             cutscene:choicer({"Proceed", "Proceed"}, {color = COLORS.red, higlight = COLORS.red})
             cutscene:wait(0.5)
-            cutscene:text("* I have to get stronger.\n* I'll freeze these enemies until they get out of my way.", "upset_down", "noelle")
+            cutscene:text("* I have to get stronger.[wait:5]\n* I'll freeze these enemies.", "upset_down", "noelle")
             cutscene:wait(cutscene:setAnimation(noelle, "up_spell"))
             local ix,  iy = spawn1:getRelativePos(spawn1.width/2, spawn1.height/2, Game.stage)
             local sx,  sy = spawn2:getRelativePos(spawn2.width/2, spawn2.height/2, Game.stage)
