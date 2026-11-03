@@ -11,12 +11,41 @@ function KeyPadUI:init(processor)
     self.selected_index = 1
     self.window_state = "DEFAULT"
 
+    self.font = Assets.getFont("main")
+    self.instruction_active = true
+    self.instruction_lerp = 0
+    self.canceltimer = 0
+    self.canceltime = 60
+
+    self:spawnText()
     Game.world.timer:tween(0.25, self, {keypad_alpha = 1})
 end
 
+function KeyPadUI:spawnText()
+    self.instruction_lines = {
+        {
+            but = "confirm",
+            line = "Select",
+            cancel = false
+        },
+        {
+            but = "cancel",
+            line = "Exit",
+            cancel = true 
+        }
+    }
+end
+
+
 function KeyPadUI:update()
     super.update(self)
-    
+
+    if self.instruction_active and self.instruction_lerp < 1 then
+        self.instruction_lerp = math.min(self.instruction_lerp + 0.1 * DTMULT, 1)
+    elseif not self.instruction_active and self.instruction_lerp > 0 then
+        self.instruction_lerp = math.max(self.instruction_lerp - 0.1 * DTMULT, 0)
+    end
+
     if self.window_state ~= "DEFAULT" then return end
 
     if Input.pressed("cancel") then 
@@ -64,7 +93,6 @@ function KeyPadUI:update()
     end
 end
 
-
 function KeyPadUI:handleBackspace()
     if #self.processor.code.answer > 0 then
         Assets.stopAndPlaySound("ui_select")
@@ -89,6 +117,7 @@ function KeyPadUI:insertNum()
         if self.processor.code:check() then
             Assets.playSound("won")
             self.window_state = "SUCCESS"
+            self.instruction_active = false
             Game.world.timer:after(1.2, function()
                 self:closeUpSequence(true)
             end)
@@ -111,9 +140,10 @@ function KeyPadUI:closeUpSequence(is_success)
     end
     
     self.window_state = "DEFAULT"
+    self.instruction_active = false
+    self.processor:onUIClosed() 
     
     Game.world.timer:tween(0.25, self, {keypad_alpha = 0}, "linear", function()
-        self.processor:onUIClosed() 
         if is_success then
             self.processor:onSuccess()
         end
@@ -123,7 +153,7 @@ end
 
 function KeyPadUI:draw()
     super.draw(self)
-    
+
     local box_size = 60
     local spacing = 15
     local grid_w = (3 * box_size) + (2 * spacing)  
@@ -200,7 +230,7 @@ function KeyPadUI:draw()
         Draw.rectangle("line", button_x, button_y, box_size, box_size)
         
         if i == self.selected_index then
-            Draw.setColor(COLORS.red, COLORS.red, COLORS.red, self.keypad_alpha)
+            Draw.setColor(COLORS.red[1], COLORS.red[2], COLORS.red[3], self.keypad_alpha)
             local heart_x = button_x + 21
             local heart_y = button_y + 22
             Draw.draw(Assets.getTexture("player/heart"), heart_x, heart_y, 0)
@@ -220,7 +250,37 @@ function KeyPadUI:draw()
             
             love.graphics.print(label_text, button_x + text_offset_x, button_y + 15)
         end
-    end 
+    end
+
+    love.graphics.push()
+    love.graphics.origin() 
+    
+    love.graphics.setFont(self.font)
+    if self.instruction_active or self.instruction_lerp > 0 then
+        local easelerp = math.pow(self.instruction_lerp - 1, 3) + 1
+        local space = 28
+        local margin = 20
+        local yloc = SCREEN_HEIGHT - (space * (#self.instruction_lines + 1)) - margin
+        
+        local longest_str = "[Z] : Select"
+        local max_width = self.font:getWidth(longest_str)
+        local fixed_xloc = SCREEN_WIDTH + 100 - margin - (easelerp * 100) - max_width
+
+        for i, lines in ipairs(self.instruction_lines) do
+            local btn_tag = Input.getText(lines.but)
+            local str = btn_tag .. " : " .. lines.line
+            local draw_y = yloc + (space * i)
+            Draw.setColor(0, 0, 0, self.keypad_alpha)
+            love.graphics.print(str, fixed_xloc - 1, draw_y)
+            love.graphics.print(str, fixed_xloc + 1, draw_y)
+            love.graphics.print(str, fixed_xloc,     draw_y - 1)
+            love.graphics.print(str, fixed_xloc,     draw_y + 1)
+            
+            Draw.setColor(1, 1, 1, self.keypad_alpha)
+            love.graphics.print(str, fixed_xloc, draw_y)
+        end
+    end
+    love.graphics.pop()
 end
 
 return KeyPadUI
