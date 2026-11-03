@@ -4,6 +4,12 @@ function actor:init()
     super.init(self)
     self.portrait_offset = {-20, -10}
     -- Table of sprite animations
+    self.reflection_offsets = { 
+        ["battle_alt/float"] = {12, -10}, 
+        ["battle/spell"]       = {9, 4}, 
+        ["battle/spell_9"]       = {9, 4}, 
+    }
+
     TableUtils.merge(self.animations, {
         ["fall"]         = {"dark", 1/6, true},
         ["float"]        = {"battle_alt/float", 1/8, true},

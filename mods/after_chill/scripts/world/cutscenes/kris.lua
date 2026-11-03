@@ -575,18 +575,19 @@ end
     cutscene:wait(cutscene:fadeOut(0.5))
 
     cutscene:detachCamera()
+    Game.world.camera:setPosition(2170, 494)
 
     local ralsei = cutscene:spawnNPC("ralsei", 2380, 534)
     ralsei:setFacing("left")
     ralsei.reflections = true 
     cutscene:fadeIn(0.4)
-    Game.world.camera:setPosition(2173, 495)
     ralsei:walkTo(2170, ralsei.y, 1.5)
 
-    cutscene:wait(1.3)
+    cutscene:wait(1.5)
 
     Game.world:setCameraTarget(ralsei)
-    cutscene:attachCamera(0)
+    cutscene:attachCamera(0.25)
+    cutscene:wait(0.25)
 
     cutscene:text("* I can sense a dark presence here...", "disappointed_side", "ralsei")
     cutscene:wait(0.2)

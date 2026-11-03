@@ -70,16 +70,24 @@ function Character:draw()
     height = self.sprite:getTexture():getHeight()
    end 
 
-   local eox, eoy = 0, 0 
+    local eox, eoy = 0, 0 
+    local frame_key = self.sprite.sprite .. "_" .. self.sprite.frame 
+    local anim_key = self.sprite.sprite 
 
-   -- self.sprite.sprite.."_".. self.sprite.frame 
-   -- this allows for specific frame offsets 
-   -- REMINDER: add support for general anims, but make it a fallback :P
-   if self.actor and self.actor.reflection_offsets and self.actor.reflection_offsets[self.sprite.sprite.."_".. self.sprite.frame] then 
-    local new_table = self.actor.reflection_offsets[self.sprite.sprite.."_".. self.sprite.frame]
-    eox = new_table[1]
-    eoy = new_table[2]
-   end 
+    if self.actor and self.actor.reflection_offsets then
+        local offset_table = nil
+        if self.actor.reflection_offsets[frame_key] then 
+            offset_table = self.actor.reflection_offsets[frame_key]
+        elseif self.actor.reflection_offsets[anim_key] then
+            offset_table = self.actor.reflection_offsets[anim_key]
+        end
+
+        if offset_table then
+            eox = offset_table[1]
+            eoy = offset_table[2]
+        end
+    end
+
 
    love.graphics.translate((self.x - width) + eox, (self.y + height * 2) + eoy)
    love.graphics.scale(1 * scale_x, -1 * scale_y)

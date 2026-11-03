@@ -157,6 +157,10 @@ function actor:initChapter2()
     -- First value is x, second value is y.
     self.soul_offset = {10.5, 24}
 
+    self.reflection_offsets = { 
+        ["battle/defend"] = {90, -12}
+    }
+
     -- Color for this actor used in outline areas (optional, defaults to red)
     self.color = {0, 1, 0}
 
