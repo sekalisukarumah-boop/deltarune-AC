@@ -88,9 +88,21 @@ return {
             Assets.playSound("wing")
             noelle:shake(2)
             noelle:resetSprite()
-            noelle:setAnimation("pray")
+            noelle:setAnimation({"battle_alt/pray", 1/6, true})
+            local snx, sny = noelle:getRelativePos(noelle.width/2, noelle.height/2, Game.world)
 
-            cutscene:wait(2.2)
+            local background = SnowglobeEffect(798, 267, false)
+            local foreground = SnowglobeEffect(798, 267, true)
+            foreground:setOrigin(0.5, 0.5)
+            background:setOrigin(0.5, 0.5)
+            Game.world:addChild(background)
+            Game.world:addChild(foreground)
+            background.layer = 0.58
+            foreground.layer = 0.58
+            background:setScale(1)
+            foreground:setScale(1)
+
+            cutscene:wait(2.5)
             cutscene:text("[noskip][speed:0.7][shake:1]* ...", "down_smile")
             cutscene:wait(1.2)
 
@@ -107,9 +119,8 @@ return {
             cutscene:wait(function() return box1:isRemoved() end) 
             cutscene:closeText()
 
+            cutscene:wait(cutscene:playSound("ominous"))
             cutscene:text("*[noskip][speed:0.7] P-[wait:2]proceed...?", "down_smile")
-            Assets.playSound("ominous")
-            cutscene:wait(0.5)
             cutscene:text("*[noskip][speed:0.7] That...[wait:5] that voice.[wait:10]\n* It's back,[wait:3] isn't it?", "down")
             cutscene:wait(0.5)
 

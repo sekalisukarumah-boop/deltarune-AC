@@ -64,12 +64,24 @@ function Character:draw()
 
    love.graphics.setStencilTest("greater", 0)
    local width, height
-   if self.actor then 
-    width = self.actor:getWidth()
-    height = self.actor:getHeight()
+
+   if self.sprite then 
+    width = self.sprite:getTexture():getWidth()
+    height = self.sprite:getTexture():getHeight()
    end 
 
-   love.graphics.translate(self.x - width, self.y + height * 2)
+   local eox, eoy = 0, 0 
+
+   -- self.sprite.sprite.."_".. self.sprite.frame 
+   -- this allows for specific frame offsets 
+   -- REMINDER: add support for general anims, but make it a fallback :P
+   if self.actor and self.actor.reflection_offsets and self.actor.reflection_offsets[self.sprite.sprite.."_".. self.sprite.frame] then 
+    local new_table = self.actor.reflection_offsets[self.sprite.sprite.."_".. self.sprite.frame]
+    eox = new_table[1]
+    eoy = new_table[2]
+   end 
+
+   love.graphics.translate((self.x - width) + eox, (self.y + height * 2) + eoy)
    love.graphics.scale(1 * scale_x, -1 * scale_y)
 
    love.graphics.setShader(self.fade_out_shader)

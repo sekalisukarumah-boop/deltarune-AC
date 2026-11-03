@@ -10,7 +10,7 @@ function TiredBar:init(x, y, dont_animate)
     self.tp_bar_fill = Assets.getTexture("ui/battle/tp_bar_fill")
     self.tp_bar_outline = Assets.getTexture("ui/battle/tp_bar_outline")
     self.tired_text = Assets.getTexture("ui/battle/tired_text")
-    -- we need to make it draw ("ui/battle/tired_text") MAKE SURE TO COMMENT WHAT I MANUALLY NEED TO CHANGE IF IT DOESNT WORK.
+
     self.width = self.tp_bar_outline:getWidth()
     self.height = self.tp_bar_outline:getHeight()
 

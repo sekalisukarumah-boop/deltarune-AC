@@ -94,12 +94,12 @@ return {
         cutscene:text("* It's always a pleasure to see you.", "happier", "rudy")
         cutscene:text("* Where's Krismas?", "wink", "rudy")
         cutscene:text("* O-oh, they're out playing piano in the hall.", "smile_alt", "noelle")
-        cutscene:text("* So that's the pleasant,[wait:2] muffled music I hear.", "smile", "rudy")
+        cutscene:text("* So that was the pleasant,[wait:2] muffled music I heard!", "smile", "rudy")
         cutscene:text("* Faha.", "blush_smile_closed", "noelle")
         rudy:setAnimation("cough")
         cutscene:wait(cutscene:playSound("rudycough"))
         rudy:resetSprite()
-        cutscene:text("* Dad,[wait:2] are you okay?", "dejected", "noelle")
+        cutscene:text("* Oh! Are you okay,[wait:2] Dad...?[wait:5]\n* Do you need anything?", "dejected", "noelle")
         rudy:setSprite("look_smile")
         cutscene:text("* Oh Noelle,[wait:2] don't worry about me,[wait:2] nothing a Holiday can't handle!", "serious", "rudy")
         rudy:setAnimation("cough")
@@ -134,7 +134,7 @@ return {
 
         local monitor = HeartMonitor(100, 217, 420, 600, 100, {-50, -90}, 30, 2, 45, 8)
         monitor.layer = 1000
-        cutscene:wait(2)
+        cutscene:wait(2.8)
         Assets.playSound("break1")
         Game.stage:addChild(monitor)
         cutscene:wait(2)
@@ -166,7 +166,7 @@ return {
         local heart = Sprite("player/heart", sx, sy)
         heart:setLayer(9999)
         heart:setOrigin(0.5, 1)
-        heart:setScale(1)
+        heart:setScale(1, -1)
         Game.stage:addChild(heart)
         heart:setColor(COLORS.black)
         heart.alpha = 0 
@@ -205,7 +205,7 @@ return {
         end
 
         heart:remove()
-        cutscene:wait(2)
+        cutscene:wait(3)
 
         Game.fader:fadeIn(nil, {speed = 0.5})
 

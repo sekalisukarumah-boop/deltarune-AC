@@ -21,4 +21,17 @@ function actor:init()
     }, false) 
 end
 
+function actor:onSetAnimation(sprite, anim, keep_anim)
+    -- if anim[1] == "battle_alt/pray" then
+    --     local background = SnowglobeEffect(0, 0, false)
+    --     local foreground = SnowglobeEffect(0, 0, true)
+    --     sprite.parent:addChild(background)
+    --     sprite.parent:addChild(foreground)
+    --     background.layer = sprite.layer - 1
+    --     foreground.layer = sprite.layer + 1
+    --     background:setScale(0.5)
+    --     foreground:setScale(0.5)
+    -- end
+end
+
 return actor                    
