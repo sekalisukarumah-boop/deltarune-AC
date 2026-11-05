@@ -134,9 +134,9 @@ return {
 
         local monitor = HeartMonitor(100, 217, 420, 600, 100, {-50, -90}, 30, 2, 45, 8)
         monitor.layer = 1000
-        cutscene:wait(2.8)
-        Assets.playSound("break1")
         Game.stage:addChild(monitor)
+        cutscene:wait(0.4)
+        Assets.playSound("break1")
         cutscene:wait(2)
 
         local monitor = HeartMonitor(100, 217, 420, 600, 270, {-90, -120}, 30, 2, 45, 8)
@@ -163,7 +163,7 @@ return {
         local sx, sy = rdy:getRelativePos(rdy.width/2, rdy.height/2, Game.stage)
         rdy:fadeOutAndRemove(0.5)
 
-        local heart = Sprite("player/heart", sx, sy)
+        local heart = Sprite("player/heart", sx, sy) -- 319, 217
         heart:setLayer(9999)
         heart:setOrigin(0.5, 1)
         heart:setScale(1, -1)
