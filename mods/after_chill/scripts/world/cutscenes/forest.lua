@@ -23,7 +23,7 @@ return {
         local slopestar = Game.world.map:getTileLayer("Slope stars")
         local slopestarshine = Game.world.map:getTileLayer("Slope shine")
         
-        local snd = Assets.playSound("waterfall", 1.5)
+        local snd = Assets.playSound("waterfall", 0.4)
         snd:setLooping(true)
         
         slopeCloud.visible = false
