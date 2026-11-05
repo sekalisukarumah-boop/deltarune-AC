@@ -6,6 +6,7 @@ function actor:init()
 
     self.reflection_offsets = {
         ["soul/take_2"] = {4, 0},
+        ["slide"]       = {8, 8},
     }
     -- Table of sprite animations
     TableUtils.merge(self.animations, {

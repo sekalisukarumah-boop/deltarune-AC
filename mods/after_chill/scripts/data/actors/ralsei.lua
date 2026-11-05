@@ -158,7 +158,9 @@ function actor:initChapter2()
     self.soul_offset = {10.5, 24}
 
     self.reflection_offsets = { 
-        ["battle/defend"] = {90, -12}
+        ["battle/defend"] = {90, -12}, 
+        ["slide"]         = {6, 8},
+        ["blush_slide"]         = {6, 8},
     }
 
     -- Color for this actor used in outline areas (optional, defaults to red)
@@ -183,6 +185,7 @@ function actor:initChapter2()
     self.animations = {
         -- Movement animations
         ["slide"]               = {"slide", 4/30, true},
+        ["blush_slide"]         = {"blush_slide", 4/30, true},
 
         -- Battle animations
         ["battle/idle"]         = {"battle/idle", 1/6, true},
@@ -261,6 +264,7 @@ function actor:initChapter2()
         ["walk_unhappy/up"] = {0, 0},
 
         ["slide"] = {-2, 2},
+        ["blush_slide"] = {-2, 2},
 
         -- Battle offsets
         ["battle/idle"] = {-2, -6},
