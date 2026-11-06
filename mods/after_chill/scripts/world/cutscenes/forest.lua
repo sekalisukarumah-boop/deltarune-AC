@@ -55,13 +55,14 @@ return {
 
         cutscene:text("* This might be a long way down...", "smile_b", "ralsei")
 
-        cutscene:text("* Why don't we think about something?", "blush_smile", "ralsei")
+        cutscene:text("* Do you want to do something,[wait:3] Kris?", "blush_smile", "ralsei")
 
         local choice = cutscene:choicer({"Think of\nNoelle", "Think of\nKris", "Think of Ralsei", "Think of Dark World"})
 
         if choice == 1 then 
             cutscene:text("* Oh,[wait:2] alright!", "pleased", "ralsei")
             cutscene:text("* Then...[wait:2] let's close our eyes,[wait:3] and think about what Noelle is doing.", 'small_smile_side', "ralsei")
+            snd:stop()
             cutscene:gotoCutscene("forest.noelle_flashback")
         end 
         -- cutscene:text("[noskip]* Placeholder text... sorry.")
@@ -209,85 +210,21 @@ return {
     end, 
 
     noelle_flashback = function(cutscene)
-        local wave_shader = love.graphics.newShader([[
-            extern number time;
-            extern number speed;
-            extern number frequency;
-            extern number amplitude;
-
-            vec4 effect(vec4 color, Image texture, vec2 texture_coords, vec2 screen_coords) {
-                vec2 tc = texture_coords;
-                tc.x += sin(tc.y * frequency + time * speed) * amplitude;
-                return Texel(texture, tc) * color;
-            }
-        ]])
-
-        wave_shader:send("speed", 10.0)
-        wave_shader:send("frequency", 25.0)
-        wave_shader:send("amplitude", 0.0) 
-
-        local wave_fx = ShaderFX(wave_shader)
-        Game.world:addFX(wave_fx)
-
-        local timer1 = 0
-        local shader_time1 = 0
-        cutscene:during(function()
-            timer1 = math.min(timer1 + (DTMULT / 30), 1.0)
-            shader_time1 = shader_time1 + (DTMULT / 30)
-            local current_amp = (timer1 / 1.0) * 0.04
-            wave_fx.shader:send("amplitude", current_amp)
-            wave_fx.shader:send("time", shader_time1)
-            if timer1 >= 1.0 then return false end
-        end)
-
-        cutscene:fadeOut(1.0)
-        cutscene:wait(1.0)
+        
+        cutscene:fadeOut(0.5)
+        cutscene:wait(0.5)
         Game:removePartyMember("kris")
+        Game:removePartyMember("ralsei")
         Game:addPartyMember("noelle")
         cutscene:loadMap("forest_cliff")
-
-        local tint = Rectangle(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)
-        tint:setLayer(9999)
-        tint:setParallax(0, 0)
-        tint:setColor(0.70, 0.55, 0.40, 0.25)
-        Game.world:addChild(tint)
-
-        local vig = Sprite("world/overlay")
-
-        local scale_x = SCREEN_WIDTH / vig.width
-        local scale_y = SCREEN_HEIGHT / vig.height
-        vig:setScale(scale_x, scale_y)
-        vig:setLayer(9999)
-
-        local sepia_fx = ColorMaskFX({0.70, 0.55, 0.40})
-        vig:addFX(sepia_fx)
-        vig.alpha = 0.5
-
-        Game.world:addChild(vig)
 
         local noelle = cutscene:getCharacter("noelle")
         local dragon = cutscene:spawnNPC("dummy", 499, 542)
         dragon:setScale(12)
         noelle:setPosition(-70, 241)
 
-        Game.world:addFX(wave_fx)
-        local timer2 = 0
-        local shader_time2 = shader_time1 
-        cutscene:during(function()
-            timer2 = math.min(timer2 + (DTMULT / 30), 1.0)
-            shader_time2 = shader_time2 + (DTMULT / 30)
-            local current_amp = 0.04 - ((timer2 / 1.0) * 0.04)
-            wave_fx.shader:send("amplitude", current_amp)
-            wave_fx.shader:send("time", shader_time2)
-
-            if timer2 >= 1.0 then 
-                Game.world:removeFX(wave_fx) 
-                return false 
-            end
-        end)
-
-        cutscene:fadeIn(1.0)
-        cutscene:wait(0.85)  
+        cutscene:fadeIn(0.5)
+        cutscene:wait(0.5)  
 
         noelle:setSprite("walk_look_up")
         noelle:walkTo(noelle.x + 170, noelle.y, 2.2)
