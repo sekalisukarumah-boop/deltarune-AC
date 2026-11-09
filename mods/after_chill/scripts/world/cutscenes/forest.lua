@@ -42,7 +42,7 @@ return {
         kris:setAnimation("slide")
         ralsei:setAnimation("slide")
         cutscene:wait(1)
-        cutscene:slideTo("kris", 90, 310, 4, "out-back")
+        cutscene:slideTo("kris", 90, 310, 4, "out-back") -- kris:setPosition(90, 310), ralsei:setPosition(85, 206)
         cutscene:slideTo("ralsei", 85, 206, 4, "out-back")
         
         kris:addFX(ColorMaskFX({0,0,0.1},0.35))
@@ -63,7 +63,73 @@ return {
             cutscene:text("* Oh,[wait:2] alright!", "pleased", "ralsei")
             cutscene:text("* Then...[wait:2] let's close our eyes,[wait:3] and think about what Noelle is doing.", 'small_smile_side', "ralsei")
             snd:stop()
-            cutscene:gotoCutscene("forest.noelle_flashback")
+
+            cutscene:fadeOut(0.5)
+            cutscene:wait(0.5)
+
+            Game:removePartyMember("ralsei")
+            Game:removePartyMember("kris")
+            cutscene:detachFollowers()
+            Game:addPartyMember("noelle")
+
+            cutscene:loadMap("forest_cliff")
+
+            local noelle = cutscene:getCharacter("noelle")
+            local dragon = cutscene:spawnNPC("dummy", 499, 542)
+            dragon:setScale(12)
+            noelle:setPosition(-70, 241)
+
+            cutscene:fadeIn(0.5)
+            cutscene:wait(0.5)  
+
+            noelle:setSprite("walk_look_up")
+            noelle:walkTo(noelle.x + 170, noelle.y, 2.2)
+
+            cutscene:wait(2.2)
+            noelle:resetSprite()
+            noelle:setFacing("right")
+            cutscene:wait(0.25)
+            Assets.playSound("ahh")
+            cutscene:wait(cutscene:setAnimation(noelle, {"battle/intro", 1/16, false}))
+            cutscene:wait(0.1)
+            noelle:resetSprite()
+            noelle:setSprite("walk_sad")
+            noelle:setFacing("right")
+            noelle:shake(2)
+            cutscene:text("* W-who are you...?", "afraid", "noelle")
+
+            cutscene:fadeOut(0.5)
+            cutscene:wait(0.5)
+            Game:addPartyMember("kris")
+            Game:removePartyMember("noelle")
+            Game:addPartyMember("ralsei")
+            cutscene:loadMap("receplast")
+            
+            local starbg = Game.world.map:getTileLayer("stars") 
+            local cloudbg = Game.world.map:getTileLayer("Cloud")
+            local slopeCloud = Game.world.map:getTileLayer("Tile Layer 1")
+            local slopestar = Game.world.map:getTileLayer("Slope stars")
+            local slopestarshine = Game.world.map:getTileLayer("Slope shine")
+            slopeCloud.visible = false
+            cloudbg.visible = false
+
+            kris = cutscene:getCharacter("kris")
+            ralsei = cutscene:getCharacter("ralsei")
+            kris:addFX(ColorMaskFX({0,0,0.1},0.35))
+            ralsei:addFX(ColorMaskFX({0,0,0.1},0.35))
+            kris:setPosition(90, 310)
+            ralsei:setPosition(85, 206)
+            cutscene:shakeCharacter("kris", 0.5, 0, 0, 0.08)
+            cutscene:shakeCharacter("ralsei", -0.5, 0, 0, 0.1)
+            kris:setAnimation("slide")
+            ralsei:setAnimation("slide")
+
+            cutscene:fadeIn(0.5)    
+            cutscene:wait(0.25) 
+            local snd = Assets.playSound("waterfall", 0.4)
+            snd:setLooping(true)
+            cutscene:wait(0.25)      
+
         end 
         -- cutscene:text("[noskip]* Placeholder text... sorry.")
         -- cutscene:text("[noskip]* :) consider this a special message from the developer lol")
@@ -76,7 +142,7 @@ return {
         cutscene:slideTo("ralsei", 93, 374, 1)
 
         cutscene:wait(0.5)
-        snd:stop()
+        Assets.stopSound("waterfall")
 
         cutscene:fadeOut(0.5)
         Game.world.music:fade(0, 0.5)
@@ -84,6 +150,7 @@ return {
         cutscene:wait(1)
 
         cutscene:wait(cutscene:loadMap("forest1"))
+
         cutscene:attachCamera()
         kris = cutscene:getCharacter("kris")
         ralsei = cutscene:getCharacter("ralsei")
