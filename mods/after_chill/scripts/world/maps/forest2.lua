@@ -10,7 +10,7 @@ return {
   tilewidth = 40,
   tileheight = 40,
   nextlayerid = 117,
-  nextobjectid = 114,
+  nextobjectid = 115,
   properties = {
     ["has_tile_sounds"] = true,
     ["music"] = "bloom_f"
@@ -942,6 +942,21 @@ return {
           visible = true,
           properties = {
             ["text1"] = "* It's a tree.[wait:5]\n* You wish there was candy on it."
+          }
+        },
+        {
+          id = 114,
+          name = "honey_tree",
+          type = "",
+          shape = "point",
+          x = 1084,
+          y = 512,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["name"] = "rose"
           }
         }
       }

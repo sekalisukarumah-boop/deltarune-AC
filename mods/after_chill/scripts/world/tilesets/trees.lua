@@ -23,32 +23,26 @@ return {
   },
   properties = {},
   wangsets = {},
-  tilecount = 4,
+  tilecount = 3,
   tiles = {
     {
       id = 0,
-      image = "../../../assets/sprites/tilesets/trees/tree.png",
+      image = "../../../assets/sprites/tilesets/trees/norm_tree.png",
       width = 110,
       height = 130,
       probability = -3
     },
     {
       id = 1,
-      image = "../../../assets/sprites/tilesets/trees/rose.png",
+      image = "../../../assets/sprites/tilesets/trees/rose_tree.png",
       width = 41,
       height = 65
     },
     {
       id = 2,
-      image = "../../../assets/sprites/tilesets/trees/tree2.png",
+      image = "../../../assets/sprites/tilesets/trees/moon_tree.png",
       width = 110,
       height = 110
-    },
-    {
-      id = 3,
-      image = "../../../assets/sprites/tilesets/trees/candy_tree.png",
-      width = 110,
-      height = 130
     }
   }
 }
