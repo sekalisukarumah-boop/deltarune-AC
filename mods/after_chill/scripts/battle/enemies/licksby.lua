@@ -17,6 +17,8 @@ function licksby:init()
 
     self.waves = {}
 
+    self.dialogue_offset = {-2, 10}
+
     self.experience = 22
 
     self.dialogue = {} 
@@ -46,6 +48,18 @@ function licksby:onActStart(battler, name)
     return super.onActStart(self, battler, name)
     end 
 end 
+
+function licksby:getEnemyDialogue()
+    if self.mercy >= 50 and not (self.health <= self.max_health/2) then 
+        return TableUtils.pick({">w<", "(=^.v.^=)", "*purrs*"})
+    elseif self.health <= self.max_health/2 then 
+        local random_error = MathUtils.randomInt(356, 404)
+        return TableUtils.pick({"(=x_x=)", "Meow-ware is crashing...", "(o-o)", "ERROR "..random_error.."!"}) 
+    else 
+        return TableUtils.pick({"Uwa~ So cozy!", "Ooo,[wait:5] glowy snow!", '-v-"'})
+    end 
+end
+
 
 function licksby:onAct(battler, name)
     if name == "Pet" then
