@@ -1,13 +1,13 @@
 -- Instead of Item, create a HealItem, a convenient class for consumable healing items
-local item, super = Class(HealItem, "coff_syrup")
+local item, super = Class(HealItem, "glowy_resin")
 
 function item:init()
     super.init(self)
 
     -- Display name
-    self.name = "Coff Syrup"
+    self.name = "Glowy Resin"
     -- Name displayed when used in battle (optional)
-    self.use_name = "Coff Syrup"
+    self.use_name = "Glowy Resin"
 
     -- Item type (item, key, weapon, armor)
     self.type = "item"
@@ -15,14 +15,14 @@ function item:init()
     self.icon = nil
 
     -- Battle description
-    self.effect = "Heals\n160HP"
+    self.effect = "Heals\n60HP"
     -- Shop description
-    self.shop = "Perfection"
+    self.shop = "Sweet\nResin"
     -- Menu description
-    self.description = "A STRONG tasting jar of syrup, reminds you of the doctor. Found from a Coff Tree."
+    self.description = "Sticky, luminous tree sap that tastes\nsurprisingly sweet. Heals 60HP."
 
     -- Amount healed (HealItem variable)
-    self.heal_amount = 160
+    self.heal_amount = 60
 
     -- Default shop price (sell price is halved)
     self.price = 90
@@ -50,8 +50,8 @@ function item:init()
     -- Character reactions (key = party member id)
     self.reactions = {
         susie = "Do I have to?",
-        ralsei = "I... I like it, Kris!",
-        noelle = "kris, this just tastes cough medicine.",
+        ralsei = "Kris, is my tongue glowing?",
+        noelle = "This is just medicine...",
     }
 end
 

@@ -21,7 +21,40 @@ function honey_tree:init(data)
     else 
         self:setScale(0.75)
     end 
+
+    self.particle_timer = 0
 end 
+
+function honey_tree:update()
+    super.update(self)
+
+    if not self.harvested then
+        self.particle_timer = self.particle_timer + DT 
+        if self.particle_timer > (1/3) then 
+            self.particle_timer = MathUtils.random(-1.5, -0.5)
+            local rx, ry = self:getRelativePos(self.width/2, (self.height/2) + 30) 
+            local spr = Sprite("effects/spare/star", rx + (love.math.random(-8, 8)), ry) 
+            self.parent:addChild(spr) 
+            spr:setScale(2) 
+            spr:play(0.1, true)  
+            spr:setLayer(self.layer + 0.01)
+            spr.physics.speed_y = MathUtils.random(0.32, 0.45)
+            spr.physics.gravity = MathUtils.random(0.32, 0.45)
+            spr:setScale(MathUtils.random(0.6, 1.2))
+            spr:fadeOutAndRemove(MathUtils.random(0.5, 0.7))
+            spr:setOrigin(0.5, 0.5)
+            spr.graphics.spin = MathUtils.random(0.2, 0.6)      
+
+            if love.math.random(1, 2) == 1 then 
+                spr:addFX(ColorMaskFX(ColorUtils.hexToRGB("#F58F00")))
+            else 
+                spr:addFX(ColorMaskFX(ColorUtils.hexToRGB("#D65E2D")))
+            end
+        end 
+    end
+end
+
+
 
 function honey_tree:onInteract(player, dir)
     if dir ~= "up" then
