@@ -62,4 +62,22 @@ function actor:onTalkEnd(text, sprite)
     end
 end
 
+function actor:onSpriteInit(sprite)
+    local leaf = Sprite("shopkeepers/misty/leaf", 117, 4)
+    self.leaf = leaf 
+    sprite:addChild(leaf)
+    leaf:setLayer(9999)
+    self.leaf_timer = 0
+end
+
+function actor:onSpriteUpdate(sprite)
+    self.leaf_timer = self.leaf_timer + DT
+
+    local offset = (1 - math.cos(self.leaf_timer * 2)) * 2
+
+    self.leaf.x = self.leaf.init_x + offset
+    self.leaf.y = self.leaf.init_y - offset
+end
+
+
 return actor

@@ -51,7 +51,7 @@ end
 
 function licksby:getEnemyDialogue()
     if self.mercy >= 50 and not (self.health <= self.max_health/2) then 
-        return TableUtils.pick({">w<", "(=^.v.^=)", "*purrs*"})
+        return TableUtils.pick({"#-v-#", "(=^.v.^=)", "*purrs*"})
     elseif self.health <= self.max_health/2 then 
         local random_error = MathUtils.randomInt(356, 404)
         return TableUtils.pick({"(=x_x=)", "Meow-ware is crashing...", "(o-o)", "ERROR "..random_error.."!"}) 
