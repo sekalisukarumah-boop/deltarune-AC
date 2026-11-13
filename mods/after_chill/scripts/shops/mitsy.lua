@@ -4,47 +4,50 @@ function Mitsy:init()
     super.init(self)
 
     self.shop_music = "wip_misty_theme"
+    self.encounter_text = "* Oh! Hello there,[wait:2] travellers![wait:5]\n* Welcome,[wait:2] welcome!"
+    self.shop_text = "* Take all the time\nyou need.\n* Don't forget you're always welcome here,[wait:5] faha."
+    self.leaving_text = "* Safe travels!\n* Come back whenever you're hungry!"
 
-    self.encounter_text = "* Well well...[wait:2]\n* Nice to meet you all again."
-    self.shop_text = "* Take your time...[wait:2]\nAin't like it's better spent."
-    self.leaving_text = "* See you later...[wait:5]\n* Or not.[wait:5]\n* Ha ha ha ha..."
     -- Shown when you're in the BUY menu
-    self.buy_menu_text = "What do\nyou like\nto buy?"
+    self.buy_menu_text = "What catches\nyour eye\ntoday?"
     -- Shown when you're about to buy something.
-    self.buy_confirmation_text = "Buy it for\n%s ?"
+    self.buy_confirmation_text = "Wrap it up\nfor %s ?"
     -- Voice to use 
     self.voice = "mitsy"
     -- Shown when you refuse to buy something
-    self.buy_refuse_text = "What,\nnot good\nenough?"
+    self.buy_refuse_text = "Oh,[wait:2] no worries\nat all!"
     -- Shown when you buy something
-    self.buy_text = "Thanks for that."
+    self.buy_text = "Thank you!\nEnjoy the\ngoodness!"
     -- Shown when you buy something and it goes in your storage
-    self.buy_storage_text = "Thanks for that."
+    self.buy_storage_text = "Sent straight\nto your\nstorage!"
     -- Shown when you don't have enough money to buy something
-    self.buy_too_expensive_text = "I don't\nhave enough\nmoney for\nthis."
+    self.buy_too_expensive_text = "Oh dear...\nYou're a bit\nshort."
     -- Shown when you don't have enough space to buy something.
-    self.buy_no_space_text = "I'm\ncarrying\ntoo much."
+    self.buy_no_space_text = "Looks like\nyour pockets\nare full!"
+    -- Shown when you sold everything
+    self.sell_everything_text = "Oop,[wait:2] you have\nnothing else."
     -- Shown when something doesn't have a sell price
-    self.sell_no_price_text = "Why would\nI sell\nthis?"
+    self.sell_no_price_text = "Oh,[wait:2] I couldn't\npossibly\ntake that!"
     -- Shown when you're in the SELL menu
-    self.sell_menu_text = "Guess I\ncan get\nrid of\nstuff."
+    self.sell_menu_text = "Got something\nto share\nwith me?"
     -- Shown when you try to sell an empty spot
-    self.sell_nothing_text = "Nothing\nto give."
+    self.sell_nothing_text = "There's\nnothing\nthere."
     -- Shown when you're about to sell something.
-    self.sell_confirmation_text = "Sell it for\n%s ?"
+    self.sell_confirmation_text = "Trade it\nfor %s ?"
     -- Shown when you refuse to sell something
-    self.sell_refuse_text = "I'd\nrather\nhold on\nto this."
+    self.sell_refuse_text = "Changed your\nmind?"
     -- Shown when you sell something
-    self.sell_text = "There\nwe go."
+    self.sell_text = "Ooh,[wait:2] thank\nyou so much!"
     -- Shown when you have nothing in a storage
-    self.sell_no_storage_text = "Nothing\nin there."
+    self.sell_no_storage_text = "Sorry,[wait:2] that's\nempty..."
     -- Shown when you enter the talk menu.
-    self.talk_text = "Guess I\nshould\nthink."
+    self.talk_text = "Oh![wait:2] What\nshall we\nchat about?"
 
-    self.sell_options_text["items"]   = "What\nshould\nI sell?"
-    self.sell_options_text["weapons"] = "What\nshould\nI sell?"
-    self.sell_options_text["armors"]  = "What\nshould\nI sell?"
-    self.sell_options_text["storage"] = "What\nshould\nI sell?"
+    self.sell_options_text["items"]   = "Let's see\nhere..."
+    self.sell_options_text["weapons"] = "Let's see\nhere..."
+    self.sell_options_text["armors"]  = "Let's see\nhere..."
+    self.sell_options_text["storage"] = "Let's see\nhere..."
+
 
    -- self:registerItem("cd_bagel", {description = "ITEM\nMusic with\neach bite\nheals 80HP"})
     -- self:registerItem("adventure_tea")
