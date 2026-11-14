@@ -3,7 +3,9 @@ local Mitsy, super = Class(Shop,  "mitsy")
 function Mitsy:init()
     super.init(self)
 
-    self.shop_music = "wip_misty_theme"
+    self.shop_music = "mitsy"
+    self.music:setVolume(2)
+    -- text :p
     self.encounter_text = "* Oh! Hello there,[wait:2] travellers![wait:5]\n* Welcome,[wait:2] welcome!"
     self.shop_text = "* Take all the time\nyou need.\n* Don't forget you're always welcome here,[wait:5] faha."
     self.leaving_text = "* Safe travels!\n* Come back whenever you're hungry!"
